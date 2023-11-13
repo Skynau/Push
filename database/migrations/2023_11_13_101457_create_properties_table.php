@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->foreignId('rented_by');
+            $table->foreignId('amenities_id');
             $table->string('title');
             $table->text('description');
             $table->float('price_rent');
