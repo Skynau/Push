@@ -6,24 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('media', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('property_id');
-            $table->string('type');
-            $table->string('url');
-        });
-    }
+  /**
+   * Run the migrations.
+   */
+  public function up(): void
+  {
+    Schema::create('media', function (Blueprint $table) {
+      $table->id();
+      $table->foreignId('property_id');
+      $table->string('type');
+      $table->string('url');
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('media');
-    }
+  /**
+   * Reverse the migrations.
+   */
+  public function down(): void
+  {
+    Schema::dropIfExists('media');
+  }
 };
