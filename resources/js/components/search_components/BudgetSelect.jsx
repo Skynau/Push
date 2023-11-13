@@ -25,7 +25,6 @@ const Budget = () => {
                     <option value="60.000.00">60.000.00</option>
                     <option value="40.000.00">40.000.00</option>
                     <option value="more">More</option>
-                
             </section>
         </div>
     );

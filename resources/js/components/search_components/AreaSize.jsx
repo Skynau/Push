@@ -24,7 +24,6 @@ const AreaSize = () => {
                     <option value="90">90m2</option>
                     <option value="100">100m2</option>
                     <option value="more">More</option>
-                
             </section>
         </div>
     );
