@@ -1,0 +1,12 @@
+$bestcolor: #8a2be2;
+$main-font: "Lato", sans-serif;
+
+@mixin button-style {
+    border: none;
+    outline: none;
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
+    font-size: 1rem;
+    background-color: $bestcolor;
+    color: #fff;
+}
