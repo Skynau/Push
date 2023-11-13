@@ -1,6 +1,6 @@
 import React from "react";
 
-const ConstructionType = () => {
+const Amenities = () => {
     return (
         <div className="amenities-btns">
             <button>Balcony/Terrace</button>
@@ -12,4 +12,4 @@ const ConstructionType = () => {
     );
 };
 
-export default ConstructionType;
+export default Amenities;
