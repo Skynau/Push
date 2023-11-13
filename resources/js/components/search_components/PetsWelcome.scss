@@ -1,0 +1,5 @@
+@import '../../../css/app.scss';
+
+.pets_welcome-btn {
+    @include button-style;
+}
