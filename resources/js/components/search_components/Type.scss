@@ -3,9 +3,13 @@
 .type-btns {
     display: flex;
     justify-content: space-between;
-    width: 20%;
+    width: 50%;
     margin-bottom: 1rem;
+
     .btn {
         @include button-style;
+        &:nth-child(2) {
+            @include button-not-selected;
+        }
     }
 }

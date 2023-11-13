@@ -1,4 +1,6 @@
 $bestcolor: #8a2be2;
+$whitecolor: #ffffff;
+$lightgraycolor: #eeeeee;
 $main-font: "Lato", sans-serif;
 
 @mixin button-style {
@@ -8,5 +10,12 @@ $main-font: "Lato", sans-serif;
     border-radius: 3px;
     font-size: 1rem;
     background-color: $bestcolor;
-    color: #fff;
+    color: $whitecolor;
+    cursor: pointer;
+}
+
+@mixin button-not-selected {
+    border: 1px solid $bestcolor;
+    background-color: $lightgraycolor;
+    color: $bestcolor;
 }

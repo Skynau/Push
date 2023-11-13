@@ -1,10 +1,86 @@
+@import "../../../css/app.scss";
+
 .budget-size_btns {
     margin-bottom: 1rem;
     margin-bottom: 1rem;
-    width: 20%;
+    width: 60%;
     display: flex;
     justify-content: space-between;
-    select {
-        padding: 0.3rem 0.5rem;
+
+    .selectdiv {
+        position: relative;
+        &::after {
+            content: "\25BE";
+            color: $whitecolor;
+            right: 0px;
+            top: 0rem;
+            left: 6.7rem;
+            height: 1.7rem;
+            padding: 0.8rem 0rem 0rem 0.1rem;
+            border-left: 1px solid $bestcolor;
+            position: absolute;
+            pointer-events: none;
+            background-color: $bestcolor;
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: block;
+            width: 100%;
+            max-width: 32rem;
+            height: 2.6rem;
+            float: right;
+            margin: 0rem 0rem;
+            font-size: 1rem;
+            line-height: 1.75;
+            color: $bestcolor;
+            background-color: $whitecolor;
+            background-image: none;
+            border: 2px solid $bestcolor;
+            -ms-word-break: normal;
+            word-break: normal;
+            cursor: pointer;
+            padding-left: 1rem;
+            outline: none;
+            padding: 0rem 2rem 0rem 0.5rem;
+        }
+        &:nth-child(2) {
+            &::after {
+                right: 0px;
+                top: 0rem;
+                left: 5.7rem;
+                height: 1.7rem;
+                padding: 0.8rem 0rem rem 0rem 0.1rem;
+                border-left: 1px solid #8a2be2;
+                position: absolute;
+                pointer-events: none;
+                background-color: #8a2be2;
+            }
+            select {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                display: block;
+                width: 100%;
+                max-width: 11rem;
+                height: 2.6rem;
+                float: right;
+                margin: 0rem 0rem;
+                font-size: 1rem;
+                line-height: 1.75;
+                color: $bestcolor;
+                background-color: $whitecolor;
+                background-image: none;
+                border: 2px solid #8a2be2;
+                -ms-word-break: normal;
+                word-break: normal;
+                cursor: pointer;
+                padding-left: 1rem;
+                outline: none;
+                padding: 0rem 1.8rem 0rem 0.5rem;
+            }
+        }
     }
 }
