@@ -14,7 +14,7 @@ const Budget = () => {
                 <option value="35.000.00">35.000.00</option>
             </section>
             <section>
-                <option defaultChecked="TO CZK">
+                <option defaultChecked="TO CZK"></option>
                     <option value="15.000.00">15.000.00</option>
                     <option value="20.000.00">20.000.00</option>
                     <option value="25.000.00">25.000.00</option>
@@ -25,7 +25,7 @@ const Budget = () => {
                     <option value="60.000.00">60.000.00</option>
                     <option value="40.000.00">40.000.00</option>
                     <option value="more">More</option>
-                </option>
+                
             </section>
         </div>
     );
