@@ -1,0 +1,11 @@
+@import "../../../css/app.scss";
+
+.dispositons-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-bottom: 1rem;
+    .btn {
+        @include button-style;
+    }
+}

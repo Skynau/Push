@@ -1,5 +1,5 @@
 $bestcolor: #8a2be2;
-$main-font: 'Lato', sans-serif;
+$main-font: "Lato", sans-serif;
 
 @mixin button-style {
     border: none;
@@ -10,6 +10,3 @@ $main-font: 'Lato', sans-serif;
     background-color: $bestcolor;
     color: #fff;
 }
-
-
-
