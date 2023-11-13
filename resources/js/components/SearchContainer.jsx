@@ -7,6 +7,8 @@ import ConditionsApartment from "./search_components/ConditionsApartment";
 import SearchLocation from "./search_components/SearchLocation";
 import Amenities from "./search_components/Amenities";
 import ListingDate from "./search_components/ListingDate";
+import './SearchContainer.scss';
+import PetsWelcome from "./search_components/PetsWelcome";
 
 const SearchContainer = () => {
     const handleSubmit = () => {};
@@ -23,6 +25,7 @@ const SearchContainer = () => {
                     <AreaSize />
                     <ConditionsApartment />
                     <Amenities />
+                    <PetsWelcome />
                     <ListingDate />
                 </div>
             </form>

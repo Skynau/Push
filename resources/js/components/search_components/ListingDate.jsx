@@ -7,7 +7,7 @@ const ListingDate = () => {
     const [date, setDate] = useState(new Date());
 
   return (
-    <div>
+    <div className='listings_date-datepicker'>
         <DatePicker selected={date} onChange={(date) => setDate(date)} />
     </div>
   )
