@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import SearchContainer from "./SearchContainer";
+import Navigation from "./Navigation";
 
 const App = () => {
-  return (
-    <div>App</div>
-  )
-}
+    return (
+        <>
+            <header>
+                <Navigation />
+            </header>
+            <SearchContainer />
+        </>
+    );
+};
 
-export default App
+export default App;
