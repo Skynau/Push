@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rented_by');
-            $table->foreignId('amenities_id');
+            $table->foreignId('rented_by')->nullable();
+            $table->foreignId('amenities_id')->nullable();
             $table->string('title');
             $table->text('description');
             $table->float('price_rent');
@@ -22,13 +22,13 @@ return new class extends Migration
             $table->float('price_energies')->nullable();
             $table->float('deposit')->nullable();
             $table->date('available_from');
-            $table->foreignId('address_id');
+            $table->foreignId('address_id')->nullable();
             $table->integer('number_of_bathrooms');
             $table->float('square_meters');
             $table->boolean('active');
             $table->boolean('pets_welcome');
             $table->boolean('paid_status');
-            $table->date('listing_date');
+            $table->date('listing_date')->nullable();
             $table->tinyInteger('number_of_floors_building')->nullable();
             $table->tinyInteger('floor')->nullable();
             $table->foreignId('heating_id')->nullable();

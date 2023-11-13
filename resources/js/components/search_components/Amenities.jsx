@@ -6,7 +6,7 @@ const ConstructionType = () => {
             <button>Balcony/Terrace</button>
             <button>Wheelchair Accesible</button>
             <button>Basement</button>
-            <button>Privete Parking</button>
+            <button>Privet Parking</button>
             <button>Garden</button>
         </div>
     );
