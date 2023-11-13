@@ -7,7 +7,7 @@ import ConditionsApartment from "./search_components/ConditionsApartment";
 import SearchLocation from "./search_components/SearchLocation";
 import Amenities from "./search_components/Amenities";
 import ListingDate from "./search_components/ListingDate";
-import './SearchContainer.scss';
+import "./SearchContainer.scss";
 import PetsWelcome from "./search_components/PetsWelcome";
 
 const SearchContainer = () => {
@@ -15,7 +15,7 @@ const SearchContainer = () => {
 
     return (
         <div className="search-container">
-            <h2>Find your dream home</h2>
+            <h2 className="search-container__title">Find your dream home</h2>
             <form onSubmit={handleSubmit}>
                 <div className="search-container_filters">
                     <Type />
