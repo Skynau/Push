@@ -1,0 +1,11 @@
+@import "../../css/app.scss";
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+        color: $bestcolor;
+        font-family: $main-font;
+    }
+}
