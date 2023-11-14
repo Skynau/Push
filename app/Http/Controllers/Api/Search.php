@@ -16,13 +16,13 @@ class Search extends Controller
 
     // $type = $request->input('type');
     // $disposition = $request->input('disposition') ?? "%";
-    // $priceFrom = $request->input('price_from') ?? 0;
-    // $priceTo = $request->input('price_to') ?? 100000000;
-    // $sizeFrom = $request->input('size_from') ?? 0;
-    // $sizeTo = $request->input('size_to') ?? 100000000;
+    $priceFrom = $request->input('amountFrom') ?? 0;
+    $priceTo = $request->input('amountTo') ?? 100000000;
+    $sizeFrom = $request->input('sizeFrom') ?? 0;
+    $sizeTo = $request->input('sizeTo') ?? 100000000;
     // $furnishing = $request->input('furnishing') ?? "%";
     // $amenity = $request->input('amenity') ?? null; //here need to fix for now is null bcs we have just 3 property with 0 amenity
-    // $pets = $request->input('petsWelcome') ?? 1; //default setting is true
+    $pets = 0; //default setting is true
     // $date = $request->input('listingDate') ?? null;
 
 
@@ -34,19 +34,20 @@ class Search extends Controller
     //   ->where('type_id', $type)
     //   // ->orWhere('type_id', $type)
     //   ->where('disposition_id', 'like', $disposition)
-    //   ->where('price_rent', '>', $priceFrom)
-    //   ->where('price_rent', '<', $priceTo)
-    //   ->where('square_meters', '>', $sizeFrom)
-    //   ->where('square_meters', '<', $sizeTo)
+    // ->where('price_rent', '>', $priceFrom)
+    // ->where('price_rent', '<', $priceTo)
+    // ->where('square_meters', '>', $sizeFrom)
+    // ->where('square_meters', '<', $sizeTo)
     //   ->where('furnishing_id', 'like', $furnishing)
     //   ->where('amenities_id', $amenity) //same here
-    //   ->where('pets_welcome', $pets);
+    // ->where('pets_welcome', $pets);
     // // ->orWhere('listing_date', '=', $date) //HERE NEED TO FIX NULL listing_date COLUMN IN DB BCS IT IS HERE =
 
 
 
 
     $query =  Property::query();
+    //type
     if ($request->input('apartment')) {
       $query
         ->where('type_id', 2);
@@ -55,6 +56,8 @@ class Search extends Controller
       $query
         ->where('type_id', 1);
     }
+
+    //disposition
     if ($request->input('1kk')) {
       $query
         ->where('disposition_id', 1);
@@ -62,12 +65,64 @@ class Search extends Controller
     if ($request->input('1kk')) {
       $query
         ->where('disposition_id', 1);
+    }
+    if ($request->input('1+1')) {
+      $query
+        ->where('disposition_id', 2);
+    }
+    if ($request->input('2kk')) {
+      $query
+        ->where('disposition_id', 3);
+    }
+    if ($request->input('2+1')) {
+      $query
+        ->where('disposition_id', 4);
+    }
+    if ($request->input('3kk')) {
+      $query
+        ->where('disposition_id', 5);
+    }
+    if ($request->input('3+1')) {
+      $query
+        ->where('disposition_id', 6);
+    }
+    if ($request->input('4kk')) {
+      $query
+        ->where('disposition_id', 7);
+    }
+    if ($request->input('bigger')) {
+      $query
+        ->where('disposition_id', '>', 7);
+    }
+
+    //furnishing
+    if ($request->input('furnished')) {
+      $query
+        ->where('furnishing_id', 3);
+    }
+    if ($request->input('partialy')) {
+      $query
+        ->where('furnishing_id', 2);
+    }
+    if ($request->input('unfurnished')) {
+      $query
+        ->where('furnishing_id', 1);
+    }
+
+    //pets
+    if ($request->input('pets')) {
+      $pets = 1;
     }
 
 
 
     $results = $query
-      ->where('active', 1)
+      // ->where('active', 1)
+      ->where('price_rent', '>', $priceFrom)
+      ->where('price_rent', '<', $priceTo)
+      ->where('square_meters', '>', $sizeFrom)
+      ->where('square_meters', '<', $sizeTo)
+      ->where('pets_welcome', $pets)
       ->orderBy('created_at', 'desc')
       ->get();
 
@@ -75,10 +130,14 @@ class Search extends Controller
   }
 }
 
+//apartment=true&house=true&1kk=true&1%2B1=true&2kk=true&2%2B1=true&3kk=true&3%2B1=true&4kk=true&bigger=true&amountFrom=10000&amountTo=15000&sizeFrom=15&sizeTo=90
+
 //apartment=true&2kk=true&3kk=true&3+1=true&searchFieldValue=vodicko&partialyFurnished=true&basement=true
 //apartment=true&house=true&2kk=true&3kk=true&3+1=true&searchFieldValue=vodicko&partialyFurnished=true&basement=true
 
 ///api/search?apartment=true&house=true&1kk=true&1+1=true&2kk=true&2+1=true&3kk=true&3+1=true&4kk=true&bigger=true&amountFrom=10000&amountTo=40000&sizeFrom=15&sizeTo=100&furnished=true&partialyFurnished=true&unfurnished=true&petsWelcome=true
+
+//apartment=true&house=true&1kk=true&1%2B1=true&2kk=true&2%2B1=true&3kk=true&3%2B1=true&4kk=true&bigger=true&amountFrom=10000&amountTo=15000&sizeFrom=15&sizeTo=90&furnished=true&partialyFurnished=true&unfurnished=true&petsWelcome=true
 
 
 //$request->input('type')
