@@ -1,15 +1,17 @@
 import React from "react";
 
-const ConstructionType = () => {
+import "./Amenities.scss";
+
+const Amenities = () => {
     return (
         <div className="amenities-btns">
-            <button>Balcony/Terrace</button>
-            <button>Wheelchair Accesible</button>
-            <button>Basement</button>
-            <button>Privet Parking</button>
-            <button>Garden</button>
+            <button className="btn">Balcony/Terrace</button>
+            <button className="btn">Wheelchair Accesible</button>
+            <button className="btn">Basement</button>
+            <button className="btn">Privete Parking</button>
+            <button className="btn">Garden</button>
         </div>
     );
 };
 
-export default ConstructionType;
+export default Amenities;

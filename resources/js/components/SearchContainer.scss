@@ -1,0 +1,26 @@
+@import "../../css/app.scss";
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 60%;
+    border: 2px solid $bestcolor;
+    border-radius: 3px;
+    padding: 3rem;
+    .search-container__title {
+        font-size: 250%;
+        font-weight: 100;
+    }
+    .search-container_filters {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            color: $bestcolor;
+            font-family: $main-font;
+        }
+    }
+}

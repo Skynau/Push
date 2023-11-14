@@ -1,0 +1,5 @@
+@import '../../../css/app.scss';
+
+.conditions-btn {
+    @include button-style;
+}
