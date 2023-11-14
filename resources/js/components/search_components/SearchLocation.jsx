@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Context from "../../Context";
-import "./SearchLocation.scss";
-
+import './SearchLocation.scss';
 
 const SearchLocation = () => {
     const { dispatch } = useContext(Context);

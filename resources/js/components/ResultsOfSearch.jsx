@@ -17,7 +17,7 @@ const ResultsOfSearch = () => {
             </div> */}
             <div className='over-view'>
                 <div className="map">
-
+                    
                 </div>
                 <div className='results-list'>
                     <div className='results-list_header'>
