@@ -1,11 +1,10 @@
 @import "../../../css/app.scss";
 
-.budget-size_btns {
-    margin-bottom: 1rem;
-    margin-bottom: 1rem;
-    width: 64%;
+.area-size__btns {
     display: flex;
+    width: 64%;
     justify-content: space-between;
+    padding-bottom: 1rem;
 
     .selectdiv {
         position: relative;
@@ -44,7 +43,7 @@
             cursor: pointer;
             padding-left: 1rem;
             outline: none;
-            padding: 0rem 2rem 0rem 0.5rem;
+            padding: 0rem 2.7rem 0rem 0.5rem;
         }
         &:nth-child(2) {
             &::after {
@@ -79,7 +78,7 @@
                 cursor: pointer;
                 padding-left: 1rem;
                 outline: none;
-                padding: 0rem 1.8rem 0rem 0.5rem;
+                padding: 0rem 3.3rem 0rem 0.5rem;
             }
         }
     }

@@ -27,6 +27,11 @@ const SearchContainer = () => {
                     <Amenities />
                     <PetsWelcome />
                     <ListingDate />
+                    <input
+                        type="submit"
+                        className="search-form__btn"
+                        value="Search"
+                    />
                 </div>
             </form>
         </div>

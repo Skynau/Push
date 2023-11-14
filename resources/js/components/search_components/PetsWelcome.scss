@@ -1,5 +1,8 @@
-@import '../../../css/app.scss';
+@import "../../../css/app.scss";
 
-.pets_welcome-btn {
-    @include button-style;
+.pets-welcome {
+    margin-bottom: 1rem;
+    .btn {
+        @include button-style;
+    }
 }
