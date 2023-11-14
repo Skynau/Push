@@ -54,6 +54,9 @@ export default function reducer(state, action) {
         case "SIZE_TO":
             newState.filterOptions.sizeTo = action.payload;
             break;
+        case "datePicker":
+            newState.filterOptions.datePicker = action.payload;
+            break;
 
         default:
             return state;
