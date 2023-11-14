@@ -41,6 +41,8 @@ const SearchLocation = () => {
         <div className="search">
 
             <input
+                onInput={setSearchQuery}
+                className="search-location"
                 id="address"
                 type="text"
                 value={address}
@@ -51,7 +53,9 @@ const SearchLocation = () => {
             {/* Display the Google Places Autocomplete */}
             <div id="autocomplete-container"></div>
 
+
         </div>
+
     );
 };
 
