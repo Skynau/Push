@@ -39,6 +39,10 @@ export default function reducer(state, action) {
             newState.filterOptions.amountTo = action.payload;
             break;
 
+        case "DROPDOWN":
+            newState.filterOptions.searchFieldValue = action.payload;
+            break;
+
         case "SEARCH_QUERY":
             newState.filterOptions.searchFieldValue = action.payload;
             break;
