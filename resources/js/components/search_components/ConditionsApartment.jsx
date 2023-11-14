@@ -1,12 +1,12 @@
 import React from "react";
-import './ConditionsApartment.scss';
+import "./ConditionsApartment.scss";
 
 const ConditionsApartment = () => {
     return (
         <div className="conditions-btns">
-            <button className="conditions-btn">Furnished</button>
-            <button className="conditions-btn">Partialy Furnished</button>
-            <button className="conditions-btn">Unfurnished</button>
+            <button className="btn">Furnished</button>
+            <button className="btn">Partialy Furnished</button>
+            <button className="btn">Unfurnished</button>
         </div>
     );
 };

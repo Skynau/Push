@@ -1,9 +1,14 @@
 import React from "react";
+import "./SearchLocation.scss";
 
 const SearchLocation = () => {
     return (
-        <div>
-            <input type="text" placeholder="Search" />
+        <div className="search">
+            <input
+                className="search-location"
+                type="text"
+                placeholder="Search"
+            />
         </div>
     );
 };
