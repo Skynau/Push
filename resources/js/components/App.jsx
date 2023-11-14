@@ -15,6 +15,25 @@ const App = () => {
         const urlTest = `/api/search?${Object.entries(filterOptions)
             .filter(([key, value]) => value) // only truthy values
             .map(([key, value]) => {
+                // Date formating here, wait to see which format is needed for backend
+                if (key === "datePicker") {
+                    const year = value.getFullYear();
+                    const month = value.getMonth() + 1;
+                    const day = value.getDate();
+                    const hour = value.getHours();
+                    const minutes = value.getMinutes();
+                    console.log(
+                        day,
+                        "/",
+                        month,
+                        "/",
+                        year,
+                        "/ ",
+                        hour,
+                        ":",
+                        minutes
+                    );
+                }
                 return `${encodeURIComponent(key)}=${encodeURIComponent(
                     value
                 )}`; // key=value biuld here
