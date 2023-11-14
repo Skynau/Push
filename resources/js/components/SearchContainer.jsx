@@ -7,15 +7,17 @@ import ConditionsApartment from "./search_components/ConditionsApartment";
 import SearchLocation from "./search_components/SearchLocation";
 import Amenities from "./search_components/Amenities";
 import ListingDate from "./search_components/ListingDate";
-import './SearchContainer.scss';
+import "./SearchContainer.scss";
 import PetsWelcome from "./search_components/PetsWelcome";
 
 const SearchContainer = () => {
-    const handleSubmit = () => {};
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
 
     return (
         <div className="search-container">
-            <h2>Find your dream home</h2>
+            <h2 className="search-container__title">Find your dream home</h2>
             <form onSubmit={handleSubmit}>
                 <div className="search-container_filters">
                     <Type />
@@ -27,6 +29,11 @@ const SearchContainer = () => {
                     <Amenities />
                     <PetsWelcome />
                     <ListingDate />
+                    <input
+                        type="submit"
+                        className="search-form__btn"
+                        value="Search"
+                    />
                 </div>
             </form>
         </div>

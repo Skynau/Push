@@ -1,0 +1,15 @@
+@import "../../../css/app.scss";
+
+.search {
+    padding-bottom: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .search-location {
+        width: 60%;
+        padding: 0.4rem;
+        font-size: 1.2rem;
+        color: $bestcolor;
+        font-weight: bold;
+    }
+}

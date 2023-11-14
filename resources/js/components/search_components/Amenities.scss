@@ -1,5 +1,32 @@
+@import "../../../css/app.scss";
+
 .amenities-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .amenities-btns__top,
+    .amenities-btns__bottom {
+        margin-bottom: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
     .btn {
-        color: red;
+        @include button-not-selected;
+        margin-left: 0.9rem;
+        margin-right: 0.9rem;
+
+        &.active {
+            border: none;
+            outline: none;
+            padding: 0.3rem 0.5rem;
+            border-radius: 3px;
+            font-size: 1rem;
+            background-color: $bestcolor;
+            color: $whitecolor;
+            cursor: pointer;
+        }
     }
 }
