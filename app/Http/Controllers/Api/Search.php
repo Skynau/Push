@@ -10,37 +10,72 @@ class Search extends Controller
 {
   public function index(Request $request)
   {
-    $type = $request->input('type') ?? "%";
-    $disposition = $request->input('disposition') ?? "%";
-    $priceFrom = $request->input('price_from') ?? 0;
-    $priceTo = $request->input('price_to') ?? 100000000;
-    $sizeFrom = $request->input('size_from') ?? 0;
-    $sizeTo = $request->input('size_to') ?? 100000000;
-    $furnishing = $request->input('furnishing') ?? "%";
-    $amenity = $request->input('amenity') ?? null; //here need to fix for now is null bcs we have just 3 property with 0 amenity
-    $pets = $request->input('petsWelcome') ?? 1; //default setting is true
-    $date = $request->input('listingDate') ?? null;
+    // dd($request);
 
 
 
-    $results = Property::query()
-      // ->where('active', 1) //this is for active property
-      ->where('type_id', 'like', $type)
-      ->where('disposition_id', 'like', $disposition)
-      ->where('price_rent', '>', $priceFrom)
-      ->where('price_rent', '<', $priceTo)
-      ->where('square_meters', '>', $sizeFrom)
-      ->where('square_meters', '<', $sizeTo)
-      ->where('furnishing_id', 'like', $furnishing)
-      ->where('amenities_id', $amenity) //same here
-      ->where('pets_welcome', $pets)
-      ->where('listing_date', '=', $date) //HERE NEED TO FIX NULL listing_date COLUMN IN DB BCS IT IS HERE =
+    // $type = $request->input('type');
+    // $disposition = $request->input('disposition') ?? "%";
+    // $priceFrom = $request->input('price_from') ?? 0;
+    // $priceTo = $request->input('price_to') ?? 100000000;
+    // $sizeFrom = $request->input('size_from') ?? 0;
+    // $sizeTo = $request->input('size_to') ?? 100000000;
+    // $furnishing = $request->input('furnishing') ?? "%";
+    // $amenity = $request->input('amenity') ?? null; //here need to fix for now is null bcs we have just 3 property with 0 amenity
+    // $pets = $request->input('petsWelcome') ?? 1; //default setting is true
+    // $date = $request->input('listingDate') ?? null;
+
+
+    // // $apartmet = $request->input('apartment');
+
+
+    //   // $results = Property::query()
+    //   // ->where('active', 1) //this is for active property
+    //   ->where('type_id', $type)
+    //   // ->orWhere('type_id', $type)
+    //   ->where('disposition_id', 'like', $disposition)
+    //   ->where('price_rent', '>', $priceFrom)
+    //   ->where('price_rent', '<', $priceTo)
+    //   ->where('square_meters', '>', $sizeFrom)
+    //   ->where('square_meters', '<', $sizeTo)
+    //   ->where('furnishing_id', 'like', $furnishing)
+    //   ->where('amenities_id', $amenity) //same here
+    //   ->where('pets_welcome', $pets);
+    // // ->orWhere('listing_date', '=', $date) //HERE NEED TO FIX NULL listing_date COLUMN IN DB BCS IT IS HERE =
+
+
+
+
+    $query =  Property::query();
+    if ($request->input('apartment')) {
+      $query
+        ->where('type_id', 2);
+    }
+    if ($request->input('house')) {
+      $query
+        ->where('type_id', 1);
+    }
+    if ($request->input('1kk')) {
+      $query
+        ->where('disposition_id', 1);
+    }
+    // if ()
+
+
+
+    $results = $query
+      ->where('active', 1)
       ->orderBy('created_at', 'desc')
       ->get();
 
     return response()->json($results);
   }
 }
+
+//apartment=true&2kk=true&3kk=true&3+1=true&searchFieldValue=vodicko&partialyFurnished=true&basement=true
+//apartment=true&house=true&2kk=true&3kk=true&3+1=true&searchFieldValue=vodicko&partialyFurnished=true&basement=true
+
+///api/search?apartment=true&house=true&1kk=true&1+1=true&2kk=true&2+1=true&3kk=true&3+1=true&4kk=true&bigger=true&amountFrom=10000&amountTo=40000&sizeFrom=15&sizeTo=100&furnished=true&partialyFurnished=true&unfurnished=true&petsWelcome=true
 
 
 //$request->input('type')

@@ -16,12 +16,9 @@ class SearchBar extends Controller
     $searchTerm = $request->input('search');
     $results = Address::where('address', 'like', '%' . $searchTerm . '%')->get();
 
-
-
     return response()->json($results);
   }
 }
-
 //type%apartment&disposition%2kk&petsWelcome%true
 //$request->input('type')
 //$request->input('disposition')
