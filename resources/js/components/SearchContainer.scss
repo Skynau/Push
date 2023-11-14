@@ -25,6 +25,11 @@
             border: none;
             border-radius: 3px;
             cursor: pointer;
+            font-size: 1rem;
+            color: $whitecolor;
+            &:hover {
+                background-color: $orangecolorbtnLighter;
+            }
         }
         h2 {
             color: $bestcolor;
