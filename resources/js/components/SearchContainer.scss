@@ -17,7 +17,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-
+        .search-form__btn {
+            padding: 0.4rem;
+            width: 7rem;
+            background-color: $orangecolorbtn;
+            outline: none;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
         h2 {
             color: $bestcolor;
             font-family: $main-font;

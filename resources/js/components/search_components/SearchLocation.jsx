@@ -1,7 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import Context from "../../Context";
+import “./SearchLocation.scss”;
 
 const SearchLocation = () => {
+    const { dispatch } = useContext(Context);
 
+    const setSearchQuery = (e) => {
+        dispatch({
+            type: "SEARCH_QUERY",
+            payload: e.target.value,
+        });
+    };
+  
     const [address, setAddress] = useState("");
     
     const handleAddressChange = (event) => {
@@ -27,10 +37,10 @@ const SearchLocation = () => {
 
     return (
         
-        <form>
-            
-            <label htmlFor="address">Address:</label>
+        <form className="search">
             <input
+                onInput={setSearchQuery}
+                className="search-location"
                 id="address"
                 type="text"
                 value={address}

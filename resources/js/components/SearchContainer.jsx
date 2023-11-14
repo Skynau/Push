@@ -11,7 +11,9 @@ import "./SearchContainer.scss";
 import PetsWelcome from "./search_components/PetsWelcome";
 
 const SearchContainer = () => {
-    const handleSubmit = () => {};
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
 
     return (
         <div className="search-container">
@@ -27,6 +29,11 @@ const SearchContainer = () => {
                     <Amenities />
                     <PetsWelcome />
                     <ListingDate />
+                    <input
+                        type="submit"
+                        className="search-form__btn"
+                        value="Search"
+                    />
                 </div>
             </form>
         </div>

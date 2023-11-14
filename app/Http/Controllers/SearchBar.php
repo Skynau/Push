@@ -18,5 +18,14 @@ class SearchBar extends Controller
 
         return response()->json($results);
     }
-}
 
+//type%apartment&disposition%2kk&petsWelcome%true
+//$request->input('type')
+//$request->input('disposition')
+//$request->input('price_rent')
+//$request->input('searchFieldValue')
+//$request->input('size')
+//$request->input('furishing')
+//$request->input('amenities')
+//$request->input('petsWelcome')
+//$request->input('listingDate')

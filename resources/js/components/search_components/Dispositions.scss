@@ -6,10 +6,16 @@
     width: 100%;
     margin-bottom: 1rem;
     .btn {
-        @include button-style;
-        &:nth-child(1),
-        &:nth-child(4) {
-            @include button-not-selected;
+        @include button-not-selected;
+        &.active {
+            border: none;
+            outline: none;
+            padding: 0.3rem 0.5rem;
+            border-radius: 3px;
+            font-size: 1rem;
+            background-color: $bestcolor;
+            color: $whitecolor;
+            cursor: pointer;
         }
     }
 }
