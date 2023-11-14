@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SearchContainer from "./SearchContainer";
 import Navigation from "./Navigation";
 import reducer from "../reducer";
@@ -13,7 +14,9 @@ const App = () => {
         const urlTest = `/api/search?${Object.entries(filterOptions)
             .filter(([key, value]) => value) // only truthy values
             .map(([key, value]) => {
-                return `${key}=${value}`; // key=value biuld here
+                return `${encodeURIComponent(key)}=${encodeURIComponent(
+                    value
+                )}`; // key=value biuld here
             })
             .join("&")}`;
         console.log(urlTest);
@@ -21,14 +24,19 @@ const App = () => {
 
     return (
         <>
-            <Context.Provider
-                value={{ state: contextValue, dispatch: setContextValue }}
-            >
-                <header>
-                    <Navigation />
-                </header>
-                <SearchContainer />
-            </Context.Provider>
+            <BrowserRouter>
+                <Context.Provider
+                    value={{ state: contextValue, dispatch: setContextValue }}
+                >
+                    <header>
+                        <Navigation />
+                    </header>
+                    <Routes>
+                        <Route path="/" element={<SearchContainer />} />
+                        <Route path="/test" element="dsvs" />
+                    </Routes>
+                </Context.Provider>
+            </BrowserRouter>
         </>
     );
 };
