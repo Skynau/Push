@@ -59,7 +59,10 @@ class Search extends Controller
       $query
         ->where('disposition_id', 1);
     }
-    // if ()
+    if ($request->input('1kk')) {
+      $query
+        ->where('disposition_id', 1);
+    }
 
 
 
