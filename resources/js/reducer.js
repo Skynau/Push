@@ -122,6 +122,14 @@ export default function reducer(state, action) {
                 return newState;
             }
             break;
+        case "DROPDOWN":
+            if (state) {
+                const newState = { ...state };
+                newState.filterOptions.searchFieldValue = action.payload;
+                console.log(newState);
+                return newState;
+            }
+            break;
         case "SEARCH_QUERY":
             if (state) {
                 const newState = { ...state };

@@ -6,13 +6,6 @@ import "./SearchLocation.scss";
 const SearchLocation = () => {
     const { dispatch } = useContext(Context);
 
-    const setSearchQuery = (e) => {
-        dispatch({
-            type: "SEARCH_QUERY",
-            payload: e.target.value,
-        });
-    };
-
     const [address, setAddress] = useState("");
 
     const handleAddressChange = (event) => {
@@ -22,6 +15,14 @@ const SearchLocation = () => {
     const handlePlaceSelect = (place) => {
         // Handle the selected place data, e.g., set form values
         console.log("Selected Place:", place);
+        setAddress(place.name);
+    };
+
+    const setSearchQuery = () => {
+        dispatch({
+            type: "DROPDOWN",
+            payload: address,
+        });
     };
 
     useEffect(() => {

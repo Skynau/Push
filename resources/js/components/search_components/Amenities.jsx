@@ -13,6 +13,7 @@ const Amenities = () => {
     const { dispatch } = useContext(Context);
 
     const toggleBalcony = () => {
+        console.log(classBalcony);
         dispatch({
             type: "BALCONY",
         });
