@@ -29,4 +29,3 @@ class SearchBar extends Controller
 //$request->input('amenities')
 //$request->input('petsWelcome')
 //$request->input('listingDate')
-}
