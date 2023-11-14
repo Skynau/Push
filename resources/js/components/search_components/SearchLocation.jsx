@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Context from "../../Context";
-import “./SearchLocation.scss”;
+import './SearchLocation.scss';
 
 const SearchLocation = () => {
     const { dispatch } = useContext(Context);
@@ -37,7 +37,8 @@ const SearchLocation = () => {
 
     return (
         
-        <form className="search">
+        <div className="search">
+
             <input
                 onInput={setSearchQuery}
                 className="search-location"
@@ -51,7 +52,7 @@ const SearchLocation = () => {
             {/* Display the Google Places Autocomplete */}
             <div id="autocomplete-container"></div>
 
-        </form>
+        </div>
     );
 };
 
