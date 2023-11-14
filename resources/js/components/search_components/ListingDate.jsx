@@ -8,17 +8,19 @@ const ListingDate = () => {
     const [date, setDate] = useState(new Date());
     const { dispatch } = useContext(Context);
 
-    useEffect(() => {
-        dispatch({
-            type: "datePicker",
-            payload: date,
-        });
-    }, [date]);
-
     return (
         <div className="listings_date-datepicker">
             <h3>Listing date</h3>
-            <DatePicker selected={date} onChange={(date) => setDate(date)} />
+            <DatePicker
+                selected={date}
+                onChange={(date) => {
+                    setDate(date);
+                    dispatch({
+                        type: "datePicker",
+                        payload: date,
+                    });
+                }}
+            />
         </div>
     );
 };
