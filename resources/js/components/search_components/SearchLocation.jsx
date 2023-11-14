@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Context from "../../Context";
-import “./SearchLocation.scss”;
+import "./SearchLocation.scss";
 
 const SearchLocation = () => {
     const { dispatch } = useContext(Context);
@@ -11,13 +11,13 @@ const SearchLocation = () => {
             payload: e.target.value,
         });
     };
-  
+
     const [address, setAddress] = useState("");
-    
+
     const handleAddressChange = (event) => {
         setAddress(event.target.value);
     };
-    
+
     const handlePlaceSelect = (place) => {
         // Handle the selected place data, e.g., set form values
         console.log("Selected Place:", place);
@@ -25,18 +25,17 @@ const SearchLocation = () => {
 
     useEffect(() => {
         const autocomplete = new window.google.maps.places.Autocomplete(
-          document.getElementById("address"),
-          { types: ["geocode"] } // Specify the type of place data to retrieve
+            document.getElementById("address"),
+            { types: ["geocode"] } // Specify the type of place data to retrieve
         );
-    
+
         autocomplete.addListener("place_changed", () => {
-          const selectedPlace = autocomplete.getPlace();
-          handlePlaceSelect(selectedPlace);
+            const selectedPlace = autocomplete.getPlace();
+            handlePlaceSelect(selectedPlace);
         });
-      }, []);
+    }, []);
 
     return (
-        
         <form className="search">
             <input
                 onInput={setSearchQuery}
@@ -50,7 +49,6 @@ const SearchLocation = () => {
 
             {/* Display the Google Places Autocomplete */}
             <div id="autocomplete-container"></div>
-
         </form>
     );
 };

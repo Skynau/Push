@@ -13,11 +13,10 @@ const App = () => {
         const urlTest = `/api/search?${Object.entries(filterOptions)
             .filter(([key, value]) => value) // only truthy values
             .map(([key, value]) => {
-                return `${encodeURIComponent(key)}=${encodeURIComponent(
-                    value
-                )}`; // key=value biuld here
+                return `${key}=${value}`; // key=value biuld here
             })
             .join("&")}`;
+        console.log(urlTest);
     }, [contextValue]);
 
     return (
