@@ -1,24 +1,33 @@
 $bestcolor: #8a2be2;
+$bestcolorLighter: #a578cf;
 $whitecolor: #ffffff;
 $lightgraycolor: #eeeeee;
 $orangecolorbtn: rgb(211, 146, 26);
+$orangecolorbtnLighter: rgb(201, 159, 81);
 $main-font: "Lato", sans-serif;
 
 @mixin button-style {
-    border: none;
     outline: none;
+    border: 1px solid $bestcolor;
     padding: 0.3rem 0.5rem;
     border-radius: 3px;
-    font-size: 1rem;
     background-color: $bestcolor;
     color: $whitecolor;
+    font-size: 1rem;
     cursor: pointer;
 }
 
 @mixin button-not-selected {
-    border: 1px solid $bestcolor;
+    border: none;
+    outline: 1px solid $bestcolor;
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
     background-color: $lightgraycolor;
     color: $bestcolor;
-    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
     cursor: pointer;
+    &:hover {
+        background-color: $bestcolorLighter;
+        color: $whitecolor;
+    }
 }
