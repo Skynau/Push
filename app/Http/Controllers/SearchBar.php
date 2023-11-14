@@ -11,7 +11,6 @@ class SearchBar extends Controller
     // {
     //     return view('');
     // }
-
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');
