@@ -6,6 +6,16 @@
     justify-content: space-between;
     margin-bottom: 1rem;
     .btn {
-        @include button-style;
+        @include button-not-selected;
+        &.active {
+            border: none;
+            outline: none;
+            padding: 0.3rem 0.5rem;
+            border-radius: 3px;
+            font-size: 1rem;
+            background-color: $bestcolor;
+            color: $whitecolor;
+            cursor: pointer;
+        }
     }
 }

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import SearchContainer from "./SearchContainer";
 import Navigation from "./Navigation";
+import reducer from "../reducer";
+import Context from "../Context";
 
 const App = () => {
-    /*
-    const [appState, setAppState] = useState({
+    const contextState = {
         filterOptions: {
             apartment: false,
             house: false,
@@ -32,14 +33,37 @@ const App = () => {
             petsWelcome: false,
             datePicker: null,
         },
-    });
-    */
+    };
+
+    const [contextValue, setContextValue] = useReducer(reducer, contextState);
+
+    const url = `/api/search?type%${
+        contextState.filterOptions.apartment ? "apartment" : ""
+    }&disposition%2kk${
+        contextState.filterOptions["1+1"] ? "1kk" : ""
+    }&petsWelcome%true`;
+    console.log(url);
+    const filterOptions = contextState.filterOptions;
+
+    const urlTest = `/api/search?${Object.entries(filterOptions)
+        .filter(([key, value]) => value) // only truthy values
+        .map(
+            ([key, value]) =>
+                `${encodeURIComponent(key)}=${encodeURIComponent(value)}` // key=value biuld here
+        )
+        .join("&")}`;
+    console.log(urlTest);
+
     return (
         <>
-            <header>
-                <Navigation />
-            </header>
-            <SearchContainer />
+            <Context.Provider
+                value={{ state: contextValue, dispatch: setContextValue }}
+            >
+                <header>
+                    <Navigation />
+                </header>
+                <SearchContainer />
+            </Context.Provider>
         </>
     );
 };

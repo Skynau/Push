@@ -11,7 +11,9 @@ import "./SearchContainer.scss";
 import PetsWelcome from "./search_components/PetsWelcome";
 
 const SearchContainer = () => {
-    const handleSubmit = () => {};
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
 
     return (
         <div className="search-container">
