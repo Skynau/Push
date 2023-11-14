@@ -13,9 +13,15 @@ return new class extends Migration
   {
     Schema::create('addresses', function (Blueprint $table) {
       $table->id();
-      $table->string('address');
-      $table->float('latitude');
-      $table->float('longitude');
+      $table->string('street');
+      $table->integer('street_number');
+      $table->string('district');
+      $table->string('city');
+      $table->string('postal_code');
+      $table->string('country');
+      $table->string('place_id')->nullable();
+      $table->float('latitude')->nullable();
+      $table->float('longitude')->nullable();
       $table->timestamps();
     });
   }

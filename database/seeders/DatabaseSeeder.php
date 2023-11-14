@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
             EnergyDemandsSeeder::class,
             FurnishingSeeder::class,
             HeatingSeeder::class,
-            TypeSeeder::class
-
+            TypeSeeder::class,
+            PropertiesSeeder::class
         ]);
     }
 }

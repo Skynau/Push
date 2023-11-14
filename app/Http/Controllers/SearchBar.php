@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use Illuminate\Http\Request;
 
 class SearchBar extends Controller
 {
-
-    // public function search(Request $request)
+    // public function index()
     // {
-    //     $searchTerm = $request->input('search');
-    //     $results = name of Model::where()->get();
-
-    //     return response()->json($results);
+    //     return view('');
     // }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        $results = Address::where('address', 'like', '%' . $searchTerm . '%')->get();
+
+        return response()->json($results);
+    }
 }
+
