@@ -5,6 +5,7 @@ import Navigation from "./Navigation";
 import reducer from "../reducer";
 import Context from "../Context";
 import state from "../../js/state";
+import ResultsOfSearch from "./ResultsOfSearch";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
@@ -24,19 +25,22 @@ const App = () => {
 
     return (
         <>
-            <BrowserRouter>
-                <Context.Provider
-                    value={{ state: contextValue, dispatch: setContextValue }}
-                >
+            <Context.Provider
+                value={{ state: contextValue, dispatch: setContextValue }}
+            >
+                <BrowserRouter>
                     <header>
                         <Navigation />
                     </header>
                     <Routes>
                         <Route path="/" element={<SearchContainer />} />
-                        <Route path="/test" element="dsvs" />
+                        <Route
+                            path="/search-results"
+                            element={<ResultsOfSearch />}
+                        />
                     </Routes>
-                </Context.Provider>
-            </BrowserRouter>
+                </BrowserRouter>
+            </Context.Provider>
         </>
     );
 };
