@@ -7,7 +7,7 @@ const EditSearch = () => {
   const [editVisible, setEditVisible] = useState(false);
 
   const openEdit = () => {
-    setEditVisible(true);
+    setEditVisible(!editVisible);
   }
 
   const closeEdit = () => {
@@ -20,8 +20,10 @@ const EditSearch = () => {
           Edit the search
       </button>
       <div className={`dynamic-div${editVisible ? "_active" : ''}`}>
-          <SearchContainer />
-          <button className='closing-tab' onClick={closeEdit}>&#10005;</button>
+          <div className='edit_container'>
+            <div className='edit_search-container'><SearchContainer /></div>
+            <button className='closing-tab' onClick={closeEdit}>&#10005;</button>
+          </div>
       </div>
     </>
   )
