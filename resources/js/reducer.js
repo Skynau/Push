@@ -39,11 +39,12 @@ export default function reducer(state, action) {
             newState.filterOptions.amountTo = action.payload;
             break;
 
-        case "DROPDOWN":
-            newState.filterOptions.searchFieldValue = action.payload;
+        case "TOGGLE_MODAL":
+            newState.showPropertyDetail = !newState.showPropertyDetail;
             break;
 
         case "SEARCH_QUERY":
+            console.log(action);
             newState.filterOptions.searchFieldValue = action.payload;
             break;
 

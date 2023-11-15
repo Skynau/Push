@@ -26,6 +26,7 @@ const contextState = {
         pets: false,
         datePicker: null,
     },
+    showPropertyDetail: false,
 };
 
 export default contextState;

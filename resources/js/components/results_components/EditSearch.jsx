@@ -13,16 +13,13 @@ const EditSearch = () => {
     const closeEdit = () => {
         setEditVisible(false);
     };
-
     return (
         <>
             <button className="edit-button" onClick={openEdit}>
                 Edit the search
             </button>
             <div className={`dynamic-div${editVisible ? "_active" : ""}`}>
-                {/* modal testing here */}
                 <PropertyDetail />
-
                 <button className="closing-tab" onClick={closeEdit}>
                     &#10005;
                 </button>

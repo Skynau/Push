@@ -1,9 +1,16 @@
-import React from "react";
-import "./ResultMiniView.scss";
+import React, { useContext } from "react";
+import Context from "../../Context";
 import PropertyDetail from "../property_detail_components/PropertyDetail";
+import "./ResultMiniView.scss";
 
 const ResultMiniView = () => {
-    const openModal = () => {};
+    const { state, dispatch } = useContext(Context);
+
+    const openModal = () => {
+        dispatch({
+            type: "TOGGLE_MODAL",
+        });
+    };
     return (
         <>
             <div className="mini-view" onClick={openModal}>
@@ -15,7 +22,7 @@ const ResultMiniView = () => {
                     <p>location</p>
                 </div>
             </div>
-            <PropertyDetail />
+            {state.showPropertyDetail ? <PropertyDetail /> : null}
         </>
     );
 };
