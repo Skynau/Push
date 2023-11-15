@@ -1,0 +1,66 @@
+@import "../../css/app.scss";
+
+.results-page {
+    display: flex;
+    flex-direction: column;
+
+    .results-edit {
+        margin: 0 auto;
+        margin-top: -5vh;
+    }
+
+    .over-view {
+        display: flex;
+        margin-top: 3vh;
+
+        .map {
+            height: 80vh;
+            width: 60vw;
+
+            .map_image {
+                //to be replaced
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            width: 40vw;
+
+            .results-list_header {
+                display: flex;
+                justify-content: space-between;
+                margin: 0 3px;
+                
+                h2 {
+                    color: $bestcolor;
+                    margin: 0;
+                }
+
+                .results-list_data-manipulation {
+                    display: flex;
+                    flex-direction: column;
+
+                    span {
+                        color: $bestcolor;
+                    }
+
+                    .results-list_sorting {
+                        color: $bestcolor;
+                    }
+                }
+            }
+
+            .results-list_listings {
+                display: flex;
+                flex-wrap: wrap;
+                width: 40vw;
+                height: 80vh;
+            }
+        }
+    }
+    
+}
+

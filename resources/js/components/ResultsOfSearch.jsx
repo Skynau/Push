@@ -1,6 +1,8 @@
 import React from 'react'
-import ResultsSearchBar from './results_components/ResultsSearchBar'
 import ResultMiniView from './results_components/ResultMiniView'
+import EditSearch from './results_components/EditSearch'
+import './ResultsOfSearch.scss'
+
 
 const ResultsOfSearch = () => {
 
@@ -9,23 +11,31 @@ const ResultsOfSearch = () => {
   return (
     <>
         <div className='results-page'>
-            <div className="search-bar">
+            {/* Not to be used as of now, kept for future development:
+             <div className="search-bar">
                 <ResultsSearchBar />
-            </div>
-            {/* <div>
-                some results.map(result) of the results displaying just first photo, disposition + basic info that fits in
             </div> */}
+            <div className='results-edit'>
+                <EditSearch />
+            </div>
             <div className='over-view'>
                 <div className="map">
-                    
+                    {/* to be replaced: */}
+                    <img className='map_image' src="https://media.maptiler.com/old/img/maps/streets/map-preview.png" alt="New York map" />
                 </div>
                 <div className='results-list'>
                     <div className='results-list_header'>
                         <h2>Rental Listings</h2>
-                        <span>no. of results</span>
-                        <div>sort function?</div>
+                        <div className='results-list_data-manipulation'>
+                            <span>no. of results</span>
+                            <div className='results-list_sorting'>sort function?</div>
+                        </div>
                     </div>
                     <div className='results-list_listings'>
+                        <ResultMiniView />
+                        <ResultMiniView />
+                        <ResultMiniView />
+                        <ResultMiniView />
                         <ResultMiniView />
                     </div>
                 </div>

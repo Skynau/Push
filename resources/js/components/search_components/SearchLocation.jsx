@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Context from "../../Context";
-import './SearchLocation.scss';
+import "./SearchLocation.scss";
 
 const SearchLocation = () => {
     const { dispatch } = useContext(Context);
@@ -37,7 +37,6 @@ const SearchLocation = () => {
     }, []);
 
     return (
-        
         <div className="search">
 
             <input
@@ -49,13 +48,9 @@ const SearchLocation = () => {
                 onChange={handleAddressChange}
                 placeholder="Enter your address"
             />
-
             {/* Display the Google Places Autocomplete */}
             <div id="autocomplete-container"></div>
-
-
         </div>
-
     );
 };
 
