@@ -42,9 +42,11 @@ class Search extends Controller
     $priceTo = $request->input('amountTo') ?? 100000000;
     $sizeFrom = $request->input('sizeFrom') ?? 0;
     $sizeTo = $request->input('sizeTo') ?? 100000000;
-    $pets = 0; //default setting is false
+    //default setting is false CHANGE THIS TO EVERYTHING
+    $order = $request->input('order') ?? 'created_at';
+    $orderFlow = $request->input('orderFlow') ?? 'desc';
 
-
+    // $address = $request->input('searchFieldValue');
 
     $query =  Property::query();
 
@@ -78,7 +80,7 @@ class Search extends Controller
       // $query
       //   ->where('disposition_id', 1);
     }
-    if ($request->input('1+1')) {
+    if ($request->input('1plus1')) {
       $possible_disposition[] = 2;
       // $query
       //   ->where('disposition_id', 2);
@@ -88,7 +90,7 @@ class Search extends Controller
       // $query
       //   ->where('disposition_id', 3);
     }
-    if ($request->input('2+1')) {
+    if ($request->input('2plus1')) {
       $possible_disposition[] = 4;
       // $query
       //   ->where('disposition_id', 4);
@@ -98,7 +100,7 @@ class Search extends Controller
       // $query
       //   ->where('disposition_id', 5);
     }
-    if ($request->input('3+1')) {
+    if ($request->input('3plus1')) {
       $possible_disposition[] = 6;
       // $query
       //   ->where('disposition_id', 6);
@@ -109,7 +111,7 @@ class Search extends Controller
       //   ->where('disposition_id', 7);
     }
     if ($request->input('bigger')) {
-      $possible_disposition[] = [8, 9, 10, 11, 12, 13, 14, 15];
+      $possible_disposition = [8, 9, 10, 11, 12, 13, 14, 15]; ///this need to fix with other possible_disposition
       // $query
       //   ->where('disposition_id', '>', 7);
     }
@@ -140,19 +142,27 @@ class Search extends Controller
     }
 
     //pets
+
     if ($request->input('pets')) {
-      $pets = 1;
+      $query->where('pets_welcome', 1);
+    }
+
+    //address
+    if ($request->input('searchFieldValue')) {
+      $query->where('city', 'LIKE', '%' . $request->input('searchFieldValue') . '%');
     }
 
     // dd($pets);
     $results = $query
+      ->with('media')
+      ->with('address')
       ->where('active', 1)
       ->where('price_rent', '>', $priceFrom)
       ->where('price_rent', '<', $priceTo)
       ->where('square_meters', '>', $sizeFrom)
       ->where('square_meters', '<', $sizeTo)
-      ->where('pets_welcome', $pets)
-      ->orderBy('created_at', 'desc')
+
+      ->orderBy($order, $orderFlow)
       ->get();
 
     return [

@@ -109,6 +109,126 @@ class PropertiesSeeder extends Seeder
         'condition_id' => 1,
         'furnishing_id' => 1,
       ],
+      [
+
+        "title" => "Apartment 7",
+
+        "description" => "This is a beautiful 2-bedroom apartment located in the heart of the city. It has been recently renovated and features a spacious living room, a modern kitchen, and two full bathrooms. The apartment is also pet-friendly and comes with a parking spot.",
+
+        "price_rent" => 12000,
+
+        "available_from" => "2023-11-15",
+
+        "number_of_bathrooms" => 2,
+
+        "square_meters" => 50,
+
+        "active" => true,
+
+        "pets_welcome" => true,
+
+        "paid_status" => true,
+
+        "type_id" => 2,
+
+        "disposition_id" => 2,
+
+        "condition_id" => 2,
+
+        "furnishing_id" => 2
+
+      ],
+
+      [
+
+        "title" => "House 1",
+
+        "description" => "This is a spacious 3-bedroom apartment located in a quiet neighborhood. It has a large living room, a dining room, a kitchen with stainless steel appliances, and three full bathrooms. The apartment is also pet-friendly and has a backyard.",
+
+        "price_rent" => 15000,
+
+        "available_from" => "2023-11-20",
+
+        "number_of_bathrooms" => 3,
+
+        "square_meters" => 60,
+
+        "active" => true,
+
+        "pets_welcome" => true,
+
+        "paid_status" => false,
+
+        "type_id" => 1,
+
+        "disposition_id" => 3,
+
+        "condition_id" => 3,
+
+        "furnishing_id" => 3
+
+      ],
+
+      [
+
+        "title" => "House 2",
+
+        "description" => "This is a modern studio apartment located in a trendy neighborhood. It has a large living space with a queen-sized bed, a full bathroom, and a small kitchen. The apartment is also pet-friendly and has a balcony.",
+
+        "price_rent" => 8000,
+
+        "available_from" => "2023-11-25",
+
+        "number_of_bathrooms" => 1,
+
+        "square_meters" => 30,
+
+        "active" => true,
+
+        "pets_welcome" => true,
+
+        "paid_status" => true,
+
+        "type_id" => 1,
+
+        "disposition_id" => 1,
+
+        "condition_id" => 2,
+
+        "furnishing_id" => 1
+
+      ],
+
+      [
+
+        "title" => "Apartment 8",
+
+        "description" => "This is a cozy 1-bedroom apartment located in a historic building. It has a full bathroom, a small kitchen, and a large living room. The apartment is also pet-friendly and has a washer and dryer.",
+
+        "price_rent" => 9000,
+
+        "available_from" => "2023-11-30",
+
+        "number_of_bathrooms" => 1,
+
+        "square_meters" => 40,
+
+        "active" => true,
+
+        "pets_welcome" => false,
+
+        "paid_status" => true,
+
+        "type_id" => 2,
+
+        "disposition_id" => 2,
+
+        "condition_id" => 1,
+
+        "furnishing_id" => 2
+
+      ]
+
     ];
 
     foreach ($properties as $item) {
