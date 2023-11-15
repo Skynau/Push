@@ -9,6 +9,7 @@ import Amenities from "./search_components/Amenities";
 import ListingDate from "./search_components/ListingDate";
 import "./SearchContainer.scss";
 import PetsWelcome from "./search_components/PetsWelcome";
+import {Link} from "react-router-dom"
 
 const SearchContainer = () => {
     const handleSubmit = (e) => {
@@ -34,6 +35,10 @@ const SearchContainer = () => {
                         className="search-form__btn"
                         value="Search"
                     />
+                    <Link to="/search-results">Go to searchresults
+                    </Link>
+
+
                 </div>
             </form>
         </div>
