@@ -28,6 +28,7 @@ class PropertiesSeeder extends Seeder
         'disposition_id' => 1,
         'condition_id' => 1,
         'furnishing_id' => 1,
+        'address_id' => 1,
       ],
 
       [
@@ -44,6 +45,7 @@ class PropertiesSeeder extends Seeder
         'disposition_id' => 2,
         'condition_id' => 2,
         'furnishing_id' => 2,
+        'address_id' => 2,
       ],
 
       [
@@ -60,6 +62,7 @@ class PropertiesSeeder extends Seeder
         'disposition_id' => 1,
         'condition_id' => 1,
         'furnishing_id' => 1,
+        'address_id' => 3,
       ],
 
       [
@@ -76,6 +79,7 @@ class PropertiesSeeder extends Seeder
         'disposition_id' => 4,
         'condition_id' => 2,
         'furnishing_id' => 3,
+        'address_id' => 4,
       ],
 
       [
@@ -92,6 +96,7 @@ class PropertiesSeeder extends Seeder
         'disposition_id' => 3,
         'condition_id' => 2,
         'furnishing_id' => 3,
+        'address_id' => 5,
       ],
 
       [
@@ -108,6 +113,7 @@ class PropertiesSeeder extends Seeder
         'disposition_id' => 1,
         'condition_id' => 1,
         'furnishing_id' => 1,
+        'address_id' => 4,
       ],
       [
 
@@ -135,7 +141,9 @@ class PropertiesSeeder extends Seeder
 
         "condition_id" => 2,
 
-        "furnishing_id" => 2
+        "furnishing_id" => 2,
+
+        'address_id' => 3
 
       ],
 
@@ -165,7 +173,9 @@ class PropertiesSeeder extends Seeder
 
         "condition_id" => 3,
 
-        "furnishing_id" => 3
+        "furnishing_id" => 3,
+
+        'address_id' => 2
 
       ],
 
@@ -195,7 +205,9 @@ class PropertiesSeeder extends Seeder
 
         "condition_id" => 2,
 
-        "furnishing_id" => 1
+        "furnishing_id" => 1,
+
+        'address_id' => 1
 
       ],
 
@@ -225,7 +237,9 @@ class PropertiesSeeder extends Seeder
 
         "condition_id" => 1,
 
-        "furnishing_id" => 2
+        "furnishing_id" => 2,
+
+        'address_id' => 4
 
       ]
 
