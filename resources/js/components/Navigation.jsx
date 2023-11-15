@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 const Navigation = () => {
     return (
@@ -10,6 +11,8 @@ const Navigation = () => {
             <div className="nav-profile">
                 <div className="profile-message__icon"></div>
                 <div className="profile-image">Image here</div>
+                <Link to="/">Go Home
+                    </Link>
             </div>
         </div>
     );

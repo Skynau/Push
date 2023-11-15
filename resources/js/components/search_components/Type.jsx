@@ -6,7 +6,7 @@ const Type = () => {
     const [addClassApartment, setAddClassApartment] = useState(false);
     const [addClassHouse, setAddClassHouse] = useState(false);
 
-    const { dispatch } = useContext(Context);
+    const { state , dispatch } = useContext(Context);
 
     const toggleApartment = () => {
         dispatch({
@@ -24,7 +24,7 @@ const Type = () => {
     return (
         <div className="type-btns">
             <button
-                className={`btn ${addClassApartment ? " active" : ""}`}
+                className={`btn ${state.filterOptions.apartment ? " active" : ""}`}
                 onClick={toggleApartment}
             >
                 Apartment
