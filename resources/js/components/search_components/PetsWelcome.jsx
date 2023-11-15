@@ -1,21 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Context from "../../Context";
 import "./PetsWelcome.scss";
 
 const PetsWelcome = () => {
-    const [petClass, setPetClass] = useState(false);
-    const { dispatch } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
 
     const togglePets = () => {
         dispatch({
             type: "PETS",
         });
-        setPetClass((prevVal) => !prevVal);
     };
     return (
         <div className="pets-welcome">
             <button
-                className={`btn ${petClass ? " active" : ""}`}
+                className={`btn ${state.filterOptions.pets ? " active" : ""}`}
                 onClick={togglePets}
             >
                 Pets Welcome

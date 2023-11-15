@@ -1,85 +1,59 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Context from "../../Context";
 
 import "./Amenities.scss";
 
 const Amenities = () => {
-    const [classBalcony, setClassBalcony] = useState(false);
-    const [classWheelchair, setClassWheelchair] = useState(false);
-    const [classBasement, setClassBasement] = useState(false);
-    const [classParking, setClassParking] = useState(false);
-    const [classGarden, setClassGarden] = useState(false);
+    const { state, dispatch } = useContext(Context);
 
-    const { dispatch } = useContext(Context);
-
-    const toggleBalcony = () => {
-        console.log(classBalcony);
+    const toggleFilter = (filterType) => {
         dispatch({
-            type: "BALCONY",
+            type: filterType,
         });
-        setClassBalcony((prevVal) => !prevVal);
-    };
-
-    const toggleWheelchair = () => {
-        dispatch({
-            type: "WHEELCHAIR",
-        });
-        setClassWheelchair((prevVal) => !prevVal);
-    };
-
-    const toggleBasement = () => {
-        dispatch({
-            type: "BASEMENT",
-        });
-        setClassBasement((prevVal) => !prevVal);
-    };
-
-    const toggleParking = () => {
-        dispatch({
-            type: "PARKING",
-        });
-        setClassParking((prevVal) => !prevVal);
-    };
-
-    const toggleGarden = () => {
-        dispatch({
-            type: "GARDEN",
-        });
-        setClassGarden((prevVal) => !prevVal);
     };
 
     return (
         <div className="amenities-btns">
             <div className="amenities-btns__top">
                 <button
-                    className={`btn ${classBalcony ? " active" : ""}`}
-                    onClick={toggleBalcony}
+                    className={`btn ${
+                        state.filterOptions.balcony ? " active" : ""
+                    }`}
+                    onClick={() => toggleFilter("BALCONY")}
                 >
                     Balcony/Terrace
                 </button>
                 <button
-                    className={`btn ${classWheelchair ? " active" : ""}`}
-                    onClick={toggleWheelchair}
+                    className={`btn ${
+                        state.filterOptions.wheelchair ? " active" : ""
+                    }`}
+                    onClick={() => toggleFilter("WHEELCHAIR")}
                 >
                     Wheelchair Accesible
                 </button>
                 <button
-                    className={`btn ${classBasement ? " active" : ""}`}
-                    onClick={toggleBasement}
+                    className={`btn ${
+                        state.filterOptions.basement ? " active" : ""
+                    }`}
+                    onClick={() => toggleFilter("BASEMENT")}
                 >
                     Basement
                 </button>
             </div>
             <div className="amenities-btns__bottom">
                 <button
-                    className={`btn ${classParking ? " active" : ""}`}
-                    onClick={toggleParking}
+                    className={`btn ${
+                        state.filterOptions.parking ? " active" : ""
+                    }`}
+                    onClick={() => toggleFilter("PARKING")}
                 >
                     Privete Parking
                 </button>
                 <button
-                    className={`btn ${classGarden ? " active" : ""}`}
-                    onClick={toggleGarden}
+                    className={`btn ${
+                        state.filterOptions.garden ? " active" : ""
+                    }`}
+                    onClick={() => toggleFilter("GARDEN")}
                 >
                     Garden
                 </button>

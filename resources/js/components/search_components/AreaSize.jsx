@@ -3,7 +3,7 @@ import Context from "../../Context";
 import "./AreSize.scss";
 
 const AreaSize = () => {
-    const { dispatch } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
 
     const sizeRangeFrom = (e) => {
         dispatch({
@@ -21,7 +21,10 @@ const AreaSize = () => {
     return (
         <div className="area-size__btns">
             <div className="selectdiv">
-                <select onChange={sizeRangeFrom}>
+                <select
+                    value={state.filterOptions.sizeFrom || ""}
+                    onChange={sizeRangeFrom}
+                >
                     <option defaultValue="FROM m2">FROM m2</option>
                     <option value="15">15m2</option>
                     <option value="20">20m2</option>
@@ -36,7 +39,10 @@ const AreaSize = () => {
                 </select>
             </div>
             <div className="selectdiv">
-                <select onChange={sizeRangeTo}>
+                <select
+                    value={state.filterOptions.sizeTo || ""}
+                    onChange={sizeRangeTo}
+                >
                     <option defaultValue="TO m2">TO m2 </option>
                     <option value="60">60m2</option>
                     <option value="70">70m2</option>

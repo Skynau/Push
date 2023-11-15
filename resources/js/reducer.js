@@ -44,7 +44,6 @@ export default function reducer(state, action) {
             break;
 
         case "SEARCH_QUERY":
-            console.log(action);
             newState.filterOptions.searchFieldValue = action.payload;
             break;
 
@@ -55,7 +54,7 @@ export default function reducer(state, action) {
         case "SIZE_TO":
             newState.filterOptions.sizeTo = action.payload;
             break;
-        case "datePicker":
+        case "DATE_PICKER":
             newState.filterOptions.datePicker = action.payload;
             break;
 
