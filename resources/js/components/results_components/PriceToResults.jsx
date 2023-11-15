@@ -5,15 +5,15 @@ const PriceToResults = () => {
     <>
         <select>
             <option defaultValue="TO CZK"> TO CZK</option>
-            <option value="15.000.00">15.000.00</option>
-            <option value="20.000.00">20.000.00</option>
-            <option value="25.000.00">25.000.00</option>
-            <option value="30.000.00">30.000.00</option>
-            <option value="35.000.00">35.000.00</option>
-            <option value="40.000.00">40.000.00</option>
-            <option value="50.000.00">50.000.00</option>
-            <option value="60.000.00">60.000.00</option>
-            <option value="40.000.00">40.000.00</option>
+            <option value="15000">15.000.00</option>
+            <option value="20000">20.000.00</option>
+            <option value="25000">25.000.00</option>
+            <option value="30000">30.000.00</option>
+            <option value="35000">35.000.00</option>
+            <option value="40000">40.000.00</option>
+            <option value="50000">50.000.00</option>
+            <option value="60000">60.000.00</option>
+            <option value="40000">40.000.00</option>
             <option value="more">More</option>
         </select>
     </>

@@ -1,6 +1,12 @@
-import React from 'react'
+import {React, useState } from 'react'
 import TypeResults from './TypeResults'
 import DispositionResults from './DIspositionResults'
+import PriceFromResults from './PriceFromResults';
+import PriceToResults from './PriceToResults';
+import LocationResults from './LocationResults';
+import AreaFromResults from './AreaFromResults';
+import AreaToResults from './AreaToResults';
+
 
 const ResultsSearchBar = () => {
 
@@ -46,29 +52,29 @@ const ResultsSearchBar = () => {
       <button onClick={displayLocation}></button>
       <button onClick={displayOther}></button>
       <form action="">
-          <div className={`search-bar_type ${array.type ? " active" : ""}`}>
+          <div className={`search-bar_type ${type ? " active" : ""}`}>
             <TypeResults />
           </div>
           <div className="search-bar_disposition">
             <DispositionResults />
           </div>
           <div className="search-bar_price-from">
-            
+            <PriceFromResults />
           </div>
           <div className="search-bar_price-to">
-
+            <PriceToResults />
           </div>
           <div className="search-bar_location">
-
+            <LocationResults />
           </div>
           <div className="search-bar_area-from">
-
+            <AreaFromResults />
           </div>
           <div className="search-bar_area-to">
-
+            <AreaToResults />
           </div>
           <div className="search-bar_other-window">
-              
+            
           </div>
       </form>
     </>
