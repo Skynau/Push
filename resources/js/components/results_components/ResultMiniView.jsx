@@ -1,4 +1,5 @@
 import React from 'react'
+import './ResultMiniView.scss'
 
 const ResultMiniView = () => {
   return (
@@ -6,9 +7,9 @@ const ResultMiniView = () => {
         <img className="mini-view_img" src="" alt="" />
         <div className='mini-view_details'>
             <h4>Price</h4>
-            <span>disposition</span>
-            <span>size</span>
-            <span>location</span>
+            <p>disposition</p>
+            <p>size</p>
+            <p>location</p>
         </div>
     </div>
   )
