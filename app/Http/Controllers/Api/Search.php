@@ -148,8 +148,11 @@ class Search extends Controller
     }
 
     //address
-    if ($request->input('searchFieldValue')) {
-      $query->where('city', 'LIKE', '%' . $request->input('searchFieldValue') . '%');
+    $searchString = $request->input('searchFieldValue');
+    if (isset($searchString)) {
+      $query->leftJoin('addresses', 'properties.address_id', 'addresses.id')
+        ->where('addresses.city', 'LIKE', $searchString . '%')
+        ->orWhere('addresses.street', 'LIKE', $searchString . '%');
     }
 
     // dd($pets);
@@ -162,7 +165,7 @@ class Search extends Controller
       ->where('square_meters', '>', $sizeFrom)
       ->where('square_meters', '<', $sizeTo)
 
-      ->orderBy($order, $orderFlow)
+      ->orderBy('properties' . '.' . $order, $orderFlow)
       ->get();
 
     return [
