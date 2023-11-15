@@ -1,0 +1,31 @@
+@import "../../../css/app.scss";
+
+.property-container {
+    z-index: 1;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.1);
+    .property-container_modal {
+        height: 100%;
+        margin: 0px auto;
+        position: relative;
+        background-color: rgb(255, 255, 255);
+        z-index: 10010;
+        max-width: 1248px;
+        width: calc(100vw - 144px);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        .propery-images {
+            img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    }
+}
