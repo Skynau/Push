@@ -42,7 +42,6 @@ class Search extends Controller
     $priceTo = $request->input('amountTo') ?? 100000000;
     $sizeFrom = $request->input('sizeFrom') ?? 0;
     $sizeTo = $request->input('sizeTo') ?? 100000000;
-    //default setting is false CHANGE THIS TO EVERYTHING
     $order = $request->input('order') ?? 'created_at';
     $orderFlow = $request->input('orderFlow') ?? 'desc';
 
@@ -51,10 +50,6 @@ class Search extends Controller
     $query =  Property::query();
 
     //type
-    // if ($request->input('apartment') && $request->input('house')) {
-    //   $query
-    //     ->where('type_id', '<', 3);
-    // } //this return true or false!!!!!
     $possible_types = [];
 
     if ($request->input('apartment')) {
@@ -152,10 +147,32 @@ class Search extends Controller
     if (isset($searchString)) {
       $query->leftJoin('addresses', 'properties.address_id', 'addresses.id')
         ->where('addresses.city', 'LIKE', $searchString . '%')
-        ->orWhere('addresses.street', 'LIKE', $searchString . '%');
+        ->orWhere('addresses.street', 'LIKE', $searchString . '%')
+        ->orWhere('addresses.district', 'LIKE', $searchString . '%');
     }
 
-    // dd($pets);
+    //amenities
+    $possible_amenities = [];
+    if ($request->input('balcony')) {
+      $possible_amenities[] = 1;
+    }
+    if ($request->input('wheelchair')) {
+      $possible_amenities[] = 2;
+    }
+    if ($request->input('basement')) {
+      $possible_amenities[] = 3;
+    }
+    if ($request->input('parking')) {
+      $possible_amenities[] = 4;
+    }
+    if ($request->input('garden')) {
+      $possible_amenities[] = 5;
+    }
+    if ($possible_amenities) {
+      $query->leftJoin('property_amenity', 'properties.id', 'property_amenity.property_id')
+        ->whereIn('property_amenity.property_id', $possible_amenities);
+    }
+
     $results = $query
       ->with('media')
       ->with('address')
