@@ -1,0 +1,25 @@
+@import "../../../css/app.scss";
+
+.mini-view {
+    width: 19vw;
+    height: 35vh;
+    border: 1px solid $bestcolor;
+
+    .mini-view_img {
+        width: 18vw;
+        height: 24vh;
+        ;
+    }
+
+    .mini-view_details {
+        width: 18vw;
+        height: 10vh;
+
+        h4,
+        p {
+            margin: 0;
+        }
+
+        
+    }
+}
