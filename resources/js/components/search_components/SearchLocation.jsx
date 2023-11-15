@@ -13,16 +13,16 @@ const SearchLocation = () => {
 
     const handlePlaceSelect = (place) => {
         // Handle the selected place data, e.g., set form values
-        console.log("Selected Place:", place);
-        setAddress(place.name);
+        console.log("Selected Place:", place.formatted_address);
+        setAddress(place.formatted_address);
     };
 
-    const setSearchQuery = () => {
-        dispatch({
-            type: "DROPDOWN",
-            payload: address,
-        });
-    };
+    // const setSearchQuery = () => {
+    //     // dispatch({
+    //     //     type: "SEARCH_QUERY",
+    //     //     payload: place.formatted_address,
+    //     // });
+    // };
 
     useEffect(() => {
         const autocomplete = new window.google.maps.places.Autocomplete(
@@ -33,13 +33,17 @@ const SearchLocation = () => {
         autocomplete.addListener("place_changed", () => {
             const selectedPlace = autocomplete.getPlace();
             handlePlaceSelect(selectedPlace);
+            dispatch({
+                type: "SEARCH_QUERY",
+                payload: selectedPlace.formatted_address,
+            });
         });
     }, []);
 
     return (
         <div className="search">
             <input
-                onInput={setSearchQuery}
+                // onInput={setSearchQuery}
                 className="search-location"
                 id="address"
                 type="text"

@@ -1,10 +1,15 @@
-import React, {useState} from 'react'
-import SearchContainer from '../SearchContainer'
-import './EditSearch.scss';
+import React, { useState } from "react";
+import SearchContainer from "../SearchContainer";
+import "./EditSearch.scss";
+import PropertyDetail from "../property_detail_components/PropertyDetail";
 
 const EditSearch = () => {
+    const [editVisible, setEditVisible] = useState(false);
 
-  const [editVisible, setEditVisible] = useState(false);
+    const openEdit = () => {
+        setEditVisible(true);
+    };
+
 
   const openEdit = () => {
     setEditVisible(!editVisible);
@@ -30,3 +35,4 @@ const EditSearch = () => {
 }
 
 export default EditSearch
+

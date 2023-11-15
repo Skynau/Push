@@ -17,22 +17,11 @@ const App = () => {
             .map(([key, value]) => {
                 // Date formating here, wait to see which format is needed for backend
                 if (key === "datePicker") {
-                    const year = value.getFullYear();
-                    const month = value.getMonth() + 1;
-                    const day = value.getDate();
-                    const hour = value.getHours();
-                    const minutes = value.getMinutes();
-                    console.log(
-                        day,
-                        "/",
-                        month,
-                        "/",
-                        year,
-                        "/ ",
-                        hour,
-                        ":",
-                        minutes
-                    );
+                    const year = value.getFullYear().toString();
+                    let month = value.getMonth() + 1;
+                    month.toString();
+                    const day = value.getDate().toString();
+                    console.log(year, "-", month, "-", day);
                 }
                 return `${encodeURIComponent(key)}=${encodeURIComponent(
                     value
