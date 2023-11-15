@@ -1,52 +1,39 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Context from "../../Context";
 import "./ConditionsApartment.scss";
 
 const ConditionsApartment = () => {
-    const [addClassFurnished, setAddClassFurnished] = useState(false);
-    const [addClassUnfurnished, setAddClassUnfurnished] = useState(false);
-    const [addClassPartialy, setAddClassPartialy] = useState(false);
+    const { state, dispatch } = useContext(Context);
 
-    const { dispatch } = useContext(Context);
-
-    const toggleFurnished = () => {
+    const toggleFilter = (filterType) => {
         dispatch({
-            type: "FURNISHED_TOGGLE",
+            type: `${filterType}_TOGGLE`,
         });
-        setAddClassFurnished((prevVal) => !prevVal);
-    };
-
-    const toggleUnfurnished = () => {
-        dispatch({
-            type: "UNFURNISHED_TOGGLE",
-        });
-        setAddClassUnfurnished((prevVal) => !prevVal);
-    };
-
-    const togglePartialy = () => {
-        dispatch({
-            type: "PARTIALY_TOGGLE",
-        });
-        setAddClassPartialy((prevVal) => !prevVal);
     };
 
     return (
         <div className="conditions-btns">
             <button
-                className={`btn ${addClassFurnished ? " active" : ""}`}
-                onClick={toggleFurnished}
+                className={`btn ${
+                    state.filterOptions.furnished ? " active" : ""
+                }`}
+                onClick={() => toggleFilter("FURNISHED")}
             >
                 Furnished
             </button>
             <button
-                className={`btn ${addClassPartialy ? " active" : ""}`}
-                onClick={togglePartialy}
+                className={`btn ${
+                    state.filterOptions.unfurnished ? " active" : ""
+                }`}
+                onClick={() => toggleFilter("UNFURNISHED")}
             >
                 Partialy Furnished
             </button>
             <button
-                className={`btn ${addClassUnfurnished ? " active" : ""}`}
-                onClick={toggleUnfurnished}
+                className={`btn ${
+                    state.filterOptions.partialy ? " active" : ""
+                }`}
+                onClick={() => toggleFilter("PARTIALY")}
             >
                 Unfurnished
             </button>
