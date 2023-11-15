@@ -16,18 +16,12 @@ class Search extends Controller
 
     // $type = $request->input('type');
     // $disposition = $request->input('disposition') ?? "%";
-    $priceFrom = $request->input('amountFrom') ?? 0;
-    $priceTo = $request->input('amountTo') ?? 100000000;
-    $sizeFrom = $request->input('sizeFrom') ?? 0;
-    $sizeTo = $request->input('sizeTo') ?? 100000000;
     // $furnishing = $request->input('furnishing') ?? "%";
     // $amenity = $request->input('amenity') ?? null; //here need to fix for now is null bcs we have just 3 property with 0 amenity
-    $pets = 0; //default setting is true
     // $date = $request->input('listingDate') ?? null;
 
 
     // // $apartmet = $request->input('apartment');
-
 
     //   // $results = Property::query()
     //   // ->where('active', 1) //this is for active property
@@ -44,69 +38,105 @@ class Search extends Controller
     // // ->orWhere('listing_date', '=', $date) //HERE NEED TO FIX NULL listing_date COLUMN IN DB BCS IT IS HERE =
 
 
+    $priceFrom = $request->input('amountFrom') ?? 0;
+    $priceTo = $request->input('amountTo') ?? 100000000;
+    $sizeFrom = $request->input('sizeFrom') ?? 0;
+    $sizeTo = $request->input('sizeTo') ?? 100000000;
+    $pets = 0; //default setting is false
+
 
 
     $query =  Property::query();
+
     //type
+    // if ($request->input('apartment') && $request->input('house')) {
+    //   $query
+    //     ->where('type_id', '<', 3);
+    // } //this return true or false!!!!!
+    $possible_types = [];
+
     if ($request->input('apartment')) {
-      $query
-        ->where('type_id', 2);
+      $possible_types[] = 2;
+      // $query
+      //   ->where('type_id', 2);
     }
     if ($request->input('house')) {
-      $query
-        ->where('type_id', 1);
+      $possible_types[] = 1;
+      // $query
+      //   ->where('type_id', 1);
+    }
+
+    if ($possible_types) {
+      $query->whereIn('type_id', $possible_types);
     }
 
     //disposition
+    $possible_disposition = [];
+
     if ($request->input('1kk')) {
-      $query
-        ->where('disposition_id', 1);
-    }
-    if ($request->input('1kk')) {
-      $query
-        ->where('disposition_id', 1);
+      $possible_disposition[] = 1;
+      // $query
+      //   ->where('disposition_id', 1);
     }
     if ($request->input('1+1')) {
-      $query
-        ->where('disposition_id', 2);
+      $possible_disposition[] = 2;
+      // $query
+      //   ->where('disposition_id', 2);
     }
     if ($request->input('2kk')) {
-      $query
-        ->where('disposition_id', 3);
+      $possible_disposition[] = 3;
+      // $query
+      //   ->where('disposition_id', 3);
     }
     if ($request->input('2+1')) {
-      $query
-        ->where('disposition_id', 4);
+      $possible_disposition[] = 4;
+      // $query
+      //   ->where('disposition_id', 4);
     }
     if ($request->input('3kk')) {
-      $query
-        ->where('disposition_id', 5);
+      $possible_disposition[] = 5;
+      // $query
+      //   ->where('disposition_id', 5);
     }
     if ($request->input('3+1')) {
-      $query
-        ->where('disposition_id', 6);
+      $possible_disposition[] = 6;
+      // $query
+      //   ->where('disposition_id', 6);
     }
     if ($request->input('4kk')) {
-      $query
-        ->where('disposition_id', 7);
+      $possible_disposition[] = 7;
+      // $query
+      //   ->where('disposition_id', 7);
     }
     if ($request->input('bigger')) {
-      $query
-        ->where('disposition_id', '>', 7);
+      $possible_disposition[] = [8, 9, 10, 11, 12, 13, 14, 15];
+      // $query
+      //   ->where('disposition_id', '>', 7);
+    }
+    if ($possible_disposition) {
+      $query->whereIn('disposition_id', $possible_disposition);
     }
 
     //furnishing
+    $possible_furnishing = [];
+
     if ($request->input('furnished')) {
-      $query
-        ->where('furnishing_id', 3);
+      $possible_furnishing[] = 3;
+      // $query
+      //   ->where('furnishing_id', 3);
     }
     if ($request->input('partialy')) {
-      $query
-        ->where('furnishing_id', 2);
+      $possible_furnishing[] = 2;
+      // $query
+      //   ->where('furnishing_id', 2);
     }
     if ($request->input('unfurnished')) {
-      $query
-        ->where('furnishing_id', 1);
+      $possible_furnishing[] = 1;
+      // $query
+      //   ->where('furnishing_id', 1);
+    }
+    if ($possible_furnishing) {
+      $query->whereIn('furnishing_id', $possible_furnishing);
     }
 
     //pets
@@ -114,10 +144,9 @@ class Search extends Controller
       $pets = 1;
     }
 
-
-
+    // dd($pets);
     $results = $query
-      // ->where('active', 1)
+      ->where('active', 1)
       ->where('price_rent', '>', $priceFrom)
       ->where('price_rent', '<', $priceTo)
       ->where('square_meters', '>', $sizeFrom)
@@ -126,7 +155,10 @@ class Search extends Controller
       ->orderBy('created_at', 'desc')
       ->get();
 
-    return response()->json($results);
+    return [
+      'items' => $results,
+      'query' => $query->toSql()
+    ];
   }
 }
 
