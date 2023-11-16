@@ -56,6 +56,6 @@ class Property extends Model
 
   public function amenity()
   {
-    return $this->belongsTo(Amenity::class);
+    return $this->belongsToMany(Amenity::class);
   }
 }

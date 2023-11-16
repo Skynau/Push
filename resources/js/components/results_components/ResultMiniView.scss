@@ -1,18 +1,19 @@
 @import "../../../css/app.scss";
 
 .mini-view {
-    width: 19vw;
+    width: 18.5vw;
     height: 35vh;
     border: 1px solid $bestcolor;
+    margin: 0.5vh;
 
-    .mini-view_img {
-        width: 18vw;
+    .slider-container {
+        width: 17vw;
         height: 24vh;
-        ;
+        margin: 0 auto;
     }
 
     .mini-view_details {
-        width: 18vw;
+        width: 17vw;
         height: 10vh;
 
         h4,

@@ -8,6 +8,7 @@ import "./ResultsOfSearch.scss";
 
 const ResultsOfSearch = () => {
     const [properties, setProperties] = useState([]);
+    const [editVisible, setEditVisible] = useState(false);
     const { state } = useContext(Context);
     // Api call based on user's filtering options
     const fetchData = async (url) => {
@@ -24,16 +25,24 @@ const ResultsOfSearch = () => {
         fetchData(buildUrl(state.filterOptions));
     }, []);
 
+    const openEdit = () => {
+        setEditVisible(!editVisible);
+    };
+
     return (
         <>
             <div className="results-page">
                 {/* Not to be used as of now, kept for future development:
-             <div className="search-bar">
-                <ResultsSearchBar />
-            </div> */}
+               <div className="search-bar">
+                  <ResultsSearchBar />
+              </div> */}
                 <div className="results-edit">
-                    <EditSearch />
+                    <EditSearch
+                        editVisible={editVisible}
+                        setEditVisible={setEditVisible}
+                    />
                 </div>
+
                 <div className="over-view">
                     <div className="map">
                         {/* to be replaced: */}
@@ -46,6 +55,9 @@ const ResultsOfSearch = () => {
                     <div className="results-list">
                         <div className="results-list_header">
                             <h2>Rental Listings</h2>
+                            <button className="edit-button" onClick={openEdit}>
+                                Edit the search
+                            </button>
                             <div className="results-list_data-manipulation">
                                 <span>no. of results</span>
                                 <div className="results-list_sorting">

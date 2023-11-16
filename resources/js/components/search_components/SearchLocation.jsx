@@ -31,6 +31,7 @@ const SearchLocation = () => {
 
     return (
         <div className="search">
+
             <input
                 className="search-location"
                 id="address"
