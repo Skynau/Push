@@ -12,6 +12,14 @@ const SearchLocation = (onLocationChange) => {
         });
     };
 
+    const hideEditSearch = (event) => {
+        if (event.key === "Enter" || event.key === "Escape") {
+            dispatch({
+                type: "showEditForm",
+            });
+        }
+    };
+
     useEffect(() => {
         const autocomplete = new window.google.maps.places.Autocomplete(
             document.getElementById("address"),
@@ -49,6 +57,7 @@ const SearchLocation = (onLocationChange) => {
                 type="text"
                 value={state.filterOptions.searchFieldValue}
                 onChange={handleAddressChange}
+                onKeyUp={hideEditSearch}
                 placeholder="Enter your address"
             />
             {/* Display the Google Places Autocomplete */}

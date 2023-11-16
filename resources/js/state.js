@@ -1,6 +1,6 @@
 const contextState = {
-    user:null,
-    
+    user: null,
+
     filterOptions: {
         apartment: false,
         house: false,
@@ -30,8 +30,8 @@ const contextState = {
     },
 
     showPropertyDetail: null,
+    showEditForm: false,
     markers: [],
-
 };
 
 export default contextState;
