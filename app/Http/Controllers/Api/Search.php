@@ -106,9 +106,9 @@ class Search extends Controller
       //   ->where('disposition_id', 7);
     }
     if ($request->input('bigger')) {
-      $possible_disposition = [8, 9, 10, 11, 12, 13, 14, 15]; ///this need to fix with other possible_disposition
-      // $query
-      //   ->where('disposition_id', '>', 7);
+      // $possible_disposition = [8, 9, 10, 11, 12, 13, 14, 15]; ///this need to fix with other possible_disposition
+      $query
+        ->where('disposition_id', '>', 7);
     }
     if ($possible_disposition) {
       $query->whereIn('disposition_id', $possible_disposition);
@@ -191,9 +191,10 @@ class Search extends Controller
       ->orderBy('properties' . '.' . $order, $orderFlow)
       ->get();
 
-    return [
-      'items' => $results,
-      'query' => $query->toSql()
-    ];
+    // return [
+    //   'items' => $results,
+    //   'query' => $query->toSql()
+    // ];
+    return $results;
   }
 }
