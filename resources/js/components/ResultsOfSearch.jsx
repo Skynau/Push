@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import ResultMiniView from './results_components/ResultMiniView'
 import EditSearch from './results_components/EditSearch'
 import './ResultsOfSearch.scss'
@@ -6,7 +6,11 @@ import './ResultsOfSearch.scss'
 
 const ResultsOfSearch = () => {
 
-
+  const [editVisible, setEditVisible] = useState(false);
+  
+  const openEdit = () => {
+    setEditVisible(!editVisible);
+  }
 
   return (
     <>
@@ -16,7 +20,7 @@ const ResultsOfSearch = () => {
                 <ResultsSearchBar />
             </div> */}
             <div className='results-edit'>
-                <EditSearch />
+                <EditSearch editVisible={editVisible} setEditVisible={setEditVisible}/>
             </div>
             <div className='over-view'>
                 <div className="map">
@@ -25,7 +29,10 @@ const ResultsOfSearch = () => {
                 </div>
                 <div className='results-list'>
                     <div className='results-list_header'>
-                        <h2>Rental Listings</h2>
+                        <h2>Rental Listings:</h2>
+                        <button className='edit-button' onClick={openEdit}>
+                            Edit the search
+                        </button>
                         <div className='results-list_data-manipulation'>
                             <span>no. of results</span>
                             <div className='results-list_sorting'>sort function?</div>

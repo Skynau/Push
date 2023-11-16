@@ -3,19 +3,25 @@
 .results-page {
     display: flex;
     flex-direction: column;
+    position: relative;
 
     .results-edit {
         margin: 0 auto;
-        margin-top: -5vh;
-    }
+        z-index: 3;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
 
     .over-view {
         display: flex;
         margin-top: 3vh;
 
         .map {
-            height: 80vh;
+            height: 85vh;
             width: 60vw;
+            border: 1px solid black;
 
             .map_image {
                 //to be replaced
@@ -32,11 +38,21 @@
             .results-list_header {
                 display: flex;
                 justify-content: space-between;
-                margin: 0 3px;
+                margin: 0 1vh;
+
+                
                 
                 h2 {
                     color: $bestcolor;
                     margin: 0;
+                }
+
+                .edit-button {
+                    @include button-not-selected;
+                    margin-left: 0.9rem;
+                    margin-right: 0.9rem;
+                    height:80%;
+
                 }
 
                 .results-list_data-manipulation {
@@ -56,8 +72,11 @@
             .results-list_listings {
                 display: flex;
                 flex-wrap: wrap;
+                justify-content: space-around;
                 width: 40vw;
-                height: 80vh;
+                height: 90vh;
+                overflow-x: hidden;
+                overflow-y: auto;
             }
         }
     }

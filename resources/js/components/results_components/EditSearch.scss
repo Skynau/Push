@@ -1,10 +1,12 @@
 @import "../../../css/app.scss";
 
-.edit-button {
-    @include button-not-selected;
-        margin-left: 0.9rem;
-        margin-right: 0.9rem;
-}
+// .edit-button {
+//     @include button-not-selected;
+//         margin-left: 0.9rem;
+//         margin-right: 0.9rem;
+//         position: absolute;
+        
+// }
 
 .dynamic-div {
     display: none;
@@ -28,8 +30,6 @@
 
 .edit_container {
     position: relative;
-    margin-top: 20px;
-    margin-bottom: -700px;
 
     .closing-tab {
             @include button-not-selected;
