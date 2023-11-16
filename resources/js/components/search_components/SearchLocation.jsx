@@ -21,6 +21,7 @@ const SearchLocation = () => {
         autocomplete.addListener("place_changed", () => {
             const selectedPlace = autocomplete.getPlace();
             // Send the selected place to the main state
+            console.log("selected", selectedPlace);
             dispatch({
                 type: "SEARCH_QUERY",
                 payload: selectedPlace.formatted_address,
