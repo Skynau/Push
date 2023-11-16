@@ -36,7 +36,7 @@ const ResultsOfSearch = () => {
                         </button>
                         <div className='results-list_data-manipulation'>
                             <span>no. of results</span>
-                            <div className='results-list_sorting'>
+                            <div className='restits-list_sorting'>
                                 <Sorting />
                             </div>
                         </div>

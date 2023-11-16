@@ -106,9 +106,9 @@ class Search extends Controller
       //   ->where('disposition_id', 7);
     }
     if ($request->input('bigger')) {
-      $possible_disposition = [8, 9, 10, 11, 12, 13, 14, 15]; ///this need to fix with other possible_disposition
-      // $query
-      //   ->where('disposition_id', '>', 7);
+      // $possible_disposition = [8, 9, 10, 11, 12, 13, 14, 15]; ///this need to fix with other possible_disposition
+      $query
+        ->where('disposition_id', '>', 7);
     }
     if ($possible_disposition) {
       $query->whereIn('disposition_id', $possible_disposition);
@@ -191,9 +191,29 @@ class Search extends Controller
       ->orderBy('properties' . '.' . $order, $orderFlow)
       ->get();
 
-    return [
-      'items' => $results,
-      'query' => $query->toSql()
-    ];
+    // return [
+    //   'items' => $results,
+    //   'query' => $query->toSql()
+    // ];
+    return $results;
+  }
+
+  public function detail($id)
+  {
+    $property = Property::with('media')
+      ->with('address')
+      ->with('type')
+      ->with('heating')
+      ->with('disposition')
+      ->with('condition')
+      ->with('construction_material')
+      ->with('furnishing')
+      ->with('energy_demand')
+      ->with('energy_demand')
+      ->leftJoin('property_amenity', 'properties.id', 'property_amenity.property_id')
+      ->leftJoin('amenities', 'property_amenity.amenity_id', 'amenities.id')
+      ->findOrFail($id);
+
+    return $property;
   }
 }
