@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import ResultMiniView from "./results_components/ResultMiniView";
 import EditSearch from "./results_components/EditSearch";
-import MapContainer from './results_components/MapContainer'
+import MapContainer from "./results_components/MapContainer";
 import { getProperties } from "../helpers";
 import { buildUrl } from "../helpers";
 import Context from "../Context";
@@ -9,8 +9,7 @@ import "./ResultsOfSearch.scss";
 import Sorting from "./results_components/Sorting";
 
 const ResultsOfSearch = () => {
-
-  const [properties, setProperties] = useState([]);
+    const [properties, setProperties] = useState([]);
     const [editVisible, setEditVisible] = useState(false);
     const { state } = useContext(Context);
 
@@ -32,21 +31,39 @@ const ResultsOfSearch = () => {
         setEditVisible(!editVisible);
     };
 
-return (
-  <>
-        <div className='results-page'>
-            {/* Not to be used as of now, kept for future development:
+    // const handleKeyPress = (event) => {
+    //     if (event.key === "Enter") {
+    //         setEditVisible(false);
+    //         console.log("enter press here! ");
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     document.addEventListener("keydown", handleKeyPress, false);
+
+    //     return () => {
+    //         document.removeEventListener("keydown", handleKeyPress, false);
+    //     };
+    // }, []);
+
+    return (
+        <>
+            <div className="results-page">
+                {/* Not to be used as of now, kept for future development:
              <div className="search-bar">
                 <ResultsSearchBar />
             </div> */}
-            <div className='results-edit'>
-                <EditSearch editVisible={editVisible} setEditVisible={setEditVisible}/>
-            </div>
-            
-            <div className='over-view'>
-                <div className="map" >
-                    <MapContainer />
+                <div className="results-edit">
+                    <EditSearch
+                        editVisible={editVisible}
+                        setEditVisible={setEditVisible}
+                    />
                 </div>
+
+                <div className="over-view">
+                    <div className="map">
+                        <MapContainer />
+                    </div>
                     <div className="results-list">
                         <div className="results-list_header">
                             <h2>Rental Listings</h2>
@@ -79,8 +96,8 @@ return (
                     </div>
                 </div>
             </div>
-    </>
-  )
-}
+        </>
+    );
+};
 
-export default ResultsOfSearch
+export default ResultsOfSearch;

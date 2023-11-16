@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import Context from "../../Context";
 import "./SearchLocation.scss";
 
-const SearchLocation = ( onLocationChange ) => {
+const SearchLocation = (onLocationChange) => {
     const { state, dispatch } = useContext(Context);
 
     const handleAddressChange = (event) => {
@@ -28,12 +28,16 @@ const SearchLocation = ( onLocationChange ) => {
                 payload: selectedPlace.vicinity,
             });
             dispatch({
-                type:"MAP_MARKER",
-                payload: [{
-                    position: {lat: selectedPlace.geometry.location.lat(), lng: selectedPlace.geometry.location.lng(),}
-                }]
+                type: "MAP_MARKER",
+                payload: [
+                    {
+                        position: {
+                            lat: selectedPlace.geometry.location.lat(),
+                            lng: selectedPlace.geometry.location.lng(),
+                        },
+                    },
+                ],
             });
-            
         });
     }, [onLocationChange]);
 
