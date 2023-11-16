@@ -197,4 +197,11 @@ class Search extends Controller
     // ];
     return $results;
   }
+
+  public function detail($id)
+  {
+    $property = Property::with('media')->with('address')->findOrFail($id);
+
+    return $property;
+  }
 }
