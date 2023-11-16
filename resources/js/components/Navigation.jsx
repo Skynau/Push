@@ -28,7 +28,7 @@ const Navigation = () => {
         } else if (response.status === 401) {
             dispatch({
                 type: "user",
-                payload: false,
+                payload: null,
             }); // false - user not logged in
         }
     };
@@ -68,15 +68,27 @@ const Navigation = () => {
                 <button>Rent my property</button>
             </div>
 
-            <h3>Logged in as {state.user?.first_name}</h3>
+            {state.user !== null ? (
+                <h3>Logged in as {state.user?.first_name}</h3>
+            ) : (
+                ""
+            )}
 
             <div className="nav-profile">
                 <div className="profile-message__icon"></div>
                 <div className="profile-image">Image here</div>
                 <Link to="/">Go Home</Link>
-                <Link to="/register">Register</Link>
-                <Link to="/login">Login</Link>
-                <button onClick={handleLogout}>Logout</button>
+
+                {state.user !== null ? (
+                    <button className="btn" onClick={handleLogout}>
+                        Logout
+                    </button>
+                ) : (
+                    <>
+                        <Link to="/register">Register</Link>
+                        <Link to="/login">Login</Link>
+                    </>
+                )}
             </div>
         </div>
     );
