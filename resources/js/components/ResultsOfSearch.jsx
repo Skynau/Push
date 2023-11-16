@@ -1,12 +1,12 @@
 import React, { useEffect, useContext, useState } from "react";
 import ResultMiniView from "./results_components/ResultMiniView";
 import EditSearch from "./results_components/EditSearch";
+import MapContainer from './results_components/MapContainer'
 import { getProperties } from "../helpers";
 import { buildUrl } from "../helpers";
 import Context from "../Context";
 import "./ResultsOfSearch.scss";
 import Sorting from "./results_components/Sorting";
-
 
 const ResultsOfSearch = () => {
 
@@ -32,29 +32,21 @@ const ResultsOfSearch = () => {
         setEditVisible(!editVisible);
     };
 
-  return (
-    <>
-        <div className="results-page">
-                {/* Not to be used as of now, kept for future development:
-               <div className="search-bar">
-                  <ResultsSearchBar />
-              </div> */}
-                <div className="results-edit">
-                    <EditSearch
-                        editVisible={editVisible}
-                        setEditVisible={setEditVisible}
-                    />
+return (
+  <>
+        <div className='results-page'>
+            {/* Not to be used as of now, kept for future development:
+             <div className="search-bar">
+                <ResultsSearchBar />
+            </div> */}
+            <div className='results-edit'>
+                <EditSearch editVisible={editVisible} setEditVisible={setEditVisible}/>
+            </div>
+            
+            <div className='over-view'>
+                <div className="map" >
+                    <MapContainer />
                 </div>
-
-                <div className="over-view">
-                    <div className="map">
-                        {/* to be replaced: */}
-                        <img
-                            className="map_image"
-                            src="https://media.maptiler.com/old/img/maps/streets/map-preview.png"
-                            alt="New York map"
-                        />
-                    </div>
                     <div className="results-list">
                         <div className="results-list_header">
                             <h2>Rental Listings</h2>

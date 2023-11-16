@@ -7,13 +7,18 @@
     },
     "devDependencies": {
         "@types/react": "^18.2.37",
-        "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.8.0",
         "sass": "^1.69.5",
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@googlemaps/react-wrapper": "^1.1.35",
+        "@googlemaps/typescript-guards": "^2.0.3",
+        "@react-google-maps/api": "^2.19.2",
         "@vitejs/plugin-react": "^4.1.1",
+        "axios": "^1.6.2",
+        "fast-equals": "^5.0.1",
+        "prop-types": "^15.8.1",
         "react": "^18.2.0",
         "react-datepicker": "^4.21.0",
         "react-dom": "^18.2.0",

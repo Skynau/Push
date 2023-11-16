@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import Context from "../../Context";
 import "./SearchLocation.scss";
 
-const SearchLocation = () => {
+const SearchLocation = ( onLocationChange ) => {
     const { state, dispatch } = useContext(Context);
 
     const handleAddressChange = (event) => {
@@ -20,14 +20,23 @@ const SearchLocation = () => {
 
         autocomplete.addListener("place_changed", () => {
             const selectedPlace = autocomplete.getPlace();
+            // console.log(selectedPlace);
+            // onLocationChange(selectedPlace.formatted_address);
             // Send the selected place to the main state
             console.log("selected", selectedPlace);
             dispatch({
                 type: "SEARCH_QUERY",
                 payload: selectedPlace.formatted_address,
             });
+            dispatch({
+                type:"MAP_MARKER",
+                payload: [{
+                    position: {lat: selectedPlace.geometry.location.lat(), lng: selectedPlace.geometry.location.lng(),}
+                }]
+            });
+            
         });
-    }, []);
+    }, [onLocationChange]);
 
     return (
         <div className="search">
