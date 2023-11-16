@@ -13,9 +13,9 @@ const ResultMiniView = ({ square_meters, price_rent }) => {
     };
     return (
         <>
-            <div className="mini-view" onClick={openModal}>
+            <div className="mini-view">
                 <img className="mini-view_img" src="" alt="" />
-                <div className="mini-view_details">
+                <div className="mini-view_details" onClick={openModal}>
                     <h4>{price_rent}</h4>
                     <p>disposition</p>
                     <p>{square_meters}</p>
