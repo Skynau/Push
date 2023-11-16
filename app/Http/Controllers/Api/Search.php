@@ -197,4 +197,23 @@ class Search extends Controller
     // ];
     return $results;
   }
+
+  public function detail($id)
+  {
+    $property = Property::with('media')
+      ->with('address')
+      ->with('type')
+      ->with('heating')
+      ->with('disposition')
+      ->with('condition')
+      ->with('construction_material')
+      ->with('furnishing')
+      ->with('energy_demand')
+      ->with('energy_demand')
+      ->leftJoin('property_amenity', 'properties.id', 'property_amenity.property_id')
+      ->leftJoin('amenities', 'property_amenity.amenity_id', 'amenities.id')
+      ->findOrFail($id);
+
+    return $property;
+  }
 }

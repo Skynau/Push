@@ -21,4 +21,24 @@ const getProperties = async (url) => {
     }
 };
 
-export { getProperties };
+// Build url dynamically based on user's filtering options
+const buildUrl = (filterOptions) => {
+    const url = `/api/search?${Object.entries(filterOptions)
+        .filter(([key, value]) => value) // only truthy values
+        .map(([key, value]) => {
+            // Format the date object to YYYY-MM-DD
+            if (key === "datePicker") {
+                const year = value.getFullYear().toString();
+                const month = value.getMonth() + 1;
+                const day = value.getDate().toString();
+                const formattedDate = `${year}-${month}-${day}`;
+                return `${encodeURIComponent(key)}=${encodeURIComponent(
+                    formattedDate
+                )}`;
+            }
+            return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`; // key=value biuld here
+        })
+        .join("&")}`;
+    return url;
+};
+export { getProperties, buildUrl };
