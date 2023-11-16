@@ -71,6 +71,7 @@ const ResultsOfSearch = () => {
                                     key={property.id}
                                     square_meters={property.square_meters}
                                     price_rent={property.price_rent}
+                                    city={property.address?.city}
                                 />
                             ))}
                             {/* <ResultMiniView />

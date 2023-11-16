@@ -6,15 +6,9 @@ import reducer from "../reducer";
 import Context from "../Context";
 import state from "../../js/state";
 import ResultsOfSearch from "./ResultsOfSearch";
-import { buildUrl } from "../helpers";
+
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
-
-    // useEffect(() => {
-    //     // Build url dynamically based on user's filtering options
-    //     const filterOptions = state.filterOptions;
-    //     buildUrl(filterOptions);
-    // }, [contextValue]);
 
     return (
         <>

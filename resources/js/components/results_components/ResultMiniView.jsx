@@ -4,7 +4,7 @@ import PropertyDetail from "../property_detail_components/PropertyDetail";
 import "./ResultMiniView.scss";
 import ImageSlider from "./ImageSlider";
 
-const ResultMiniView = ({ square_meters, price_rent }) => {
+const ResultMiniView = ({ square_meters, price_rent, city }) => {
     const { state, dispatch } = useContext(Context);
 
     const openModal = () => {
@@ -19,10 +19,10 @@ const ResultMiniView = ({ square_meters, price_rent }) => {
                     <ImageSlider />
                 </div>
                 <div className="mini-view_details" onClick={openModal}>
-                    <h4>Price</h4>
+                    <h4>{price_rent}</h4>
                     <p>disposition</p>
                     <p>{square_meters}</p>
-                    <p>location</p>
+                    <p>{city}</p>
                 </div>
             </div>
             {state.showPropertyDetail ? <PropertyDetail /> : null}
