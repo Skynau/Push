@@ -2,6 +2,7 @@ import React, { useState }  from 'react'
 import ResultMiniView from './results_components/ResultMiniView'
 import EditSearch from './results_components/EditSearch'
 import './ResultsOfSearch.scss'
+import Sorting from './results_components/Sorting'
 
 
 const ResultsOfSearch = () => {
@@ -35,7 +36,9 @@ const ResultsOfSearch = () => {
                         </button>
                         <div className='results-list_data-manipulation'>
                             <span>no. of results</span>
-                            <div className='results-list_sorting'>sort function?</div>
+                            <div className='results-list_sorting'>
+                                <Sorting />
+                            </div>
                         </div>
                     </div>
                     <div className='results-list_listings'>
