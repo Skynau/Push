@@ -20,8 +20,6 @@ const SearchLocation = ( onLocationChange ) => {
 
         autocomplete.addListener("place_changed", () => {
             const selectedPlace = autocomplete.getPlace();
-            // console.log(selectedPlace);
-            // onLocationChange(selectedPlace.formatted_address);
             // Send the selected place to the main state
             console.log("selected", selectedPlace);
             dispatch({
