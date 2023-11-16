@@ -1,5 +1,4 @@
 const contextState = {
-    user: null,
     filterOptions: {
         apartment: false,
         house: false,
@@ -27,8 +26,10 @@ const contextState = {
         pets: false,
         datePicker: null,
     },
-    showPropertyDetail: false,
+
+    showPropertyDetail: null,
     markers: [],
+
 };
 
 export default contextState;

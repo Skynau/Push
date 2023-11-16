@@ -1,8 +1,9 @@
+
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Context from "../Context";
 
 const Navigation = () => {
+
     const { dispatch, state } = useContext(Context);
     
     // const [user, setUser] = useState(null); // null - user status unknown
@@ -62,11 +63,14 @@ const Navigation = () => {
 return (
   <div className="nav">
           {console.log(state.user)}
+
             <div className="nav-brand"></div>
             <div className="nav-action__btn">
                 <button>Rent my property</button>
             </div>
+
             <h3>Logged in as {state.user?.first_name}</h3>
+
             <div className="nav-profile">
                 <div className="profile-message__icon"></div>
                 <div className="profile-image">Image here</div>
