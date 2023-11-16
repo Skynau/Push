@@ -23,4 +23,3 @@ const EditSearch = ({editVisible, setEditVisible}) => {
 }
 
 export default EditSearch
-

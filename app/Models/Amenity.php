@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Amenity extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public function properties()
+  public function properties()
   {
-    return $this->hasMany(Property::class);
+    return $this->belongsToMany(Property::class);
   }
 }

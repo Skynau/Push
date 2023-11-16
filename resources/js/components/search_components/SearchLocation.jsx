@@ -1,28 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import Context from "../../Context";
 import "./SearchLocation.scss";
 
 const SearchLocation = () => {
-    const { dispatch } = useContext(Context);
-
-    const [address, setAddress] = useState("");
+    const { state, dispatch } = useContext(Context);
 
     const handleAddressChange = (event) => {
-        setAddress(event.target.value);
+        dispatch({
+            type: "SEARCH_QUERY",
+            payload: event.target.value,
+        });
     };
-
-    const handlePlaceSelect = (place) => {
-        // Handle the selected place data, e.g., set form values
-        console.log("Selected Place:", place.formatted_address);
-        setAddress(place.formatted_address);
-    };
-
-    // const setSearchQuery = () => {
-    //     // dispatch({
-    //     //     type: "SEARCH_QUERY",
-    //     //     payload: place.formatted_address,
-    //     // });
-    // };
 
     useEffect(() => {
         const autocomplete = new window.google.maps.places.Autocomplete(
@@ -32,7 +20,7 @@ const SearchLocation = () => {
 
         autocomplete.addListener("place_changed", () => {
             const selectedPlace = autocomplete.getPlace();
-            handlePlaceSelect(selectedPlace);
+            // Send the selected place to the main state
             dispatch({
                 type: "SEARCH_QUERY",
                 payload: selectedPlace.formatted_address,
@@ -42,12 +30,12 @@ const SearchLocation = () => {
 
     return (
         <div className="search">
+
             <input
-                // onInput={setSearchQuery}
                 className="search-location"
                 id="address"
                 type="text"
-                value={address}
+                value={state.filterOptions.searchFieldValue}
                 onChange={handleAddressChange}
                 placeholder="Enter your address"
             />

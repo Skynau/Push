@@ -6,17 +6,21 @@ import "./ListingDate.scss";
 
 const ListingDate = () => {
     const [date, setDate] = useState(new Date());
-    const { dispatch } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
 
     return (
         <div className="listings_date-datepicker">
             <h3>Listing date</h3>
             <DatePicker
-                selected={date}
+                selected={
+                    state.filterOptions.datePicker
+                        ? state.filterOptions.datePicker
+                        : date
+                }
                 onChange={(date) => {
                     setDate(date);
                     dispatch({
-                        type: "datePicker",
+                        type: "DATE_PICKER",
                         payload: date,
                     });
                 }}
