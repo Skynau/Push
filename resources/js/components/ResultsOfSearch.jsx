@@ -5,9 +5,12 @@ import { getProperties } from "../helpers";
 import { buildUrl } from "../helpers";
 import Context from "../Context";
 import "./ResultsOfSearch.scss";
+import Sorting from "./results_components/Sorting";
+
 
 const ResultsOfSearch = () => {
-    const [properties, setProperties] = useState([]);
+
+  const [properties, setProperties] = useState([]);
     const [editVisible, setEditVisible] = useState(false);
     const { state } = useContext(Context);
     // Api call based on user's filtering options
@@ -29,9 +32,9 @@ const ResultsOfSearch = () => {
         setEditVisible(!editVisible);
     };
 
-    return (
-        <>
-            <div className="results-page">
+  return (
+    <>
+        <div className="results-page">
                 {/* Not to be used as of now, kept for future development:
                <div className="search-bar">
                   <ResultsSearchBar />
@@ -61,7 +64,7 @@ const ResultsOfSearch = () => {
                             <div className="results-list_data-manipulation">
                                 <span>no. of results</span>
                                 <div className="results-list_sorting">
-                                    sort function?
+                                    <Sorting />
                                 </div>
                             </div>
                         </div>
@@ -83,8 +86,8 @@ const ResultsOfSearch = () => {
                     </div>
                 </div>
             </div>
-        </>
-    );
-};
+    </>
+  )
+}
 
-export default ResultsOfSearch;
+export default ResultsOfSearch
