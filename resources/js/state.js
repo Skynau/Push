@@ -27,6 +27,7 @@ const contextState = {
         datePicker: null,
     },
     showPropertyDetail: false,
+    markers: [],
 };
 
 export default contextState;

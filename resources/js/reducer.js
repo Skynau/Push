@@ -43,6 +43,10 @@ export default function reducer(state, action) {
             newState.showPropertyDetail = !newState.showPropertyDetail;
             break;
 
+        case "MAP_MARKER":
+            newState.markers = action.payload;
+            break;
+
         case "SEARCH_QUERY":
             newState.filterOptions.searchFieldValue = action.payload;
             break;
