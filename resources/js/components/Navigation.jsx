@@ -70,7 +70,13 @@ return (
                 <button>Rent my property</button>
             </div>
 
-            <h3>Logged in as {state.user?.first_name}</h3>
+            { state.user === undefined 
+                ?
+              
+              <h3>Logged in as {state.user?.first_name}</h3>
+              :
+              ""
+            }
 
             <div className="nav-profile">
                 <div className="profile-message__icon"></div>
@@ -78,7 +84,7 @@ return (
                 <Link to="/">Go Home</Link>
                 <Link to="/register">Register</Link>
                 <Link to="/login">Login</Link>
-                  <button onClick={ handleLogout }>Logout</button>
+                  <button className="btn" onClick={ handleLogout }>Logout</button>
             </div>
         </div>
     );
