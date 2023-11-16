@@ -1,5 +1,6 @@
 const contextState = {
-  user:null,
+    user:null,
+    
     filterOptions: {
         apartment: false,
         house: false,
