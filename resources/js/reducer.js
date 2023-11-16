@@ -40,26 +40,19 @@ export default function reducer(state, action) {
             break;
 
         case "TOGGLE_MODAL":
-            newState.showPropertyDetail = !newState.showPropertyDetail;
+            newState.showPropertyDetail = action.payload;
             break;
-
         case "SEARCH_QUERY":
             newState.filterOptions.searchFieldValue = action.payload;
             break;
-
         case "SIZE_FROM":
             newState.filterOptions.sizeFrom = action.payload;
             break;
-
         case "SIZE_TO":
             newState.filterOptions.sizeTo = action.payload;
             break;
         case "DATE_PICKER":
             newState.filterOptions.datePicker = action.payload;
-            break;
-
-        case "test":
-            newState.user = action.payload;
             break;
 
         default:

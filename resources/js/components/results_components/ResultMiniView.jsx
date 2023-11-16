@@ -4,14 +4,16 @@ import PropertyDetail from "../property_detail_components/PropertyDetail";
 import "./ResultMiniView.scss";
 import ImageSlider from "./ImageSlider";
 
-const ResultMiniView = ({ square_meters, price_rent, city }) => {
+const ResultMiniView = ({ square_meters, price_rent, city, id }) => {
     const { state, dispatch } = useContext(Context);
 
     const openModal = () => {
         dispatch({
             type: "TOGGLE_MODAL",
+            payload: id,
         });
     };
+
     return (
         <>
             <div className="mini-view">
@@ -25,7 +27,9 @@ const ResultMiniView = ({ square_meters, price_rent, city }) => {
                     <p>{city}</p>
                 </div>
             </div>
-            {state.showPropertyDetail ? <PropertyDetail /> : null}
+            {state.showPropertyDetail === id ? (
+                <PropertyDetail propertyId={id} />
+            ) : null}
         </>
     );
 };

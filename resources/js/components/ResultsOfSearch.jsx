@@ -10,11 +10,11 @@ const ResultsOfSearch = () => {
     const [properties, setProperties] = useState([]);
     const [editVisible, setEditVisible] = useState(false);
     const { state } = useContext(Context);
+
     // Api call based on user's filtering options
     const fetchData = async (url) => {
         try {
             const data = await getProperties(url);
-            console.log(data);
             setProperties(data);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -72,6 +72,7 @@ const ResultsOfSearch = () => {
                                     square_meters={property.square_meters}
                                     price_rent={property.price_rent}
                                     city={property.address?.city}
+                                    id={property.id}
                                 />
                             ))}
                             {/* <ResultMiniView />
