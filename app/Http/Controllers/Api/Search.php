@@ -148,7 +148,8 @@ class Search extends Controller
       $query->leftJoin('addresses', 'properties.address_id', 'addresses.id')
         ->where('addresses.city', 'LIKE',  $searchString . '%')
         ->orWhere('addresses.street', 'LIKE', $searchString . '%')
-        ->orWhere('addresses.district', 'LIKE', $searchString . '%');
+        ->orWhere('addresses.district', 'LIKE', $searchString . '%')
+        ->orWhere('addresses.place_id', 'LIKE', $searchString);
     }
 
     //amenities

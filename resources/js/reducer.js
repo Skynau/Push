@@ -42,6 +42,13 @@ export default function reducer(state, action) {
         case "TOGGLE_MODAL":
             newState.showPropertyDetail = action.payload;
             break;
+
+
+        case "MAP_MARKER":
+            newState.markers = action.payload;
+            break;
+
+
         case "SEARCH_QUERY":
             newState.filterOptions.searchFieldValue = action.payload;
             break;
@@ -53,6 +60,15 @@ export default function reducer(state, action) {
             break;
         case "DATE_PICKER":
             newState.filterOptions.datePicker = action.payload;
+            break;
+
+
+        // case "test":
+        //     newState.user = action.payload;
+        //     break;
+
+        case "user":
+            newState.user = action.payload;
             break;
 
         default:

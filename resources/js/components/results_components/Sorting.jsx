@@ -1,17 +1,27 @@
 import React, {useState} from 'react'
+import './Sorting.scss'
 
 const Sorting = () => {
 
-    const [sort, setSort] = useState(second)
+    const [sort, setSort] = useState('')
 
-    const pickSorting= (event) => {
-    // i18n.changeLanguage(event.target.value)
-    setLang(event.target.value)
+    const selectSorting= (event) => {
+    setSort(event.target.value)
   }
 
   return (
     
     <>
+        <span className="sort-mini-title">Sort by: </span>
+        <select className="sorting-select" name="sort" id="">
+            <option onClick={selectSorting} value="latest">Latest</option>
+            <option onClick={selectSorting} value="oldest">Oldest</option>
+            <option onClick={selectSorting} value="cheapest">Cheapest</option>
+            <option onClick={selectSorting} value="mostExpensive">Most expensive</option>
+            <option onClick={selectSorting} value="smallest">Area smallest</option>
+            <option onClick={selectSorting} value="largest">Area largest</option>
+        </select>
+
     </>
   )
 }

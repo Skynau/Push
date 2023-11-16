@@ -26,7 +26,10 @@ const contextState = {
         pets: false,
         datePicker: null,
     },
+
     showPropertyDetail: null,
+    markers: [],
+
 };
 
 export default contextState;
