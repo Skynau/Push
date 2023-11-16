@@ -58,7 +58,11 @@ export default function reducer(state, action) {
             newState.filterOptions.datePicker = action.payload;
             break;
 
-        case "test":
+        // case "test":
+        //     newState.user = action.payload;
+        //     break;
+
+        case "user":
             newState.user = action.payload;
             break;
 

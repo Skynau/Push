@@ -1,16 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Context from "../Context";
 
-
-export default function Register(props) {
+export default function Login(props) {
 
     const [values, setValues] = useState({
         email: '',
-        first_name: '',
-        last_name: '',
-        password: '',
-        password_confirmation: '',
-        phone_number: ''
+        password: ''
     })
 
     const [errors, setErrors] = useState({});
@@ -21,11 +16,8 @@ export default function Register(props) {
 
         event.preventDefault();
 
-        // clear the errors
-        setErrors({});
-
         // make the AJAX request
-        const response = await fetch('/register', {
+        const response = await fetch('/login', {
             method: 'POST',
             body: JSON.stringify(values),
             headers: {
@@ -51,19 +43,17 @@ export default function Register(props) {
                     break;
             }
         } else {
-            // successful registration
+            // successful login
             dispatch({
             type: "user",
             payload: null,
-        }); // change the user status to "unknown"
-                           // that triggers re-fetching the user's status
-                           // in App.jsx
+        });// tell App.jsx to re-fetch the user information
         }
 
         // // with axios
         // try {
         //     // make the AJAX request
-        //     const response = await axios.post('/register', values);
+        //     const response = await axios.post('/login', values);
         //     // get the (already JSON-parsed) response data
         //     const response_data = response.data;
         // } catch (error) {
@@ -89,26 +79,7 @@ export default function Register(props) {
     }
 
     return (
-        <form action="/register" method="post" onSubmit={ handleSubmit }>
-
-            First name:<br />
-            <input type="text" name="first_name" value={ values.first_name } onChange={ handleChange } />
-            <br />
-            {
-                errors.name
-                    ? <div className="errors">{ errors.name.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
-                    : ''
-            }
-
-            Last name:<br />
-            <input type="text" name="last_name" value={ values.last_name } onChange={ handleChange } />
-            <br />
-            {
-                errors.name
-                    ? <div className="errors">{ errors.name.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
-                    : ''
-            }
-
+        <form action="/login" method="post" onSubmit={ handleSubmit }>
 
             Email:<br />
             <input type="email" name="email" value={ values.email } onChange={ handleChange } />
@@ -119,16 +90,6 @@ export default function Register(props) {
                     : ''
             }
 
-            Phone number:<br />
-            <input type="text" name="phone_number" value={ values.phone_number } onChange={ handleChange } />
-            <br />
-            {
-                errors.email
-                    ? <div className="errors">{ errors.email.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
-                    : ''
-            }
-
-
             Password:<br />
             <input type="password" name="password" value={ values.password } onChange={ handleChange } />
             <br />
@@ -138,16 +99,7 @@ export default function Register(props) {
                     : ''
             }
 
-            Confirm pasword:<br />
-            <input type="password" name="password_confirmation" value={ values.password_confirmation } onChange={ handleChange } />
-            <br />
-            {
-                errors.password_confirmation
-                    ? <div className="errors">{ errors.password_confirmation.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
-                    : ''
-            }
-
-            <button>Register</button>
+            <button>Login</button>
 
         </form>
     );
