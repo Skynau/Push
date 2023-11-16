@@ -2,8 +2,6 @@ import React, { useState }  from 'react'
 import ResultMiniView from './results_components/ResultMiniView'
 import EditSearch from './results_components/EditSearch'
 import './ResultsOfSearch.scss'
-import SearchBar from './results_components/SearchBar'
-import GoogleMapComponent from './results_components/GoogleMap'
 import MapContainer from './results_components/MapContainer'
 
 const ResultsOfSearch = () => {
@@ -14,25 +12,8 @@ const ResultsOfSearch = () => {
     setEditVisible(!editVisible);
   }
 
-  //Google map
-
-//   const [markers, setMarkers] = useState([]);
-
-//   const handleMapClick = (event) => {
-//     setMarkers([...markers, { position: event.latLng }]);
-//   };
-
-//   const handlePlaceSelected = (place) => {
-//     setMarkers([...markers, place]);
-//   };
-
   return (
     <>
-        {/* //Google Map */}
-
-        
-        {/* // */}
-
         <div className='results-page'>
             {/* Not to be used as of now, kept for future development:
              <div className="search-bar">
@@ -42,8 +23,6 @@ const ResultsOfSearch = () => {
                 <EditSearch editVisible={editVisible} setEditVisible={setEditVisible}/>
             </div>
             
-           
-
             <div className='over-view'>
                 <div className="map" >
                     <MapContainer />
