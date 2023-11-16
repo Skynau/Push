@@ -30,7 +30,7 @@ const Navigation = () => {
           } else if (response.status === 401) {
             dispatch({
               type: "user",
-              payload: false,
+              payload: null,
             }); // false - user not logged in
           }
         }
@@ -70,7 +70,7 @@ return (
                 <button>Rent my property</button>
             </div>
 
-            { state.user === undefined 
+            { state.user !== null 
                 ?
               
               <h3>Logged in as {state.user?.first_name}</h3>
@@ -82,9 +82,16 @@ return (
                 <div className="profile-message__icon"></div>
                 <div className="profile-image">Image here</div>
                 <Link to="/">Go Home</Link>
+
+              { state.user !== null 
+                ?
+                <button className="btn" onClick={ handleLogout }>Logout</button>
+                :
+                <>
                 <Link to="/register">Register</Link>
                 <Link to="/login">Login</Link>
-                  <button className="btn" onClick={ handleLogout }>Logout</button>
+                </>
+            }
             </div>
         </div>
     );
