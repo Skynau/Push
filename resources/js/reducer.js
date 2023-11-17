@@ -65,7 +65,9 @@ export default function reducer(state, action) {
         case "user":
             newState.user = action.payload;
             break;
-
+        case "fetchOnResultsPage":
+            newState.fetchOnResultsPage = !newState.fetchOnResultsPage;
+            break;
         default:
             return state;
     }
