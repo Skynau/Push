@@ -30,7 +30,7 @@ const contextState = {
     },
 
     showPropertyDetail: null,
-    markers: [],
+    markers: []
 
 };
 
