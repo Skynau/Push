@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorite_listing extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  public function user()
+  {
+    $this->belongsTo(User::class);
+  }
 }
