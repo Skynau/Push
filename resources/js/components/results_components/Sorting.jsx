@@ -9,6 +9,8 @@ const Sorting = () => {
     setSort(event.target.value)
   }
 
+  
+
   return (
     
     <>
