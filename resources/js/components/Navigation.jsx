@@ -24,7 +24,7 @@ return (
 
             <div className="nav-brand"></div>
             <div className="nav-action__btn">
-                <button>Rent my property</button>
+                <Link to='/create-property'><button>Rent my property</button></Link>
             </div>
 
 
