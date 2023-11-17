@@ -21,7 +21,6 @@ const ResultsOfSearch = () => {
             const data = await getProperties(url);
             setLoading(false);
             setProperties(data);
-            console.log("data", data.length);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -78,7 +77,7 @@ const ResultsOfSearch = () => {
                                 ))
                             ) : // If there are no properties, check if it's loading
                             loading ? (
-                                <div class="loader"></div>
+                                <div className="loader"></div>
                             ) : (
                                 // If no loading
                                 <h2 className="no-results">
