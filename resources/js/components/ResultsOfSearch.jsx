@@ -10,14 +10,17 @@ import Sorting from "./results_components/Sorting";
 
 const ResultsOfSearch = () => {
     const [properties, setProperties] = useState([]);
+    const [loading, setLoading] = useState(false);
     const { state, dispatch } = useContext(Context);
 
     // Api call based on user's filtering options
     const fetchData = async (url) => {
         try {
+            setProperties([]);
+            setLoading(true);
             const data = await getProperties(url);
+            setLoading(false);
             setProperties(data);
-            console.log("RUNNING!!RESULTS OF SEARCH");
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -62,15 +65,26 @@ const ResultsOfSearch = () => {
                             </div>
                         </div>
                         <div className="results-list_listings">
-                            {properties?.map((property) => (
-                                <ResultMiniView
-                                    key={property.id}
-                                    square_meters={property.square_meters}
-                                    price_rent={property.price_rent}
-                                    city={property.address?.city}
-                                    id={property.id}
-                                />
-                            ))}
+                            {properties.length > 0 ? (
+                                properties?.map((property) => (
+                                    <ResultMiniView
+                                        key={property.id}
+                                        square_meters={property.square_meters}
+                                        price_rent={property.price_rent}
+                                        city={property.address?.city}
+                                        id={property.id}
+                                    />
+                                ))
+                            ) : // If there are no properties, check if it's loading
+                            loading ? (
+                                <div className="loader"></div>
+                            ) : (
+                                // If no loading
+                                <h2 className="no-results">
+                                    {" "}
+                                    <i>No Results </i>:)
+                                </h2>
+                            )}
                         </div>
                     </div>
                 </div>
