@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Listing;
 use App\Http\Controllers\Api\Search;
 use App\Http\Controllers\Api\User;
 use App\Http\Controllers\SearchBar;
@@ -28,3 +29,5 @@ Route::get('/search', [Search::class, 'index']);
 Route::get('/property/{id}', [Search::class, 'detail']);
 
 Route::post('/property/{user_id}/store', [User::class, 'like']);
+
+Route::post('/property/store', [Listing::class, 'store']);
