@@ -17,6 +17,7 @@ const ResultsOfSearch = () => {
         try {
             const data = await getProperties(url);
             setProperties(data);
+            console.log("RUNNING!!RESULTS OF SEARCH");
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -24,7 +25,7 @@ const ResultsOfSearch = () => {
 
     useEffect(() => {
         fetchData(buildUrl(state.filterOptions));
-    }, []);
+    }, [state.fetchOnResultsPage]);
 
     const openEdit = () => {
         dispatch({

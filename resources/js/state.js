@@ -1,6 +1,5 @@
 const contextState = {
     user: null,
-
     filterOptions: {
         apartment: false,
         house: false,
@@ -31,6 +30,7 @@ const contextState = {
 
     showPropertyDetail: null,
     showEditForm: false,
+    fetchOnResultsPage: false,
     markers: [],
 };
 
