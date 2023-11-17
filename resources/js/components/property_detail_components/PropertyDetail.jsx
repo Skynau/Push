@@ -7,11 +7,14 @@ import { formatCurrency, getProperties } from "../../helpers";
 import "./PropertyDetail.scss";
 import GoogleMapComponent from "../results_components/GoogleMap";
 import imageFooter from "../../../../public/images/footer-real-estate.svg";
+import UserContext from "../../UserContext";
+import axios from "axios";
 
 const PropertyDetail = ({ propertyId }) => {
     const [liked, setLiked] = useState(false);
     const [house, setHouse] = useState(null);
     const { dispatch } = useContext(Context);
+    const { user } = useContext(UserContext);
 
     const fetchHouse = async (url) => {
         try {
@@ -28,6 +31,8 @@ const PropertyDetail = ({ propertyId }) => {
 
     const toggleLiked = () => {
         setLiked((prevValue) => !prevValue);
+        
+
     };
 
     const hideModal = (e) => {
@@ -41,7 +46,18 @@ const PropertyDetail = ({ propertyId }) => {
         }
     };
 
-    // console.log(Number(house?.address?.latitude));
+        const sendData = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('api/property/'+ user.id +'/store', {
+              propertyId: propertyId
+            });
+        } catch (error) {
+            console.log(error)
+        }
+        }
+
+    console.log(propertyId);
     return (
         <div className="property-container" onClick={hideModal}>
             <div className="property-container_modal">
@@ -53,10 +69,14 @@ const PropertyDetail = ({ propertyId }) => {
                     <div className="nav-brand">PUSH!</div>
                     <div className="nav-links">
                         <div className="save" onClick={toggleLiked}>
+                          <form action="" onSubmit={sendData}>
+                            <button type="submit" >
                             <img
                                 src={liked ? HeartIcon : EmptyHeartIcon}
                                 alt="Heart"
                             />
+                            </button>
+                            </form>
                             <p>Save</p>
                         </div>
                         <div className="interest">
