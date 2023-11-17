@@ -16,6 +16,8 @@ const SearchContainer = () => {
     const { dispatch } = useContext(Context);
 
     const fetchOnResultsPage = () => {
+        // If component is rendered on 'results' page
+        // dispatch on click to fetch data
         dispatch({
             type: "fetchOnResultsPage",
         });
