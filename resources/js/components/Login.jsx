@@ -23,10 +23,6 @@ export default function Login(props) {
             const response = await axios.post('/login', values);
             const response_data = response.data;
             setUser(null)
-            // dispatch({
-            //         type: "user",
-            //         payload: null,
-            //          });
         } catch (error) {
             switch (error.response.status) {
                 case 422:
@@ -52,8 +48,8 @@ export default function Login(props) {
 
     useEffect(()=>{
       if (user) {
-                  navigate('/');
-              }
+        navigate('/');
+      }
     },[user])
 
     return (
