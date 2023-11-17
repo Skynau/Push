@@ -1,6 +1,6 @@
-div{
-    background-color: #b4aee8;
-}
+// div{
+//     background-color: #b4aee8;
+// }
 form {
     display: flex;
     flex-direction: column;
@@ -9,43 +9,43 @@ form {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #1f1d2b; 
-  
+    background-color: #1f1d2b;
+
     label {
-      margin-bottom: 10px;
-      color: #b4aee8;
-  
-      input,
-      select,
-      textarea {
-        width: 100%;
-        padding: 12px;
-        margin-top: 4px;
-        box-sizing: border-box;
-        border: 1px solid #2a2937;
-        border-radius: 4px;
-        background-color: #2a2937; 
-        color: #b4aee8; 
-  
-        &:focus {
-          outline: none;
-          border-color: #6f66a1; 
+        margin-bottom: 10px;
+        color: #b4aee8;
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 4px;
+            box-sizing: border-box;
+            border: 1px solid #2a2937;
+            border-radius: 4px;
+            background-color: #2a2937;
+            color: #b4aee8;
+
+            &:focus {
+                outline: none;
+                border-color: #6f66a1;
+            }
         }
-      }
     }
-  
+
     button {
-      background-color: #8e44ad; 
-      color: white;
-      padding: 12px;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-  
-      &:hover {
-        background-color: #6f66a1; 
-      }
+        background-color: #8e44ad;
+        color: white;
+        padding: 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #6f66a1;
+        }
     }
-  }
+}
