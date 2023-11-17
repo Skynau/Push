@@ -21,6 +21,10 @@ const SearchContainer = () => {
         dispatch({
             type: "fetchOnResultsPage",
         });
+        // Hide edit form
+        dispatch({
+            type: "showEditForm",
+        });
     };
 
     return (
