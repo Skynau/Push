@@ -42,8 +42,6 @@ export default function reducer(state, action) {
         case "TOGGLE_MODAL":
             newState.showPropertyDetail = action.payload;
             break;
-
-
         case "MAP_MARKER":
             newState.markers = action.payload;
             break;
@@ -60,12 +58,11 @@ export default function reducer(state, action) {
         case "DATE_PICKER":
             newState.filterOptions.datePicker = action.payload;
             break;
-
-
-        // case "test":
-        //     newState.user = action.payload;
-        //     break;
-
+        case "showEditForm":
+            newState.showEditForm = newState.showEditForm
+                ? (newState.showEditForm = false)
+                : (newState.showEditForm = true);
+            break;
         case "user":
             newState.user = action.payload;
             break;

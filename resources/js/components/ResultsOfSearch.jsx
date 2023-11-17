@@ -10,8 +10,7 @@ import Sorting from "./results_components/Sorting";
 
 const ResultsOfSearch = () => {
     const [properties, setProperties] = useState([]);
-    const [editVisible, setEditVisible] = useState(false);
-    const { state } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
 
     // Api call based on user's filtering options
     const fetchData = async (url) => {
@@ -28,23 +27,10 @@ const ResultsOfSearch = () => {
     }, []);
 
     const openEdit = () => {
-        setEditVisible(!editVisible);
+        dispatch({
+            type: "showEditForm",
+        });
     };
-
-    // const handleKeyPress = (event) => {
-    //     if (event.key === "Enter") {
-    //         setEditVisible(false);
-    //         console.log("enter press here! ");
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     document.addEventListener("keydown", handleKeyPress, false);
-
-    //     return () => {
-    //         document.removeEventListener("keydown", handleKeyPress, false);
-    //     };
-    // }, []);
 
     return (
         <>
@@ -54,10 +40,7 @@ const ResultsOfSearch = () => {
                 <ResultsSearchBar />
             </div> */}
                 <div className="results-edit">
-                    <EditSearch
-                        editVisible={editVisible}
-                        setEditVisible={setEditVisible}
-                    />
+                    <EditSearch />
                 </div>
 
                 <div className="over-view">
@@ -87,11 +70,6 @@ const ResultsOfSearch = () => {
                                     id={property.id}
                                 />
                             ))}
-                            {/* <ResultMiniView />
-                            <ResultMiniView />
-                            <ResultMiniView />
-                            <ResultMiniView />
-                            <ResultMiniView /> */}
                         </div>
                     </div>
                 </div>
