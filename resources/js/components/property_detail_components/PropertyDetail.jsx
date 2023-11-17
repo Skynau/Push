@@ -14,7 +14,7 @@ const PropertyDetail = ({ propertyId }) => {
     const [liked, setLiked] = useState(false);
     const [house, setHouse] = useState(null);
     const [loading, setLoadding] = useState(false);
-    const { dispatch } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
     const { user } = useContext(UserContext);
 
     const fetchHouse = async (url) => {
@@ -33,10 +33,24 @@ const PropertyDetail = ({ propertyId }) => {
 
     const toggleLiked = () => {
         setLiked((prevValue) => !prevValue);
-        
-
     };
 
+    //property detail zoom and center
+
+    // const handleMapClick = (e) => {
+    //     
+    //   };
+    
+      const handleCenterChange = (newCenter) => {
+        
+        console.log("New Center:", newCenter);
+      };
+    
+      const handleZoomChange = (newZoom) => {
+        
+        console.log("New Zoom:", newZoom);
+      };
+      /////////////////////////////////////////
     const hideModal = (e) => {
         if (
             e.target.className === "property-container" ||
@@ -174,6 +188,8 @@ const PropertyDetail = ({ propertyId }) => {
                             </div>
 
                             <GoogleMapComponent
+                                // center={state.center}
+                                // zoom={state.zoom}
                                 markers={[
                                     {
                                         position: {
@@ -186,6 +202,15 @@ const PropertyDetail = ({ propertyId }) => {
                                         },
                                     },
                                 ]}
+                                // onMapClick={handleMapClick}
+                                onCenterChange={handleCenterChange}
+                                onZoomChange={handleZoomChange}
+                                centerMap={{lat: Number(
+                                    house?.address?.latitude
+                                ),
+                                lng: Number(
+                                    house?.address?.longitude
+                                )}}
                             />
 
                             <div className="property-description">
