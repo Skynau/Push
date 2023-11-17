@@ -12,9 +12,27 @@ class Listing extends Controller
   public function store(Request $request)
   {
     $user = Auth::user();
-    dd($user->id);
+    // dd($user->id);
     $property = new Property();
-    dd($request->all());
+    $property->user_id = $user->id;
+    $property->title = $request->input('title');
+    //address
+    $property->description = $request->input('description');
+    $property->price_rent = $request->input('price');
+    $property->available_from = $request->input('availableFrom');
+    $property->square_meters = $request->input('squareMeters');
+    $property->disposition_id = $request->input('disposition');
+    $property->pets_welcome = $request->input('petsWelcome');
+    $property->type_id = $request->input('type');
+    $property->condition_id = $request->input('condition');
+    $property->furnishing_id = $request->input('furnishing');
+    $property->heating_id = $request->input('heating');
+    $property->active = 1;
+    $property->paid_status = 0;
+    $property->number_of_bathrooms = 1; //this is shit FIX IT
+    $property->save();
+
+    // dd($request->all());
 
 
     return
