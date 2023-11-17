@@ -13,10 +13,12 @@ const SearchLocation = (onLocationChange) => {
     };
 
     const hideEditSearch = (event) => {
-        if (event.key === "Enter" || event.key === "Escape") {
-            dispatch({
-                type: "showEditForm",
-            });
+        if (window.location.href !== "http://www.push.test/") {
+            if (event.key === "Enter" || event.key === "Escape") {
+                dispatch({
+                    type: "showEditForm",
+                });
+            }
         }
     };
 
