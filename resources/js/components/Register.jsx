@@ -65,7 +65,7 @@ export default function Register(props) {
     return (
         <form action="/register" method="post" onSubmit={ handleSubmit }>
 
-            First name:<br />
+            <label htmlFor="first_name">First name:</label>
             <input type="text" name="first_name" value={ values.first_name } onChange={ handleChange } />
             <br />
             {
@@ -74,7 +74,7 @@ export default function Register(props) {
                     : ''
             }
 
-            Last name:<br />
+            <label htmlFor="last_name">Last name:</label>
             <input type="text" name="last_name" value={ values.last_name } onChange={ handleChange } />
             <br />
             {
@@ -84,7 +84,7 @@ export default function Register(props) {
             }
 
 
-            Email:<br />
+            <label htmlFor="email">Email:</label>
             <input type="email" name="email" value={ values.email } onChange={ handleChange } />
             <br />
             {
@@ -93,7 +93,7 @@ export default function Register(props) {
                     : ''
             }
 
-            Phone number:<br />
+            <label htmlFor="phone_number">Phone number:</label>
             <input type="text" name="phone_number" value={ values.phone_number } onChange={ handleChange } />
             <br />
             {
@@ -103,7 +103,7 @@ export default function Register(props) {
             }
 
 
-            Password:<br />
+            <label htmlFor="password">Password:</label>
             <input type="password" name="password" value={ values.password } onChange={ handleChange } />
             <br />
             {
@@ -112,7 +112,7 @@ export default function Register(props) {
                     : ''
             }
 
-            Confirm pasword:<br />
+            <label htmlFor="password_confirmation">Confirm pasword:</label>
             <input type="password" name="password_confirmation" value={ values.password_confirmation } onChange={ handleChange } />
             <br />
             {

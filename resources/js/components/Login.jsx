@@ -55,7 +55,7 @@ export default function Login(props) {
     return (
         <form action="/login" method="post" onSubmit={ handleSubmit }>
 
-            Email:<br />
+            <label htmlFor="email">Email:</label>
             <input type="email" name="email" value={ values.email } onChange={ handleChange } />
             <br />
             {
@@ -64,7 +64,7 @@ export default function Login(props) {
                     : ''
             }
 
-            Password:<br />
+            <label htmlFor="password">Password:</label>
             <input type="password" name="password" value={ values.password } onChange={ handleChange } />
             <br />
             {
