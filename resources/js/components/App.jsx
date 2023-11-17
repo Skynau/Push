@@ -11,6 +11,7 @@ import Login from "./Login";
 import axios from "axios";
 import AboutUs from "./AboutUs";
 import UserContext from "../UserContext";
+import NewPropertyForm from "./rent_property/NewPropertyForm";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
@@ -62,6 +63,7 @@ const App = () => {
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/about-us" element={<AboutUs />} />
+                        <Route path="/create-property" element={<NewPropertyForm />} />
                     </Routes>
                 </BrowserRouter>
                </UserContext.Provider>
