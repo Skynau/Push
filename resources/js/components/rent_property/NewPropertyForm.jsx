@@ -6,14 +6,14 @@ import axios from 'axios';
 const NewPropertyForm = () => {
   const { user } = useContext(UserContext);
 
-  console.log(user)
+  // console.log(user)
 
   const [formData, setFormData] = useState({
     user_id: user?.id,
     title: '',
     address: '',
     description: '',
-    price_rent: '',
+    price: '',
     availableFrom: '',
     amenities: [],
     squareMeters: '',
@@ -39,7 +39,7 @@ const NewPropertyForm = () => {
       ...formData,
       amenities: [...formData.amenities, ...selectedOptions],
     });
-    console.log(formData);
+    // console.log(formData);
   };
   
 
@@ -100,8 +100,8 @@ const NewPropertyForm = () => {
           Price:
           <input
             type="text"
-            name="price_rent"
-            value={formData.price_rent}
+            name="price"
+            value={formData.price}
             onChange={handleInputChange}
             required
           />
@@ -161,12 +161,12 @@ const NewPropertyForm = () => {
             <option value="6">3+1</option>
             <option value="7">4kk</option>
             <option value="8">4+1</option>
-            <option value="9">4kk</option>
-            <option value="10">4kk</option>
-            <option value="11">4kk</option>
-            <option value="12">4kk</option>
-            <option value="13">4kk</option>
-            <option value="14">4kk</option>
+            <option value="9">5kk</option>
+            <option value="10">5+1</option>
+            <option value="11">6kk</option>
+            <option value="12">6+1</option>
+            <option value="13">7kk</option>
+            <option value="14">7+1</option>
             <option value="15">other</option>
           </select>
         </label><br/>
