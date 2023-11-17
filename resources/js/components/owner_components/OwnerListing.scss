@@ -2,6 +2,7 @@
     position: relative;
     width: 100%;
     height: 210px;
+    margin-top: 1rem;
     background-color: #fff;
     display: flex;
     justify-content: space-between;
@@ -10,32 +11,31 @@
     a {
         flex-grow: 1;
     }
-    .house-box {
-        display: flex;
-
-        .house-item-edit {
-            position: absolute;
-            right: 0;
-            margin-top: 25px;
-            margin-right: 25px;
-            height: 30px;
-            .item-delete {
-                margin-left: 17px;
-                img {
-                    width: 23px;
-                    cursor: pointer;
-                    z-index: 5;
-                }
-            }
-            .item-edit {
-                img {
-                    height: 19px;
-                    width: 23px;
-                    cursor: pointer;
-                    z-index: 5;
-                }
+    .house-item-edit {
+        position: absolute;
+        right: 0;
+        margin-top: 25px;
+        margin-right: 25px;
+        height: 30px;
+        .item-delete {
+            margin-left: 17px;
+            img {
+                width: 23px;
+                cursor: pointer;
+                z-index: 5;
             }
         }
+        .item-edit {
+            img {
+                height: 18px;
+                width: 23px;
+                cursor: pointer;
+                z-index: 5;
+            }
+        }
+    }
+    .house-box {
+        display: flex;
 
         .house-item-img {
             position: relative;
