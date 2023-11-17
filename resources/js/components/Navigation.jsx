@@ -16,9 +16,11 @@ const Navigation = () => {
     }
 
 
+
 return (
   <div className="nav">
           {console.log(user)}
+
 
             <div className="nav-brand"></div>
             <div className="nav-action__btn">
@@ -30,6 +32,7 @@ return (
                 <div className="profile-message__icon"></div>
                 <div className="profile-image">Image here</div>
                 <Link to="/">Go Home</Link>
+
 
                 <Link to="/about-us">About us</Link>
 
@@ -52,6 +55,7 @@ return (
                 </>
                   )
             }
+
             </div>
         </div>
     );

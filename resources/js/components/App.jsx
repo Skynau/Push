@@ -14,6 +14,7 @@ import UserContext from "../UserContext";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
+
      const [user, setUser] = useState(null); 
     
     // const { dispatch, state } = useContext(Context);

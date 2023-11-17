@@ -5,6 +5,8 @@ import ShowInterestIcon from "../../../../public/images/show-interest.svg";
 import Context from "../../Context";
 import { formatCurrency, getProperties } from "../../helpers";
 import "./PropertyDetail.scss";
+import GoogleMapComponent from "../results_components/GoogleMap";
+import imageFooter from "../../../../public/images/footer-real-estate.svg";
 
 const PropertyDetail = ({ propertyId }) => {
     const [liked, setLiked] = useState(false);
@@ -28,14 +30,20 @@ const PropertyDetail = ({ propertyId }) => {
         setLiked((prevValue) => !prevValue);
     };
 
-    const hideModal = () => {
-        dispatch({
-            type: "TOGGLE_MODAL",
-        });
+    const hideModal = (e) => {
+        if (
+            e.target.className === "property-container" ||
+            e.target.className === "back-link"
+        ) {
+            dispatch({
+                type: "TOGGLE_MODAL",
+            });
+        }
     };
 
+    // console.log(Number(house?.address?.latitude));
     return (
-        <div className="property-container">
+        <div className="property-container" onClick={hideModal}>
             <div className="property-container_modal">
                 <div className="property-nav">
                     <div className="back-link" onClick={hideModal}>
@@ -92,7 +100,7 @@ const PropertyDetail = ({ propertyId }) => {
                     <div className="stats-top">
                         <div className="price-street">
                             <h2 className="stats-price">
-                                {formatCurrency(house?.price_rent)} Kč
+                                {formatCurrency(house?.price_rent)} CZK
                             </h2>
                             <p className="stats-street">
                                 {house?.address?.city} {house?.address?.street}{" "}
@@ -136,10 +144,18 @@ const PropertyDetail = ({ propertyId }) => {
                             )}
                         </p>
                     </div>
+
+                    <GoogleMapComponent markers={[{ position: { lat: Number(house?.address?.latitude), lng: Number(house?.address?.longitude) } }]} />
+
                     <div className="property-description">
                         <h2>Description</h2>
                         <p>{house?.description}</p>
                     </div>
+                    <img
+                        src={imageFooter}
+                        className="bottom-image"
+                        alt="Image"
+                    />
                 </div>
             </div>
         </div>
