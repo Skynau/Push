@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import Context from "../../Context";
 import "./SearchLocation.scss";
 
-const SearchLocation = () => {
+const SearchLocation = (onLocationChange) => {
     const { state, dispatch } = useContext(Context);
 
     const handleAddressChange = (event) => {
@@ -10,6 +10,14 @@ const SearchLocation = () => {
             type: "SEARCH_QUERY",
             payload: event.target.value,
         });
+    };
+
+    const hideEditSearch = (event) => {
+        if (event.key === "Enter" || event.key === "Escape") {
+            dispatch({
+                type: "showEditForm",
+            });
+        }
     };
 
     useEffect(() => {
@@ -21,23 +29,33 @@ const SearchLocation = () => {
         autocomplete.addListener("place_changed", () => {
             const selectedPlace = autocomplete.getPlace();
             // Send the selected place to the main state
-            console.log("selected", selectedPlace);
             dispatch({
                 type: "SEARCH_QUERY",
-                payload: selectedPlace.formatted_address,
+                payload: selectedPlace.vicinity,
+            });
+            dispatch({
+                type: "MAP_MARKER",
+                payload: [
+                    {
+                        position: {
+                            lat: selectedPlace.geometry.location.lat(),
+                            lng: selectedPlace.geometry.location.lng(),
+                        },
+                    },
+                ],
             });
         });
-    }, []);
+    }, [onLocationChange]);
 
     return (
         <div className="search">
-
             <input
                 className="search-location"
                 id="address"
                 type="text"
                 value={state.filterOptions.searchFieldValue}
                 onChange={handleAddressChange}
+                onKeyUp={hideEditSearch}
                 placeholder="Enter your address"
             />
             {/* Display the Google Places Autocomplete */}

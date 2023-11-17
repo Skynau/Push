@@ -16,6 +16,8 @@
 
   @viteReactRefresh
   @vite('resources/js/Homepage.jsx')
+
+
   
 </body>
 </html>

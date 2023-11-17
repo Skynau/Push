@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState, useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SearchContainer from "./SearchContainer";
 import Navigation from "./Navigation";
@@ -6,9 +6,14 @@ import reducer from "../reducer";
 import Context from "../Context";
 import state from "../../js/state";
 import ResultsOfSearch from "./ResultsOfSearch";
+import Register from "./Register";
+import Login from "./Login";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
+    
+
+
 
     return (
         <>
@@ -25,6 +30,8 @@ const App = () => {
                             path="/search-results"
                             element={<ResultsOfSearch />}
                         />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login />} />
                     </Routes>
                 </BrowserRouter>
             </Context.Provider>

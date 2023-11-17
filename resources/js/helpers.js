@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// API Call based on a 'url' passed as argument
 const getProperties = async (url) => {
     try {
         const response = await axios.get(url);
@@ -41,4 +42,10 @@ const buildUrl = (filterOptions) => {
         .join("&")}`;
     return url;
 };
-export { getProperties, buildUrl };
+
+// Convert numbers in currency
+function formatCurrency(amount) {
+    return amount?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.");
+}
+
+export { getProperties, buildUrl, formatCurrency };

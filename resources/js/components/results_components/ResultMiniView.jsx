@@ -3,15 +3,18 @@ import Context from "../../Context";
 import PropertyDetail from "../property_detail_components/PropertyDetail";
 import "./ResultMiniView.scss";
 import ImageSlider from "./ImageSlider";
+import { formatCurrency } from "../../helpers";
 
-const ResultMiniView = ({ square_meters, price_rent, city }) => {
+const ResultMiniView = ({ square_meters, price_rent, city, id }) => {
     const { state, dispatch } = useContext(Context);
 
     const openModal = () => {
         dispatch({
             type: "TOGGLE_MODAL",
+            payload: id,
         });
     };
+
     return (
         <>
             <div className="mini-view">
@@ -19,13 +22,15 @@ const ResultMiniView = ({ square_meters, price_rent, city }) => {
                     <ImageSlider />
                 </div>
                 <div className="mini-view_details" onClick={openModal}>
-                    <h4>{price_rent}</h4>
+                    <h4>{formatCurrency(price_rent)} CZK </h4>
                     <p>disposition</p>
                     <p>{square_meters}</p>
                     <p>{city}</p>
                 </div>
             </div>
-            {state.showPropertyDetail ? <PropertyDetail /> : null}
+            {state.showPropertyDetail === id ? (
+                <PropertyDetail propertyId={id} />
+            ) : null}
         </>
     );
 };
