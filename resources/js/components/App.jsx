@@ -11,9 +11,6 @@ import Login from "./Login";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
-    
-
-
 
     return (
         <>

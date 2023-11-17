@@ -30,15 +30,20 @@ const PropertyDetail = ({ propertyId }) => {
         setLiked((prevValue) => !prevValue);
     };
 
-    const hideModal = () => {
-        dispatch({
-            type: "TOGGLE_MODAL",
-        });
+    const hideModal = (e) => {
+        if (
+            e.target.className === "property-container" ||
+            e.target.className === "back-link"
+        ) {
+            dispatch({
+                type: "TOGGLE_MODAL",
+            });
+        }
     };
 
     // console.log(Number(house?.address?.latitude));
     return (
-        <div className="property-container">
+        <div className="property-container" onClick={hideModal}>
             <div className="property-container_modal">
                 <div className="property-nav">
                     <div className="back-link" onClick={hideModal}>
