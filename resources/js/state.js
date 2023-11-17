@@ -32,6 +32,8 @@ const contextState = {
     showEditForm: false,
     fetchOnResultsPage: false,
     markers: [],
+    center: null,
+    zoom: null,
 };
 
 export default contextState;
