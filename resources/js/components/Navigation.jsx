@@ -19,7 +19,7 @@ const Navigation = () => {
 
 return (
   <div className="nav">
-          {console.log(user)}
+          
 
 
             <div className="nav-brand"></div>
