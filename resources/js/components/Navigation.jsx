@@ -18,8 +18,12 @@ const Navigation = () => {
         <div className="nav">
 
             <div className="nav-brand"></div>
+            <div>
             <Link to="/">Go Home</Link>
+            </div>
+            <div>
             <Link to="/about-us">About us</Link>
+            </div>
             <div className="nav-profile">
                
                 <div className="profile-image">Image here</div>
