@@ -8,6 +8,7 @@ import toApproveIcon from "../../../../public/images/not-approved-icon.svg";
 import approvedIcon from "../../../../public/images/approved-icon.svg";
 
 import "./OwnerListing.scss";
+import { Link } from "react-router-dom";
 
 const OwnerListing = () => {
     const [showModal, setShowModal] = useState(false);
@@ -58,7 +59,9 @@ const OwnerListing = () => {
                 </div>
                 <div className="house-item-edit">
                     <span className="item-edit">
-                        <img src={editIcon} alt="edit" />
+                        <Link to="/edit-property">
+                            <img src={editIcon} alt="edit" />
+                        </Link>
                     </span>
                     <span className="item-delete">
                         <img
