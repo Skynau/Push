@@ -22,10 +22,6 @@ return (
           
 
 
-            <div className="nav-brand"></div>
-            <div className="nav-action__btn">
-                <Link to='/create-property'><button>Rent my property</button></Link>
-            </div>
 
 
             <div className="nav-profile">
@@ -50,6 +46,10 @@ return (
                 : (user === false
                   ? <li>Loading user...</li>:
                   <>
+            <div className="nav-brand"></div>
+            <div className="nav-action__btn">
+                <Link to='/create-property'><button>Rent my property</button></Link>
+            </div>
                 <h3>Logged in as {user?.first_name}</h3>
                 <button className="btn" onClick={ handleLogout }>Logout</button>
                 </>

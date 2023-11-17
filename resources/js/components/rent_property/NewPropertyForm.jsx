@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './NewPropertyForm.scss';
+import UserContext from '../../UserContext';
+import axios from 'axios';
 
 const NewPropertyForm = () => {
+  const { user } = useContext(UserContext);
+
+  console.log(user)
+
   const [formData, setFormData] = useState({
+    user_id: user?.id,
     title: '',
     address: '',
     description: '',
-    price: '',
+    price_rent: '',
     availableFrom: '',
     amenities: [],
     squareMeters: '',
@@ -43,10 +50,15 @@ const NewPropertyForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
     // send data to server
-    console.log('Form submitted with data:', formData);
+        e.preventDefault();
+        try {
+            const response = await axios.post('api/property/store', formData);
+        } catch (error) {
+            console.log(error)
+        }
+
   };
 
   return (
@@ -88,8 +100,8 @@ const NewPropertyForm = () => {
           Price:
           <input
             type="text"
-            name="price"
-            value={formData.price}
+            name="price_rent"
+            value={formData.price_rent}
             onChange={handleInputChange}
             required
           />
@@ -114,11 +126,11 @@ const NewPropertyForm = () => {
             value={formData.amenities}
             onChange={handleAmenitiesChange}
           >
-            <option value="balcony">Balcony/Terrace</option>
-            <option value="basement">Basement</option>
-            <option value="wheelchair">Wheelchair Access</option>
-            <option value="parking">Parking</option>
-            <option value="garden">Garden</option>
+            <option value="1">Balcony/Terrace</option>
+            <option value="3">Basement</option>
+            <option value="2">Wheelchair Access</option>
+            <option value="4">Parking</option>
+            <option value="5">Garden</option>
           </select>
         </label><br/>
 
@@ -141,14 +153,21 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="1kk">1kk</option>
-            <option value="1plus1">1+1</option>
-            <option value="2kk">2kk</option>
-            <option value="2plus1">2+1</option>
-            <option value="3kk">3kk</option>
-            <option value="3plus1">3+1</option>
-            <option value="4kk">4kk</option>
-            <option value="bigger">Bigger</option>
+            <option value="1">1kk</option>
+            <option value="2">1+1</option>
+            <option value="3">2kk</option>
+            <option value="4">2+1</option>
+            <option value="5">3kk</option>
+            <option value="6">3+1</option>
+            <option value="7">4kk</option>
+            <option value="8">4+1</option>
+            <option value="9">4kk</option>
+            <option value="10">4kk</option>
+            <option value="11">4kk</option>
+            <option value="12">4kk</option>
+            <option value="13">4kk</option>
+            <option value="14">4kk</option>
+            <option value="15">other</option>
           </select>
         </label><br/>
 
@@ -160,8 +179,8 @@ const NewPropertyForm = () => {
             onChange={handlePetsWelcomeChange}
             required
           >
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
           </select>
         </label><br/>
 
@@ -173,8 +192,8 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="house">House</option>
-            <option value="apartment">Apartment</option>
+            <option value="1">House</option>
+            <option value="2">Apartment</option>
           </select>
         </label><br/>
 
@@ -186,10 +205,10 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="new">New</option>
-            <option value="veryGood">Very Good</option>
-            <option value="good">Good</option>
-            <option value="bad">Bad</option>
+            <option value="1">New</option>
+            <option value="2">Very Good</option>
+            <option value="3">Good</option>
+            <option value="4">Bad</option>
           </select>
         </label><br/>
 
@@ -201,9 +220,9 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="none">None</option>
-            <option value="partly">Partly</option>
-            <option value="fully">Fully</option>
+            <option value="1">None</option>
+            <option value="2">Partly</option>
+            <option value="3">Fully</option>
           </select>
         </label><br/>
 
@@ -215,9 +234,9 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="gas">Gas</option>
-            <option value="electrical">Electrical</option>
-            <option value="central">Central</option>
+            <option value="1">Gas</option>
+            <option value="2">Electrical</option>
+            <option value="3">Central</option>
           </select>
         </label><br/>
 
