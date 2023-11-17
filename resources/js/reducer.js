@@ -45,6 +45,7 @@ export default function reducer(state, action) {
         case "MAP_MARKER":
             newState.markers = action.payload;
             break;
+
         case "SEARCH_QUERY":
             newState.filterOptions.searchFieldValue = action.payload;
             break;

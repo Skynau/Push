@@ -5,6 +5,7 @@ import ShowInterestIcon from "../../../../public/images/show-interest.svg";
 import Context from "../../Context";
 import { formatCurrency, getProperties } from "../../helpers";
 import "./PropertyDetail.scss";
+import GoogleMapComponent from "../results_components/GoogleMap";
 import imageFooter from "../../../../public/images/footer-real-estate.svg";
 
 const PropertyDetail = ({ propertyId }) => {
@@ -35,6 +36,7 @@ const PropertyDetail = ({ propertyId }) => {
         });
     };
 
+    // console.log(Number(house?.address?.latitude));
     return (
         <div className="property-container">
             <div className="property-container_modal">
@@ -137,6 +139,9 @@ const PropertyDetail = ({ propertyId }) => {
                             )}
                         </p>
                     </div>
+
+                    <GoogleMapComponent markers={[{ position: { lat: Number(house?.address?.latitude), lng: Number(house?.address?.longitude) } }]} />
+
                     <div className="property-description">
                         <h2>Description</h2>
                         <p>{house?.description}</p>

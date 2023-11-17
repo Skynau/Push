@@ -23,20 +23,20 @@ const GoogleMapComponent = ({ markers, onMapClick }) => {
       setCenter(state.markers[0]?.position);
 
     };
-    console.log(center, Array.from(state.markers).length);
+    // console.log(markers);
+
     return (
-      <GoogleMap
-          googleMapsApiKey="AIzaSyCMpzXAKNYGF17gXZAf_NHmcSTOKCrQZnE"
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={zoom}
-          onClick={onMapClick}
+          <GoogleMap
+            googleMapsApiKey="AIzaSyCMpzXAKNYGF17gXZAf_NHmcSTOKCrQZnE"
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={zoom}
           >
-          {markers.map((marker, index) => (
-          <Marker key={index} position={marker.position} />
-          ))}
-      </GoogleMap>
-    )
+            {markers.map((marker, index) => (
+              <Marker key={index} position={marker.position} />
+            ))}
+          </GoogleMap>
+    );
   };
 
   
@@ -47,10 +47,6 @@ const GoogleMapComponent = ({ markers, onMapClick }) => {
       setZoom(16); // Assuming you have a state for zoom level
     }
   }, [state.markers]);
-  
-  // useEffect (() => {
-  //   renderMap();
-  // },[center, zoom]);
 
   return (
     <div>
