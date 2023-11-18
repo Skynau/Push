@@ -52,7 +52,6 @@ const NewPropertyForm = () => {
     };
 
     // Image upload
-
     const handleImage = (e) => {
         setFormData({
             ...formData,
@@ -62,8 +61,9 @@ const NewPropertyForm = () => {
     const handleSubmit = async (e) => {
         // send data to server
         e.preventDefault();
+
         const formDataSend = new FormData();
-        // Append all other form data
+        // Append all form data from state
         for (const key in formData) {
             formDataSend.append(key, formData[key]);
         }
