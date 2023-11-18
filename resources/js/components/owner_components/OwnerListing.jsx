@@ -10,6 +10,7 @@ import approvedIcon from "../../../../public/images/approved-icon.svg";
 import "./OwnerListing.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import DeleteListing from "./DeleteListing";
 
 const OwnerListing = () => {
     const [showModal, setShowModal] = useState(false);
@@ -106,7 +107,8 @@ const OwnerListing = () => {
                                 <button type="button" onClick={toggleModal}>
                                     Go Back
                                 </button>
-                                <button type="button">Yes, Delete</button>
+                                <DeleteListing listingId={listing.id}/>
+                                {/* <button type="button">Yes, Delete</button> */}
                             </div>
                         </div>
                     </div>
