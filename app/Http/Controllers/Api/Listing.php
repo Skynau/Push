@@ -45,9 +45,9 @@ class Listing extends Controller
     $property->condition_id = $request->input('condition');
     $property->furnishing_id = $request->input('furnishing');
     $property->heating_id = $request->input('heating');
+    $property->number_of_bathrooms = $request->input('numberOfBathroom');
     $property->active = 1;
     $property->paid_status = 0;
-    $property->number_of_bathrooms = $request->input('numberOfBathroom');
     if ($request->hasFile('photoAttachment')) {
 
       $file = $request->file('photoAttachment');
@@ -76,5 +76,28 @@ class Listing extends Controller
       [
         'message' => 'Listing was deleted!'
       ];
+  }
+
+  public function update(Request $request, $property_id)
+  {
+    $property = Property::findOrFail($property_id);
+    $property->title = $request->input('title');
+    $property->description = $request->input('description');
+    $property->price_rent = $request->input('price_rent');
+    $property->available_from = $request->input('available_from');
+    $property->square_meters = $request->input('square_meters');
+    $property->disposition_id = $request->input('disposition_id');
+    $property->pets_welcome = $request->input('pets_welcome');
+    $property->type_id = $request->input('type_id');
+    $property->condition_id = $request->input('condition_id');
+    $property->furnishing_id = $request->input('furnishing_id');
+    $property->heating_id = $request->input('heating_id');
+    $property->number_of_bathrooms = $request->input('number_of_bathrooms'); //add this to front AGAIN
+    //need to implement the image here
+    $property->save();
+
+    return [
+      'message' => 'Mission updated successfully!'
+    ];
   }
 }
