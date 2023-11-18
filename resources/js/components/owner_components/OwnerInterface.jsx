@@ -46,15 +46,15 @@ const OwnerInterface = () => {
                             <div className="modal-text">
                                 <h2>Edit Profile</h2>
                                 <form className="form">
-                                    <label for="fname">First name:</label>
+                                    <label htmlFor="fname">First name:</label>
                                     <br />
                                     <input type="text" name="fname" />
                                     <br />
-                                    <label for="lname">Last name:</label>
+                                    <label htmlFor="lname">Last name:</label>
                                     <br />
                                     <input type="text" name="lname" />
                                     <br />
-                                    <label for="lname">Email</label>
+                                    <label htmlFor="lname">Email</label>
                                     <br />
                                     <input type="text" name="lname" />
                                 </form>
