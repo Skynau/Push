@@ -54,7 +54,7 @@ class Property extends Model
     return $this->belongsTo(Construction_material::class);
   }
 
-  public function amenity()
+  public function amenities()
   {
     return $this->belongsToMany(Amenity::class);
   }

@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import './NewPropertyForm.scss';
 import UserContext from '../../UserContext';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const NewPropertyForm = () => {
@@ -420,15 +421,22 @@ const NewPropertyForm = () => {
             {
               message 
               ?
+              <>
               <h2>
                 {message}
               </h2>
+              <Link to="/owner-interface">
+                  <button>See my listing</button>
+              </Link>
+              </>
               :
-              ''
+              <>
+              <button type="submit">Submit</button>
+              <br />
+              
+              </>
             }
 
-                <button type="submit">Submit</button>
-                <br />
             </form>
         </div>
     );

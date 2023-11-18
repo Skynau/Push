@@ -74,8 +74,7 @@ const PropertyDetail = ({ propertyId }) => {
         }
         }
 
-        console.log(house?.photo_attachment)
-  
+
 
     return (
         <div className="property-container" onClick={hideModal}>
