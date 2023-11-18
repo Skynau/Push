@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './NewPropertyForm.scss';
 import UserContext from '../../UserContext';
 import axios from 'axios';
@@ -6,12 +6,24 @@ import axios from 'axios';
 const NewPropertyForm = () => {
   const { user } = useContext(UserContext);
 
-  // console.log(user)
+  const inputRef = useRef(null);
 
+  
+  // console.log(user)
+  
   const [formData, setFormData] = useState({
     user_id: user?.id,
     title: '',
     address: '',
+    street: '',
+    streetNumber: '',
+    district: '',
+    city: '',
+    postalCode: '',
+    country: '',
+    placeId: '',
+    latitude: '',
+    longtitude: '',
     description: '',
     price: '',
     availableFrom: '',
@@ -26,6 +38,28 @@ const NewPropertyForm = () => {
     photoAttachment: '',
   });
 
+  useEffect(() => {
+    const googleAutocomplete = new window.google.maps.places.Autocomplete(inputRef.current);
+    
+    googleAutocomplete.addListener('place_changed', () => {
+      const place = googleAutocomplete.getPlace();
+      // console.log(place);
+      setFormData({
+        ...formData,
+        address: place.formatted_address,
+        street: place.address_components[2].long_name,
+        streetNumber: place.address_components[0].long_name,
+        district: place.address_components[3].long_name,
+        city: place.address_components[4].long_name,
+        postalCode: place.address_components[7].long_name,
+        country: place.address_components[6].long_name,
+        placeId: place.place_id,
+        latitude: place.geometry.location.lat(),
+        longtitude: place.geometry.location.lng()
+  }); 
+    });
+  }, []);
+  
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -39,31 +73,103 @@ const NewPropertyForm = () => {
       ...formData,
       amenities: [...formData.amenities, ...selectedOptions],
     });
-    // console.log(formData);
   };
   
-
+  
   const handlePetsWelcomeChange = (e) => {
     setFormData({
       ...formData,
       petsWelcome: e.target.value,
     });
   };
-
+  
   const handleSubmit = async (e) => {
     // send data to server
-        e.preventDefault();
-        try {
-            const response = await axios.post('api/property/store', formData);
-        } catch (error) {
-            console.log(error)
-        }
-
+    e.preventDefault();
+    try {
+      const response = await axios.post('api/property/store', formData);
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
-
+  
+  // console.log(formData);
   return (
     <div className='form'>
       <form action="#" method="post" onSubmit={handleSubmit}>
+        <label><br/>
+          Address:
+          <input
+            ref={inputRef}
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
+
+        <label><br/>
+          Street:
+          <input
+            type="text"
+            name="street"
+            value={formData.street}
+            onChange={handleInputChange}
+          />
+        </label>
+
+        <label><br/>
+          Street number:
+          <input
+            type="text"
+            name="streetNumber"
+            value={formData.streetNumber}
+            onChange={handleInputChange}
+          />
+        </label>
+
+        <label><br/>
+          District:
+          <input
+            type="text"
+            name="district"
+            value={formData.district}
+            onChange={handleInputChange}
+          />
+        </label>
+
+        <label><br/>
+          City:
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleInputChange}
+          />
+        </label>
+
+        <label><br/>
+          Postal code:
+          <input
+            type="text"
+            name="postalCode"
+            value={formData.postalCode}
+            onChange={handleInputChange}
+          />
+        </label>
+
+        <label><br/>
+          Country:
+          <input
+            type="text"
+            name="country"
+            value={formData.country}
+            onChange={handleInputChange}
+          />
+        </label><br/>
+
         <label><br/>
           Title:
           <input
@@ -75,16 +181,6 @@ const NewPropertyForm = () => {
           />
         </label><br/>
 
-        <label><br/>
-          Address:
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleInputChange}
-            required
-          />
-        </label><br/>
 
         <label><br/>
           Description:
@@ -118,6 +214,20 @@ const NewPropertyForm = () => {
           />
         </label><br/>
 
+        <label><br/>
+          Type:
+          <select
+            name="type"
+            value={formData.type}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="" disabled selected>Select your option</option>
+            <option value="1">House</option>
+            <option value="2">Apartment</option>
+          </select>
+        </label><br/>
+        
         <label><br/>
           Amenities:
           <select
@@ -153,6 +263,7 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
+            <option value="" disabled selected>Select your option</option>
             <option value="1">1kk</option>
             <option value="2">1+1</option>
             <option value="3">2kk</option>
@@ -179,23 +290,12 @@ const NewPropertyForm = () => {
             onChange={handlePetsWelcomeChange}
             required
           >
+            <option value="" disabled selected>Select your option</option>
             <option value="1">Yes</option>
             <option value="0">No</option>
           </select>
         </label><br/>
 
-        <label><br/>
-          Type:
-          <select
-            name="type"
-            value={formData.type}
-            onChange={handleInputChange}
-            required
-          >
-            <option value="1">House</option>
-            <option value="2">Apartment</option>
-          </select>
-        </label><br/>
 
         <label><br/>
           Condition:
@@ -205,6 +305,7 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
+            <option value="" disabled selected>Select your option</option>
             <option value="1">New</option>
             <option value="2">Very Good</option>
             <option value="3">Good</option>
@@ -220,6 +321,7 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
+            <option value="" disabled selected>Select your option</option>
             <option value="1">None</option>
             <option value="2">Partly</option>
             <option value="3">Fully</option>
@@ -234,6 +336,7 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
+            <option value="" disabled selected>Select your option</option>
             <option value="1">Gas</option>
             <option value="2">Electrical</option>
             <option value="3">Central</option>
