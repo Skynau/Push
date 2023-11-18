@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Amenity;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,10 @@ class Listing extends Controller
 {
   public function store(Request $request)
   {
-    // dd($request->all());
+    // dd($request->input('amenities'));
+    // $get_amenities = [];
+    // $get_amenities[] = $request->input('amenities');
+    // $amenities = Amenity::whereIn('amenity.id', $get_amenities)->get();
     $user = Auth::user();
     // dd($user->id);
     $address = new Address();
@@ -54,7 +58,7 @@ class Listing extends Controller
     }
     $property->save();
 
-    // dd($request->all());
+    // $property->amenities()->attach($amenities);
 
 
     return
