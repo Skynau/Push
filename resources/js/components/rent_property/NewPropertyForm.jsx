@@ -6,13 +6,10 @@ import axios from 'axios';
 
 
 const NewPropertyForm = () => {
-    const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
-
+  const [ message, setMessage ] = useState(null)
   const inputRef = useRef(null);
-
-  
- 
   
   const [formData, setFormData] = useState({
     user_id: user?.id,
@@ -121,6 +118,7 @@ const NewPropertyForm = () => {
                     },
                 }
             );
+            setMessage(response.data['message']);
             console.log("Server Response:", response.data);
         } catch (error) {
             console.log("Error:", error);
@@ -262,7 +260,7 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="" disabled selected>Select your option</option>
+            <option value="" disabled defaultValue={""}>Select your option</option>
             <option value="1">House</option>
             <option value="2">Apartment</option>
           </select>
@@ -308,7 +306,7 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="" disabled selected>Select your option</option>
+            <option value="" disabled defaultValue={""}>Select your option</option>
             <option value="1">1kk</option>
             <option value="2">1+1</option>
             <option value="3">2kk</option>
@@ -335,7 +333,7 @@ const NewPropertyForm = () => {
             onChange={handlePetsWelcomeChange}
             required
           >
-            <option value="" disabled selected>Select your option</option>
+            <option value="" disabled defaultValue={""}>Select your option</option>
             <option value="1">Yes</option>
             <option value="0">No</option>
           </select>
@@ -350,7 +348,7 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="" disabled selected>Select your option</option>
+            <option value="" disabled defaultValue={""}>Select your option</option>
             <option value="1">New</option>
             <option value="2">Very Good</option>
             <option value="3">Good</option>
@@ -366,7 +364,7 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="" disabled selected>Select your option</option>
+            <option value="" disabled defaultValue={""}>Select your option</option>
             <option value="1">None</option>
             <option value="2">Partly</option>
             <option value="3">Fully</option>
@@ -381,7 +379,7 @@ const NewPropertyForm = () => {
             onChange={handleInputChange}
             required
           >
-            <option value="" disabled selected>Select your option</option>
+            <option value="" disabled defaultValue={""}>Select your option</option>
             <option value="1">Gas</option>
             <option value="2">Electrical</option>
             <option value="3">Central</option>
@@ -401,6 +399,15 @@ const NewPropertyForm = () => {
                     />
                 </label>
                 <br />
+            {
+              message 
+              ?
+              <h2>
+                {message}
+              </h2>
+              :
+              ''
+            }
 
                 <button type="submit">Submit</button>
                 <br />
