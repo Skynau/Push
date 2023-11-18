@@ -37,7 +37,7 @@ const OwnerListing = () => {
         setApproved((prevValue) => !prevValue);
     };
 
-    console.log(listings)
+    // console.log(listings)
     return (
         <>
         {listings.map((listing)=>{
@@ -78,7 +78,7 @@ const OwnerListing = () => {
                 </div>
                 <div className="house-item-edit">
                     <span className="item-edit">
-                        <Link to="/edit-property">
+                        <Link to="/edit-property" state={{listingId: listing.id}} >
                             <img src={editIcon} alt="edit" />
                         </Link>
                     </span>
