@@ -35,6 +35,7 @@ const NewPropertyForm = () => {
     condition: '',
     furnishing: '',
     heating: '',
+    numberOfBathroom: '',
     photoAttachment: '',
   });
 
@@ -223,35 +224,6 @@ const NewPropertyForm = () => {
           />
         </label><br/>
               
-
-
-                <label>
-                    <br />
-                    Price:
-                    <input
-                        type="text"
-                        name="price"
-                        value={formData.price}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </label>
-                <br />
-
-                <label>
-                    <br />
-                    Available From (Date):
-                    <input
-                        type="date"
-                        name="availableFrom"
-                        value={formData.availableFrom}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </label>
-                <br />
-
-
         <label><br/>
           Type:
           <select
@@ -265,6 +237,35 @@ const NewPropertyForm = () => {
             <option value="2">Apartment</option>
           </select>
         </label><br/>
+
+
+        <label>
+             <br />
+            Price:
+            <input
+                type="text"
+                name="price"
+                value={formData.price}
+                onChange={handleInputChange}
+                required
+            />
+        </label>
+        <br />
+
+        <label>
+            <br />
+            Available From (Date):
+            <input
+                type="date"
+                name="availableFrom"
+                value={formData.availableFrom}
+                onChange={handleInputChange}
+                required
+            />
+        </label>
+        <br />
+
+
         
         <label><br/>
           Amenities:
@@ -283,19 +284,19 @@ const NewPropertyForm = () => {
         </label><br/>
 
 
-                <label>
-                    <br />
-                    Apartment area:
-                    <input
-                        type="text"
-                        name="squareMeters"
-                        value={formData.squareMeters}
-                        onChange={handleInputChange}
-                        required
-                    />{" "}
-                    m²
-                </label>
-                <br />
+         <label>
+             <br />
+             Apartment area:
+             <input
+                 type="text"
+                 name="squareMeters"
+                 value={formData.squareMeters}
+                 onChange={handleInputChange}
+                 required
+             />{" "}
+             m²
+         </label>
+         <br />
 
 
         <label><br/>
@@ -322,6 +323,23 @@ const NewPropertyForm = () => {
             <option value="13">7kk</option>
             <option value="14">7+1</option>
             <option value="15">other</option>
+          </select>
+        </label><br/>
+
+        <label><br/>
+          Number of bathroom:
+          <select
+            name="numberOfBathroom"
+            value={formData.numberOfBathroom}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="" disabled defaultValue={""}>Select your option</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">more</option>
           </select>
         </label><br/>
 

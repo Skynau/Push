@@ -10,6 +10,7 @@ import imageFooter from "../../../../public/images/footer-real-estate.svg";
 import UserContext from "../../UserContext";
 import axios from "axios";
 
+
 const PropertyDetail = ({ propertyId }) => {
     const [liked, setLiked] = useState(false);
     const [house, setHouse] = useState(null);
@@ -73,6 +74,8 @@ const PropertyDetail = ({ propertyId }) => {
         }
         }
 
+        console.log(house?.photo_attachment)
+  
 
     return (
         <div className="property-container" onClick={hideModal}>
@@ -109,8 +112,8 @@ const PropertyDetail = ({ propertyId }) => {
                         <div className="propery-images">
                             <div className="main-image">
                                 <img
-                                // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
-                                // alt="Image"
+                                src={house?.photo_attachment}
+                                alt="Image"
                                 />
                             </div>
                             <div className="small-images">

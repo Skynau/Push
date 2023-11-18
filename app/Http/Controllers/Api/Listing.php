@@ -43,7 +43,7 @@ class Listing extends Controller
     $property->heating_id = $request->input('heating');
     $property->active = 1;
     $property->paid_status = 0;
-    $property->number_of_bathrooms = 1; //this is shit FIX IT
+    $property->number_of_bathrooms = $request->input('numberOfBathroom');
     if ($request->hasFile('photoAttachment')) {
 
       $file = $request->file('photoAttachment');
