@@ -44,6 +44,14 @@ class Listing extends Controller
     $property->active = 1;
     $property->paid_status = 0;
     $property->number_of_bathrooms = 1; //this is shit FIX IT
+    if ($request->hasFile('photoAttachment')) {
+
+      $file = $request->file('photoAttachment');
+      $extension = $file->getClientOriginalExtension(); // get extension of image
+      $filename = time() . '.' . $extension;
+      $file->move('uploads/images/', $filename); // upload locally
+      $property->photo_attachment = 'uploads/images/' . $filename; //sed to db
+    }
     $property->save();
 
     // dd($request->all());

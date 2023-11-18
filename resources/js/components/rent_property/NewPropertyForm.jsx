@@ -1,15 +1,18 @@
+
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import './NewPropertyForm.scss';
 import UserContext from '../../UserContext';
 import axios from 'axios';
 
+
 const NewPropertyForm = () => {
-  const { user } = useContext(UserContext);
+    const { user } = useContext(UserContext);
+
 
   const inputRef = useRef(null);
 
   
-  // console.log(user)
+ 
   
   const [formData, setFormData] = useState({
     user_id: user?.id,
@@ -83,16 +86,46 @@ const NewPropertyForm = () => {
     });
   };
   
-  const handleSubmit = async (e) => {
-    // send data to server
-    e.preventDefault();
-    try {
-      const response = await axios.post('api/property/store', formData);
-    } catch (error) {
-      console.log(error)
-    }
+//   const handleSubmit = async (e) => {
+//     // send data to server
+//     e.preventDefault();
+//     try {
+//       const response = await axios.post('api/property/store', formData);
+//     } catch (error) {
+//       console.log(error)
+//     }
     
-  };
+//   };
+  
+      const handleImage = (e) => {
+        setFormData({
+            ...formData,
+            photoAttachment: e.target.files[0],
+        });
+    };
+    const handleSubmit = async (e) => {
+        // send data to server
+        e.preventDefault();
+        const formDataSend = new FormData();
+        // Append all other form data
+        for (const key in formData) {
+            formDataSend.append(key, formData[key]);
+        }
+        try {
+            const response = await axios.post(
+                "api/property/store",
+                formDataSend,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+            console.log("Server Response:", response.data);
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    };
   
   // console.log(formData);
   return (
@@ -191,28 +224,35 @@ const NewPropertyForm = () => {
             required
           />
         </label><br/>
+              
 
-        <label><br/>
-          Price:
-          <input
-            type="text"
-            name="price"
-            value={formData.price}
-            onChange={handleInputChange}
-            required
-          />
-        </label><br/>
 
-        <label><br/>
-          Available From (Date):
-          <input
-            type="date"
-            name="availableFrom"
-            value={formData.availableFrom}
-            onChange={handleInputChange}
-            required
-          />
-        </label><br/>
+                <label>
+                    <br />
+                    Price:
+                    <input
+                        type="text"
+                        name="price"
+                        value={formData.price}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </label>
+                <br />
+
+                <label>
+                    <br />
+                    Available From (Date):
+                    <input
+                        type="date"
+                        name="availableFrom"
+                        value={formData.availableFrom}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </label>
+                <br />
+
 
         <label><br/>
           Type:
@@ -244,16 +284,21 @@ const NewPropertyForm = () => {
           </select>
         </label><br/>
 
-        <label><br/>
-        Apartment area: 
-          <input
-            type="text"
-            name="squareMeters"
-            value={formData.squareMeters}
-            onChange={handleInputChange}
-            required
-          /> m²
-        </label><br/>
+
+                <label>
+                    <br />
+                    Apartment area:
+                    <input
+                        type="text"
+                        name="squareMeters"
+                        value={formData.squareMeters}
+                        onChange={handleInputChange}
+                        required
+                    />{" "}
+                    m²
+                </label>
+                <br />
+
 
         <label><br/>
           Disposition:
@@ -343,21 +388,25 @@ const NewPropertyForm = () => {
           </select>
         </label><br/>
 
-        <label><br/>
-          Photo Attachment:
-          <input
-            type="file"
-            name="photoAttachment"
-            accept="image/*"
-            onChange={handleInputChange}
-            required
-          />
-        </label><br/>
 
-        <button type="submit">Submit</button><br/>
-      </form>
-    </div>
-  );
+                <label>
+                    <br />
+                    Photo Attachment:
+                    <input
+                        type="file"
+                        name="photoAttachment"
+                        accept="image/*"
+                        onChange={handleImage}
+                        required
+                    />
+                </label>
+                <br />
+
+                <button type="submit">Submit</button>
+                <br />
+            </form>
+        </div>
+    );
 };
 
 export default NewPropertyForm;
