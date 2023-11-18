@@ -13,4 +13,9 @@ class Favorite_listing extends Model
   {
     $this->belongsTo(User::class);
   }
+
+  public function property()
+  {
+    $this->belongsTo(Property::class);
+  }
 }

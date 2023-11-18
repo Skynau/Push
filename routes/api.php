@@ -3,7 +3,6 @@
 use App\Http\Controllers\Api\Listing;
 use App\Http\Controllers\Api\Search;
 use App\Http\Controllers\Api\User;
-use App\Http\Controllers\SearchBar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

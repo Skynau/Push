@@ -287,7 +287,7 @@ const EditPropertyForm = () => {
                 </label>
                 <br />
 
-                <button type="submit">Submit</button>
+                <button type="submit">Update</button>
                 <br />
             </form>
         </div>

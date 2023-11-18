@@ -29,7 +29,10 @@ class User extends Controller
     $user = Auth::user();
     $listings = Property::where('user_id', $user->id)
       ->with('address')
+      // ->leftJoin('favorite_listings', 'properties.id', 'favorite_listings.property_id')
+      ->orderBy('created_at', 'desc')
       ->get();
+    // dd($listings);
 
     return $listings;
   }
