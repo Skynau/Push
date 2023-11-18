@@ -66,4 +66,8 @@ class Listing extends Controller
         'message' => 'Listing was created!'
       ];
   }
+
+  public function destroy()
+  {
+  }
 }

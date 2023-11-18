@@ -14,6 +14,8 @@ const OwnerListing = () => {
     const [showModal, setShowModal] = useState(false);
     const [approved, setApproved] = useState(false);
 
+    
+
     const toggleModal = () => {
         setShowModal((prevValue) => !prevValue);
     };

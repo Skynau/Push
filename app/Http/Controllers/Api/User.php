@@ -27,9 +27,11 @@ class User extends Controller
   public function userListings()
   {
     $user = Auth::user();
-    $listings = Property::where('user_id', $user->id)
+    $listings = Property::where('properties.user_id', $user->id)
       ->with('address')
+      ->leftJoin('favorite_listings', 'properties.id', 'favorite_listings.property_id')
       ->get();
+    // dd($listings);
 
     return $listings;
   }
