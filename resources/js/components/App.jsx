@@ -12,7 +12,7 @@ import axios from "axios";
 import AboutUs from "./AboutUs";
 import UserContext from "../UserContext";
 import NewPropertyForm from "./rent_property/NewPropertyForm";
-import OwnerInterface from "./owner_components/OwnerInterface";
+import OwnerInterface from "./owner_components/OwnerInterface"; 
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
@@ -42,7 +42,7 @@ const App = () => {
     }, [user]);
 
     return (
-        <>
+        <>  
             <Context.Provider
                 value={{ state: contextValue, dispatch: setContextValue }}
             >

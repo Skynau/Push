@@ -1,0 +1,57 @@
+@import "../../css/app.scss";
+
+$primary-color: #3498db;
+$background-color: #433e72;
+$font-family: 'Arial', sans-serif;
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: $background-color;
+  color: white;
+
+  .nav-action__btn {
+    display: flex;
+    align-items: center;
+
+    .nav-link {
+      margin-right: 15px;
+      text-decoration: none;
+      @include button-style;
+
+      button {
+        @include button-style;
+
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+
+  .nav-profile {
+    display: flex;
+    align-items: center;
+
+    .nav-link {
+      margin-right: 15px;
+      text-decoration: none;
+      @include button-style;
+    }
+
+    h3 {
+      margin-right: 15px;
+      font-family: $font-family;
+    }
+
+    .btn {
+        @include button-style;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}

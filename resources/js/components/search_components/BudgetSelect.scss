@@ -53,10 +53,10 @@
                 left: 5.7rem;
                 height: 1.7rem;
                 padding: 0.8rem 0rem rem 0rem 0.1rem;
-                border-left: 1px solid #8a2be2;
+                border-left: 1px solid $bestcolor;
                 position: absolute;
                 pointer-events: none;
-                background-color: #8a2be2;
+                background-color: $bestcolor;
             }
             select {
                 -webkit-appearance: none;
@@ -73,7 +73,7 @@
                 color: $bestcolor;
                 background-color: $whitecolor;
                 background-image: none;
-                border: 2px solid #8a2be2;
+                border: 2px solid $bestcolor;
                 -ms-word-break: normal;
                 word-break: normal;
                 cursor: pointer;
