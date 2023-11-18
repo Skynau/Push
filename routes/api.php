@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   return $request->user();
 });
 
-// Route::get('/api/your-search-route', [SearchBar::class, 'search'])->name('search');
+
 
 Route::get('/search', [Search::class, 'index']);
 
@@ -31,3 +31,5 @@ Route::get('/property/{id}', [Search::class, 'detail']);
 Route::post('/property/{user_id}/store', [User::class, 'like']);
 
 Route::post('/property/store', [Listing::class, 'store']);
+
+Route::get('/user-listings', [User::class, 'userListings']);

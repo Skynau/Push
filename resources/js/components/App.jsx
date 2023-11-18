@@ -12,7 +12,8 @@ import axios from "axios";
 import AboutUs from "./AboutUs";
 import UserContext from "../UserContext";
 import NewPropertyForm from "./rent_property/NewPropertyForm";
-import OwnerInterface from "./owner_components/OwnerInterface"; 
+import OwnerInterface from "./owner_components/OwnerInterface";
+import EditPropertyForm from "./rent_property/EditPropertyForm";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
@@ -63,6 +64,10 @@ const App = () => {
                             <Route
                                 path="/create-property"
                                 element={<NewPropertyForm />}
+                            />
+                            <Route
+                                path="/edit-property"
+                                element={<EditPropertyForm />}
                             />
                             <Route
                                 path="/owner-interface"

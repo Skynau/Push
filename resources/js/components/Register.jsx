@@ -30,14 +30,11 @@ export default function Register(props) {
             const response = await axios.post('/register', values);
             const response_data = response.data;
             setUser(null)
-            // dispatch({
-            //         type: "user",
-            //         payload: null,
-            //          });
         } catch (error) {
             switch (error.response.status) {
                 case 422:
                     console.log('VALIDATION FAILED:', error.response.data.errors);
+                    setErrors(response_data.errors);
                     break;
                 case 500:
                     console.log('UNKNOWN ERROR', error.response.data);
@@ -59,8 +56,8 @@ export default function Register(props) {
 
     useEffect(()=>{
       if (user) {
-                  navigate('/');
-              }
+        navigate('/');
+    }
     },[user])
 
 
@@ -68,26 +65,26 @@ export default function Register(props) {
     return (
         <form action="/register" method="post" onSubmit={ handleSubmit }>
 
-            First name:<br />
+            <label htmlFor="first_name">First name:</label>
             <input type="text" name="first_name" value={ values.first_name } onChange={ handleChange } />
             <br />
             {
-                errors.name
-                    ? <div className="errors">{ errors.name.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
+                errors.first_name
+                    ? <div className="errors">{ errors.first_name.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
                     : ''
             }
 
-            Last name:<br />
+            <label htmlFor="last_name">Last name:</label>
             <input type="text" name="last_name" value={ values.last_name } onChange={ handleChange } />
             <br />
             {
-                errors.name
-                    ? <div className="errors">{ errors.name.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
+                errors.last_name
+                    ? <div className="errors">{ errors.last_name.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
                     : ''
             }
 
 
-            Email:<br />
+            <label htmlFor="email">Email:</label>
             <input type="email" name="email" value={ values.email } onChange={ handleChange } />
             <br />
             {
@@ -96,17 +93,17 @@ export default function Register(props) {
                     : ''
             }
 
-            Phone number:<br />
+            <label htmlFor="phone_number">Phone number:</label>
             <input type="text" name="phone_number" value={ values.phone_number } onChange={ handleChange } />
             <br />
             {
-                errors.email
-                    ? <div className="errors">{ errors.email.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
+                errors.phone_number
+                    ? <div className="errors">{ errors.phone_number.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
                     : ''
             }
 
 
-            Password:<br />
+            <label htmlFor="password">Password:</label>
             <input type="password" name="password" value={ values.password } onChange={ handleChange } />
             <br />
             {
@@ -115,7 +112,7 @@ export default function Register(props) {
                     : ''
             }
 
-            Confirm pasword:<br />
+            <label htmlFor="password_confirmation">Confirm pasword:</label>
             <input type="password" name="password_confirmation" value={ values.password_confirmation } onChange={ handleChange } />
             <br />
             {

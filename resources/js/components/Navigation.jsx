@@ -17,22 +17,18 @@ const Navigation = () => {
 
     return (
         <div className="nav">
+
             <div className="nav-brand"></div>
-            <div className="nav-action__btn">
-                <Link to="/create-property" className="nav-link">
-                    <button>Rent my property</button>
-                </Link>
-                <Link to="/owner-interface" className="nav-link">
-                    <button>Owner Interface</button>
-                </Link>
+            <div>
+            <Link to="/">Go Home</Link>
             </div>
-
+            <div>
+            <Link to="/about-us">About us</Link>
+            </div>
             <div className="nav-profile">
-                <div className="profile-message__icon"></div>
-                {/* <div className="profile-image">Image here</div> */}
-                <Link to="/" className="nav-link">Go Home</Link>
+               
+                <div className="profile-image">Image here</div>
 
-                <Link to="/about-us" className="nav-link">About us</Link>
 
                 {user === false ? (
                     <>
@@ -47,13 +43,19 @@ const Navigation = () => {
                     <li>Loading user...</li>
                 ) : (
                     <>
-                        <div className="nav-brand"></div>
+                        
+                        <div className="profile-message__icon">
+                        <h3>Logged in as {user?.first_name}</h3>
+                         </div>
                         <div className="nav-action__btn">
                             <Link to="/create-property" className="nav-link">
                                 <button>Rent my property</button>
                             </Link>
+                            <Link to="/owner-interface">
+                              <button>Owner Interface</button>
+                            </Link>
                         </div>
-                        <h3>Logged in as {user?.first_name}</h3>
+                        
                         <button className="btn" onClick={handleLogout}>
                             Logout
                         </button>

@@ -23,10 +23,6 @@ export default function Login(props) {
             const response = await axios.post('/login', values);
             const response_data = response.data;
             setUser(null)
-            // dispatch({
-            //         type: "user",
-            //         payload: null,
-            //          });
         } catch (error) {
             switch (error.response.status) {
                 case 422:
@@ -52,14 +48,14 @@ export default function Login(props) {
 
     useEffect(()=>{
       if (user) {
-                  navigate('/');
-              }
+        navigate('/');
+      }
     },[user])
 
     return (
         <form action="/login" method="post" onSubmit={ handleSubmit }>
 
-            Email:<br />
+            <label htmlFor="email">Email:</label>
             <input type="email" name="email" value={ values.email } onChange={ handleChange } />
             <br />
             {
@@ -68,7 +64,7 @@ export default function Login(props) {
                     : ''
             }
 
-            Password:<br />
+            <label htmlFor="password">Password:</label>
             <input type="password" name="password" value={ values.password } onChange={ handleChange } />
             <br />
             {

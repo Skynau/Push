@@ -1,0 +1,23 @@
+@import "../../../css/app.scss";
+
+.edit-form_container {
+    h2 {
+        text-align: center;
+    }
+    .edit-form {
+        max-width: 40%;
+        margin-bottom: 3rem;
+        input,
+        textarea {
+            border: none;
+            outline: none;
+            border-bottom: 2px solid $bestcolor;
+            background-color: transparent;
+            font-size: 1.2rem;
+        }
+        button {
+            width: 30%;
+            margin: auto;
+        }
+    }
+}
