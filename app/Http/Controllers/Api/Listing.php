@@ -67,7 +67,14 @@ class Listing extends Controller
       ];
   }
 
-  public function destroy()
+  public function destroy(string $property_id)
   {
+    $property = Property::findOrFail($property_id);
+    $property->delete();
+
+    return
+      [
+        'message' => 'Listing was deleted!'
+      ];
   }
 }

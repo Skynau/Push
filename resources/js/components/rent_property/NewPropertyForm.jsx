@@ -130,7 +130,7 @@ const NewPropertyForm = () => {
   // console.log(formData);
   return (
     <div className='form'>
-      <form action="#" method="post" onSubmit={handleSubmit}>
+      <form className='form' action="#" method="post" onSubmit={handleSubmit}>
         <label><br/>
           Address:
           <input

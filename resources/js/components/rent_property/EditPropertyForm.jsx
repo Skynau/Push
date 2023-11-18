@@ -66,7 +66,7 @@ const EditPropertyForm = () => {
         <div className="edit-form_container">
             <h2>Edit property</h2>
             <form
-                className="edit-form"
+                className="edit-form form"
                 action="#"
                 method="post"
                 onSubmit={handleSubmit}
