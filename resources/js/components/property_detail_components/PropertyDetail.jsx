@@ -12,11 +12,11 @@ import axios from "axios";
 
 
 const PropertyDetail = ({ propertyId }) => {
+    const { user } = useContext(UserContext);
+    const { state, dispatch } = useContext(Context);
     const [liked, setLiked] = useState(false);
     const [house, setHouse] = useState(null);
     const [loading, setLoadding] = useState(false);
-    const { state, dispatch } = useContext(Context);
-    const { user } = useContext(UserContext);
 
     const fetchHouse = async (url) => {
         try {
@@ -39,19 +39,17 @@ const PropertyDetail = ({ propertyId }) => {
     //property detail zoom and center
 
     // const handleMapClick = (e) => {
-    //     
+    //
     //   };
-    
-      const handleCenterChange = (newCenter) => {
-        
+
+    const handleCenterChange = (newCenter) => {
         console.log("New Center:", newCenter);
-      };
-    
-      const handleZoomChange = (newZoom) => {
-        
+    };
+
+    const handleZoomChange = (newZoom) => {
         console.log("New Zoom:", newZoom);
-      };
-      /////////////////////////////////////////
+    };
+    /////////////////////////////////////////
     const hideModal = (e) => {
         if (
             e.target.className === "property-container" ||
@@ -63,17 +61,19 @@ const PropertyDetail = ({ propertyId }) => {
         }
     };
 
-        const sendData = async (e) => {
+    const sendData = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('api/property/'+ user.id +'/store', {
-              propertyId: propertyId
-            });
+            const response = await axios.post(
+                "api/property/" + user.id + "/store",
+                {
+                    propertyId: propertyId,
+                }
+            );
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-        }
-
+    };
 
 
     return (
@@ -87,13 +87,13 @@ const PropertyDetail = ({ propertyId }) => {
                     <div className="nav-brand">PUSH!</div>
                     <div className="nav-links">
                         <div className="save" onClick={toggleLiked}>
-                          <form action="" onSubmit={sendData}>
-                            <button type="submit" >
-                            <img
-                                src={liked ? HeartIcon : EmptyHeartIcon}
-                                alt="Heart"
-                            />
-                            </button>
+                            <form action="" onSubmit={sendData}>
+                                <button type="submit">
+                                    <img
+                                        src={liked ? HeartIcon : EmptyHeartIcon}
+                                        alt="Heart"
+                                    />
+                                </button>
                             </form>
                             <p>Save</p>
                         </div>
@@ -207,12 +207,10 @@ const PropertyDetail = ({ propertyId }) => {
                                 // onMapClick={handleMapClick}
                                 onCenterChange={handleCenterChange}
                                 onZoomChange={handleZoomChange}
-                                centerMap={{lat: Number(
-                                    house?.address?.latitude
-                                ),
-                                lng: Number(
-                                    house?.address?.longitude
-                                )}}
+                                centerMap={{
+                                    lat: Number(house?.address?.latitude),
+                                    lng: Number(house?.address?.longitude),
+                                }}
                             />
 
                             <div className="property-description">

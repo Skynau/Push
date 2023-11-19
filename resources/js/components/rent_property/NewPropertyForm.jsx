@@ -59,44 +59,70 @@ const NewPropertyForm = () => {
         latitude: place.geometry.location.lat(),
         longtitude: place.geometry.location.lng()
   }); 
-    });
-  }, []);
-  
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
-  const handleAmenitiesChange = (e) => {
-    const selectedOptions = Array.from(e.target.selectedOptions, (option) => option.value);
-    setFormData({
-      ...formData,
-      amenities: [...formData.amenities, ...selectedOptions],
     });
-  };
-  
-  
-  const handlePetsWelcomeChange = (e) => {
-    setFormData({
-      ...formData,
-      petsWelcome: e.target.value,
-    });
-  };
-  
-//   const handleSubmit = async (e) => {
-//     // send data to server
-//     e.preventDefault();
-//     try {
-//       const response = await axios.post('api/property/store', formData);
-//     } catch (error) {
-//       console.log(error)
-//     }
-    
-//   };
-  
-      const handleImage = (e) => {
+
+    useEffect(() => {
+        const googleAutocomplete = new window.google.maps.places.Autocomplete(
+            inputRef.current
+        );
+
+        googleAutocomplete.addListener("place_changed", () => {
+            const place = googleAutocomplete.getPlace();
+            // console.log(place);
+            setFormData({
+                ...formData,
+                address: place.formatted_address,
+                street: place.address_components[2].long_name,
+                streetNumber: place.address_components[0].long_name,
+                district: place.address_components[3].long_name,
+                city: place.address_components[4].long_name,
+                postalCode: place.address_components[7].long_name,
+                country: place.address_components[6].long_name,
+                placeId: place.place_id,
+                latitude: place.geometry.location.lat(),
+                longtitude: place.geometry.location.lng(),
+            });
+        });
+    }, []);
+
+    const handleInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleAmenitiesChange = (e) => {
+        const selectedOptions = Array.from(
+            e.target.selectedOptions,
+            (option) => option.value
+        );
+        setFormData({
+            ...formData,
+            amenities: [...formData.amenities, ...selectedOptions],
+        });
+    };
+
+    const handlePetsWelcomeChange = (e) => {
+        setFormData({
+            ...formData,
+            petsWelcome: e.target.value,
+        });
+    };
+
+    //   const handleSubmit = async (e) => {
+    //     // send data to server
+    //     e.preventDefault();
+    //     try {
+    //       const response = await axios.post('api/property/store', formData);
+    //     } catch (error) {
+    //       console.log(error)
+    //     }
+
+    //   };
+
+    const handleImage = (e) => {
         setFormData({
             ...formData,
             photoAttachment: e.target.files[0],
@@ -105,8 +131,9 @@ const NewPropertyForm = () => {
     const handleSubmit = async (e) => {
         // send data to server
         e.preventDefault();
+
         const formDataSend = new FormData();
-        // Append all other form data
+        // Append all form data from state
         for (const key in formData) {
             formDataSend.append(key, formData[key]);
         }
@@ -284,7 +311,6 @@ const NewPropertyForm = () => {
           </select>
         </label><br/>
 
-
          <label>
              <br />
              Apartment area:
@@ -299,7 +325,36 @@ const NewPropertyForm = () => {
          </label>
          <br />
 
-
+                <label>
+                    <br />
+                    Disposition:
+                    <select
+                        name="disposition"
+                        value={formData.disposition}
+                        onChange={handleInputChange}
+                        required
+                    >
+                        <option value="" disabled selected>
+                            Select your option
+                        </option>
+                        <option value="1">1kk</option>
+                        <option value="2">1+1</option>
+                        <option value="3">2kk</option>
+                        <option value="4">2+1</option>
+                        <option value="5">3kk</option>
+                        <option value="6">3+1</option>
+                        <option value="7">4kk</option>
+                        <option value="8">4+1</option>
+                        <option value="9">5kk</option>
+                        <option value="10">5+1</option>
+                        <option value="11">6kk</option>
+                        <option value="12">6+1</option>
+                        <option value="13">7kk</option>
+                        <option value="14">7+1</option>
+                        <option value="15">other</option>
+                    </select>
+                </label>
+                <br />
         <label><br/>
           Disposition:
           <select
@@ -405,6 +460,64 @@ const NewPropertyForm = () => {
           </select>
         </label><br/>
 
+
+                <label>
+                    <br />
+                    Condition:
+                    <select
+                        name="condition"
+                        value={formData.condition}
+                        onChange={handleInputChange}
+                        required
+                    >
+                        <option value="" disabled selected>
+                            Select your option
+                        </option>
+                        <option value="1">New</option>
+                        <option value="2">Very Good</option>
+                        <option value="3">Good</option>
+                        <option value="4">Bad</option>
+                    </select>
+                </label>
+                <br />
+
+                <label>
+                    <br />
+                    Furnishing:
+                    <select
+                        name="furnishing"
+                        value={formData.furnishing}
+                        onChange={handleInputChange}
+                        required
+                    >
+                        <option value="" disabled selected>
+                            Select your option
+                        </option>
+                        <option value="1">None</option>
+                        <option value="2">Partly</option>
+                        <option value="3">Fully</option>
+                    </select>
+                </label>
+                <br />
+
+                <label>
+                    <br />
+                    Heating:
+                    <select
+                        name="heating"
+                        value={formData.heating}
+                        onChange={handleInputChange}
+                        required
+                    >
+                        <option value="" disabled selected>
+                            Select your option
+                        </option>
+                        <option value="1">Gas</option>
+                        <option value="2">Electrical</option>
+                        <option value="3">Central</option>
+                    </select>
+                </label>
+                <br />
 
                 <label>
                     <br />
