@@ -25,7 +25,7 @@ const OwnerInterface = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // setShowModal((prevValue) => !prevValue);
+        setShowModal((prevValue) => !prevValue);
         console.log(user);
         try {
             const response = await axios.put("/user/profile-information", user);
