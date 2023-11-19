@@ -11,7 +11,6 @@ import UserContext from "../../UserContext";
 import axios from "axios";
 import Pano from "./Pano";
 
-
 const PropertyDetail = ({ propertyId }) => {
     const { user } = useContext(UserContext);
     const { state, dispatch } = useContext(Context);
@@ -76,7 +75,6 @@ const PropertyDetail = ({ propertyId }) => {
         }
     };
 
-
     return (
         <div className="property-container" onClick={hideModal}>
             <div className="property-container_modal">
@@ -112,8 +110,8 @@ const PropertyDetail = ({ propertyId }) => {
                         <div className="propery-images">
                             <div className="main-image">
                                 <img
-                                src={house?.photo_attachment}
-                                alt="Image"
+                                    src={house?.photo_attachment}
+                                    alt="Image"
                                 />
                             </div>
                             <div className="small-images">
