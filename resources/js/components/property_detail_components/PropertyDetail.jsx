@@ -179,30 +179,30 @@ const [copy, setCopy] = useState(`http://www.push.test/property/${propertyId}`)
                         <div className="propery-images">
                             <div className="main-image">
                                 <img
-                                    src={house?.media[0]?.url}
+                                    src={'/'+house?.media[0]?.url}
                                     alt="Image"
                                 />
                             </div>
                             <div className="small-images">
                                 <div className="image-col">
                                     <img
-                                    src={house?.media[1]?.url}
+                                    src={'/'+house?.media[1]?.url}
                                     alt="Image"
                                     />
                                     <img
-                                    src={house?.media[0]?.url}
+                                    src={'/'+house?.media[0]?.url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />
                                 </div>
                                 <div className="image-col">
                                     <img
-                                    src={house?.media[2]?.url}
+                                    src={'/'+house?.media[2]?.url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />
                                     <img
-                                    src={house?.media[3]?.url}
+                                    src={'/'+house?.media[3]?.url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />

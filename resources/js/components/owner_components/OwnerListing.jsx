@@ -37,7 +37,7 @@ const OwnerListing = () => {
         setApproved((prevValue) => !prevValue);
     };
 
-    console.log(listings)
+    // console.log(listings)
     return (
         <>
         {listings.map((listing)=>{
