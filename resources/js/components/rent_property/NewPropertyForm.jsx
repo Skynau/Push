@@ -60,7 +60,8 @@ const NewPropertyForm = () => {
         longtitude: place.geometry.location.lng()
   }); 
 
-    });
+  });
+})
 
     useEffect(() => {
         const googleAutocomplete = new window.google.maps.places.Autocomplete(
@@ -325,36 +326,6 @@ const NewPropertyForm = () => {
          </label>
          <br />
 
-                <label>
-                    <br />
-                    Disposition:
-                    <select
-                        name="disposition"
-                        value={formData.disposition}
-                        onChange={handleInputChange}
-                        required
-                    >
-                        <option value="" disabled selected>
-                            Select your option
-                        </option>
-                        <option value="1">1kk</option>
-                        <option value="2">1+1</option>
-                        <option value="3">2kk</option>
-                        <option value="4">2+1</option>
-                        <option value="5">3kk</option>
-                        <option value="6">3+1</option>
-                        <option value="7">4kk</option>
-                        <option value="8">4+1</option>
-                        <option value="9">5kk</option>
-                        <option value="10">5+1</option>
-                        <option value="11">6kk</option>
-                        <option value="12">6+1</option>
-                        <option value="13">7kk</option>
-                        <option value="14">7+1</option>
-                        <option value="15">other</option>
-                    </select>
-                </label>
-                <br />
         <label><br/>
           Disposition:
           <select
@@ -460,65 +431,6 @@ const NewPropertyForm = () => {
           </select>
         </label><br/>
 
-
-                <label>
-                    <br />
-                    Condition:
-                    <select
-                        name="condition"
-                        value={formData.condition}
-                        onChange={handleInputChange}
-                        required
-                    >
-                        <option value="" disabled selected>
-                            Select your option
-                        </option>
-                        <option value="1">New</option>
-                        <option value="2">Very Good</option>
-                        <option value="3">Good</option>
-                        <option value="4">Bad</option>
-                    </select>
-                </label>
-                <br />
-
-                <label>
-                    <br />
-                    Furnishing:
-                    <select
-                        name="furnishing"
-                        value={formData.furnishing}
-                        onChange={handleInputChange}
-                        required
-                    >
-                        <option value="" disabled selected>
-                            Select your option
-                        </option>
-                        <option value="1">None</option>
-                        <option value="2">Partly</option>
-                        <option value="3">Fully</option>
-                    </select>
-                </label>
-                <br />
-
-                <label>
-                    <br />
-                    Heating:
-                    <select
-                        name="heating"
-                        value={formData.heating}
-                        onChange={handleInputChange}
-                        required
-                    >
-                        <option value="" disabled selected>
-                            Select your option
-                        </option>
-                        <option value="1">Gas</option>
-                        <option value="2">Electrical</option>
-                        <option value="3">Central</option>
-                    </select>
-                </label>
-                <br />
-
                 <label>
                     <br />
                     Photo Attachment:
@@ -553,6 +465,6 @@ const NewPropertyForm = () => {
             </form>
         </div>
     );
-};
+          }
 
 export default NewPropertyForm;
