@@ -20,7 +20,7 @@ const MapContainer = () => {
 
 //   const debouncedMapClick = _debounce(handleMapClick, 1000);
 
-  console.log('Rendering MapContainer:', { state });
+  // console.log('Rendering MapContainer:', { state });
 
   return (
     <div>
