@@ -40,4 +40,3 @@ Route::get('/user-listings', [User::class, 'userListings']);
 Route::post('/{property_id}/delete', [Listing::class, 'destroy']); //this need to fix
 
 Route::post('/property/{property_id}/update', [Listing::class, 'update']);
-
