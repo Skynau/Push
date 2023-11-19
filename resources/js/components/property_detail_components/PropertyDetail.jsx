@@ -219,6 +219,7 @@ const PropertyDetail = ({ propertyId }) => {
                                 <h2>Description</h2>
                                 <p>{house?.description}</p>
                             </div>
+                            <iframe className="pano" allowfullscreen src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=https%3A//i.imgur.com/6h98KYI.jpg&title=byt&author=kiwiwoe&autoLoad=true"></iframe>
                             <img
                                 src={imageFooter}
                                 className="bottom-image"
