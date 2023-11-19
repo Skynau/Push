@@ -2,19 +2,24 @@ import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../../UserContext";
 import axios from "axios";
 import "./EditPropertyForm.scss";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
+import backIcon from "../../../../public/images/back-icon.svg";
 
 const EditPropertyForm = () => {
-  const [house, setHouse] = useState(null);
-  const location = useLocation();
-  const listingId = location.state?.listingId;
-   const [message, setMessage] = useState(null);
+    const [house, setHouse] = useState(null);
+    const location = useLocation();
+    const listingId = location.state?.listingId;
+    const [message, setMessage] = useState(null);
+    const [image, setImage] = useState(null);
+
     // console.log(listingId);
 
-  const fetchHouse = async () => {
+    const fetchHouse = async () => {
         try {
             const data = await axios(`/api/property/${listingId}`);
             setHouse(data.data);
+            console.log(data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -44,15 +49,11 @@ const EditPropertyForm = () => {
     //     photoAttachment: "",
     // });
 
-
-    
     const handleInputChange = (e) => {
-        setHouse(previousValues => {
-            return ({...previousValues, 
-                [e.target.name]: e.target.value
-            });
+        setHouse((previousValues) => {
+            return { ...previousValues, [e.target.name]: e.target.value };
         });
-    }
+    };
 
     // const handleAmenitiesChange = (e) => {
     //     const selectedOptions = Array.from(
@@ -76,8 +77,11 @@ const EditPropertyForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('api/property/'+ listingId +'/update', house);
-            setMessage(response.data['message'])
+            const response = await axios.post(
+                "api/property/" + listingId + "/update",
+                house
+            );
+            setMessage(response.data["message"]);
         } catch (error) {
             console.log(error);
         }
@@ -85,6 +89,13 @@ const EditPropertyForm = () => {
 
     return (
         <div className="edit-form_container">
+            <div className="back-link">
+                <Link to="/owner-interface">
+                    <img src={backIcon} alt="Back" />
+                    <p>back</p>
+                </Link>
+            </div>
+
             <h2>Edit property</h2>
             <form
                 className="edit-form form"
@@ -182,7 +193,6 @@ const EditPropertyForm = () => {
                         name="square_meters"
                         value={house?.square_meters}
                         onChange={handleInputChange}
-                        
                     />{" "}
                     m²
                 </label>
@@ -195,7 +205,6 @@ const EditPropertyForm = () => {
                         name="disposition_id"
                         value={house?.disposition_id}
                         onChange={handleInputChange}
-                        
                     >
                         <option value="1">1kk</option>
                         <option value="2">1+1</option>
@@ -216,20 +225,22 @@ const EditPropertyForm = () => {
                 </label>
                 <br />
 
-        <label><br/>
-          Number of bathroom:
-          <select
-            name="number_of_bathrooms"
-            value={house?.number_of_bathrooms}
-            onChange={handleInputChange}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">more</option>
-          </select>
-        </label><br/>
+                <label>
+                    <br />
+                    Number of bathroom:
+                    <select
+                        name="number_of_bathrooms"
+                        value={house?.number_of_bathrooms}
+                        onChange={handleInputChange}
+                    >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">more</option>
+                    </select>
+                </label>
+                <br />
 
                 <label>
                     <br />
@@ -238,7 +249,6 @@ const EditPropertyForm = () => {
                         name="pets_welcome"
                         value={house?.pets_welcome}
                         onChange={handleInputChange}
-                        
                     >
                         <option value="1">Yes</option>
                         <option value="0">No</option>
@@ -253,7 +263,6 @@ const EditPropertyForm = () => {
                         name="type_id"
                         value={house?.type_id}
                         onChange={handleInputChange}
-                        
                     >
                         <option value="1">House</option>
                         <option value="2">Apartment</option>
@@ -268,7 +277,6 @@ const EditPropertyForm = () => {
                         name="condition_id"
                         value={house?.condition_id}
                         onChange={handleInputChange}
-                        
                     >
                         <option value="1">New</option>
                         <option value="2">Very Good</option>
@@ -285,7 +293,6 @@ const EditPropertyForm = () => {
                         name="furnishing_id"
                         value={house?.furnishing_id}
                         onChange={handleInputChange}
-                        
                     >
                         <option value="1">None</option>
                         <option value="2">Partly</option>
@@ -301,7 +308,6 @@ const EditPropertyForm = () => {
                         name="heating_id"
                         value={house?.heating_id}
                         onChange={handleInputChange}
-                        
                     >
                         <option value="1">Gas</option>
                         <option value="2">Electrical</option>
@@ -313,24 +319,26 @@ const EditPropertyForm = () => {
                 <label>
                     <br />
                     Photo Attachment:
+                    <img
+                        src={house?.photo_attachment}
+                        alt="Current Photo"
+                        style={{ maxWidth: "200px", maxHeight: "200px" }}
+                    />
                     <input
                         type="file"
                         name="photoAttachment"
                         accept="image/*"
                         onChange={handleInputChange}
-                        
                     />
                 </label>
-                
+
                 <br />
 
-                {
-                    message 
-                    ? 
-                        <span>{message}</span>
-                    : 
+                {message ? (
+                    <span>{message}</span>
+                ) : (
                     <button type="submit">Update</button>
-                }
+                )}
                 <br />
             </form>
         </div>

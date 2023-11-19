@@ -93,7 +93,16 @@ class Listing extends Controller
     $property->furnishing_id = $request->input('furnishing_id');
     $property->heating_id = $request->input('heating_id');
     $property->number_of_bathrooms = $request->input('number_of_bathrooms'); //add this to front AGAIN
-    //need to implement the image here
+    // Handle the image
+    if ($request->hasFile('photo_attachment')) {
+      $image = $request->file('photo_attachment');
+      $imageName = time() . '.' . $image->getClientOriginalExtension();
+      $image->move(public_path('uploads/images'), $imageName);
+
+      // Update the image path in the database
+      $property->photo_attachment = 'uploads/images/' . $imageName;
+    }
+
     $property->save();
 
     return [
