@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import deleteIcon from "../../../../public/images/delete-icon.svg";
 import editIcon from "../../../../public/images/edit-icon.svg";
 import bathIcon from "../../../../public/images/bath-icon.svg";
@@ -9,10 +9,26 @@ import approvedIcon from "../../../../public/images/approved-icon.svg";
 
 import "./OwnerListing.scss";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import DeleteListing from "./DeleteListing";
 
 const OwnerListing = () => {
     const [showModal, setShowModal] = useState(false);
     const [approved, setApproved] = useState(false);
+    const [listings, setListings] = useState([]);
+
+  const loadData = async () => {
+      try{
+        const response = await axios('api/user-listings');
+        setListings(response.data)
+      }catch (error) {
+            console.log(error)
+        }
+    }
+
+  useEffect(() => {
+        loadData()
+    }, [])
 
     const toggleModal = () => {
         setShowModal((prevValue) => !prevValue);
@@ -21,45 +37,48 @@ const OwnerListing = () => {
         setApproved((prevValue) => !prevValue);
     };
 
+    // console.log(listings)
     return (
         <>
-            <div className="house-item">
+        {listings.map((listing)=>{
+          return <div key={listing.id} className="house-item">
                 <div className="house-box">
                     <div className="house-item-img">
                         <img
-                            src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
+                            src={listing.photo_attachment}
                             alt="house image"
                         />
                     </div>
 
                     <div className="house-item-detail">
-                        <p className="house-item-detail-title">City</p>
+                        <p className="house-item-detail-title">{listing.title}</p>
                         <p className="house-item-detail-price">
-                            1.000.000.00 CZK
+                            {listing.price_rent} CZK
                         </p>
                         <p className="house-item-detail-address">
-                            Address here
+                            {listing.address?.street},
+                            {listing.address?.city}
                         </p>
 
                         <p className="house-item-detail-icons">
                             <span className="bed">
                                 <img src={bedIcon} alt="bed" />{" "}
-                                <strong>4</strong>
+                                <strong>{listing.disposition_id}</strong>
                             </span>
                             <span className="bath">
                                 <img src={bathIcon} alt="bath" />{" "}
-                                <strong>6</strong>
+                                <strong>{listing.number_of_bathrooms}</strong>
                             </span>
                             <span className="size">
                                 <img src={sizeIcon} alt="size" />{" "}
-                                <strong> 44m2</strong>
+                                <strong>{listing.square_meters}m2</strong>
                             </span>
                         </p>
                     </div>
                 </div>
                 <div className="house-item-edit">
                     <span className="item-edit">
-                        <Link to="/edit-property">
+                        <Link to="/edit-property" state={{listingId: listing.id}} >
                             <img src={editIcon} alt="edit" />
                         </Link>
                     </span>
@@ -88,12 +107,14 @@ const OwnerListing = () => {
                                 <button type="button" onClick={toggleModal}>
                                     Go Back
                                 </button>
-                                <button type="button">Yes, Delete</button>
+                                <DeleteListing listingId={listing.id}/>
+                                {/* <button type="button">Yes, Delete</button> */}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            })}
 
             <div className="house-item-stats">
                 <h3>Interested tenants:</h3>

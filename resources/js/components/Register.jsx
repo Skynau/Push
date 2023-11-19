@@ -59,7 +59,8 @@ export default function Register(props) {
     }, [user]);
 
     return (
-        <form action="/register" method="post" onSubmit={handleSubmit}>
+
+        <form className='form' action="/register" method="post" onSubmit={ handleSubmit }>
             <label htmlFor="first_name">First name:</label>
             <input
                 type="text"

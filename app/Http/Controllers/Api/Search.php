@@ -12,8 +12,6 @@ class Search extends Controller
   {
     // dd($request);
 
-
-
     // $type = $request->input('type');
     // $disposition = $request->input('disposition') ?? "%";
     // $furnishing = $request->input('furnishing') ?? "%";
@@ -45,8 +43,6 @@ class Search extends Controller
     $order = $request->input('order') ?? 'created_at';
     $orderFlow = $request->input('orderFlow') ?? 'desc';
 
-    // $address = $request->input('searchFieldValue');
-
     $query =  Property::query();
 
     //type
@@ -54,13 +50,9 @@ class Search extends Controller
 
     if ($request->input('apartment')) {
       $possible_types[] = 2;
-      // $query
-      //   ->where('type_id', 2);
     }
     if ($request->input('house')) {
       $possible_types[] = 1;
-      // $query
-      //   ->where('type_id', 1);
     }
 
     if ($possible_types) {
@@ -72,41 +64,26 @@ class Search extends Controller
 
     if ($request->input('1kk')) {
       $possible_disposition[] = 1;
-      // $query
-      //   ->where('disposition_id', 1);
     }
     if ($request->input('1plus1')) {
       $possible_disposition[] = 2;
-      // $query
-      //   ->where('disposition_id', 2);
     }
     if ($request->input('2kk')) {
       $possible_disposition[] = 3;
-      // $query
-      //   ->where('disposition_id', 3);
     }
     if ($request->input('2plus1')) {
       $possible_disposition[] = 4;
-      // $query
-      //   ->where('disposition_id', 4);
     }
     if ($request->input('3kk')) {
       $possible_disposition[] = 5;
-      // $query
-      //   ->where('disposition_id', 5);
     }
     if ($request->input('3plus1')) {
       $possible_disposition[] = 6;
-      // $query
-      //   ->where('disposition_id', 6);
     }
     if ($request->input('4kk')) {
       $possible_disposition[] = 7;
-      // $query
-      //   ->where('disposition_id', 7);
     }
     if ($request->input('bigger')) {
-      // $possible_disposition = [8, 9, 10, 11, 12, 13, 14, 15]; ///this need to fix with other possible_disposition
       $query
         ->where('disposition_id', '>', 7);
     }
@@ -119,18 +96,12 @@ class Search extends Controller
 
     if ($request->input('furnished')) {
       $possible_furnishing[] = 3;
-      // $query
-      //   ->where('furnishing_id', 3);
     }
     if ($request->input('partialy')) {
       $possible_furnishing[] = 2;
-      // $query
-      //   ->where('furnishing_id', 2);
     }
     if ($request->input('unfurnished')) {
       $possible_furnishing[] = 1;
-      // $query
-      //   ->where('furnishing_id', 1);
     }
     if ($possible_furnishing) {
       $query->whereIn('furnishing_id', $possible_furnishing);

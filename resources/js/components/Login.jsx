@@ -51,7 +51,8 @@ export default function Login(props) {
     }, [user]);
 
     return (
-        <form action="/login" method="post" onSubmit={handleSubmit}>
+
+        <form className='form' action="/login" method="post" onSubmit={ handleSubmit }>
             <label htmlFor="email">Email:</label>
             <input
                 type="email"

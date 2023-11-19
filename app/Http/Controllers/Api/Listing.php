@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Amenity;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,10 @@ class Listing extends Controller
 {
   public function store(Request $request)
   {
-    // dd($request->all());
+    // dd($request->input('amenities'));
+    // $get_amenities = [];
+    // $get_amenities[] = $request->input('amenities');
+    // $amenities = Amenity::whereIn('amenity.id', $get_amenities)->get();
     $user = Auth::user();
     // dd($user->id);
     $address = new Address();
@@ -41,9 +45,9 @@ class Listing extends Controller
     $property->condition_id = $request->input('condition');
     $property->furnishing_id = $request->input('furnishing');
     $property->heating_id = $request->input('heating');
+    $property->number_of_bathrooms = $request->input('numberOfBathroom');
     $property->active = 1;
     $property->paid_status = 0;
-    $property->number_of_bathrooms = 1; //this is shit FIX IT
     if ($request->hasFile('photoAttachment')) {
 
       $file = $request->file('photoAttachment');
@@ -54,12 +58,46 @@ class Listing extends Controller
     }
     $property->save();
 
-    // dd($request->all());
+    // $property->amenities()->attach($amenities);
 
 
     return
       [
         'message' => 'Listing was created!'
       ];
+  }
+
+  public function destroy(string $property_id)
+  {
+    $property = Property::findOrFail($property_id);
+    $property->delete();
+
+    return
+      [
+        'message' => 'Listing was deleted!'
+      ];
+  }
+
+  public function update(Request $request, $property_id)
+  {
+    $property = Property::findOrFail($property_id);
+    $property->title = $request->input('title');
+    $property->description = $request->input('description');
+    $property->price_rent = $request->input('price_rent');
+    $property->available_from = $request->input('available_from');
+    $property->square_meters = $request->input('square_meters');
+    $property->disposition_id = $request->input('disposition_id');
+    $property->pets_welcome = $request->input('pets_welcome');
+    $property->type_id = $request->input('type_id');
+    $property->condition_id = $request->input('condition_id');
+    $property->furnishing_id = $request->input('furnishing_id');
+    $property->heating_id = $request->input('heating_id');
+    $property->number_of_bathrooms = $request->input('number_of_bathrooms'); //add this to front AGAIN
+    //need to implement the image here
+    $property->save();
+
+    return [
+      'message' => 'Property updated successfully!'
+    ];
   }
 }
