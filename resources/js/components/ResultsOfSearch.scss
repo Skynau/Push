@@ -12,7 +12,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-}
+    }
 
     .over-view {
         display: flex;
@@ -40,8 +40,6 @@
                 justify-content: space-between;
                 margin: 0 1vh;
 
-                
-                
                 h2 {
                     color: $bestcolor;
                     margin: 0;
@@ -51,8 +49,7 @@
                     @include button-not-selected;
                     margin-left: 0.9rem;
                     margin-right: 0.9rem;
-                    height:80%;
-
+                    height: 80%;
                 }
 
                 .results-list_data-manipulation {
@@ -78,9 +75,43 @@
                 height: 90vh;
                 overflow-x: hidden;
                 overflow-y: auto;
+
+                .no-results {
+                    margin-top: 30%;
+                    color: $bestcolor;
+                }
+                /* Loader styles */
+                .loader {
+                    width: fit-content;
+                    height: 2rem;
+                    margin-top: 30%;
+                    font-weight: bold;
+                    font-family: monospace;
+                    font-size: 30px;
+                    background: linear-gradient(
+                            90deg,
+                            $bestcolor 50%,
+                            $bestcolor 0
+                        )
+                        right/200% 100%;
+                    animation: l21 2s infinite linear;
+                }
+                .loader::before {
+                    content: "Loading...";
+                    color: #0000;
+                    padding: 0 5px;
+                    background: inherit;
+                    background-image: linear-gradient(90deg, #fff 50%, #000 0);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                }
+
+                @keyframes l21 {
+                    100% {
+                        background-position: left;
+                    }
+                }
             }
         }
     }
-    
 }
-

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Context from "../Context";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import UserContext from '../UserContext';
 
 
 export default function Register(props) {
@@ -15,69 +17,31 @@ export default function Register(props) {
 
     const [errors, setErrors] = useState({});
 
-    const { dispatch, state } = useContext(Context);
+    const { user, setUser } = useContext(UserContext);
 
     const handleSubmit = async (event) => {
 
         event.preventDefault();
 
-        // clear the errors
+       
         setErrors({});
 
-        // make the AJAX request
-        const response = await fetch('/register', {
-            method: 'POST',
-            body: JSON.stringify(values),
-            headers: {
-                'Accept': 'application/json',
-                'Content-type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        });
-
-        // parse the response as JSON
-        const response_data = await response.json();
-
-        // if the response code is not 2xx (success)
-        if (Math.floor(response.status / 100) !== 2) {
-            switch (response.status) {
+        try {
+            const response = await axios.post('/register', values);
+            const response_data = response.data;
+            setUser(null)
+        } catch (error) {
+            switch (error.response.status) {
                 case 422:
-                    // handle validation errors here
-                    console.log('VALIDATION FAILED:', response_data.errors);
+                    console.log('VALIDATION FAILED:', error.response.data.errors);
                     setErrors(response_data.errors);
                     break;
-                default:
-                    console.log('UNKNOWN ERROR', response_data);
+                case 500:
+                    console.log('UNKNOWN ERROR', error.response.data);
                     break;
-            }
-        } else {
-            // successful registration
-            dispatch({
-            type: "user",
-            payload: null,
-        }); // change the user status to "unknown"
-                           // that triggers re-fetching the user's status
-                           // in App.jsx
-        }
 
-        // // with axios
-        // try {
-        //     // make the AJAX request
-        //     const response = await axios.post('/register', values);
-        //     // get the (already JSON-parsed) response data
-        //     const response_data = response.data;
-        // } catch (error) {
-        //     // if the response code is not 2xx (success)
-        //     switch (error.response.status) {
-        //         case 422:
-        //             // handle validation errors here
-        //             console.log('VALIDATION FAILED:', error.response.data.errors);
-        //             break;
-        //         case 500:
-        //             console.log('UNKNOWN ERROR', error.response.data);
-        //             break;
-        //     }
-        // }
+            }
+        }
     }
 
     const handleChange = (event) => {
@@ -88,29 +52,39 @@ export default function Register(props) {
         });
     }
 
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+      if (user) {
+        navigate('/');
+    }
+    },[user])
+
+
+
     return (
         <form action="/register" method="post" onSubmit={ handleSubmit }>
 
-            First name:<br />
+            <label htmlFor="first_name">First name:</label>
             <input type="text" name="first_name" value={ values.first_name } onChange={ handleChange } />
             <br />
             {
-                errors.name
-                    ? <div className="errors">{ errors.name.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
+                errors.first_name
+                    ? <div className="errors">{ errors.first_name.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
                     : ''
             }
 
-            Last name:<br />
+            <label htmlFor="last_name">Last name:</label>
             <input type="text" name="last_name" value={ values.last_name } onChange={ handleChange } />
             <br />
             {
-                errors.name
-                    ? <div className="errors">{ errors.name.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
+                errors.last_name
+                    ? <div className="errors">{ errors.last_name.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
                     : ''
             }
 
 
-            Email:<br />
+            <label htmlFor="email">Email:</label>
             <input type="email" name="email" value={ values.email } onChange={ handleChange } />
             <br />
             {
@@ -119,17 +93,17 @@ export default function Register(props) {
                     : ''
             }
 
-            Phone number:<br />
+            <label htmlFor="phone_number">Phone number:</label>
             <input type="text" name="phone_number" value={ values.phone_number } onChange={ handleChange } />
             <br />
             {
-                errors.email
-                    ? <div className="errors">{ errors.email.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
+                errors.phone_number
+                    ? <div className="errors">{ errors.phone_number.map((error, i) => <div key={ i } className="error">{ error }</div> ) }</div>
                     : ''
             }
 
 
-            Password:<br />
+            <label htmlFor="password">Password:</label>
             <input type="password" name="password" value={ values.password } onChange={ handleChange } />
             <br />
             {
@@ -138,7 +112,7 @@ export default function Register(props) {
                     : ''
             }
 
-            Confirm pasword:<br />
+            <label htmlFor="password_confirmation">Confirm pasword:</label>
             <input type="password" name="password_confirmation" value={ values.password_confirmation } onChange={ handleChange } />
             <br />
             {

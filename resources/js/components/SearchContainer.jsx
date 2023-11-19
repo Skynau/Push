@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import Context from "../Context";
 import Type from "./search_components/Type";
 import Dispositions from "./search_components/Dispositions";
 import Budget from "./search_components/BudgetSelect";
@@ -9,17 +10,22 @@ import Amenities from "./search_components/Amenities";
 import ListingDate from "./search_components/ListingDate";
 import PetsWelcome from "./search_components/PetsWelcome";
 import { Link } from "react-router-dom";
-import Context from "../Context";
 import "./SearchContainer.scss";
 
 const SearchContainer = () => {
-    const { state } = useContext(Context);
-    const handleSubmit = () => {
-        return state.filterOptions;
+    const { dispatch } = useContext(Context);
+
+    const fetchOnResultsPage = () => {
+        // If component is rendered on 'results' page
+        // dispatch on click to fetch data
+        dispatch({
+            type: "fetchOnResultsPage",
+        });
+        // Hide edit form
+        dispatch({
+            type: "showEditForm",
+        });
     };
-    useEffect(() => {
-        handleSubmit();
-    }, [state.filterOptions]);
 
     return (
         <div className="search-container">
@@ -34,9 +40,19 @@ const SearchContainer = () => {
                 <ConditionsApartment />
                 <Amenities />
                 <PetsWelcome />
-                <Link to="/search-results" className="search-form__btn">
-                    Search
-                </Link>
+                {/* Render buttons based on page url */}
+                {window.location.href === "http://www.push.test/" ? (
+                    <Link to="/search-results" className="search-form__btn">
+                        Search
+                    </Link>
+                ) : (
+                    <button
+                        className="search-form__btn"
+                        onClick={fetchOnResultsPage}
+                    >
+                        Search
+                    </button>
+                )}
             </div>
         </div>
     );

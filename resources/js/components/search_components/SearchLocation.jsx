@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Context from "../../Context";
 import "./SearchLocation.scss";
 
@@ -13,10 +13,15 @@ const SearchLocation = (onLocationChange) => {
     };
 
     const hideEditSearch = (event) => {
-        if (event.key === "Enter" || event.key === "Escape") {
-            dispatch({
-                type: "showEditForm",
-            });
+        // Check if the component is not on the home page and the Enter or Escape key is pressed
+        if (
+            window.location.pathname !== "/" &&
+            (event.key === "Enter" || event.key === "Escape")
+        ) {
+            // Hide the edit form
+            dispatch({ type: "showEditForm" });
+            // Fetch data
+            dispatch({ type: "fetchOnResultsPage" });
         }
     };
 

@@ -8,49 +8,56 @@ const containerStyle = {
   height: '600px',
 };
 
-const GoogleMapComponent = ({ markers, onMapClick }) => {
+const GoogleMapComponent = ({ markers, centerMap, onCenterChange, onZoomChange }) => {
 
-  const [center, setCenter] = useState({ lat: 50.0755, lng: 14.4378 });
+  const [center, setCenter] = useState(centerMap ?? { lat: 50.0755, lng: 14.4378 });
 
   const [zoom, setZoom] = useState(13);
    
   const { state, dispatch } = useContext(Context);
+
+  // zoom and center on propertty detail
+
+    const handleCenterChange = () => {
+      onCenterChange && onCenterChange(center);
+    };
+
+    const handleZoomChange = () => {
+      onZoomChange && onZoomChange(zoom);
+    };
+
+    useEffect(() => {
+      handleCenterChange();
+    }, [center]);
+
+    useEffect(() => {
+      handleZoomChange();
+    }, [zoom]);
+//-----------------------------------------------------------------
 
   const renderMap = () => {
 
     if (Array.from(state.markers)?.length > 0) {
     
       setCenter(state.markers[0]?.position);
-
     };
-    console.log(center, Array.from(state.markers).length);
-    return (
-      <GoogleMap
-          googleMapsApiKey="AIzaSyCMpzXAKNYGF17gXZAf_NHmcSTOKCrQZnE"
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={zoom}
-          onClick={onMapClick}
-          >
-          {markers.map((marker, index) => (
-          <Marker key={index} position={marker.position} />
-          ))}
-      </GoogleMap>
-    )
-  };
+    // console.log(markers);
 
-  
-  useEffect(() => {
-    // Check if markers are available and set the center and zoom accordingly
-    if (state.markers?.length > 0) {
-      setCenter(state.markers[0]?.position);
-      setZoom(16); // Assuming you have a state for zoom level
-    }
-  }, [state.markers]);
-  
-  // useEffect (() => {
-  //   renderMap();
-  // },[center, zoom]);
+    return (
+          <GoogleMap
+            googleMapsApiKey="AIzaSyAbDifRoGhtEzTiYwEPBWc0roSxzhRUqvU"
+            mapContainerStyle={containerStyle}
+            onCenterChanged={handleCenterChange}
+            onZoomChanged={handleZoomChange}
+            center={center}
+            zoom={zoom}
+          >
+            {markers.map((marker, index) => (
+              <Marker key={index} position={marker.position} />
+            ))}
+          </GoogleMap>
+    );
+  };
 
   return (
     <div>
