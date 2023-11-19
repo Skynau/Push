@@ -182,9 +182,10 @@ class Search extends Controller
       ->with('furnishing')
       ->with('energy_demand')
       ->with('energy_demand')
-      ->leftJoin('property_amenity', 'properties.id', 'property_amenity.property_id')
-      ->leftJoin('amenities', 'property_amenity.amenity_id', 'amenities.id')
+      // ->leftJoin('property_amenity', 'properties.id', 'property_amenity.property_id')
+      // ->leftJoin('amenities', 'property_amenity.amenity_id', 'amenities.id')
       ->findOrFail($id);
+    // dd($property);
 
     return $property;
   }

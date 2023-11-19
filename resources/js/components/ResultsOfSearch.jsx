@@ -36,6 +36,7 @@ const ResultsOfSearch = () => {
         });
     };
 
+    // console.log(properties)
     return (
         <>
             <div className="results-page">
