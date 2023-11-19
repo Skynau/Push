@@ -9,9 +9,9 @@ import "./ResultsOfSearch.scss";
 import Sorting from "./results_components/Sorting";
 
 const ResultsOfSearch = () => {
+    const { state, dispatch } = useContext(Context);
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { state, dispatch } = useContext(Context);
 
     // Api call based on user's filtering options
     const fetchData = async (url) => {

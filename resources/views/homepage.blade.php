@@ -9,6 +9,8 @@
   @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
   </style>
   <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbDifRoGhtEzTiYwEPBWc0roSxzhRUqvU&libraries=places" async defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js" async defer></script>
   <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>

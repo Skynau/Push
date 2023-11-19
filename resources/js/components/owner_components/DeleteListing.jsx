@@ -7,7 +7,7 @@ const DeleteListing = (listingId) => {
   const handleSubmit = async (event) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`api/${listingId}/delete`);
+      const response = await axios.put(`api/${listingId}/delete`);
       setMessage(response.data['message']);
     } catch (error) {
       console.log(error)
