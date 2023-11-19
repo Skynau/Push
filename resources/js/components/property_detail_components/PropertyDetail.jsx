@@ -9,6 +9,7 @@ import GoogleMapComponent from "../results_components/GoogleMap";
 import imageFooter from "../../../../public/images/footer-real-estate.svg";
 import UserContext from "../../UserContext";
 import axios from "axios";
+import Pano from "./Pano";
 
 
 const PropertyDetail = ({ propertyId }) => {
@@ -43,11 +44,11 @@ const PropertyDetail = ({ propertyId }) => {
     //   };
 
     const handleCenterChange = (newCenter) => {
-        console.log("New Center:", newCenter);
+        // console.log("New Center:", newCenter);
     };
 
     const handleZoomChange = (newZoom) => {
-        console.log("New Zoom:", newZoom);
+        // console.log("New Zoom:", newZoom);
     };
     /////////////////////////////////////////
     const hideModal = (e) => {
@@ -177,7 +178,7 @@ const PropertyDetail = ({ propertyId }) => {
                                     <strong>{house?.available_from}</strong>
                                 </p>
                                 {/* created_At is null now */}
-                                <p>Listing Date </p>
+                                <p>Listing Date {house?.created_at}</p>
 
                                 <p>
                                     Pets Welcome{" "}
@@ -217,7 +218,7 @@ const PropertyDetail = ({ propertyId }) => {
                                 <h2>Description</h2>
                                 <p>{house?.description}</p>
                             </div>
-                            <iframe className="pano" allowFullScreen src="https://cdn.pannellum.org/2.5/pannellum.htm#panorama=https%3A//i.imgur.com/6h98KYI.jpg&autoLoad=true"></iframe>
+                            {/* <Pano /> */}
                             <img
                                 src={imageFooter}
                                 className="bottom-image"

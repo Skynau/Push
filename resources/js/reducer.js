@@ -63,9 +63,6 @@ export default function reducer(state, action) {
                 ? (newState.showEditForm = false)
                 : (newState.showEditForm = true);
             break;
-        case "user":
-            newState.user = action.payload;
-            break;
         case "fetchOnResultsPage":
             newState.fetchOnResultsPage = !newState.fetchOnResultsPage;
             break;
@@ -73,6 +70,6 @@ export default function reducer(state, action) {
             return state;
     }
 
-    console.log(newState);
+    // console.log(newState);
     return newState;
 }

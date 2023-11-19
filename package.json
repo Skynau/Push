@@ -19,6 +19,7 @@
         "axios": "^1.6.2",
         "fast-equals": "^5.0.1",
         "lodash": "^4.17.21",
+        "pannellum-react": "^1.2.4",
         "prop-types": "^15.8.1",
         "react": "^18.2.0",
         "react-datepicker": "^4.21.0",

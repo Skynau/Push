@@ -5,6 +5,7 @@ import UserContext from "../../UserContext";
 
 import addIcon from "../../../../public/images/plus-icon.png";
 import "./OwnerInterface.scss";
+import axios from "axios";
 
 const OwnerInterface = () => {
     const { user, setUser } = useContext(UserContext);
@@ -30,7 +31,7 @@ const OwnerInterface = () => {
             const response = await axios.put("/user/profile-information", user);
             console.log(response.data);
         } catch (error) {
-            console.log("Something went wrong");
+            console.log(error);
         }
     };
 
