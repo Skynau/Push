@@ -1,15 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import OwnerListing from "./OwnerListing";
+import UserContext from "../../UserContext";
+
 import addIcon from "../../../../public/images/plus-icon.png";
 import "./OwnerInterface.scss";
 
 const OwnerInterface = () => {
+    const { user, setUser } = useContext(UserContext);
     const [showModal, setShowModal] = useState(false);
 
     const toggleModal = () => {
         setShowModal((prevValue) => !prevValue);
     };
+
+    const handleFormChange = (e, fieldName) => {
+        console.log(user);
+        setUser((prevUser) => ({
+            ...prevUser,
+            [fieldName]: e.target.value,
+        }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        // setShowModal((prevValue) => !prevValue);
+        console.log(user);
+        try {
+            const response = await axios.put("/user/profile-information", user);
+            console.log(response.data);
+        } catch (error) {
+            console.log("Something went wrong");
+        }
+    };
+
     return (
         <div className="owner-container">
             <div className="owner-container_content">
@@ -46,21 +70,73 @@ const OwnerInterface = () => {
                             <div className="modal-text">
                                 <h2>Edit Profile</h2>
                                 <form className="form">
-                                    <label htmlFor="fname">First name:</label>
+                                    <label htmlFor="fname">
+                                        First name:
+                                        <span className="required-filed">
+                                            *
+                                        </span>
+                                    </label>
                                     <br />
-                                    <input type="text" name="fname" />
+                                    <input
+                                        type="text"
+                                        value={user?.first_name || ""}
+                                        onChange={(e) =>
+                                            handleFormChange(e, "first_name")
+                                        }
+                                        name="first_name"
+                                    />
                                     <br />
-                                    <label htmlFor="lname">Last name:</label>
+                                    <label htmlFor="lname">
+                                        Last name:
+                                        <span className="required-filed">
+                                            *
+                                        </span>
+                                    </label>
                                     <br />
-                                    <input type="text" name="lname" />
+                                    <input
+                                        type="text"
+                                        name="last_name"
+                                        value={user?.last_name || ""}
+                                        onChange={(e) =>
+                                            handleFormChange(e, "last_name")
+                                        }
+                                    />
                                     <br />
-                                    <label htmlFor="lname">Email</label>
+                                    <label htmlFor="email">
+                                        Email
+                                        <span className="required-filed">
+                                            *
+                                        </span>
+                                    </label>
                                     <br />
-                                    <input type="text" name="lname" />
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        value={user?.email || ""}
+                                        onChange={(e) =>
+                                            handleFormChange(e, "email")
+                                        }
+                                    />
+                                    <br />
+                                    <label htmlFor="phone">
+                                        Phone number
+                                        <span className="required-filed">
+                                            *
+                                        </span>
+                                    </label>
+                                    <br />
+                                    <input
+                                        type="text"
+                                        name="phone_number"
+                                        value={user?.phone_number || ""}
+                                        onChange={(e) =>
+                                            handleFormChange(e, "phone_number")
+                                        }
+                                    />
                                 </form>
                             </div>
                             <div className="modal-btns">
-                                <button type="button" onClick={toggleModal}>
+                                <button type="submit" onClick={handleSubmit}>
                                     Save
                                 </button>
                             </div>

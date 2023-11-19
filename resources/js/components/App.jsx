@@ -15,6 +15,8 @@ import NewPropertyForm from "./rent_property/NewPropertyForm";
 import OwnerInterface from "./owner_components/OwnerInterface";
 import EditPropertyForm from "./rent_property/EditPropertyForm";
 
+import "./App.scss";
+
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
 

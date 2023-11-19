@@ -69,6 +69,9 @@
                         border-radius: 0;
                         box-shadow: none;
                         background-color: inherit;
+                        .required-filed {
+                            color: red;
+                        }
                         input {
                             outline: none;
                             border: none;

@@ -1,0 +1,28 @@
+@import "../../../resources/css/app.scss";
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    height: 4rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    a {
+        text-decoration: none;
+        font-size: 1.4rem;
+        color: #000;
+    }
+    .nav-brand {
+        margin-right: 10%;
+    }
+    .nav-about {
+        margin-right: auto;
+    }
+    .nav-profile {
+        display: flex;
+        div {
+            margin-right: 10px;
+        }
+    }
+}
