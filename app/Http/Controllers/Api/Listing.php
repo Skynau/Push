@@ -97,7 +97,7 @@ class Listing extends Controller
     $property->save();
 
     return [
-      'message' => 'Mission updated successfully!'
+      'message' => 'Property updated successfully!'
     ];
   }
 }
