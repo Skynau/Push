@@ -44,7 +44,6 @@ const GoogleMapComponent = ({
         if (Array.from(state.markers)?.length > 0) {
             setCenter(state.markers[0]?.position);
         }
-        // console.log(markers);
 
         return (
             <GoogleMap

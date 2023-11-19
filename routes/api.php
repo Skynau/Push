@@ -33,7 +33,7 @@ Route::post('/property/{user_id}/store', [User::class, 'like']);
 
 Route::post('/property/store', [Listing::class, 'store']);
 
-Route::put('/user/profile-information', [UpdateUserProfileInformation::class, 'update']);
+// Route::put('/user/profile-information', [UpdateUserProfileInformation::class, 'update']);
 
 Route::get('/user-listings', [User::class, 'userListings']);
 
