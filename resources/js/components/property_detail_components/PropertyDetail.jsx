@@ -106,9 +106,14 @@ const [copy, setCopy] = useState(`http://www.push.test/property/${propertyId}`)
        }
     };
 
+  const hideOnBackdrop = (e) => {
+    const modal = e.target;
+    modal.classList.remove("active");
+  };
 
 
-//  console.log(copy)
+
+ console.log(house)
 
     return (
         <div className="property-container" onClick={hideModal}>
@@ -144,11 +149,28 @@ const [copy, setCopy] = useState(`http://www.push.test/property/${propertyId}`)
                     </div>
                 </div>
 
-        <div className={`modal ${shareOpen ? " active" : ""}`}>
-        <h2>Share property</h2>
-        <p>http://www.push.test/property/{propertyId}</p>
-        <button onClick={(e) => copyToClipBoard(`http://www.push.test/property/${propertyId}`)}>Copy to Clipboard</button>
+
+      <div
+        className={`modal  ${shareOpen ? " active" : ""}`}
+        onClick={hideOnBackdrop}
+      >
+        <div className="modal-content">
+          <span className="close" onClick={toggleShare}>
+            &#10005;
+          </span>
+          <div className="modal-text">
+            <h2>Share property</h2>
+            <p>http://www.push.test/property/{propertyId}</p>
+          </div>
+          <div className="modal-btns">
+            <button type="submit" onClick={(e) => copyToClipBoard(`http://www.push.test/property/${propertyId}`)}>
+              Copy to clipboard
+            </button>
+          </div>
         </div>
+      </div>
+
+
 
                 {loading ? (
                     <div className="loader"></div>
@@ -157,27 +179,30 @@ const [copy, setCopy] = useState(`http://www.push.test/property/${propertyId}`)
                         <div className="propery-images">
                             <div className="main-image">
                                 <img
-                                    src={house?.photo_attachment}
+                                    src={house?.media[0].url}
                                     alt="Image"
                                 />
                             </div>
                             <div className="small-images">
                                 <div className="image-col">
                                     <img
-                                    // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
-                                    // alt="Image"
+                                    src={house?.media[1].url}
+                                    alt="Image"
                                     />
                                     <img
+                                    src={house?.media[0].url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />
                                 </div>
                                 <div className="image-col">
                                     <img
+                                    src={house?.media[2].url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />
                                     <img
+                                    src={house?.media[3].url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />
