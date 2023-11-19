@@ -14,7 +14,6 @@ import Pano from "./Pano";
 import { useParams } from "react-router-dom";
 
 
-
 const PropertyDetail = ({ propertyId }) => {
     const { user } = useContext(UserContext);
     const { state, dispatch } = useContext(Context);
@@ -108,7 +107,9 @@ const [copy, setCopy] = useState(`http://www.push.test/property/${propertyId}`)
     };
 
 
+
 //  console.log(copy)
+
     return (
         <div className="property-container" onClick={hideModal}>
             <div className="property-container_modal">
@@ -156,8 +157,8 @@ const [copy, setCopy] = useState(`http://www.push.test/property/${propertyId}`)
                         <div className="propery-images">
                             <div className="main-image">
                                 <img
-                                src={house?.photo_attachment}
-                                alt="Image"
+                                    src={house?.photo_attachment}
+                                    alt="Image"
                                 />
                             </div>
                             <div className="small-images">

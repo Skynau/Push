@@ -29,50 +29,11 @@ const EditPropertyForm = () => {
         fetchHouse();
     }, []);
 
-    // console.log(house)
-
-    // const [formData, setFormData] = useState({
-    //     user_id: user?.id,
-    //     title: house?.title,
-    //     address: "",
-    //     description: "",
-    //     price_rent: "",
-    //     availableFrom: "",
-    //     amenities: [],
-    //     squareMeters: "",
-    //     disposition: "",
-    //     petsWelcome: "",
-    //     type: "",
-    //     condition: "",
-    //     furnishing: "",
-    //     heating: "",
-    //     photoAttachment: "",
-    // });
-
     const handleInputChange = (e) => {
         setHouse((previousValues) => {
             return { ...previousValues, [e.target.name]: e.target.value };
         });
     };
-
-    // const handleAmenitiesChange = (e) => {
-    //     const selectedOptions = Array.from(
-    //         e.target.selectedOptions,
-    //         (option) => option.value
-    //     );
-    //     setFormData({
-    //         ...formData,
-    //         amenities: [...formData.amenities, ...selectedOptions],
-    //     });
-    //     console.log(formData);
-    // };
-
-    // const handlePetsWelcomeChange = (e) => {
-    //     setFormData({
-    //         ...formData,
-    //         petsWelcome: e.target.value,
-    //     });
-    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();

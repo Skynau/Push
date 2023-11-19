@@ -35,7 +35,7 @@ const NewPropertyForm = () => {
         furnishing: "",
         heating: "",
         numberOfBathroom: "",
-        photoAttachment: "",
+        // photoAttachment: "",
         media: [],
     });
 
@@ -46,7 +46,6 @@ const NewPropertyForm = () => {
 
         googleAutocomplete.addListener("place_changed", () => {
             const place = googleAutocomplete.getPlace();
-            // console.log(place);
             setFormData({
                 ...formData,
                 address: place.formatted_address,
@@ -112,21 +111,16 @@ const NewPropertyForm = () => {
         });
     };
 
-    //   const handleSubmit = async (e) => {
-    //     // send data to server
-    //     e.preventDefault();
-    //     try {
-    //       const response = await axios.post('api/property/store', formData);
-    //     } catch (error) {
-    //       console.log(error)
-    //     }
-
-    //   };
-
+    // Handle image selection
     const handleImage = (e) => {
+        console.log("media", formData.media);
+        const mediaArray = [...formData.media];
+        // Add the selected file to the array
+        mediaArray.push(e.target.files[0]);
+
         setFormData({
             ...formData,
-            photoAttachment: e.target.files[0],
+            media: mediaArray,
         });
     };
     const handleSubmit = async (e) => {
@@ -136,7 +130,14 @@ const NewPropertyForm = () => {
         const formDataSend = new FormData();
         // Append all form data from state
         for (const key in formData) {
-            formDataSend.append(key, formData[key]);
+            if (key === "media") {
+                // Append each image separately
+                formData[key].forEach((image, index) => {
+                    formDataSend.append(`${key}[${index}]`, image);
+                });
+            } else {
+                formDataSend.append(key, formData[key]);
+            }
         }
         try {
             const response = await axios.post(
@@ -478,6 +479,7 @@ const NewPropertyForm = () => {
                         type="file"
                         name="photoAttachment"
                         accept="image/*"
+                        multiple
                         onChange={handleImage}
                         required
                     />
