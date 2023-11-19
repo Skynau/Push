@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\Amenity;
+use App\Models\Media;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,17 +49,33 @@ class Listing extends Controller
     $property->number_of_bathrooms = $request->input('numberOfBathroom');
     $property->active = 1;
     $property->paid_status = 0;
-    if ($request->hasFile('photoAttachment')) {
+    // if ($request->hasFile('photoAttachment')) {
 
-      $file = $request->file('photoAttachment');
-      $extension = $file->getClientOriginalExtension(); // get extension of image
-      $filename = time() . '.' . $extension;
-      $file->move('uploads/images/', $filename); // upload locally
-      $property->photo_attachment = 'uploads/images/' . $filename; //sed to db
-    }
+    //   $file = $request->file('photoAttachment');
+    //   $extension = $file->getClientOriginalExtension(); // get extension of image
+    //   $filename = time() . '.' . $extension;
+    //   $file->move('uploads/images/', $filename); // upload locally
+    //   $property->photo_attachment = 'uploads/images/' . $filename; //sed to db
+    // }
     $property->save();
 
-    // $property->amenities()->attach($amenities);
+    // Handle multiple images
+    if ($request->hasFile('media')) {
+      foreach ($request->file('media') as $imageFile) {
+        $imageName = time() . '_' . $imageFile->getClientOriginalName();
+        $imagePath = 'uploads/images/' . $imageName;
+
+        // Move the image to the specified path
+        $imageFile->move(public_path('uploads/images'), $imageName);
+
+        // Create a new image record in the database
+        $image = new Media();
+        $image->property_id = $property->id;
+        $image->type = 'property'; // Set the type accordingly
+        $image->url = $imagePath;
+        $image->save();
+      }
+    }
 
 
     return
