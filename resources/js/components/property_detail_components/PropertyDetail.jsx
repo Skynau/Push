@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import EmptyHeartIcon from "../../../../public/images/heart-empty.svg";
 import HeartIcon from "../../../../public/images/heart-liked.svg";
 import ShowInterestIcon from "../../../../public/images/show-interest.svg";
+import ExportVariant from "../../../../public/images/export-variant.svg";
 import Context from "../../Context";
 import { formatCurrency, getProperties } from "../../helpers";
 import "./PropertyDetail.scss";
@@ -10,6 +11,8 @@ import imageFooter from "../../../../public/images/footer-real-estate.svg";
 import UserContext from "../../UserContext";
 import axios from "axios";
 import Pano from "./Pano";
+import { useParams } from "react-router-dom";
+
 
 
 const PropertyDetail = ({ propertyId }) => {
@@ -18,65 +21,94 @@ const PropertyDetail = ({ propertyId }) => {
     const [liked, setLiked] = useState(false);
     const [house, setHouse] = useState(null);
     const [loading, setLoadding] = useState(false);
+    const [shareOpen, setShareOpen] = useState(false);
+    
+    
+    if (propertyId === undefined){
+      propertyId = useParams().id;
+    }
 
+    
     const fetchHouse = async (url) => {
-        try {
-            setLoadding(true);
-            const data = await getProperties(url);
-            setLoadding(false);
-            setHouse(data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
+      try {
+        setLoadding(true);
+        const data = await getProperties(url);
+        setLoadding(false);
+        setHouse(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     useEffect(() => {
         fetchHouse(`/api/property/${propertyId}`);
-    }, []);
-
-    const toggleLiked = () => {
+      }, []);
+      
+      const toggleLiked = () => {
         setLiked((prevValue) => !prevValue);
-    };
-
-    //property detail zoom and center
-
-    // const handleMapClick = (e) => {
-    //
-    //   };
-
-    const handleCenterChange = (newCenter) => {
-        // console.log("New Center:", newCenter);
-    };
-
-    const handleZoomChange = (newZoom) => {
-        // console.log("New Zoom:", newZoom);
-    };
-    /////////////////////////////////////////
-    const hideModal = (e) => {
-        if (
+      };
+      
+      //property detail zoom and center
+      
+      // const handleMapClick = (e) => {
+        //
+        //   };
+        
+        const handleCenterChange = (newCenter) => {
+          // console.log("New Center:", newCenter);
+        };
+        
+        const handleZoomChange = (newZoom) => {
+          // console.log("New Zoom:", newZoom);
+        };
+        /////////////////////////////////////////
+        const hideModal = (e) => {
+          if (
             e.target.className === "property-container" ||
             e.target.className === "back-link"
-        ) {
-            dispatch({
+            ) {
+              dispatch({
                 type: "TOGGLE_MODAL",
-            });
-        }
-    };
-
-    const sendData = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post(
+              });
+            }
+          };
+          
+          const sendData = async (e) => {
+            e.preventDefault();
+            try {
+              const response = await axios.post(
                 "api/property/" + user.id + "/store",
                 {
-                    propertyId: propertyId,
+                  propertyId: propertyId,
                 }
-            );
-        } catch (error) {
-            console.log(error);
-        }
+                );
+              } catch (error) {
+                console.log(error);
+              }
+            };
+            
+            const toggleShare = () => {
+              setShareOpen((prevValue) => !prevValue);
+            };
+            
+            
+const [copy, setCopy] = useState(`http://www.push.test/property/${propertyId}`)
+
+// const handleCopy = () => {
+//   navigator.clipboard.writeText(copy);
+// };
+ const [copySuccess, setCopySuccess] = useState(null);
+    const copyToClipBoard = async copyMe => {
+       try {
+           await navigator.clipboard.writeText(copyMe);
+           setCopySuccess('Copied!');
+       } 
+       catch (err) {
+           setCopySuccess('Failed to copy!');
+       }
     };
 
 
+//  console.log(copy)
     return (
         <div className="property-container" onClick={hideModal}>
             <div className="property-container_modal">
@@ -87,9 +119,15 @@ const PropertyDetail = ({ propertyId }) => {
                     </div>
                     <div className="nav-brand">PUSH!</div>
                     <div className="nav-links">
+                          <div className="interest">
+                            <button onClick={toggleShare} className="icon">
+                            <img src={ExportVariant} alt="share" />
+                            </button>
+                            <p>Share</p>
+                        </div>
                         <div className="save" onClick={toggleLiked}>
                             <form action="" onSubmit={sendData}>
-                                <button type="submit">
+                                <button className="icon" type="submit">
                                     <img
                                         src={liked ? HeartIcon : EmptyHeartIcon}
                                         alt="Heart"
@@ -104,6 +142,12 @@ const PropertyDetail = ({ propertyId }) => {
                         </div>
                     </div>
                 </div>
+
+        <div className={`modal ${shareOpen ? " active" : ""}`}>
+        <h2>Share property</h2>
+        <p>http://www.push.test/property/{propertyId}</p>
+        <button onClick={(e) => copyToClipBoard(`http://www.push.test/property/${propertyId}`)}>Copy to Clipboard</button>
+        </div>
 
                 {loading ? (
                     <div className="loader"></div>
