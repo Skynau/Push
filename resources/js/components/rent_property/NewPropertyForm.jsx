@@ -62,29 +62,6 @@ const NewPropertyForm = () => {
         });
     });
 
-    useEffect(() => {
-        const googleAutocomplete = new window.google.maps.places.Autocomplete(
-            inputRef.current
-        );
-
-        googleAutocomplete.addListener("place_changed", () => {
-            const place = googleAutocomplete.getPlace();
-            // console.log(place);
-            setFormData({
-                ...formData,
-                address: place.formatted_address,
-                street: place.address_components[2].long_name,
-                streetNumber: place.address_components[0].long_name,
-                district: place.address_components[3].long_name,
-                city: place.address_components[4].long_name,
-                postalCode: place.address_components[7].long_name,
-                country: place.address_components[6].long_name,
-                placeId: place.place_id,
-                latitude: place.geometry.location.lat(),
-                longtitude: place.geometry.location.lng(),
-            });
-        });
-    }, []);
 
     const handleInputChange = (e) => {
         setFormData({
@@ -178,6 +155,9 @@ const NewPropertyForm = () => {
                     />
                 </label>
 
+                {formData.streetNumber ?
+                (
+                <>
                 <label>
                     <br />
                     Street:
@@ -244,6 +224,9 @@ const NewPropertyForm = () => {
                     />
                 </label>
                 <br />
+                </>
+                ):
+                ""}
 
                 <label>
                     <br />
@@ -487,7 +470,7 @@ const NewPropertyForm = () => {
                 <br />
                 {message ? (
                     <>
-                        <h2>{message}</h2>
+                        <h2 className="success-message">{message}</h2>
                         <Link to="/owner-interface">
                             <button>See my listing</button>
                         </Link>
