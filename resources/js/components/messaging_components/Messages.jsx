@@ -15,7 +15,7 @@ const Messages = ()  => {
 
     const sendMessage = async (event) => {
         event.preventDefault();
-        
+
         try {
           const response = await axios.post('/api/messages/store', {
             text: newMessage,
@@ -29,7 +29,7 @@ const Messages = ()  => {
 
     return (
         <div className='main_message_container'>
-            {/* <div id='message_container'>
+            <div id='message_container'>
 
                 {messages.map(message => (
 
@@ -40,7 +40,7 @@ const Messages = ()  => {
                     </div>
 
                 ))}
-            </div> */}
+            </div>
             <div id='input_container'>
 
                 <input

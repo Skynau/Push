@@ -102,7 +102,7 @@ const PropertyDetail = ({ propertyId }) => {
         }
     };
 
-    //  console.log(house)
+
 
     return (
         <div className="property-container" onClick={hideModal}>
@@ -161,7 +161,8 @@ const PropertyDetail = ({ propertyId }) => {
                         <div className="propery-images">
                             <div className="main-image" onClick={toggleGallery}>
                                 <img
-                                    src={"/" + house?.media[0]?.url}
+                                //NEED TO FIX this to the loop
+                                    src={'/'+house?.media[0]?.url}
                                     alt="Image"
                                 />
                             </div>
