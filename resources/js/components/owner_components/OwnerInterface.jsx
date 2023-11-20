@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import OwnerListing from "./OwnerListing";
 import addIcon from "../../../../public/images/plus-icon.png";
 import "./OwnerInterface.scss";
+import Messages from "../messaging_components/Messages";
 
 const OwnerInterface = () => {
     const [showModal, setShowModal] = useState(false);
@@ -31,7 +32,10 @@ const OwnerInterface = () => {
                             <button> My Listings</button>
                         </div>
                         <div className="owner-header_message">
-                            <button>Messages</button>
+                            <Messages />
+                            <Link to="/messages">
+                                <button>Messages</button>
+                            </Link>
                         </div>
                     </div>
                     <div className="owner-header_message">

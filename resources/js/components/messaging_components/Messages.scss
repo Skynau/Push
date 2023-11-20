@@ -1,0 +1,49 @@
+$primary-color: #3498db;
+$secondary-color: #2c3e50;
+
+#main_message_container {
+  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#message-container {
+  max-height: 300px;
+  overflow-y: scroll;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+
+  .message {
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+  }
+}
+
+#input-container {
+  display: flex;
+
+  input {
+    flex: 1;
+    padding: 8px;
+  }
+
+  button {
+    padding: 8px;
+    cursor: pointer;
+    background-color: $primary-color;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    margin-left: 8px;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
