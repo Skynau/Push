@@ -1,28 +1,93 @@
-@import "../../../resources/css/app.scss";
+@import "../../css/app.scss";
 
-.nav {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
-    margin: auto;
-    height: 4rem;
-    margin-bottom: 2rem;
-    align-items: center;
-    a {
-        text-decoration: none;
-        font-size: 1.4rem;
-        color: #000;
-    }
-    .nav-brand {
-        margin-right: 10%;
-    }
-    .nav-about {
-        margin-right: auto;
-    }
-    .nav-profile {
-        display: flex;
-        div {
-            margin-right: 10px;
-        }
-    }
+header {
+    padding: 3rem;
 }
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 4rem;
+    background-color: #232323;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    padding: 0 2rem; // Add padding to the navbar
+    box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.2); // Add a subtle box shadow
+  }
+  
+  .nav__logo {
+    height: 3rem;
+  }
+  
+  .navbar__menu {
+    display: flex;
+    list-style-type: none;
+    margin: auto;
+    padding: auto;
+  }
+  
+  .navbar__item {
+    margin-right: 2rem; // Add some space between menu items
+  }
+  
+  .navbar__link {
+    color: #ebebeb;
+    font-size: 1.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .navbar__link:hover {
+    color: #232323;
+    background-color: #54be90;
+  }
+  
+  .navbar__link,
+  .navbar__link button {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .navbar__link button {
+    font-size: 1.2rem;
+    color: #ebebeb;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+    padding: 1rem;
+    text-decoration: none;
+  }
+  
+  .navbar__link button:hover {
+    color: #232323;
+  }
+  
+  .nav-action__btn {
+    display: flex;
+    flex-direction: row;
+  }
+  .navbar__item h3 {
+    font-size: 1rem;
+    color: #ebebeb;
+  }
+  
+  // Media query for responsiveness
+  @media screen and (max-width: 600px) {
+    .navbar {
+      padding: 0 1rem;
+    }
+  
+    .navbar__link {
+      font-size: 1rem;
+    }
+  
+    .navbar__link button {
+      font-size: 1rem;
+    }
+  }
+

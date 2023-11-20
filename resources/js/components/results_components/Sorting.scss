@@ -1,5 +1,33 @@
 @import "../../../css/app.scss";
 
-.sorting-select {
-    color: $bestcolor;
-}
+.sorting-container {
+    display: flex;
+    align-items: center;
+  
+    .sort-mini-title {
+      margin-right: 10px;
+      font-size: 14px;
+      color: #555; 
+    }
+  
+    .sorting-select {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc; 
+      border-radius: 4px;
+      cursor: pointer;
+      outline: none;
+  
+      &:hover {
+        border-color: #999; 
+      }
+  
+      &:focus {
+        border-color: #333; 
+      }
+  
+      option {
+        font-size: 14px;
+      }
+    }
+  }

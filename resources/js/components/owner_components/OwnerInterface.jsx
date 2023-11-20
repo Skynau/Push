@@ -5,6 +5,7 @@ import UserContext from "../../UserContext";
 
 import addIcon from "../../../../public/images/plus-icon.png";
 import "./OwnerInterface.scss";
+import Messages from "../messaging_components/Messages";
 import axios from "axios";
 
 const OwnerInterface = () => {
@@ -56,7 +57,10 @@ const OwnerInterface = () => {
                             <button> My Listings</button>
                         </div>
                         <div className="owner-header_message">
-                            <button>Messages</button>
+                            {/* <Messages /> */}
+                            <Link to="/messages">
+                                <button>Messages</button>
+                            </Link>
                         </div>
                     </div>
                     <div className="owner-header_message">

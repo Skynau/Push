@@ -1,21 +1,49 @@
 @import "../../../css/app.scss";
 
+// .conditions-btns {
+//     width: 100%;
+//     display: flex;
+//     justify-content: space-between;
+//     margin-bottom: 1rem;
+//     .btn {
+//         @include button-not-selected;
+//         &.active {
+//             border: none;
+//             outline: none;
+//             padding: 0.3rem 0.5rem;
+//             border-radius: 3px;
+//             font-size: 1rem;
+//             background-color: $bestcolor;
+//             color: $whitecolor;
+//             cursor: pointer;
+//         }
+//     }
+// }
+
 .conditions-btns {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+
     .btn {
-        @include button-not-selected;
+        margin: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        background-color: #433e72;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        &:hover {
+            background-color: #54be90;
+            color: #232323;
+        }
+
         &.active {
-            border: none;
-            outline: none;
-            padding: 0.3rem 0.5rem;
-            border-radius: 3px;
-            font-size: 1rem;
-            background-color: $bestcolor;
-            color: $whitecolor;
-            cursor: pointer;
+            background-color: #54be90;
+            color: #232323;
         }
     }
 }

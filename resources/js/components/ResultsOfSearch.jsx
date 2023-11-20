@@ -83,7 +83,7 @@ const ResultsOfSearch = () => {
                                 // If no loading
                                 <h2 className="no-results">
                                     {" "}
-                                    <i>No Results </i>:)
+                                    <i>No Results </i>:
                                 </h2>
                             )}
                         </div>

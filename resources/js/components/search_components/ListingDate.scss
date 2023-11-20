@@ -1,22 +1,94 @@
 @import "../../../css/app.scss";
 
+// .listings_date-datepicker {
+//     display: flex;
+//     align-items: baseline;
+//     color: $bestcolor;
+//     margin-bottom: 1rem;
+//     h3 {
+//         margin-right: 2rem;
+//     }
+//     .react-datepicker-wrapper {
+//         .react-datepicker__input-container {
+//             input {
+//                 width: 7rem;
+//                 text-align: center;
+//                 padding: 0.4rem;
+//                 cursor: pointer;
+//                 outline: none;
+//             }
+//         }
+//     }
+// }
+
 .listings_date-datepicker {
     display: flex;
-    align-items: baseline;
-    color: $bestcolor;
-    margin-bottom: 1rem;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+
     h3 {
-        margin-right: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: blue;
     }
+
     .react-datepicker-wrapper {
-        .react-datepicker__input-container {
-            input {
-                width: 7rem;
-                text-align: center;
-                padding: 0.4rem;
-                cursor: pointer;
-                outline: none;
-            }
+        width: 100%;
+    }
+
+    .react-datepicker {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+        position: relative;
+        width: 100%;
+    }
+
+    .react-datepicker__input-container {
+        width: 100%;
+    }
+
+    .react-datepicker__input-container input {
+        width: 100%;
+        padding: 0.5rem;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .react-datepicker__month-container {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .react-datepicker__day-names,
+    .react-datepicker__month {
+        display: flex;
+        justify-content: center;
+    }
+
+    .react-datepicker__day {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        margin: 0.2rem;
+        font-size: 0.9rem;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #54be90;
+            color: #ffffff;
+        }
+
+        &.react-datepicker__day--selected {
+            background-color: #54be90;
+            color: #ffffff;
         }
     }
 }

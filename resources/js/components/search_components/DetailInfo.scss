@@ -1,0 +1,98 @@
+.main__container {
+    color: #fff;
+    padding: 50px 0;
+  
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+  
+    .header__container {
+      text-align: center;
+      margin-bottom: 30px;
+  
+      .header {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        color: #e4e4e4; /* Light gray */
+      }
+  
+      p {
+        font-size: 1.2rem;
+        opacity: 0.8;
+        color: #b5b5b5; /* Dark gray */
+      }
+    }
+  
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  
+    .outter_box {
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      display: inline-block;
+      position: relative;
+      border-radius: 15px;
+      transition: transform 0.3s ease-in-out;
+  
+      &:hover {
+        transform: scale(1.05);
+      }
+  
+      .main__box {
+        background: linear-gradient(to right, #2e2e2e, #4c4c4c); /* Dark gradient */
+        border: 1px solid #525252;
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        transition: background 0.3s ease-in-out;
+  
+        &:hover {
+          background: linear-gradient(to right, #7f7f7f, #a1a1a1); /* Lighter gradient on hover */
+        }
+  
+        .icon {
+          img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 15px;
+          }
+        }
+  
+        h6 {
+          margin-top: 10px;
+          font-size: 1.8rem;
+          font-weight: bold;
+          color: #e4e4e4; /* Light gray */
+        }
+  
+        span {
+          display: block;
+          font-size: 1.2rem;
+          color: #b5b5b5; /* Dark gray */
+        }
+  
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle, #2e2e2e, #4c4c4c); /* Dark radial gradient */
+          z-index: -1;
+          border-radius: 15px;
+          opacity: 0.7;
+        }
+      }
+    }
+  }

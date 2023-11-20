@@ -14,9 +14,13 @@ import UserContext from "../UserContext";
 import NewPropertyForm from "./rent_property/NewPropertyForm";
 import OwnerInterface from "./owner_components/OwnerInterface";
 import EditPropertyForm from "./rent_property/EditPropertyForm";
+import DetailInfo from "./search_components/DetailInfo";
+import Footer from "./search_components/Footer";
+import OurClientsSay from "./search_components/OurClientsSay";
 
 import "./App.scss";
 import PropertyDetail from "./property_detail_components/PropertyDetail";
+import Messages from "./messaging_components/Messages";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
@@ -46,7 +50,7 @@ const App = () => {
     }, [user]);
 
     return (
-        <>
+        <>  
             <Context.Provider
                 value={{ state: contextValue, dispatch: setContextValue }}
             >
@@ -80,7 +84,15 @@ const App = () => {
                             path="/property/:id"
                             element={<PropertyDetail />}
                             />
+                            <Route 
+                            path="/messages"
+                            element={<Messages />}
+                            />
                         </Routes>
+                        <DetailInfo />
+                        <OurClientsSay />
+                        <AboutUs />
+                        <Footer />
                     </BrowserRouter>
                 </UserContext.Provider>
             </Context.Provider>

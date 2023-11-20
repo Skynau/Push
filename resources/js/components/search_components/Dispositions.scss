@@ -1,21 +1,50 @@
 @import "../../../css/app.scss";
 
-.dispositons-btns {
+// .dispositons-btns {
+//     display: flex;
+//     justify-content: space-between;
+//     width: 100%;
+//     margin-bottom: 1rem;
+//     .btn {
+//         @include button-not-selected;
+//         &.active {
+//             border: none;
+//             outline: none;
+//             padding: 0.3rem 0.5rem;
+//             border-radius: 3px;
+//             font-size: 1rem;
+//             background-color: $bestcolor;
+//             color: $whitecolor;
+//             cursor: pointer;
+//         }
+//     }
+// }
+
+.dispositions-btns {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    margin-bottom: 1rem;
-    .btn {
-        @include button-not-selected;
-        &.active {
-            border: none;
-            outline: none;
-            padding: 0.3rem 0.5rem;
-            border-radius: 3px;
-            font-size: 1rem;
-            background-color: $bestcolor;
-            color: $whitecolor;
-            cursor: pointer;
-        }
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 1rem 1.5rem;
+    margin: 1rem;
+    background-color: #433e72;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: #54be90;
+        color: #232323;
+    }
+
+    &.active {
+        background-color: #54be90;
+        color: #232323;
     }
 }

@@ -1,0 +1,24 @@
+.google-map-container {
+    width: 100%;
+    height: 600px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .google-map {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+  
+  /* Optional: Style for map marker */
+  .google-map-marker {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: #54be90;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Allows clicking through the marker to interact with the map */
+  }
