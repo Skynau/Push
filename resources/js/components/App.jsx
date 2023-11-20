@@ -20,6 +20,7 @@ import OurClientsSay from "./search_components/OurClientsSay";
 
 import "./App.scss";
 import PropertyDetail from "./property_detail_components/PropertyDetail";
+import Messages from "./messaging_components/Messages";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
@@ -82,6 +83,10 @@ const App = () => {
                             <Route
                             path="/property/:id"
                             element={<PropertyDetail />}
+                            />
+                            <Route 
+                            path="/messages"
+                            element={<Messages />}
                             />
                         </Routes>
                         <DetailInfo />

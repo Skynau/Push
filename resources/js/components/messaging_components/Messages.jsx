@@ -13,20 +13,23 @@ const Messages = ()  => {
             .catch(error => console.error('Error fetching messages:', error));
     }, []);
 
-    const sendMessage = () => {
-        axios.post('/api/messages/store', {
-            user_id: userId,
-            text: newMessage,
-        })
-            .then(response =>  setMessages([...messages, response.data]))
-            .catch(error => console.error('Error fetching messages:', error));
+    const sendMessage = async (event) => {
+        event.preventDefault();
         
+        try {
+          const response = await axios.post('/api/messages/store', {
+            text: newMessage,
+        });
+  
+        } catch (error) {
+            console.log(error);
+        }
         setNewMessage('')
     };
 
     return (
         <div className='main_message_container'>
-            <div id='message_container'>
+            {/* <div id='message_container'>
 
                 {messages.map(message => (
 
@@ -37,7 +40,7 @@ const Messages = ()  => {
                     </div>
 
                 ))}
-            </div>
+            </div> */}
             <div id='input_container'>
 
                 <input
