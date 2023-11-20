@@ -2,30 +2,40 @@ import React, {useState} from 'react'
 import './ImageSlider.scss'
 
 
-const ImageSlider = () => {
+const ImageSlider = ({pictures}) => {
     
     const [currentIndex, setCurrentIndex] = useState(0);
-    
-    const slideStyles = {
+
+    // console.log(pictures)
+
+    const arrayOfPictureUrls = []
+
+    pictures.map((picture) => {
+      arrayOfPictureUrls.push(picture.url)
+    })
+
+    console.log(arrayOfPictureUrls[0])
+
+  const goToPrevious = () => {
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? arrayOfPictureUrls.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const goToNext = () => {
+    const isLastSlide = currentIndex === arrayOfPictureUrls.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const slideStyles = {
       width: "100%",
       height: "100%",
       borderRadius: "10px",
       backgroundSize: "cover",
       backgroundPosition: "center",
-      backgroundImage: `url`,
+      backgroundImage: `url(${arrayOfPictureUrls[currentIndex]})`
     };
-
-  const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
-
-  const goToNext = () => {
-    const isLastSlide = currentIndex === slides.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
 
   return (
     <div className='slider'>

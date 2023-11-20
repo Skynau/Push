@@ -101,6 +101,8 @@ const PropertyDetail = ({ propertyId }) => {
 
 //  console.log(house)
 
+    console.log(house)
+
     return (
         <div className="property-container" onClick={hideModal}>
             <div className="property-container_modal">
