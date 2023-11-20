@@ -5,68 +5,65 @@ import "./GoogleMap.scss";
 
 
 const containerStyle = {
-  width: '100%',
-  height: '600px',
+    width: "100%",
+    height: "600px",
 };
 
-const GoogleMapComponent = ({ markers, centerMap, onCenterChange, onZoomChange }) => {
+const GoogleMapComponent = ({
+    markers,
+    centerMap,
+    onCenterChange,
+    onZoomChange,
+}) => {
+    const [center, setCenter] = useState(
+        centerMap ?? { lat: 50.0755, lng: 14.4378 }
+    );
 
-  const [center, setCenter] = useState(centerMap ?? { lat: 50.0755, lng: 14.4378 });
+    const [zoom, setZoom] = useState(13);
 
-  const [zoom, setZoom] = useState(13);
-   
-  const { state, dispatch } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
 
-  // zoom and center on propertty detail
+    // zoom and center on propertty detail
 
     const handleCenterChange = () => {
-      onCenterChange && onCenterChange(center);
+        onCenterChange && onCenterChange(center);
     };
 
     const handleZoomChange = () => {
-      onZoomChange && onZoomChange(zoom);
+        onZoomChange && onZoomChange(zoom);
     };
 
     useEffect(() => {
-      handleCenterChange();
+        handleCenterChange();
     }, [center]);
 
     useEffect(() => {
-      handleZoomChange();
+        handleZoomChange();
     }, [zoom]);
-//-----------------------------------------------------------------
+    //-----------------------------------------------------------------
 
-  const renderMap = () => {
+    const renderMap = () => {
+        if (Array.from(state.markers)?.length > 0) {
+            setCenter(state.markers[0]?.position);
+        }
 
-    if (Array.from(state.markers)?.length > 0) {
-    
-      setCenter(state.markers[0]?.position);
+        return (
+            <GoogleMap
+                
+                mapContainerStyle={containerStyle}
+                onCenterChanged={handleCenterChange}
+                onZoomChanged={handleZoomChange}
+                center={center}
+                zoom={zoom}
+            >
+                {markers.map((marker, index) => (
+                    <Marker key={index} position={marker.position} />
+                ))}
+            </GoogleMap>
+        );
     };
-    // console.log(markers);
 
-    return (
-          <GoogleMap
-            googleMapsApiKey="AIzaSyAbDifRoGhtEzTiYwEPBWc0roSxzhRUqvU"
-            mapContainerStyle={containerStyle}
-            onCenterChanged={handleCenterChange}
-            onZoomChanged={handleZoomChange}
-            center={center}
-            zoom={zoom}
-          >
-            {markers.map((marker, index) => (
-              <Marker key={index} position={marker.position} />
-            ))}
-          </GoogleMap>
-    );
-  };
-
-  return (
-    <div>
-      
-      {React.createElement(renderMap)}
-    
-    </div>
-  );
+    return <div>{React.createElement(renderMap)}</div>;
 };
 
 export default GoogleMapComponent;

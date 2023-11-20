@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../UserContext";
-import './Navigation.scss'
-
+import "./Navigation.scss";
 
 const Navigation = () => {
     const { user, setUser } = useContext(UserContext);
+    const history = useNavigate();
 
     const handleLogout = async (ev) => {
         ev.preventDefault();
@@ -14,6 +15,9 @@ const Navigation = () => {
         const response = await axios.post("/logout");
 
         setUser(null);
+        // Redirect to home page
+        history("/");
+        <Redire />;
     };
 
     return (

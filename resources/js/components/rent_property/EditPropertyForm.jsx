@@ -1,62 +1,48 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../../UserContext";
 import axios from "axios";
 import "./EditPropertyForm.scss";
+import { Link, useLocation } from "react-router-dom";
+
+import backIcon from "../../../../public/images/back-icon.svg";
 
 const EditPropertyForm = () => {
-    const { user } = useContext(UserContext);
+    const [house, setHouse] = useState(null);
+    const location = useLocation();
+    const listingId = location.state?.listingId;
+    const [message, setMessage] = useState(null);
+    const [image, setImage] = useState(null);
 
-    console.log(user);
+    // console.log(listingId);
 
-    const [formData, setFormData] = useState({
-        user_id: user?.id,
-        title: "",
-        address: "",
-        // description: "",
-        price_rent: "",
-        availableFrom: "",
-        amenities: [],
-        squareMeters: "",
-        disposition: "",
-        petsWelcome: "",
-        type: "",
-        condition: "",
-        furnishing: "",
-        heating: "",
-        photoAttachment: "",
-    });
+    const fetchHouse = async () => {
+        try {
+            const data = await axios(`/api/property/${listingId}`);
+            setHouse(data.data);
+            console.log(data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchHouse();
+    }, []);
 
     const handleInputChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const handleAmenitiesChange = (e) => {
-        const selectedOptions = Array.from(
-            e.target.selectedOptions,
-            (option) => option.value
-        );
-        setFormData({
-            ...formData,
-            amenities: [...formData.amenities, ...selectedOptions],
-        });
-        console.log(formData);
-    };
-
-    const handlePetsWelcomeChange = (e) => {
-        setFormData({
-            ...formData,
-            petsWelcome: e.target.value,
+        setHouse((previousValues) => {
+            return { ...previousValues, [e.target.name]: e.target.value };
         });
     };
 
     const handleSubmit = async (e) => {
-        // send data to server
         e.preventDefault();
         try {
-            const response = await axios.post("api/property/store", formData);
+            const response = await axios.post(
+                "api/property/" + listingId + "/update",
+                house
+            );
+            setMessage(response.data["message"]);
         } catch (error) {
             console.log(error);
         }
@@ -64,9 +50,16 @@ const EditPropertyForm = () => {
 
     return (
         <div className="edit-form_container">
+            <div className="back-link">
+                <Link to="/owner-interface">
+                    <img src={backIcon} alt="Back" />
+                    <p>back</p>
+                </Link>
+            </div>
+
             <h2>Edit property</h2>
             <form
-                className="edit-form"
+                className="edit-form form"
                 action="#"
                 method="post"
                 onSubmit={handleSubmit}
@@ -77,14 +70,14 @@ const EditPropertyForm = () => {
                     <input
                         type="text"
                         name="title"
-                        value={formData.title}
+                        value={house?.title}
                         onChange={handleInputChange}
                         required
                     />
                 </label>
                 <br />
 
-                <label>
+                {/* <label>
                     <br />
                     Address:
                     <input
@@ -95,14 +88,14 @@ const EditPropertyForm = () => {
                         required
                     />
                 </label>
-                <br />
+                <br /> */}
 
                 <label>
                     <br />
                     Description:
                     <textarea
                         name="description"
-                        value={formData.description}
+                        value={house?.description}
                         onChange={handleInputChange}
                         required
                     />
@@ -115,7 +108,7 @@ const EditPropertyForm = () => {
                     <input
                         type="text"
                         name="price_rent"
-                        value={formData.price_rent}
+                        value={house?.price_rent}
                         onChange={handleInputChange}
                         required
                     />
@@ -127,15 +120,15 @@ const EditPropertyForm = () => {
                     Available From (Date):
                     <input
                         type="date"
-                        name="availableFrom"
-                        value={formData.availableFrom}
+                        name="available_from"
+                        value={house?.available_from}
                         onChange={handleInputChange}
                         required
                     />
                 </label>
                 <br />
 
-                <label>
+                {/* <label>
                     <br />
                     Amenities:
                     <select
@@ -151,17 +144,16 @@ const EditPropertyForm = () => {
                         <option value="5">Garden</option>
                     </select>
                 </label>
-                <br />
+                <br /> */}
 
                 <label>
                     <br />
                     Apartment area:
                     <input
                         type="text"
-                        name="squareMeters"
-                        value={formData.squareMeters}
+                        name="square_meters"
+                        value={house?.square_meters}
                         onChange={handleInputChange}
-                        required
                     />{" "}
                     m²
                 </label>
@@ -171,10 +163,9 @@ const EditPropertyForm = () => {
                     <br />
                     Disposition:
                     <select
-                        name="disposition"
-                        value={formData.disposition}
+                        name="disposition_id"
+                        value={house?.disposition_id}
                         onChange={handleInputChange}
-                        required
                     >
                         <option value="1">1kk</option>
                         <option value="2">1+1</option>
@@ -197,12 +188,28 @@ const EditPropertyForm = () => {
 
                 <label>
                     <br />
+                    Number of bathroom:
+                    <select
+                        name="number_of_bathrooms"
+                        value={house?.number_of_bathrooms}
+                        onChange={handleInputChange}
+                    >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">more</option>
+                    </select>
+                </label>
+                <br />
+
+                <label>
+                    <br />
                     Pets Welcome:
                     <select
-                        name="petsWelcome"
-                        value={formData.petsWelcome}
-                        onChange={handlePetsWelcomeChange}
-                        required
+                        name="pets_welcome"
+                        value={house?.pets_welcome}
+                        onChange={handleInputChange}
                     >
                         <option value="1">Yes</option>
                         <option value="0">No</option>
@@ -214,10 +221,9 @@ const EditPropertyForm = () => {
                     <br />
                     Type:
                     <select
-                        name="type"
-                        value={formData.type}
+                        name="type_id"
+                        value={house?.type_id}
                         onChange={handleInputChange}
-                        required
                     >
                         <option value="1">House</option>
                         <option value="2">Apartment</option>
@@ -229,10 +235,9 @@ const EditPropertyForm = () => {
                     <br />
                     Condition:
                     <select
-                        name="condition"
-                        value={formData.condition}
+                        name="condition_id"
+                        value={house?.condition_id}
                         onChange={handleInputChange}
-                        required
                     >
                         <option value="1">New</option>
                         <option value="2">Very Good</option>
@@ -246,10 +251,9 @@ const EditPropertyForm = () => {
                     <br />
                     Furnishing:
                     <select
-                        name="furnishing"
-                        value={formData.furnishing}
+                        name="furnishing_id"
+                        value={house?.furnishing_id}
                         onChange={handleInputChange}
-                        required
                     >
                         <option value="1">None</option>
                         <option value="2">Partly</option>
@@ -262,10 +266,9 @@ const EditPropertyForm = () => {
                     <br />
                     Heating:
                     <select
-                        name="heating"
-                        value={formData.heating}
+                        name="heating_id"
+                        value={house?.heating_id}
                         onChange={handleInputChange}
-                        required
                     >
                         <option value="1">Gas</option>
                         <option value="2">Electrical</option>
@@ -277,17 +280,26 @@ const EditPropertyForm = () => {
                 <label>
                     <br />
                     Photo Attachment:
+                    <img
+                        src={house?.photo_attachment}
+                        alt="Current Photo"
+                        style={{ maxWidth: "200px", maxHeight: "200px" }}
+                    />
                     <input
                         type="file"
                         name="photoAttachment"
                         accept="image/*"
                         onChange={handleInputChange}
-                        required
                     />
                 </label>
+
                 <br />
 
-                <button type="submit">Submit</button>
+                {message ? (
+                    <span>{message}</span>
+                ) : (
+                    <button type="submit">Update</button>
+                )}
                 <br />
             </form>
         </div>

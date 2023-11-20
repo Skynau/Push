@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Search;
 use App\Http\Controllers\Api\User;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SearchBar;
+use App\Http\Controllers\UpdateUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,8 +34,14 @@ Route::post('/property/{user_id}/store', [User::class, 'like']);
 
 Route::post('/property/store', [Listing::class, 'store']);
 
+// Route::put('/user/profile-information', [UpdateUserProfileInformation::class, 'update']);
+
 Route::get('/user-listings', [User::class, 'userListings']);
 
 Route::get('/messages', [MessageController::class, 'index']);
 
 Route::post('/messages/store', [MessageController::class, 'store']);
+
+Route::post('/{property_id}/delete', [Listing::class, 'destroy']); //this need to fix
+
+Route::post('/property/{property_id}/update', [Listing::class, 'update']);

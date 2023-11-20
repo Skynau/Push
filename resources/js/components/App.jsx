@@ -18,6 +18,9 @@ import DetailInfo from "./search_components/DetailInfo";
 import Footer from "./search_components/Footer";
 import OurClientsSay from "./search_components/OurClientsSay";
 
+import "./App.scss";
+import PropertyDetail from "./property_detail_components/PropertyDetail";
+
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
 
@@ -75,6 +78,10 @@ const App = () => {
                             <Route
                                 path="/owner-interface"
                                 element={<OwnerInterface />}
+                            />
+                            <Route
+                            path="/property/:id"
+                            element={<PropertyDetail />}
                             />
                         </Routes>
                         <DetailInfo />

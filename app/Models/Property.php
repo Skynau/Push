@@ -58,4 +58,9 @@ class Property extends Model
   {
     return $this->belongsToMany(Amenity::class);
   }
+
+  public function favorite()
+  {
+    return $this->hasMany(Favorite_listing::class);
+  }
 }

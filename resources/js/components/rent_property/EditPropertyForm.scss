@@ -1,9 +1,24 @@
 @import "../../../css/app.scss";
 
 .edit-form_container {
+    .back-link {
+        width: 80%;
+        margin: auto;
+        a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+            img {
+                height: 20px;
+                margin-right: 0.5rem;
+            }
+        }
+    }
     h2 {
         text-align: center;
     }
+
     .edit-form {
         max-width: 40%;
         margin-bottom: 3rem;

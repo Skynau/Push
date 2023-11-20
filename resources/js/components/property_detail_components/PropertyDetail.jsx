@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import EmptyHeartIcon from "../../../../public/images/heart-empty.svg";
 import HeartIcon from "../../../../public/images/heart-liked.svg";
 import ShowInterestIcon from "../../../../public/images/show-interest.svg";
+import ExportVariant from "../../../../public/images/export-variant.svg";
 import Context from "../../Context";
 import { formatCurrency, getProperties } from "../../helpers";
 import "./PropertyDetail.scss";
@@ -9,72 +10,110 @@ import GoogleMapComponent from "../results_components/GoogleMap";
 import imageFooter from "../../../../public/images/footer-real-estate.svg";
 import UserContext from "../../UserContext";
 import axios from "axios";
+import Pano from "./Pano";
+import { useParams } from "react-router-dom";
 
 
 const PropertyDetail = ({ propertyId }) => {
+    const { user } = useContext(UserContext);
+    const { state, dispatch } = useContext(Context);
     const [liked, setLiked] = useState(false);
     const [house, setHouse] = useState(null);
     const [loading, setLoadding] = useState(false);
-    const { state, dispatch } = useContext(Context);
-    const { user } = useContext(UserContext);
+    const [shareOpen, setShareOpen] = useState(false);
+    
+    
+    if (propertyId === undefined){
+      propertyId = useParams().id;
+    }
 
+    
     const fetchHouse = async (url) => {
-        try {
-            setLoadding(true);
-            const data = await getProperties(url);
-            setLoadding(false);
-            setHouse(data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
+      try {
+        setLoadding(true);
+        const data = await getProperties(url);
+        setLoadding(false);
+        setHouse(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     useEffect(() => {
         fetchHouse(`/api/property/${propertyId}`);
-    }, []);
-
-    const toggleLiked = () => {
+      }, []);
+      
+      const toggleLiked = () => {
         setLiked((prevValue) => !prevValue);
-    };
-
-    //property detail zoom and center
-
-    // const handleMapClick = (e) => {
-    //     
-    //   };
-    
-      const handleCenterChange = (newCenter) => {
-        
-        console.log("New Center:", newCenter);
       };
-    
-      const handleZoomChange = (newZoom) => {
+      
+      //property detail zoom and center
+      
+      // const handleMapClick = (e) => {
+        //
+        //   };
         
-        console.log("New Zoom:", newZoom);
-      };
-      /////////////////////////////////////////
-    const hideModal = (e) => {
-        if (
+        const handleCenterChange = (newCenter) => {
+          // console.log("New Center:", newCenter);
+        };
+        
+        const handleZoomChange = (newZoom) => {
+          // console.log("New Zoom:", newZoom);
+        };
+        /////////////////////////////////////////
+        const hideModal = (e) => {
+          if (
             e.target.className === "property-container" ||
             e.target.className === "back-link"
-        ) {
-            dispatch({
+            ) {
+              dispatch({
                 type: "TOGGLE_MODAL",
-            });
-        }
+              });
+            }
+          };
+          
+          const sendData = async (e) => {
+            e.preventDefault();
+            try {
+              const response = await axios.post(
+                "api/property/" + user.id + "/store",
+                {
+                  propertyId: propertyId,
+                }
+                );
+              } catch (error) {
+                console.log(error);
+              }
+            };
+            
+            const toggleShare = () => {
+              setShareOpen((prevValue) => !prevValue);
+            };
+            
+            
+const [copy, setCopy] = useState(`http://www.push.test/property/${propertyId}`)
+
+// const handleCopy = () => {
+//   navigator.clipboard.writeText(copy);
+// };
+ const [copySuccess, setCopySuccess] = useState(null);
+    const copyToClipBoard = async copyMe => {
+       try {
+           await navigator.clipboard.writeText(copyMe);
+           setCopySuccess('Copied!');
+       } 
+       catch (err) {
+           setCopySuccess('Failed to copy!');
+       }
     };
 
-        const sendData = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('api/property/'+ user.id +'/store', {
-              propertyId: propertyId
-            });
-        } catch (error) {
-            console.log(error)
-        }
-        }
+  const hideOnBackdrop = (e) => {
+    const modal = e.target;
+    modal.classList.remove("active");
+  };
 
 
+
+//  console.log(house)
 
     return (
         <div className="property-container" onClick={hideModal}>
@@ -86,14 +125,20 @@ const PropertyDetail = ({ propertyId }) => {
                     </div>
                     <div className="nav-brand">PUSH!</div>
                     <div className="nav-links">
-                        <div className="save" onClick={toggleLiked}>
-                          <form action="" onSubmit={sendData}>
-                            <button type="submit" >
-                            <img
-                                src={liked ? HeartIcon : EmptyHeartIcon}
-                                alt="Heart"
-                            />
+                          <div className="interest">
+                            <button onClick={toggleShare} className="icon">
+                            <img src={ExportVariant} alt="share" />
                             </button>
+                            <p>Share</p>
+                        </div>
+                        <div className="save" onClick={toggleLiked}>
+                            <form action="" onSubmit={sendData}>
+                                <button className="icon" type="submit">
+                                    <img
+                                        src={liked ? HeartIcon : EmptyHeartIcon}
+                                        alt="Heart"
+                                    />
+                                </button>
                             </form>
                             <p>Save</p>
                         </div>
@@ -104,6 +149,29 @@ const PropertyDetail = ({ propertyId }) => {
                     </div>
                 </div>
 
+
+      <div
+        className={`modal  ${shareOpen ? " active" : ""}`}
+        onClick={hideOnBackdrop}
+      >
+        <div className="modal-content">
+          <span className="close" onClick={toggleShare}>
+            &#10005;
+          </span>
+          <div className="modal-text">
+            <h2>Share property</h2>
+            <p>http://www.push.test/property/{propertyId}</p>
+          </div>
+          <div className="modal-btns">
+            <button type="submit" onClick={(e) => copyToClipBoard(`http://www.push.test/property/${propertyId}`)}>
+              Copy to clipboard
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+
                 {loading ? (
                     <div className="loader"></div>
                 ) : (
@@ -111,27 +179,30 @@ const PropertyDetail = ({ propertyId }) => {
                         <div className="propery-images">
                             <div className="main-image">
                                 <img
-                                src={house?.photo_attachment}
-                                alt="Image"
+                                    src={'/'+house?.media[0]?.url}
+                                    alt="Image"
                                 />
                             </div>
                             <div className="small-images">
                                 <div className="image-col">
                                     <img
-                                    // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
-                                    // alt="Image"
+                                    src={'/'+house?.media[1]?.url}
+                                    alt="Image"
                                     />
                                     <img
+                                    src={'/'+house?.media[0]?.url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />
                                 </div>
                                 <div className="image-col">
                                     <img
+                                    src={'/'+house?.media[2]?.url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />
                                     <img
+                                    src={'/'+house?.media[3]?.url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />
@@ -177,7 +248,7 @@ const PropertyDetail = ({ propertyId }) => {
                                     <strong>{house?.available_from}</strong>
                                 </p>
                                 {/* created_At is null now */}
-                                <p>Listing Date </p>
+                                <p>Listing Date {house?.created_at}</p>
 
                                 <p>
                                     Pets Welcome{" "}
@@ -207,18 +278,17 @@ const PropertyDetail = ({ propertyId }) => {
                                 // onMapClick={handleMapClick}
                                 onCenterChange={handleCenterChange}
                                 onZoomChange={handleZoomChange}
-                                centerMap={{lat: Number(
-                                    house?.address?.latitude
-                                ),
-                                lng: Number(
-                                    house?.address?.longitude
-                                )}}
+                                centerMap={{
+                                    lat: Number(house?.address?.latitude),
+                                    lng: Number(house?.address?.longitude),
+                                }}
                             />
 
                             <div className="property-description">
                                 <h2>Description</h2>
                                 <p>{house?.description}</p>
                             </div>
+                            {/* <Pano /> */}
                             <img
                                 src={imageFooter}
                                 className="bottom-image"
