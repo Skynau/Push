@@ -19,15 +19,7 @@
         margin-top: 3vh;
 
         .map {
-            height: 85vh;
-            width: 60vw;
-            border: 1px solid black;
-
-            .map_image {
-                //to be replaced
-                max-width: 100%;
-                max-height: 100%;
-            }
+            width: 65%;
         }
 
         .results-list {
@@ -46,7 +38,12 @@
                 }
 
                 .edit-button {
-                    @include button-not-selected;
+                    background-color: #874caf;
+                    color: white;
+                    padding: 8px 16px;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
                     margin-left: 0.9rem;
                     margin-right: 0.9rem;
                     height: 80%;
@@ -115,3 +112,80 @@
         }
     }
 }
+
+// .results-page {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+// }
+
+// /* Uncomment when ready to use the search bar */
+// .search-bar {
+//     margin-bottom: 20px;
+// }
+
+// .results-edit {
+//     margin-bottom: 20px;
+// }
+
+// .over-view {
+//     display: flex;
+//     justify-content: space-around;
+//     width: 100%;
+// }
+
+
+
+// .results-list {
+//     width: 35%;
+// }
+
+// .results-list_header {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     margin-bottom: 10px;
+// }
+
+// .edit-button {
+//     background-color: #4caf50;
+//     color: white;
+//     padding: 8px 16px;
+//     border: none;
+//     border-radius: 4px;
+//     cursor: pointer;
+// }
+
+// .results-list_data-manipulation {
+//     display: flex;
+//     align-items: center;
+// }
+
+// .results-list_sorting {
+//     margin-left: 10px;
+// }
+
+// .results-list_listings {
+//     display: grid;
+//     gap: 10px;
+// }
+
+// .loader {
+//     border: 8px solid #f3f3f3;
+//     border-top: 8px solid #3498db;
+//     border-radius: 50%;
+//     width: 40px;
+//     height: 40px;
+//     animation: spin 1s linear infinite;
+//     margin: 0 auto;
+// }
+
+// @keyframes spin {
+//     0% { transform: rotate(0deg); }
+//     100% { transform: rotate(360deg); }
+// }
+
+// .no-results {
+//     color: #ff0000;
+//     text-align: center;
+// }

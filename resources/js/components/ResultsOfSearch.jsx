@@ -36,6 +36,8 @@ const ResultsOfSearch = () => {
         });
     };
 
+    const numberOfResults = properties?.length
+
     // console.log(properties)
     return (
         <>
@@ -59,7 +61,7 @@ const ResultsOfSearch = () => {
                                 Edit the search
                             </button>
                             <div className="results-list_data-manipulation">
-                                <span>no. of results</span>
+                                <span>Results: {numberOfResults}</span>
                                 <div className="results-list_sorting">
                                     <Sorting />
                                 </div>
@@ -67,13 +69,15 @@ const ResultsOfSearch = () => {
                         </div>
                         <div className="results-list_listings">
                             {properties.length > 0 ? (
-                                properties?.map((property) => (
+                                properties?.map((property, i) => (
                                     <ResultMiniView
                                         key={property.id}
                                         square_meters={property.square_meters}
                                         price_rent={property.price_rent}
                                         city={property.address?.city}
                                         id={property.id}
+                                        disposition={property.disposition_id}
+                                        pictures={property.media}
                                     />
                                 ))
                             ) : // If there are no properties, check if it's loading
@@ -83,7 +87,7 @@ const ResultsOfSearch = () => {
                                 // If no loading
                                 <h2 className="no-results">
                                     {" "}
-                                    <i>No Results </i>:)
+                                    <i>No Results </i>:
                                 </h2>
                             )}
                         </div>

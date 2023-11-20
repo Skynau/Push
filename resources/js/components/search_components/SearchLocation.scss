@@ -1,16 +1,50 @@
 @import "../../../css/app.scss";
 
+// .search {
+//     padding-bottom: 1rem;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//     .search-location {
+//         width: 60%;
+//         padding: 0.4rem;
+//         font-size: 1.2rem;
+//         color: $bestcolor;
+//         font-weight: bold;
+//         outline: none;
+//     }
+// }
+
 .search {
-    padding-bottom: 1rem;
+    position: relative;
+}
+
+.search-location {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    .search-location {
-        width: 60%;
-        padding: 0.4rem;
-        font-size: 1.2rem;
-        color: $bestcolor;
-        font-weight: bold;
-        outline: none;
-    }
+    padding: 1rem;
+    font-size: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+#autocomplete-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+    display: none; // Initially hide the autocomplete container
+}
+
+.search-location:focus + #autocomplete-container {
+    display: block; // Show the autocomplete container when the input is focused
 }

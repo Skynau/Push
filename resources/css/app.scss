@@ -1,5 +1,5 @@
-$bestcolor: #8a2be2;
-$bestcolorLighter: #a578cf;
+$bestcolor: #3b2550;
+$bestcolorLighter: #573775;
 $whitecolor: #ffffff;
 $lightgraycolor: #eeeeee;
 $darkgraycolor: #6f6f6f;
@@ -31,4 +31,9 @@ $main-font: "Lato", sans-serif;
         background-color: $bestcolorLighter;
         color: $whitecolor;
     }
+}
+
+body {
+    // background-color: darkslategray;
+    background: linear-gradient(to right, #800080, #008000,#2f4f4f);
 }

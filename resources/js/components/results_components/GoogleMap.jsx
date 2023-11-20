@@ -1,6 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import { GoogleMap, Marker } from "@react-google-maps/api";
-import Context from "../../Context";
+import React, { useContext, useEffect, useState } from 'react';
+import { GoogleMap, Marker } from '@react-google-maps/api';
+import Context from '../../Context';
+import "./GoogleMap.scss";
+
 
 const containerStyle = {
     width: "100%",
