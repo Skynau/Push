@@ -1,13 +1,23 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './Sorting.scss'
+import { getProperties } from "../../helpers";
+import { buildUrl } from "../../helpers";
+import Context from "../../Context";
 
 const Sorting = () => {
 
     const [sort, setSort] = useState('')
 
-    const selectSorting= (event) => {
-    setSort(event.target.value)
-  }
+    const selectSorting = (event) => {
+        setSort(event.target.value)
+    }
+
+  
+  console.log(sort)
+
+  useEffect(() => {
+  }, [sort])
+  
 
   return (
     <div className="sorting-container">
