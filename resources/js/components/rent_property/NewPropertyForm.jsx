@@ -92,9 +92,12 @@ const NewPropertyForm = () => {
     // Handle image selection
     const handleImage = (e) => {
         console.log("media", formData.media);
-        const mediaArray = [...formData.media];
+        
         // Add the selected file to the array
-        mediaArray.push(e.target.files[0]);
+        // mediaArray.push(e.target.files);
+        const mediaArray = Array.prototype.slice.call(e.target.files)
+
+        console.log(mediaArray)
 
         setFormData({
             ...formData,
@@ -105,22 +108,23 @@ const NewPropertyForm = () => {
         // send data to server
         e.preventDefault();
 
-        const formDataSend = new FormData();
-        // Append all form data from state
-        for (const key in formData) {
-            if (key === "media") {
-                // Append each image separately
-                formData[key].forEach((image, index) => {
-                    formDataSend.append(`${key}[${index}]`, image);
-                });
-            } else {
-                formDataSend.append(key, formData[key]);
-            }
-        }
+        // const formDataSend = new FormData();
+        // // Append all form data from state
+        // for (const key in formData) {
+        //     if (key === "media") {
+        //         // Append each image separately
+        //         formData[key].forEach((image, index) => {
+        //             formDataSend.append(`${key}[${index}]`, image);
+        //         });
+        //     } else {
+        //         formDataSend.append(key, formData[key]);
+        //     }
+        // }
+        // console.log(formDataSend);
         try {
             const response = await axios.post(
                 "api/property/store",
-                formDataSend,
+                formData,
                 {
                     headers: {
                         "Content-Type": "multipart/form-data",
@@ -134,7 +138,7 @@ const NewPropertyForm = () => {
         }
     };
 
-    // console.log(formData);
+    console.log(formData);
     return (
         <div className="form">
             <form
