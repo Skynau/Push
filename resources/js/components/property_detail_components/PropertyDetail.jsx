@@ -93,7 +93,17 @@ const PropertyDetail = ({ propertyId }) => {
         setGalleryOpen(!galleryOpen);
     };
 
-    const hideOnBackdrop = (e) => {
+    
+    const hideOnBackdropShare = (e) => {
+        const modal = e.target;
+        
+        if (modal.classList.contains("active")) {
+            modal.classList.remove("active");
+            toggleShare();
+        }
+    };
+    
+    const hideOnBackdropGallery = (e) => {
         const modal = e.target;
         
         if (modal.classList.contains("active")) {
@@ -101,8 +111,6 @@ const PropertyDetail = ({ propertyId }) => {
             toggleGallery();
         }
     };
-
-
 
     return (
         <div className="property-container" onClick={hideModal}>
@@ -114,8 +122,8 @@ const PropertyDetail = ({ propertyId }) => {
                     </div>
                     <div className="nav-brand">PUSH!</div>
                     <div className="nav-links">
-                        <div className="interest">
-                            <button onClick={toggleShare} className="icon">
+                        <div className="interest" onClick={toggleShare}>
+                            <button className="icon">
                                 <img src={ExportVariant} alt="share" />
                             </button>
                             <p>Share</p>
@@ -140,18 +148,23 @@ const PropertyDetail = ({ propertyId }) => {
 
                 <div
                     className={`modal  ${shareOpen ? " active" : ""}`}
-                    onClick={hideOnBackdrop}
+                    onClick={hideOnBackdropShare}
                 >
-                    <ShareModal propertyId={propertyId} />
+                    <ShareModal 
+                        propertyId={propertyId}
+                        toggleShare={toggleShare} />
                 </div>
 
                 <div
                     className={`modalPicGallery  ${
                         galleryOpen ? " active" : ""
                     }`}
-                    onClick={hideOnBackdrop}
+                    onClick={hideOnBackdropGallery}
                 >
-                    <ImageGallery media={house?.media} toggleGallery={toggleGallery}/>
+                    <ImageGallery
+                        media={house?.media}
+                        toggleGallery={toggleGallery}
+                    />
                 </div>
 
                 {loading ? (
@@ -161,8 +174,8 @@ const PropertyDetail = ({ propertyId }) => {
                         <div className="propery-images">
                             <div className="main-image" onClick={toggleGallery}>
                                 <img
-                                //NEED TO FIX this to the loop
-                                    src={'/'+house?.media[0]?.url}
+                                    //NEED TO FIX this to the loop
+                                    src={"/" + house?.media[0]?.url}
                                     alt="Image"
                                 />
                             </div>
