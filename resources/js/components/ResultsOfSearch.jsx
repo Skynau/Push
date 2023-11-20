@@ -12,6 +12,7 @@ const ResultsOfSearch = () => {
     const { state, dispatch } = useContext(Context);
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [sort, setSort] = useState('')
 
     // Api call based on user's filtering options
     const fetchData = async (url) => {
@@ -27,8 +28,9 @@ const ResultsOfSearch = () => {
     };
 
     useEffect(() => {
-        fetchData(buildUrl(state.filterOptions));
-    }, [state.fetchOnResultsPage]);
+        fetchData(buildUrl(state.filterOptions) + sort);
+        console.log(sort);
+    }, [state.fetchOnResultsPage, sort]);
 
     const openEdit = () => {
         dispatch({
@@ -38,7 +40,6 @@ const ResultsOfSearch = () => {
 
     const numberOfResults = properties?.length
 
-    // console.log(properties)
     return (
         <>
             <div className="results-page">
@@ -63,7 +64,7 @@ const ResultsOfSearch = () => {
                             <div className="results-list_data-manipulation">
                                 <span>Results: {numberOfResults}</span>
                                 <div className="results-list_sorting">
-                                    <Sorting />
+                                    <Sorting setSort={setSort}/>
                                 </div>
                             </div>
                         </div>

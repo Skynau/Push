@@ -14,7 +14,6 @@ const ImageSlider = ({pictures}) => {
       arrayOfPictureUrls.push(picture.url)
     })
 
-    console.log(arrayOfPictureUrls[0])
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
