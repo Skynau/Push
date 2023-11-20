@@ -88,8 +88,8 @@ class Listing extends Controller
   {
     // dd($property_id);
     $property = Property::findOrFail($property_id);
+    // dd($property);
     $property->delete();
-
     return
       [
         'message' => 'Listing was deleted!'
