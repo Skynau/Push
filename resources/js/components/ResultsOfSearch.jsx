@@ -38,6 +38,7 @@ const ResultsOfSearch = () => {
 
     const numberOfResults = properties?.length
 
+    // console.log(properties)
     return (
         <>
             <div className="results-page">

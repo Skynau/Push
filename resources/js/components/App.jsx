@@ -16,6 +16,7 @@ import OwnerInterface from "./owner_components/OwnerInterface";
 import EditPropertyForm from "./rent_property/EditPropertyForm";
 
 import "./App.scss";
+import PropertyDetail from "./property_detail_components/PropertyDetail";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
@@ -74,6 +75,10 @@ const App = () => {
                             <Route
                                 path="/owner-interface"
                                 element={<OwnerInterface />}
+                            />
+                            <Route
+                            path="/property/:id"
+                            element={<PropertyDetail />}
                             />
                         </Routes>
                     </BrowserRouter>

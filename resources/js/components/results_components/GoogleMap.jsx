@@ -47,7 +47,7 @@ const GoogleMapComponent = ({
 
         return (
             <GoogleMap
-                // googleMapsApiKey="AIzaSyAbDifRoGhtEzTiYwEPBWc0roSxzhRUqvU"
+                
                 mapContainerStyle={containerStyle}
                 onCenterChanged={handleCenterChange}
                 onZoomChanged={handleZoomChange}

@@ -45,7 +45,7 @@ const OwnerListing = () => {
                 <div className="house-box">
                     <div className="house-item-img">
                         <img
-                            src={listing.photo_attachment}
+                            src={listing.media[0]?.url}
                             alt="house image"
                         />
                     </div>

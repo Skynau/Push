@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import EmptyHeartIcon from "../../../../public/images/heart-empty.svg";
 import HeartIcon from "../../../../public/images/heart-liked.svg";
 import ShowInterestIcon from "../../../../public/images/show-interest.svg";
+import ExportVariant from "../../../../public/images/export-variant.svg";
 import Context from "../../Context";
 import { formatCurrency, getProperties } from "../../helpers";
 import "./PropertyDetail.scss";
@@ -10,6 +11,9 @@ import imageFooter from "../../../../public/images/footer-real-estate.svg";
 import UserContext from "../../UserContext";
 import axios from "axios";
 import Pano from "./Pano";
+import { useParams } from "react-router-dom";
+import { ShareModal } from "./ShareModal";
+
 
 const PropertyDetail = ({ propertyId }) => {
     const { user } = useContext(UserContext);
@@ -17,63 +21,85 @@ const PropertyDetail = ({ propertyId }) => {
     const [liked, setLiked] = useState(false);
     const [house, setHouse] = useState(null);
     const [loading, setLoadding] = useState(false);
+    const [shareOpen, setShareOpen] = useState(false);
+    
+    
+    if (propertyId === undefined){
+      propertyId = useParams().id;
+    }
 
+    
     const fetchHouse = async (url) => {
-        try {
-            setLoadding(true);
-            const data = await getProperties(url);
-            setLoadding(false);
-            setHouse(data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
+      try {
+        setLoadding(true);
+        const data = await getProperties(url);
+        setLoadding(false);
+        setHouse(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     useEffect(() => {
         fetchHouse(`/api/property/${propertyId}`);
-    }, []);
-
-    const toggleLiked = () => {
+      }, []);
+      
+      const toggleLiked = () => {
         setLiked((prevValue) => !prevValue);
-    };
-
-    //property detail zoom and center
-
-    // const handleMapClick = (e) => {
-    //
-    //   };
-
-    const handleCenterChange = (newCenter) => {
-        // console.log("New Center:", newCenter);
-    };
-
-    const handleZoomChange = (newZoom) => {
-        // console.log("New Zoom:", newZoom);
-    };
-    /////////////////////////////////////////
-    const hideModal = (e) => {
-        if (
+      };
+      
+      //property detail zoom and center
+      
+      // const handleMapClick = (e) => {
+        //
+        //   };
+        
+        const handleCenterChange = (newCenter) => {
+          // console.log("New Center:", newCenter);
+        };
+        
+        const handleZoomChange = (newZoom) => {
+          // console.log("New Zoom:", newZoom);
+        };
+        /////////////////////////////////////////
+        const hideModal = (e) => {
+          if (
             e.target.className === "property-container" ||
             e.target.className === "back-link"
-        ) {
-            dispatch({
+            ) {
+              dispatch({
                 type: "TOGGLE_MODAL",
-            });
-        }
-    };
-
-    const sendData = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post(
+              });
+            }
+          };
+          
+          const sendData = async (e) => {
+            e.preventDefault();
+            try {
+              const response = await axios.post(
                 "api/property/" + user.id + "/store",
                 {
-                    propertyId: propertyId,
+                  propertyId: propertyId,
                 }
-            );
-        } catch (error) {
-            console.log(error);
-        }
-    };
+                );
+              } catch (error) {
+                console.log(error);
+              }
+            };
+            
+  const toggleShare = () => {
+      setShareOpen((prevValue) => !prevValue);
+      };
+            
+            
+
+  const hideOnBackdrop = (e) => {
+    const modal = e.target;
+    modal.classList.remove("active");
+  };
+
+
+
+//  console.log(house)
 
     console.log(house)
 
@@ -87,9 +113,15 @@ const PropertyDetail = ({ propertyId }) => {
                     </div>
                     <div className="nav-brand">PUSH!</div>
                     <div className="nav-links">
+                          <div className="interest">
+                            <button onClick={toggleShare} className="icon">
+                            <img src={ExportVariant} alt="share" />
+                            </button>
+                            <p>Share</p>
+                        </div>
                         <div className="save" onClick={toggleLiked}>
                             <form action="" onSubmit={sendData}>
-                                <button type="submit">
+                                <button className="icon" type="submit">
                                     <img
                                         src={liked ? HeartIcon : EmptyHeartIcon}
                                         alt="Heart"
@@ -105,6 +137,16 @@ const PropertyDetail = ({ propertyId }) => {
                     </div>
                 </div>
 
+
+      <div
+        className={`modal  ${shareOpen ? " active" : ""}`}
+        onClick={hideOnBackdrop}
+      >
+        <ShareModal propertyId={propertyId} />
+      </div>
+
+
+
                 {loading ? (
                     <div className="loader"></div>
                 ) : (
@@ -112,27 +154,30 @@ const PropertyDetail = ({ propertyId }) => {
                         <div className="propery-images">
                             <div className="main-image">
                                 <img
-                                    src={house?.photo_attachment}
+                                    src={'/'+house?.media[0]?.url}
                                     alt="Image"
                                 />
                             </div>
                             <div className="small-images">
                                 <div className="image-col">
                                     <img
-                                    // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
-                                    // alt="Image"
+                                    src={'/'+house?.media[1]?.url}
+                                    alt="Image"
                                     />
                                     <img
+                                    src={'/'+house?.media[0]?.url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />
                                 </div>
                                 <div className="image-col">
                                     <img
+                                    src={'/'+house?.media[2]?.url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />
                                     <img
+                                    src={'/'+house?.media[3]?.url}
                                     // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                     // alt="Image"
                                     />

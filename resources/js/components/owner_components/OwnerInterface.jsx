@@ -145,10 +145,10 @@ const OwnerInterface = () => {
                     </div>
                 </div>
                 <OwnerListing />
+                {/* <OwnerListing />
                 <OwnerListing />
                 <OwnerListing />
-                <OwnerListing />
-                <OwnerListing />
+                <OwnerListing /> */}
             </div>
         </div>
     );
