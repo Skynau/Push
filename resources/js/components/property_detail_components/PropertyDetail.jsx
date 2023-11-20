@@ -13,7 +13,7 @@ import axios from "axios";
 import Pano from "./Pano";
 import { useParams } from "react-router-dom";
 import { ShareModal } from "./ShareModal";
-
+import ImageGallery from "./ImageGallery";
 
 const PropertyDetail = ({ propertyId }) => {
     const { user } = useContext(UserContext);
@@ -22,86 +22,87 @@ const PropertyDetail = ({ propertyId }) => {
     const [house, setHouse] = useState(null);
     const [loading, setLoadding] = useState(false);
     const [shareOpen, setShareOpen] = useState(false);
-    
-    
-    if (propertyId === undefined){
-      propertyId = useParams().id;
+    const [galleryOpen, setGalleryOpen] = useState(false);
+
+    if (propertyId === undefined) {
+        propertyId = useParams().id;
     }
 
-    
     const fetchHouse = async (url) => {
-      try {
-        setLoadding(true);
-        const data = await getProperties(url);
-        setLoadding(false);
-        setHouse(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+        try {
+            setLoadding(true);
+            const data = await getProperties(url);
+            setLoadding(false);
+            setHouse(data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
     };
     useEffect(() => {
         fetchHouse(`/api/property/${propertyId}`);
-      }, []);
-      
-      const toggleLiked = () => {
+    }, []);
+
+    const toggleLiked = () => {
         setLiked((prevValue) => !prevValue);
-      };
-      
-      //property detail zoom and center
-      
-      // const handleMapClick = (e) => {
-        //
-        //   };
-        
-        const handleCenterChange = (newCenter) => {
-          // console.log("New Center:", newCenter);
-        };
-        
-        const handleZoomChange = (newZoom) => {
-          // console.log("New Zoom:", newZoom);
-        };
-        /////////////////////////////////////////
-        const hideModal = (e) => {
-          if (
+    };
+
+    //property detail zoom and center
+
+    // const handleMapClick = (e) => {
+    //
+    //   };
+
+    const handleCenterChange = (newCenter) => {
+        // console.log("New Center:", newCenter);
+    };
+
+    const handleZoomChange = (newZoom) => {
+        // console.log("New Zoom:", newZoom);
+    };
+    /////////////////////////////////////////
+    const hideModal = (e) => {
+        if (
             e.target.className === "property-container" ||
             e.target.className === "back-link"
-            ) {
-              dispatch({
+        ) {
+            dispatch({
                 type: "TOGGLE_MODAL",
-              });
-            }
-          };
-          
-          const sendData = async (e) => {
-            e.preventDefault();
-            try {
-              const response = await axios.post(
+            });
+        }
+    };
+
+    const sendData = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(
                 "api/property/" + user.id + "/store",
                 {
-                  propertyId: propertyId,
+                    propertyId: propertyId,
                 }
-                );
-              } catch (error) {
-                console.log(error);
-              }
-            };
-            
-  const toggleShare = () => {
-      setShareOpen((prevValue) => !prevValue);
-      };
-            
-            
+            );
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-  const hideOnBackdrop = (e) => {
-    const modal = e.target;
-    modal.classList.remove("active");
-  };
+    const toggleShare = () => {
+        setShareOpen((prevValue) => !prevValue);
+    };
 
+    const toggleGallery = () => {
+        setGalleryOpen(!galleryOpen);
+    };
 
+    const hideOnBackdrop = (e) => {
+        const modal = e.target;
+        
+        if (modal.classList.contains("active")) {
+            modal.classList.remove("active");
+            toggleGallery();
+        }
+    };
 
-//  console.log(house)
-
-    console.log(house)
+    //  console.log(house)
 
     return (
         <div className="property-container" onClick={hideModal}>
@@ -113,9 +114,9 @@ const PropertyDetail = ({ propertyId }) => {
                     </div>
                     <div className="nav-brand">PUSH!</div>
                     <div className="nav-links">
-                          <div className="interest">
+                        <div className="interest">
                             <button onClick={toggleShare} className="icon">
-                            <img src={ExportVariant} alt="share" />
+                                <img src={ExportVariant} alt="share" />
                             </button>
                             <p>Share</p>
                         </div>
@@ -137,49 +138,61 @@ const PropertyDetail = ({ propertyId }) => {
                     </div>
                 </div>
 
+                <div
+                    className={`modal  ${shareOpen ? " active" : ""}`}
+                    onClick={hideOnBackdrop}
+                >
+                    <ShareModal propertyId={propertyId} />
+                </div>
 
-      <div
-        className={`modal  ${shareOpen ? " active" : ""}`}
-        onClick={hideOnBackdrop}
-      >
-        <ShareModal propertyId={propertyId} />
-      </div>
-
-
+                <div
+                    className={`modalPicGallery  ${
+                        galleryOpen ? " active" : ""
+                    }`}
+                    onClick={hideOnBackdrop}
+                >
+                    <ImageGallery media={house?.media} toggleGallery={toggleGallery}/>
+                </div>
 
                 {loading ? (
                     <div className="loader"></div>
                 ) : (
                     <>
                         <div className="propery-images">
-                            <div className="main-image">
+                            <div className="main-image" onClick={toggleGallery}>
                                 <img
-                                    src={'/'+house?.media[0]?.url}
+                                    src={"/" + house?.media[0]?.url}
                                     alt="Image"
                                 />
                             </div>
                             <div className="small-images">
-                                <div className="image-col">
+                                <div
+                                    className="image-col"
+                                    onClick={toggleGallery}
+                                >
                                     <img
-                                    src={'/'+house?.media[1]?.url}
-                                    alt="Image"
+                                        src={"/" + house?.media[1]?.url}
+                                        alt="Image"
                                     />
                                     <img
-                                    src={'/'+house?.media[0]?.url}
-                                    // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
-                                    // alt="Image"
+                                        src={"/" + house?.media[0]?.url}
+                                        // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
+                                        // alt="Image"
                                     />
                                 </div>
-                                <div className="image-col">
+                                <div
+                                    className="image-col"
+                                    onClick={toggleGallery}
+                                >
                                     <img
-                                    src={'/'+house?.media[2]?.url}
-                                    // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
-                                    // alt="Image"
+                                        src={"/" + house?.media[2]?.url}
+                                        // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
+                                        // alt="Image"
                                     />
                                     <img
-                                    src={'/'+house?.media[3]?.url}
-                                    // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
-                                    // alt="Image"
+                                        src={"/" + house?.media[3]?.url}
+                                        // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
+                                        // alt="Image"
                                     />
                                 </div>
                             </div>

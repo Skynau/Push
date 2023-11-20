@@ -4,31 +4,28 @@ import { getProperties } from "../../helpers";
 import { buildUrl } from "../../helpers";
 import Context from "../../Context";
 
-const Sorting = () => {
-
-    const [sort, setSort] = useState('')
+const Sorting = ({setSort}) => {
 
     const selectSorting = (event) => {
         setSort(event.target.value)
     }
 
-  
-  console.log(sort)
 
-  useEffect(() => {
-  }, [sort])
+
+  // useEffect(() => {
+  // }, [sort])
   
 
   return (
     <div className="sorting-container">
       <span className="sort-mini-title">Sort by: </span>
-      <select className="sorting-select" name="sort" id="">
-          <option onClick={selectSorting} value="latest">Latest</option>
-          <option onClick={selectSorting} value="oldest">Oldest</option>
-          <option onClick={selectSorting} value="cheapest">Cheapest</option>
-          <option onClick={selectSorting} value="mostExpensive">Most expensive</option>
-          <option onClick={selectSorting} value="smallest">Area smallest</option>
-          <option onClick={selectSorting} value="largest">Area largest</option>
+      <select className="sorting-select" name="sort" onChange={selectSorting}>
+          <option value="&order=created_at&orderFlow=desc">Latest</option>
+          <option value="&order=created_at&orderFlow=asc">Oldest</option>
+          <option value="&order=price_rent&orderFlow=asc">Cheapest</option>
+          <option value="&order=price_rent&orderFlow=desc">Most expensive</option>
+          <option value="&order=square_meters&orderFlow=asc">Area smallest</option>
+          <option value="&order=square_meters&orderFlow=desc">Area largest</option>
       </select>
     </div>
   )

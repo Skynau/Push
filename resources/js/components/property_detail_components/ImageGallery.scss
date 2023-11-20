@@ -1,0 +1,86 @@
+@import "../../../css/app.scss";
+
+.gallery_slider {
+    position: absolute;
+    height: 65%;
+    width: 55%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .gallery-quit {
+        height: 5vh;
+        width: 5vw;
+        background-color: $whitecolor;
+        border-radius: 5px;
+        position: absolute;
+        top: -8vh;
+        left: 50%;
+        transform: translate(-50%, 0);
+        cursor: pointer;
+
+        .gallery-quit_cross {
+            font-size: 1.2rem;
+            font-weight: 900;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+        }
+    }
+
+    .left-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        left: 1vh;
+        font-size: 50px;
+        width: 10vh;
+        height: 20vh;
+        color: black;
+        z-index: 2;
+        cursor: pointer;
+
+        p {
+            position: absolute;
+            left: 0;
+        }
+    }
+
+    .right-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        right: 1vh;
+        font-size: 50px;
+        width: 10vh;
+        height: 20vh;
+        color: black;
+        z-index: 2;
+        cursor: pointer;
+
+        p {
+            position: absolute;
+            right: 0;
+        }
+    }
+
+    .gallery-indexer {
+        height: 5vh;
+        width: 5vw;
+        background-color: $whitecolor;
+        border-radius: 5px;
+        position: absolute;
+        bottom: -8vh;
+        left: 50%;
+        transform: translate(-50%, 0);
+
+        .gallery-indexer_text {
+            font-size: 1.2rem;
+            font-weight: 800;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
