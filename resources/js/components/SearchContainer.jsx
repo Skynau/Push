@@ -34,7 +34,7 @@ const SearchContainer = () => {
 
     return (
         
-        <div className="search-container" style={{ backgroundImage: 'url(https://i.pinimg.com/564x/23/44/8a/23448a090c84440f092078e2cb0f1e72.jpg)', backgroundRepeat: "no-repeat", backgroundSize: "cover", height: "100vh" }}>
+        <div className="search-container" style={{ backgroundImage: 'url(https://i.pinimg.com/564x/23/44/8a/23448a090c84440f092078e2cb0f1e72.jpg)', backgroundRepeat: "no-repeat", backgroundSize: "cover", }}>
             <h2 className="search-container__title">Find your dream home</h2>
             <div className="search-container_filters">
                 <Type />

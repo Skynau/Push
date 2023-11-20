@@ -1,85 +1,103 @@
 @import "../../../css/app.scss";
 
+// .area-size__btns {
+//     display: flex;
+//     width: 64%;
+//     justify-content: space-between;
+//     padding-bottom: 1rem;
+
+//     .selectdiv {
+//         position: relative;
+//         &::after {
+//             content: "\25BE";
+//             color: $whitecolor;
+//             right: 0px;
+//             top: 0rem;
+//             left: 6.7rem;
+//             height: 1.7rem;
+//             padding: 0.8rem 0rem 0rem 0.1rem;
+//             border-left: 1px solid $bestcolor;
+//             position: absolute;
+//             pointer-events: none;
+//             background-color: $bestcolor;
+//         }
+
+//         select {
+//             -webkit-appearance: none;
+//             -moz-appearance: none;
+//             appearance: none;
+//             display: block;
+//             width: 100%;
+//             max-width: 32rem;
+//             height: 2.6rem;
+//             float: right;
+//             margin: 0rem 0rem;
+//             font-size: 1rem;
+//             line-height: 1.75;
+//             color: $bestcolor;
+//             background-color: $whitecolor;
+//             background-image: none;
+//             border: 2px solid $bestcolor;
+//             -ms-word-break: normal;
+//             word-break: normal;
+//             cursor: pointer;
+//             padding-left: 1rem;
+//             outline: none;
+//             padding: 0rem 2.7rem 0rem 0.5rem;
+//         }
+//         &:nth-child(2) {
+//             &::after {
+//                 right: 0px;
+//                 top: 0rem;
+//                 left: 5.7rem;
+//                 height: 1.7rem;
+//                 padding: 0.8rem 0rem rem 0rem 0.1rem;
+//                 border-left: 1px solid $bestcolor;
+//                 position: absolute;
+//                 pointer-events: none;
+//                 background-color: $bestcolor;
+//             }
+//             select {
+//                 -webkit-appearance: none;
+//                 -moz-appearance: none;
+//                 appearance: none;
+//                 display: block;
+//                 width: 100%;
+//                 max-width: 11rem;
+//                 height: 2.6rem;
+//                 float: right;
+//                 margin: 0rem 0rem;
+//                 font-size: 1rem;
+//                 line-height: 1.75;
+//                 color: $bestcolor;
+//                 background-color: $whitecolor;
+//                 background-image: none;
+//                 border: 2px solid $bestcolor;
+//                 -ms-word-break: normal;
+//                 word-break: normal;
+//                 cursor: pointer;
+//                 padding-left: 1rem;
+//                 outline: none;
+//                 padding: 0rem 3.3rem 0rem 0.5rem;
+//             }
+//         }
+//     }
+// }
+
 .area-size__btns {
     display: flex;
-    width: 64%;
-    justify-content: space-between;
-    padding-bottom: 1rem;
+    justify-content: center;
+    align-items: center;
 
     .selectdiv {
-        position: relative;
-        &::after {
-            content: "\25BE";
-            color: $whitecolor;
-            right: 0px;
-            top: 0rem;
-            left: 6.7rem;
-            height: 1.7rem;
-            padding: 0.8rem 0rem 0rem 0.1rem;
-            border-left: 1px solid $bestcolor;
-            position: absolute;
-            pointer-events: none;
-            background-color: $bestcolor;
-        }
-
+        margin: 0.5rem;
         select {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            display: block;
-            width: 100%;
-            max-width: 32rem;
-            height: 2.6rem;
-            float: right;
-            margin: 0rem 0rem;
-            font-size: 1rem;
-            line-height: 1.75;
-            color: $bestcolor;
-            background-color: $whitecolor;
-            background-image: none;
-            border: 2px solid $bestcolor;
-            -ms-word-break: normal;
-            word-break: normal;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             cursor: pointer;
-            padding-left: 1rem;
             outline: none;
-            padding: 0rem 2.7rem 0rem 0.5rem;
-        }
-        &:nth-child(2) {
-            &::after {
-                right: 0px;
-                top: 0rem;
-                left: 5.7rem;
-                height: 1.7rem;
-                padding: 0.8rem 0rem rem 0rem 0.1rem;
-                border-left: 1px solid $bestcolor;
-                position: absolute;
-                pointer-events: none;
-                background-color: $bestcolor;
-            }
-            select {
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
-                display: block;
-                width: 100%;
-                max-width: 11rem;
-                height: 2.6rem;
-                float: right;
-                margin: 0rem 0rem;
-                font-size: 1rem;
-                line-height: 1.75;
-                color: $bestcolor;
-                background-color: $whitecolor;
-                background-image: none;
-                border: 2px solid $bestcolor;
-                -ms-word-break: normal;
-                word-break: normal;
-                cursor: pointer;
-                padding-left: 1rem;
-                outline: none;
-                padding: 0rem 3.3rem 0rem 0.5rem;
-            }
         }
     }
 }

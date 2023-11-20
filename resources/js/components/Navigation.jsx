@@ -4,6 +4,7 @@ import axios from "axios";
 import UserContext from "../UserContext";
 import './Navigation.scss'
 
+
 const Navigation = () => {
     const { user, setUser } = useContext(UserContext);
 
@@ -16,53 +17,86 @@ const Navigation = () => {
     };
 
     return (
-        <div className="nav">
+        <div className="navbar">
+            <ul className="navbar__menu">
 
-            <div className="nav-brand"></div>
-            <div>
-            <Link to="/">Go Home</Link>
-            </div>
-            <div>
-            <Link to="/about-us">About us</Link>
-            </div>
-            <div className="nav-profile">
+                <li className="navbar__item">
+                    <Link to="/" className="navbar__link">
+                        {/* <img src="resources\img\logo 3.jpg" alt="Logo" className="logo" /> */}
+                        <span>
+                            Go Home
+                        </span>
+                    </Link>
+                </li>
+                <li className="navbar__item">
+                    <Link to="/about-us" className="navbar__link">
+                        <span>
+                            About us
+                        </span>
+                    </Link>
+                </li>
+
+                {/* <div className="profile-image">Image here</div> */}
+                
+                {/* <div className="navbar__menu"> */}
                
-                <div className="profile-image">Image here</div>
-
 
                 {user === false ? (
                     <>
-                        <div>
-                            <Link to="/register" className="nav-link">Register</Link>
-                        </div>
-                        <div>
-                            <Link to="/login" className="nav-link">Login</Link>
-                        </div>
+                        <li className="navbar__item">
+                            <Link to="/register" className="navbar__link">
+                                <span>
+                                    Register
+                                </span>
+                            </Link>
+                        </li>
+                        <li className="navbar__item">
+                            <Link to="/login" className="navbar__link">
+                                <span>
+                                    Login
+                                </span>
+                            </Link>
+                        </li>
                     </>
-                ) : user === false ? (
-                    <li>Loading user...</li>
-                ) : (
+                    ) : user === false ? (
+                        <li>Loading user...</li>
+                    ) : (
+
                     <>
-                        
-                        <div className="profile-message__icon">
-                        <h3>Logged in as {user?.first_name}</h3>
-                         </div>
                         <div className="nav-action__btn">
-                            <Link to="/create-property" className="nav-link">
-                                <button>Rent my property</button>
-                            </Link>
-                            <Link to="/owner-interface">
-                              <button>Owner Interface</button>
-                            </Link>
+                            <li className="navbar__item">
+                                <Link to="/create-property" className="navbar__link">
+                                    <span>
+                                        Rent my property
+                                    </span>
+                                </Link>
+                            </li>
+                            <li className="navbar__item">
+                                <Link to="/owner-interface" className="navbar__link">
+                                    <span>
+                                        Owner Interface
+                                    </span>
+                                </Link>
+                            </li>
                         </div>
                         
-                        <button className="btn" onClick={handleLogout}>
-                            Logout
-                        </button>
+                        <li className="navbar__item">
+                            <button className="navbar__link" onClick={handleLogout}>
+                                <span>
+                                    Logout
+                                </span>
+                            </button>
+                        </li>
+
+                        <div className="navbar__item">
+                            <h3>Logged in as {user?.first_name}</h3>
+                        </div>
                     </>
+                
                 )}
-            </div>
-        </div>
+                {/* </div> */}
+            </ul>
+        </div>  
     );
 };
 

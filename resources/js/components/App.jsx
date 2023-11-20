@@ -14,6 +14,9 @@ import UserContext from "../UserContext";
 import NewPropertyForm from "./rent_property/NewPropertyForm";
 import OwnerInterface from "./owner_components/OwnerInterface";
 import EditPropertyForm from "./rent_property/EditPropertyForm";
+import DetailInfo from "./search_components/DetailInfo";
+import Footer from "./search_components/Footer";
+import OurClientsSay from "./search_components/OurClientsSay";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
@@ -74,6 +77,10 @@ const App = () => {
                                 element={<OwnerInterface />}
                             />
                         </Routes>
+                        <DetailInfo />
+                        <OurClientsSay />
+                        <AboutUs />
+                        <Footer />
                     </BrowserRouter>
                 </UserContext.Provider>
             </Context.Provider>
