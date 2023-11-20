@@ -12,6 +12,7 @@ import UserContext from "../../UserContext";
 import axios from "axios";
 import Pano from "./Pano";
 import { useParams } from "react-router-dom";
+import { ShareModal } from "./ShareModal";
 
 
 const PropertyDetail = ({ propertyId }) => {
@@ -85,26 +86,11 @@ const PropertyDetail = ({ propertyId }) => {
               }
             };
             
-            const toggleShare = () => {
-              setShareOpen((prevValue) => !prevValue);
-            };
+  const toggleShare = () => {
+      setShareOpen((prevValue) => !prevValue);
+      };
             
             
-const [copy, setCopy] = useState(`http://www.push.test/property/${propertyId}`)
-
-// const handleCopy = () => {
-//   navigator.clipboard.writeText(copy);
-// };
- const [copySuccess, setCopySuccess] = useState(null);
-    const copyToClipBoard = async copyMe => {
-       try {
-           await navigator.clipboard.writeText(copyMe);
-           setCopySuccess('Copied!');
-       } 
-       catch (err) {
-           setCopySuccess('Failed to copy!');
-       }
-    };
 
   const hideOnBackdrop = (e) => {
     const modal = e.target;
@@ -154,20 +140,7 @@ const [copy, setCopy] = useState(`http://www.push.test/property/${propertyId}`)
         className={`modal  ${shareOpen ? " active" : ""}`}
         onClick={hideOnBackdrop}
       >
-        <div className="modal-content">
-          <span className="close" onClick={toggleShare}>
-            &#10005;
-          </span>
-          <div className="modal-text">
-            <h2>Share property</h2>
-            <p>http://www.push.test/property/{propertyId}</p>
-          </div>
-          <div className="modal-btns">
-            <button type="submit" onClick={(e) => copyToClipBoard(`http://www.push.test/property/${propertyId}`)}>
-              Copy to clipboard
-            </button>
-          </div>
-        </div>
+        <ShareModal propertyId={propertyId} />
       </div>
 
 

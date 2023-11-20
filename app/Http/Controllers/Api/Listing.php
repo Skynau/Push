@@ -86,6 +86,7 @@ class Listing extends Controller
 
   public function destroy(string $property_id)
   {
+    // dd($property_id);
     $property = Property::findOrFail($property_id);
     $property->delete();
 
