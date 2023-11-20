@@ -11,6 +11,7 @@ export default function Login(props) {
     });
     const [errors, setErrors] = useState({});
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -60,7 +61,7 @@ export default function Login(props) {
                 value={values.email}
                 onChange={handleChange}
             />
-            <br />
+            
             {errors.email ? (
                 <div className="errors">
                     {errors.email.map((error, i) => (
@@ -73,6 +74,7 @@ export default function Login(props) {
                 ""
             )}
 
+            <br />
             <label htmlFor="password">Password:</label>
             <input
                 type="password"
@@ -80,7 +82,7 @@ export default function Login(props) {
                 value={values.password}
                 onChange={handleChange}
             />
-            <br />
+           
             {errors.password ? (
                 <div className="errors">
                     {errors.password.map((error, i) => (
@@ -92,6 +94,7 @@ export default function Login(props) {
             ) : (
                 ""
             )}
+             <br />
 
             <button>Login</button>
         </form>

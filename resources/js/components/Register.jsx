@@ -32,7 +32,7 @@ export default function Register(props) {
                         "VALIDATION FAILED:",
                         error.response.data.errors
                     );
-                    setErrors(response_data.errors);
+                    setErrors(error.response.data.errors);
                     break;
                 case 500:
                     console.log("UNKNOWN ERROR", error.response.data);
@@ -68,7 +68,7 @@ export default function Register(props) {
                 value={values.first_name}
                 onChange={handleChange}
             />
-            <br />
+            
             {errors.first_name ? (
                 <div className="errors">
                     {errors.first_name.map((error, i) => (
@@ -81,6 +81,7 @@ export default function Register(props) {
                 ""
             )}
 
+            <br />
             <label htmlFor="last_name">Last name:</label>
             <input
                 type="text"
@@ -88,7 +89,7 @@ export default function Register(props) {
                 value={values.last_name}
                 onChange={handleChange}
             />
-            <br />
+            
             {errors.last_name ? (
                 <div className="errors">
                     {errors.last_name.map((error, i) => (
@@ -101,6 +102,7 @@ export default function Register(props) {
                 ""
             )}
 
+            <br />
             <label htmlFor="email">Email:</label>
             <input
                 type="email"
@@ -108,7 +110,7 @@ export default function Register(props) {
                 value={values.email}
                 onChange={handleChange}
             />
-            <br />
+            
             {errors.email ? (
                 <div className="errors">
                     {errors.email.map((error, i) => (
@@ -121,6 +123,7 @@ export default function Register(props) {
                 ""
             )}
 
+            <br />
             <label htmlFor="phone_number">Phone number:</label>
             <input
                 type="text"
@@ -128,7 +131,7 @@ export default function Register(props) {
                 value={values.phone_number}
                 onChange={handleChange}
             />
-            <br />
+            
             {errors.phone_number ? (
                 <div className="errors">
                     {errors.phone_number.map((error, i) => (
@@ -141,6 +144,7 @@ export default function Register(props) {
                 ""
             )}
 
+            <br />
             <label htmlFor="password">Password:</label>
             <input
                 type="password"
@@ -148,7 +152,7 @@ export default function Register(props) {
                 value={values.password}
                 onChange={handleChange}
             />
-            <br />
+            
             {errors.password ? (
                 <div className="errors">
                     {errors.password.map((error, i) => (
@@ -161,6 +165,7 @@ export default function Register(props) {
                 ""
             )}
 
+            <br />
             <label htmlFor="password_confirmation">Confirm pasword:</label>
             <input
                 type="password"
@@ -168,7 +173,7 @@ export default function Register(props) {
                 value={values.password_confirmation}
                 onChange={handleChange}
             />
-            <br />
+            
             {errors.password_confirmation ? (
                 <div className="errors">
                     {errors.password_confirmation.map((error, i) => (
@@ -180,6 +185,7 @@ export default function Register(props) {
             ) : (
                 ""
             )}
+            <br />
 
             <button>Register</button>
         </form>
