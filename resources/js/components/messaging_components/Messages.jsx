@@ -8,13 +8,13 @@ const Messages = ()  => {
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
-        axios.get('/messages')
+        axios.get('/api/messages')
             .then(response => setMessages(response.data))
             .catch(error => console.error('Error fetching messages:', error));
     }, []);
 
     const sendMessage = () => {
-        axios.post('/messages/store', {
+        axios.post('/api/messages/store', {
             user_id: userId,
             text: newMessage,
         })
