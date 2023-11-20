@@ -3,6 +3,7 @@ import "./NewPropertyForm.scss";
 import UserContext from "../../UserContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import AmenitySelector from "./AmenitySelector";
 
 const NewPropertyForm = () => {
     const { user } = useContext(UserContext);
@@ -70,16 +71,16 @@ const NewPropertyForm = () => {
         });
     };
 
-    const handleAmenitiesChange = (e) => {
-        const selectedOptions = Array.from(
-            e.target.selectedOptions,
-            (option) => option.value
-        );
-        setFormData({
-            ...formData,
-            amenities: [...formData.amenities, ...selectedOptions],
-        });
-    };
+    // const handleAmenitiesChange = (e) => {
+    //     const selectedOptions = Array.from(
+    //         e.target.selectedOptions,
+    //         (option) => option.value
+    //     );
+    //     setFormData({
+    //         ...formData,
+    //         amenities: [...formData.amenities, ...selectedOptions],
+    //     });
+    // };
 
     const handlePetsWelcomeChange = (e) => {
         setFormData({
@@ -296,7 +297,8 @@ const NewPropertyForm = () => {
                     />
                 </label>
                 <br />
-                <label>
+                <AmenitySelector />
+                {/* <label>
                     <br />
                     Amenities:
                     <select
@@ -311,7 +313,7 @@ const NewPropertyForm = () => {
                         <option value="4">Parking</option>
                         <option value="5">Garden</option>
                     </select>
-                </label>
+                </label> */}
                 <br />
 
                 <label>
