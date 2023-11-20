@@ -20,6 +20,7 @@
 
         .map {
             width: 65%;
+            padding: 0 20px
         }
 
         .results-list {
@@ -69,7 +70,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-around;
-                width: 40vw;
+                width: 41vw;
                 height: 90vh;
                 overflow-x: hidden;
                 overflow-y: auto;
