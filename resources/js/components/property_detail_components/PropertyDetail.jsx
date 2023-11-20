@@ -290,7 +290,7 @@ const PropertyDetail = ({ propertyId }) => {
                                 <h2>Description</h2>
                                 <p>{house?.description}</p>
                             </div>
-                            <Pano />
+                            {/* <Pano /> */}
                             <img
                                 src={imageFooter}
                                 className="bottom-image"
