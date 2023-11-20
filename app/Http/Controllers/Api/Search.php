@@ -173,7 +173,7 @@ class Search extends Controller
   public function detail($id)
   {
     $property = Property::with('media')
-      ->with('address')
+      ->with('address') //in one line
       ->with('type')
       ->with('heating')
       ->with('disposition')

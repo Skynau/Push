@@ -14,10 +14,19 @@ class Listing extends Controller
 {
   public function store(Request $request)
   {
-    // dd($request->input('amenities'));
-    // $get_amenities = [];
+    // dd($request->all(), $request->file("media"));
+    $get_amenities = [];
     // $get_amenities[] = $request->input('amenities');
-    // $amenities = Amenity::whereIn('amenity.id', $get_amenities)->get();
+    if ($request->has('amenities'))
+      foreach ($request->input('amenities') as $amenity) {
+        $get_amenities[] = $amenity;
+      }
+    // dd($get_amenities);
+    $amenities = Amenity::whereIn('id', $get_amenities)->get();
+
+    // dd($amenities);
+
+
     $user = Auth::user();
     // dd($user->id);
     $address = new Address();
@@ -49,6 +58,8 @@ class Listing extends Controller
     $property->number_of_bathrooms = $request->input('numberOfBathroom');
     $property->active = 1;
     $property->paid_status = 0;
+
+
     // if ($request->hasFile('photoAttachment')) {
 
     //   $file = $request->file('photoAttachment');
@@ -57,12 +68,21 @@ class Listing extends Controller
     //   $file->move('uploads/images/', $filename); // upload locally
     //   $property->photo_attachment = 'uploads/images/' . $filename; //sed to db
     // }
+    // dd($property);
     $property->save();
 
+    foreach ($amenities as $item) {
+      $property->amenities()->attach($item->id);
+    }
+
+    // $property->amenities()->sync($request->input('amenities'));
+
+
     // Handle multiple images
-    if ($request->hasFile('media')) {
+    if ($request->file('media')) {
+      //TODO take into account that multiple files go to object fileList, not in file(media) GOOGLE IT
       foreach ($request->file('media') as $imageFile) {
-        $imageName = time() . '_' . $imageFile->getClientOriginalName();
+        $imageName = time() . '_' . $imageFile->getClientOriginalName() . '.' . $imageFile->extension();
         $imagePath = 'uploads/images/' . $imageName;
 
         // Move the image to the specified path
@@ -74,6 +94,7 @@ class Listing extends Controller
         $image->type = 'property'; // Set the type accordingly
         $image->url = $imagePath;
         $image->save();
+        // dd($image);
       }
     }
 
