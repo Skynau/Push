@@ -5,7 +5,7 @@ import "./ResultMiniView.scss";
 import ImageSlider from "./ImageSlider";
 import { formatCurrency } from "../../helpers";
 
-const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pictures }) => {
+const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pictures, address }) => {
     const { state, dispatch } = useContext(Context);
 
     const openModal = () => {
@@ -69,10 +69,26 @@ const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pict
             break;
     }
 
-    
+    function changePin(e) {
+    // e.target.style.background = 'red';
+    dispatch({
+                type: "MAP_MARKER",
+                payload: [
+                    {
+                        position: {
+                            lat: Number(address.latitude),
+                            lng: Number(address.longitude)
+                        },
+                    },
+                ],
+            });
+  } 
+
+    // console.log(address.longitude);
+
     return (
         <>
-            <div className="mini-view">
+            <div onMouseEnter={changePin} className="mini-view">
                 <div className="slider-container">
                     <ImageSlider pictures={pictures}/>
                     {/* <img src="/uploads/images/1700404364_flatio8ptefg.avif" alt="" /> */}

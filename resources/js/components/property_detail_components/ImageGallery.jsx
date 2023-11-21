@@ -39,7 +39,7 @@ export default function ImageGallery({ media, toggleGallery }) {
 
     let pictureNumber = currentIndex + 1;
     let numberOfPictures = media?.length;
-    console.log(numberOfPictures);
+    // console.log(numberOfPictures);
 
     return (
         <div className="gallery_slider">
