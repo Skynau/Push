@@ -11,11 +11,14 @@ import "./OwnerListing.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import DeleteListing from "./DeleteListing";
+import NumberOfLikes from "./NumberOfLikes";
 
 const OwnerListing = () => {
     const [showModal, setShowModal] = useState(null);
     const [approved, setApproved] = useState(false);
     const [listings, setListings] = useState([]);
+   
+
 
   const loadData = async () => {
       try{
@@ -25,6 +28,10 @@ const OwnerListing = () => {
             console.log(error)
         }
     }
+
+
+
+
 
   useEffect(() => {
         loadData()
@@ -92,7 +99,9 @@ const OwnerListing = () => {
                         />
                     </span>
                     <h3>
-                        Likes <strong className="likes">342</strong>
+                        Likes <strong className="likes">
+                          <NumberOfLikes propertyId = {listing.id} />
+                          </strong>
                     </h3>
                     {/* Confiramtion delete Modal */}
                     <div className={`modal ${showModal == listing.id ? " active" : ""}`}>
