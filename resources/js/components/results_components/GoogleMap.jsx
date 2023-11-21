@@ -9,6 +9,8 @@ const containerStyle = {
     height: "600px",
 };
 
+
+
 const GoogleMapComponent = ({
     markers,
     centerMap,
@@ -43,10 +45,12 @@ const GoogleMapComponent = ({
     //-----------------------------------------------------------------
 
     const renderMap = () => {
+
+  
         if (Array.from(state.markers)?.length > 0) {
             setCenter(state.markers[0]?.position);
         }
-        // console.log(markers);
+        // console.log(center);
 
         return (
             <GoogleMap
@@ -144,11 +148,17 @@ const GoogleMapComponent = ({
                 {markers.map((marker, index) => (
                     <Marker key={index} position={marker.position} />
                 ))}
+
             </GoogleMap>
         );
     };
+
+
 
     return <div>{React.createElement(renderMap)}</div>;
 };
 
 export default GoogleMapComponent;
+
+
+//{lat: 50.106904, lng: 14.3954366},{lat: 50.0791686, lng: 14.4570205}
