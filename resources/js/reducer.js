@@ -67,9 +67,9 @@ export default function reducer(state, action) {
             newState.fetchOnResultsPage = !newState.fetchOnResultsPage;
             break;
 
-        case "MAP_MARKER_MULTIPLE":
-            newState.markersMultiple = action.payload;
-            break;
+        // case "MAP_MARKER_MULTIPLE":
+        //     newState.markersMultiple = action.payload;
+        //     break;
 
         default:
             return state;
