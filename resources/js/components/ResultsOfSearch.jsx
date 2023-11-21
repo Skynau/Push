@@ -52,6 +52,9 @@ const ResultsOfSearch = () => {
                 <div className="results-edit">
                     <EditSearch />
                 </div>
+                <button className="edit-button" onClick={openEdit}>
+                    Edit the search
+                </button>
 
                 <div className="over-view">
                     <div className="map">
@@ -59,16 +62,12 @@ const ResultsOfSearch = () => {
                     </div>
                     <div className="results-list">
                         <div className="results-list_header">
-                            <h2>Rental Listings</h2>
-                            <button className="edit-button" onClick={openEdit}>
-                                Edit the search
-                            </button>
-                            <div className="results-list_data-manipulation">
-                                <span>Results: {numberOfResults}</span>
+                            
+                                <p>Results: {numberOfResults}</p>
                                 <div className="results-list_sorting">
-                                    <Sorting setSort={setSort}/>
+                                    <Sorting setSort={setSort} />
                                 </div>
-                            </div>
+                            
                         </div>
                         <div className="results-list_listings">
                             {properties.length > 0 ? (
@@ -78,6 +77,7 @@ const ResultsOfSearch = () => {
                                         square_meters={property.square_meters}
                                         price_rent={property.price_rent}
                                         city={property.address?.city}
+                                        street={property.address?.street}
                                         id={property.id}
                                         disposition={property.disposition_id}
                                         pictures={property.media}

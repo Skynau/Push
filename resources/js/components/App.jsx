@@ -60,7 +60,12 @@ const App = () => {
                             <Navigation />
                         </header>
                         <Routes>
-                            <Route path="/" element={<SearchContainer />} />
+                            <Route path="/" element={<>
+                                <SearchContainer />
+                                <DetailInfo />
+                                <OurClientsSay />
+                                <AboutUs />
+                                </>} />
                             <Route
                                 path="/search-results"
                                 element={<ResultsOfSearch />}
@@ -89,9 +94,6 @@ const App = () => {
                             element={<Messages />}
                             />
                         </Routes>
-                        <DetailInfo />
-                        <OurClientsSay />
-                        <AboutUs />
                         <Footer />
                     </BrowserRouter>
                 </UserContext.Provider>
