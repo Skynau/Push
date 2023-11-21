@@ -38,9 +38,13 @@ Route::post('/property/store', [Listing::class, 'store']);
 
 Route::get('/user-listings', [User::class, 'userListings']);
 
-Route::get('/messages', [MessageController::class, 'index']);
+//----------chat----------
 
-Route::post('/messages/store', [MessageController::class, 'store']);
+// Route::get('/messages', [MessageController::class, 'index']);
+
+Route::post('/messages', [MessageController::class, 'message']);
+
+//-----------------------
 
 Route::post('/{property_id}/delete', [Listing::class, 'destroy']); //this need to fix
 

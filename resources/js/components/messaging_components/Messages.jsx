@@ -1,60 +1,90 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Messages.scss';
+import Pusher from 'pusher-js';
 import axios from 'axios';
 
-const Messages = ()  => {
+const MessageList = () => {
+
+    const [email,setEmail] = useState('email');
     const [messages, setMessages] = useState([]);
-    const [newMessage, setNewMessage] = useState('');
-    const [userId, setUserId] = useState(null);
+    const [message, setMessage] = useState('');
+    let allMessages = [];
 
     useEffect(() => {
-        axios.get('/api/messages')
-            .then(response => setMessages(response.data))
-            .catch(error => console.error('Error fetching messages:', error));
-    }, []);
 
-    const sendMessage = async (event) => {
-        event.preventDefault();
+        Pusher.logToConsole = true;
+
+        const pusher = new Pusher('23a7461cd84735f3285c', {
+        cluster: 'eu'
+        });
+
+        const channel = pusher.subscribe('chat');
+        channel.bind('message', function(data) {
+            allMessages.push(data);
+            setMessages(allMessages);
+        });
+
+    },[]);
+
+    const submit = async (e) => {
+        e.preventDefault();
 
         try {
-          const response = await axios.post('/api/messages/store', {
-            text: newMessage,
-        });
-  
+            const response = await axios.post('/api/messages', {
+                email: email,
+                message: message
+            })
+
+            setMessage('');
+
         } catch (error) {
-            console.log(error);
+            
         }
-        setNewMessage('')
-    };
+        // await fetch('http://www.push.test/api/messages', {
+        //     method: "POST",
+        //     headers: {'Content-Type': 'application/json'},
+        //     body: JSON.stringify({
+        //         username,
+        //         message
+        //     })
+        // });
 
-    return (
-        <div className='main_message_container'>
-            <div id='message_container'>
+        // setMessage('');
 
-                {messages.map(message => (
+    }
 
-                    <div key={message.id} className='message'>
+  return (
+        <div className='chat-container'>
+            <div className='chat-message'>
+                <div className='user-link'>
+                    <input className='user-input' value={email} onChange={e => setEmail(e.target.value)}/>
+                </div>
+                <div className='message-box'>
+                    
+                    {messages.map(message => {
 
-                        {message.text}
+                        return (
+                            <div className='message-details'>   
+                                <div className='message-header'>
+                                    <strong className='message-sender'>{message.username}</strong>
+                                    <small className='message-time'>Tues</small>
+                                </div>
+                                <div className='message-content'>{message.message}</div>
+                            </div>
+                        )
 
-                    </div>
+                    })}
 
-                ))}
+                    
+                </div>
             </div>
-            <div id='input_container'>
-
-                <input
-                    type='text'
-                    value={newMessage}
-                    onChange={e => setNewMessage(e.target.value)}
-                    placeholder='Type your message...'
+            <form onSubmit={e => submit(e)}>
+                <input className='form_control' placeholder='Write message...' value={message}
+                    onChange={e => setMessage(e.target.value)}
                 />
-
-                <button onClick={sendMessage}>Send</button>
-
-            </div>
+            </form>
         </div>
     );
-}
+};
 
-export default Messages;
+export default MessageList;
