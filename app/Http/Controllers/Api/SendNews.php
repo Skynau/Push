@@ -16,7 +16,7 @@ class SendNews extends Controller
 
     return
       [
-        'message' => '👋 we catched your email!'
+        'message' => 'BOOOOM 💣 We catched your email! 👋 '
       ];
   }
 }
