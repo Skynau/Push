@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Footer.scss';
+import axios from 'axios';
 
 const Footer = () => {
+  const [message, setMessage] = useState(null);
+  const [ mail, setMail ] = useState(null);
+
+  const handleInputChange = (e) => {
+        setMail({
+            [e.target.name]: e.target.value,
+        });
+    };
+
+  const sendData = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('/api/email-to-newsletter', mail);
+            setMessage(response.data["message"]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
       <footer className="footer">
         <div className="container">
@@ -42,9 +62,14 @@ const Footer = () => {
   
             <div className="footer-section">
               <h3>Newsletter</h3>
+              { message 
+              ?
+              <p>{message}</p>
+              :
               <p>Subscribe to our newsletter for updates and promotions.</p>
-              <form>
-                <input type="email" placeholder="Your Email" />
+              }
+              <form onSubmit={sendData}>
+                <input name="email" type="email" onChange={handleInputChange} placeholder="Your Email" />
                 <button type="submit">Subscribe</button>
               </form>
             </div>

@@ -172,16 +172,8 @@ class Search extends Controller
 
   public function detail($id)
   {
-    $property = Property::with('media')
-      ->with('address') //in one line
-      ->with('type')
-      ->with('heating')
-      ->with('disposition')
-      ->with('condition')
-      ->with('construction_material')
-      ->with('furnishing')
-      ->with('energy_demand')
-      ->with('energy_demand')
+    $property = Property::with('media', 'address', 'type', 'heating', 'disposition', 'condition', 'construction_material', 'furnishing', 'energy_demand') //in one line
+
       // ->leftJoin('property_amenity', 'properties.id', 'property_amenity.property_id')
       // ->leftJoin('amenities', 'property_amenity.amenity_id', 'amenities.id')
       ->findOrFail($id);

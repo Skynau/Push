@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Listing;
 use App\Http\Controllers\Api\Search;
+use App\Http\Controllers\Api\SendNews;
 use App\Http\Controllers\Api\User;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SearchBar;
@@ -42,8 +43,10 @@ Route::get('/messages', [MessageController::class, 'index']);
 
 Route::post('/messages/store', [MessageController::class, 'store']);
 
-Route::post('/{property_id}/delete', [Listing::class, 'destroy']); //this need to fix
-
-Route::post('/property/{property_id}/delete', [Listing::class, 'destroy']); //this need to fix
+Route::post('/property/{property_id}/delete', [Listing::class, 'destroy']);
 
 Route::post('/property/{property_id}/update', [Listing::class, 'update']);
+
+Route::get('/property/{property_id}/likes', [User::class, 'showLikes']);
+
+Route::post('/email-to-newsletter', [SendNews::class, 'save']);

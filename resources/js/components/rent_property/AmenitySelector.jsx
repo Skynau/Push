@@ -46,43 +46,21 @@ const AmenitySelector = () => {
 
   return (
       <div>
-          {/* <label>
-        <br />
-        Amenities:
-        <select
-          multiple
-          name="amenities"
-          value={formData.amenities}
-          onChange={handleAmenitiesChange}
-        >
+        <label>Amenities:</label>
+        <ul className='new-property-form'>
           {amenities.map((amenity) => (
-            <option key={amenity.id} value={amenity.id}>
-              {amenity.name}
-            </option>
+            <li key={amenity.id}>
+              <input
+                type="checkbox"
+                id={`amenity-${amenity.id}`}
+                value={amenity.id}
+                checked={formData.amenities.includes(String(amenity.id))}
+                onChange={handleCheckboxChange}
+              />
+              <label htmlFor={`amenity-${amenity.id}`}>{amenity.name}</label>
+            </li>
           ))}
-        </select>
-      </label> */}
-          <div>
-              <label>Amenities:</label>
-              <ul>
-                  {amenities.map((amenity) => (
-                      <li key={amenity.id} className="checkbox-amenities">
-                          <input
-                              type="checkbox"
-                              id={`amenity-${amenity.id}`}
-                              value={amenity.id}
-                              checked={formData.amenities.includes(
-                                  String(amenity.id)
-                              )}
-                              onChange={handleCheckboxChange}
-                          />
-                          <label htmlFor={`amenity-${amenity.id}`}>
-                              {amenity.name}
-                          </label>
-                      </li>
-                  ))}
-              </ul>
-          </div>
+        </ul>
       </div>
   );
 };

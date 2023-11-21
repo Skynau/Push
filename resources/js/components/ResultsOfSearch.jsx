@@ -29,7 +29,7 @@ const ResultsOfSearch = () => {
 
     useEffect(() => {
         fetchData(buildUrl(state.filterOptions) + sort);
-        console.log(sort);
+        // console.log(sort);
     }, [state.fetchOnResultsPage, sort]);
 
     const openEdit = () => {
@@ -40,7 +40,7 @@ const ResultsOfSearch = () => {
 
     const numberOfResults = properties?.length
 
-    console.log(properties);
+    // console.log(properties);
 
     return (
         <>
@@ -81,6 +81,7 @@ const ResultsOfSearch = () => {
                                         id={property.id}
                                         disposition={property.disposition_id}
                                         pictures={property.media}
+                                        address={property.address}
                                     />
                                 ))
                             ) : // If there are no properties, check if it's loading

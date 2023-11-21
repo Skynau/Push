@@ -7,7 +7,7 @@ import { formatCurrency } from "../../helpers";
 import areaIcon from "../../../../public/images/area-icon.svg";
 import floorplan from "../../../../public/images/floorplan.svg";
 
-const ResultMiniView = ({ square_meters, price_rent, city, street, id, disposition, pictures }) => {
+const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pictures, address, street, }) => {
     const { state, dispatch } = useContext(Context);
 
     const openModal = () => {
@@ -71,10 +71,26 @@ const ResultMiniView = ({ square_meters, price_rent, city, street, id, dispositi
             break;
     }
 
-    
+    function changePin(e) {
+    // e.target.style.background = 'red';
+    dispatch({
+                type: "MAP_MARKER",
+                payload: [
+                    {
+                        position: {
+                            lat: Number(address.latitude),
+                            lng: Number(address.longitude)
+                        },
+                    },
+                ],
+            });
+  } 
+
+    // console.log(address.longitude);
+
     return (
         <>
-            <div className="mini-view">
+            <div onMouseEnter={changePin} className="mini-view">
                 <div className="slider-container">
                     <ImageSlider pictures={pictures} />
                     {/* <img src="/uploads/images/1700404364_flatio8ptefg.avif" alt="" /> */}
