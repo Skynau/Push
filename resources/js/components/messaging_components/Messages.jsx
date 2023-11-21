@@ -40,19 +40,8 @@ const MessageList = () => {
         } catch (error) {
             
         }
-        // await fetch('http://www.push.test/api/messages', {
-        //     method: "POST",
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify({
-        //         username,
-        //         message
-        //     })
-        // });
-
-        // setMessage('');
-
     }
-
+console.log(messages);
   return (
         <div className='chat-container'>
             <div className='chat-message'>
@@ -66,7 +55,7 @@ const MessageList = () => {
                         return (
                             <div className='message-details'>   
                                 <div className='message-header'>
-                                    <strong className='message-sender'>{message.username}</strong>
+                                    <strong className='message-sender'>{message.user_id.email}</strong>
                                     <small className='message-time'>Tues</small>
                                 </div>
                                 <div className='message-content'>{message.message}</div>

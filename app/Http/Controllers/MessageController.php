@@ -2,18 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\Message as MessageEvent;
 
 class MessageController extends Controller
 {
-    // public function index()
-    // {
-    //     $messages = Message::all();
-    //     return response()->json($messages);
-    // }
+
+    public function index()
+    {
+        $user = Auth::user();
+
+    
+        $messages = Message::whereIn('chat_id', $user->chats->pluck('id'))->get();
+
+    
+        $messageData = $messages->map(function ($message) {
+
+        return [
+            'text' => $message->text,
+            'created_at' => $message->created_at->toDateTimeString(),
+            ];
+        });
+
+        return response()->json(['messages' => $messageData]);
+    
+    }
 
     public function message(Request $request)
     {
@@ -25,23 +42,36 @@ class MessageController extends Controller
 
         $user = User::where('email', $request->input('email'))->first();
 
+        // $user->chats->load('messages');
+
+        // dd($user);
         if ($user) {
-            
-            event(Message::create([
-                'from_user_id' => auth()->id(),
-                'to_user_id' => $user->id, 
-                'text' => $request->input('message')
-            ]));
+
+            $fromUser = Auth::user();
+
+            $chat = $fromUser->chats()
+                ->whereHas('users', function ($query) use ($user) {
+                    $query->where('users.id', $user->id);
+                })
+                ->first();
+
+            if (!$chat) {
+                $chat = new Chat;
+                $chat->save();
+                $chat->users()->attach([$user->id, $fromUser->id]);
+            }
+
+            $message = new Message([
+                'user_id' => $fromUser->id,
+                'chat_id' => $chat->id,
+                'text' => $request->input('message'),
+            ]);
+
+            $chat->messages()->save($message);
+
+            event(new MessageEvent('Hello', "World"));
 
             return response()->json(['message' => 'Event fired successfully']);
-        }
-        // event(new Message($request->input('username'), $request->input('message')));
-        
-        
-        // $message = Message::create([
-        //         'from_user_id' => auth()->id(),
-        //         'to_user_id' => $request->input('to_user_id'),
-        //         'text' => $request->input('text'),
-        //     ]);    
+        }  
     }
 }
