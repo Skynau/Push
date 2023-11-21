@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AmenitySelector.scss';
 
 const AmenitySelector = () => {
   const [formData, setFormData] = useState({
@@ -44,8 +45,8 @@ const AmenitySelector = () => {
   };
 
   return (
-    <div>
-      {/* <label>
+      <div>
+          {/* <label>
         <br />
         Amenities:
         <select
@@ -61,24 +62,28 @@ const AmenitySelector = () => {
           ))}
         </select>
       </label> */}
-      <div>
-        <label>Amenities:</label>
-        <ul>
-          {amenities.map((amenity) => (
-            <li key={amenity.id}>
-              <input
-                type="checkbox"
-                id={`amenity-${amenity.id}`}
-                value={amenity.id}
-                checked={formData.amenities.includes(String(amenity.id))}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor={`amenity-${amenity.id}`}>{amenity.name}</label>
-            </li>
-          ))}
-        </ul>
+          <div>
+              <label>Amenities:</label>
+              <ul>
+                  {amenities.map((amenity) => (
+                      <li key={amenity.id} className="checkbox-amenities">
+                          <input
+                              type="checkbox"
+                              id={`amenity-${amenity.id}`}
+                              value={amenity.id}
+                              checked={formData.amenities.includes(
+                                  String(amenity.id)
+                              )}
+                              onChange={handleCheckboxChange}
+                          />
+                          <label htmlFor={`amenity-${amenity.id}`}>
+                              {amenity.name}
+                          </label>
+                      </li>
+                  ))}
+              </ul>
+          </div>
       </div>
-    </div>
   );
 };
 

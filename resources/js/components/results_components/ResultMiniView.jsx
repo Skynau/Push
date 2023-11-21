@@ -4,8 +4,10 @@ import PropertyDetail from "../property_detail_components/PropertyDetail";
 import "./ResultMiniView.scss";
 import ImageSlider from "./ImageSlider";
 import { formatCurrency } from "../../helpers";
+import areaIcon from "../../../../public/images/area-icon.svg";
+import floorplan from "../../../../public/images/floorplan.svg";
 
-const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pictures }) => {
+const ResultMiniView = ({ square_meters, price_rent, city, street, id, disposition, pictures }) => {
     const { state, dispatch } = useContext(Context);
 
     const openModal = () => {
@@ -74,14 +76,34 @@ const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pict
         <>
             <div className="mini-view">
                 <div className="slider-container">
-                    <ImageSlider pictures={pictures}/>
+                    <ImageSlider pictures={pictures} />
                     {/* <img src="/uploads/images/1700404364_flatio8ptefg.avif" alt="" /> */}
                 </div>
                 <div className="mini-view_details" onClick={openModal}>
-                    <h4>{formatCurrency(price_rent)} CZK </h4>
-                    <p>{displayDisposition}</p>
-                    <p>{square_meters} m2</p>
-                    <p>{city}</p>
+                    {/* <h4>{formatCurrency(price_rent)} CZK </h4> */}
+                    <div className="mini-view-details_top">
+                        <h4>{price_rent} CZK </h4>
+                        <span>
+                            <img
+                                className="disposition-icon"
+                                src={floorplan}
+                                alt="property disposition icon"
+                            />
+                        </span>
+                        <span>{displayDisposition}</span>
+                        <span>
+                            <img
+                                className="area-icon"
+                                src={areaIcon}
+                                alt="property area icon"
+                            />
+                        </span>
+                        <span>{square_meters} m2</span>
+                    </div>
+                    <div className="mini-view-details_bottom">
+                        <p>{street}</p>
+                        <p>{city}</p>
+                    </div>
                 </div>
             </div>
             {state.showPropertyDetail === id ? (

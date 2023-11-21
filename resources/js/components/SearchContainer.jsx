@@ -11,6 +11,8 @@ import ListingDate from "./search_components/ListingDate";
 import PetsWelcome from "./search_components/PetsWelcome";
 import { Link } from "react-router-dom";
 import "./SearchContainer.scss";
+import apartmentBlock from "../../../public/images/apartment-block.jpg";
+
 
 const SearchContainer = () => {
     const { dispatch } = useContext(Context);
@@ -34,37 +36,42 @@ const SearchContainer = () => {
 
     return (
         
-        <div className="search-container" style={{ backgroundImage: 'url(https://i.pinimg.com/564x/23/44/8a/23448a090c84440f092078e2cb0f1e72.jpg)', backgroundRepeat: "no-repeat", backgroundSize: "cover", }}>
-            <h2 className="search-container__title">Find your dream home</h2>
-            <div className="search-container_filters">
-                <Type />
-                <Dispositions />
-                <SearchLocation />
-                <button onClick={toggleOptions} className="more_options_btn">More Options</button>
-                    <div className={`more_options ${openMore? ' active': ''}`}>
-                        <Budget />
-                        <AreaSize />
-                        <ListingDate />
-                        <ConditionsApartment />
-                        <Amenities />
-                        <PetsWelcome />
-                    </div>
-                   
-                {/* Render buttons based on page url */}
-                {window.location.href === "http://www.push.test/" ? (
-                    <Link to="/search-results" className="search-form__btn">
-                        Search
-                    </Link>
-                ) : (
-                    <button
-                        className="search-form__btn"
-                        onClick={fetchOnResultsPage}
-                    >
-                        Search
-                    </button>
-                )}
+        <>
+            <div className="search-container" style={{ backgroundImage: `url(${apartmentBlock})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", }}>
+                <h2 className="search-container__title">Find your dream home</h2>
+                <div className="search-container_filters">
+                    <Type />
+                    <Dispositions />
+                    <SearchLocation />
+                    <Budget />
+                    <button onClick={toggleOptions} className="more_options_btn">More Options</button>
+                        <div className={`more_options ${openMore? ' active': ''}`}>
+                            <AreaSize />
+                            <ListingDate />
+                            <ConditionsApartment />
+                            <Amenities />
+                            <PetsWelcome />
+                        </div>
+                       
+                    {/* Render buttons based on page url */}
+                    {window.location.href === "http://www.push.test/" ? (
+                        <Link to="/search-results" className="search-form__btn">
+                            Search
+                        </Link>
+                    ) : (
+                        <button
+                            className="search-form__btn"
+                            onClick={fetchOnResultsPage}
+                        >
+                            Search
+                        </button>
+                    )}
+                </div>
             </div>
-        </div>
+            {/* <DetailInfo />
+            <OurClientsSay />
+            <AboutUs /> */}
+        </>
     );
 };
 

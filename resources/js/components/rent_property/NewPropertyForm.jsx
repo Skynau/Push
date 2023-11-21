@@ -250,6 +250,7 @@ const NewPropertyForm = () => {
                     <br />
                     Description:
                     <textarea
+                        style={{resize: "none", height: "200px"}}
                         name="description"
                         value={formData.description}
                         onChange={handleInputChange}
