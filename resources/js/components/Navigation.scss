@@ -30,7 +30,8 @@ header {
   }
   
   .navbar__item {
-    margin-right: 2rem; // Add some space between menu items
+    margin-right: 2rem;
+    margin-top: 0.5rem; // Add some space between menu items
   }
   
   .navbar__link {
@@ -73,7 +74,7 @@ header {
   }
   .navbar__item h3 {
     font-size: 1rem;
-    color: #ebebeb;
+    color: $bestcolor;
   }
   
   // Media query for responsiveness

@@ -1,8 +1,8 @@
 @import "../../../css/app.scss";
 
 .mini-view {
-    width: 23vw;
-    height: 40vh;
+    width: 350px;
+    height: 290px;
     border-radius: 1vh;
     border: 1px solid grey;
     margin: 1vh 0;
@@ -53,7 +53,7 @@
         }
 
         .mini-view-details_bottom{
-            margin-bottom: 10px;
+            margin-bottom: 15px;
 
             p {
                 margin: 0;

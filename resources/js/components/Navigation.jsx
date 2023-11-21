@@ -67,7 +67,7 @@ const Navigation = () => {
                     ) : (
 
                     <>
-                        <div className="nav-action__btn">
+                        
                             <li className="navbar__item">
                                 <Link to="/create-property" className="navbar__link">
                                     <span>
@@ -82,15 +82,15 @@ const Navigation = () => {
                                     </span>
                                 </Link>
                             </li>
-                        </div>
+                            <li className="navbar__item">
+                                <button className="navbar__link" onClick={handleLogout}>
+                                    <span>
+                                        Logout
+                                    </span>
+                                </button>
+                            </li>
                         
-                        <li className="navbar__item">
-                            <button className="navbar__link" onClick={handleLogout}>
-                                <span>
-                                    Logout
-                                </span>
-                            </button>
-                        </li>
+                        
 
                         <div className="navbar__item">
                             <h3>Logged in as {user?.first_name}</h3>
