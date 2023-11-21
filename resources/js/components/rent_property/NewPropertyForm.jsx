@@ -134,7 +134,7 @@ const NewPropertyForm = () => {
                 }
             );
             setMessage(response.data["message"]);
-            console.log("Server Response:", response.data);
+            // console.log("Server Response:", response.data);
         } catch (error) {
             console.log("Error:", error);
         }
