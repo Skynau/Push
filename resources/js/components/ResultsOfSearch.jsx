@@ -13,6 +13,7 @@ const ResultsOfSearch = () => {
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(false);
     const [sort, setSort] = useState('')
+    const [multipleMarkers, setMultipleMarkers] = useState([]);
 
     // Api call based on user's filtering options
     const fetchData = async (url) => {
@@ -40,7 +41,30 @@ const ResultsOfSearch = () => {
 
     const numberOfResults = properties?.length
 
-    // console.log(properties);
+
+//----------------ADDING multiple markers to the state----------
+    
+useEffect(() => {
+  let array = []
+      properties?.map((property)=>{
+        array.push({
+          position: {
+            lat: Number(property.address.latitude),
+            lng: Number(property.address.longitude)
+          }
+        })
+      })
+      
+      // console.log(array);
+      // setMultipleMarkers(array);
+     dispatch({
+      type: "MAP_MARKER",
+      payload: array
+     })
+      // console.log(multipleMarkers);
+
+}, [properties])
+
 
     return (
         <>
@@ -60,7 +84,7 @@ const ResultsOfSearch = () => {
                     <div className="map">
                        
                               <GoogleMapComponent 
-                               markers={state.markers} 
+                              //  markers={state.markers} 
                                />
                     </div>
                     <div className="results-list">

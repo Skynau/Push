@@ -12,13 +12,14 @@ const containerStyle = {
 
 
 const GoogleMapComponent = ({
-    markers,
+    // markers,
     centerMap,
     onCenterChange,
     onZoomChange,
 }) => {
 
-  // console.log(centerMap)
+  
+  // console.log(markers)
 
 //   const markersTEST = [
 //   {
@@ -47,10 +48,12 @@ const GoogleMapComponent = ({
         centerMap ?? { lat: 50.0755, lng: 14.4378 }
     );
 
+    
     const [zoom, setZoom] = useState(13);
-
+    
     const { state, dispatch } = useContext(Context);
-
+    
+    // console.log(state.markersMultiple);
     // zoom and center on propertty detail
 
     const handleCenterChange = () => {
@@ -170,8 +173,10 @@ const GoogleMapComponent = ({
                 center={setCenter ?? center}
                 zoom={zoom}
             >
-                {markers.map((marker, index) => (
-                    <Marker key={index} position={marker.position} />
+                {state.markers.map((marker, index) => (
+                    <Marker key={index} position={marker.position} 
+                PinView={{  scaledSize: new window.google.maps.Size(180, 42) }}
+                    />
                 ))}
 
             </GoogleMap>
