@@ -41,7 +41,7 @@ const buildUrl = (filterOptions) => {
         })
         .join("&")}`;
 
-        console.log(url);
+        // console.log(url);
     return url;
 };
 
