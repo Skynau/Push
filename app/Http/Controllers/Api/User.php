@@ -38,4 +38,12 @@ class User extends Controller
 
     return $listings;
   }
+
+  public function showLikes($property_id)
+  {
+    $getLikes = Favorite_listing::where('property_id', $property_id)
+      ->get();
+
+    return $getLikes;
+  }
 }
