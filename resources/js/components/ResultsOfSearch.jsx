@@ -29,7 +29,7 @@ const ResultsOfSearch = () => {
 
     useEffect(() => {
         fetchData(buildUrl(state.filterOptions) + sort);
-        console.log(sort);
+        // console.log(sort);
     }, [state.fetchOnResultsPage, sort]);
 
     const openEdit = () => {
