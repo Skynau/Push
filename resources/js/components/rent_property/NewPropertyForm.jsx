@@ -47,6 +47,7 @@ const NewPropertyForm = () => {
 
         googleAutocomplete.addListener("place_changed", () => {
             const place = googleAutocomplete.getPlace();
+            // console.log(place);
             setFormData({
                 ...formData,
                 address: place.formatted_address,
@@ -54,14 +55,15 @@ const NewPropertyForm = () => {
                 streetNumber: place.address_components[0].long_name,
                 district: place.address_components[3].long_name,
                 city: place.address_components[4].long_name,
-                postalCode: place.address_components[7].long_name,
-                country: place.address_components[6].long_name,
+                postalCode: place.address_components[8].long_name,
+                country: place.address_components[7].long_name,
                 placeId: place.place_id,
                 latitude: place.geometry.location.lat(),
                 longtitude: place.geometry.location.lng(),
             });
         });
     });
+
 
 
     const handleInputChange = (e) => {
@@ -138,7 +140,7 @@ const NewPropertyForm = () => {
         }
     };
 
-    console.log(formData);
+    // console.log(formData);
     return (
         <div className="form">
             <form
