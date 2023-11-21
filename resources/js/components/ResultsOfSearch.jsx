@@ -49,12 +49,20 @@ const ResultsOfSearch = () => {
              <div className="search-bar">
                 <ResultsSearchBar />
             </div> */}
-                <div className="results-edit">
-                    <EditSearch />
+                <div className="results-header">
+                    <div className="results-edit">
+                        <EditSearch />
+                    </div>
+                    <button className="edit-button" onClick={openEdit}>
+                        Edit the search
+                    </button>
+                    <div className="results-list_header">
+                            <p>Results: {numberOfResults}</p>
+                            <div className="results-list_sorting">
+                                <Sorting setSort={setSort} />
+                            </div>
+                    </div>
                 </div>
-                <button className="edit-button" onClick={openEdit}>
-                    Edit the search
-                </button>
 
                 <div className="over-view">
                     <div className="map">
@@ -64,14 +72,6 @@ const ResultsOfSearch = () => {
                                />
                     </div>
                     <div className="results-list">
-                        <div className="results-list_header">
-                            
-                                <p>Results: {numberOfResults}</p>
-                                <div className="results-list_sorting">
-                                    <Sorting setSort={setSort} />
-                                </div>
-                            
-                        </div>
                         <div className="results-list_listings">
                             {properties.length > 0 ? (
                                 properties?.map((property, i) => (
