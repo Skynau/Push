@@ -63,7 +63,7 @@ const AmenitySelector = () => {
       </label> */}
       <div>
         <label>Amenities:</label>
-        <ul>
+        <ul className='new-property-form'>
           {amenities.map((amenity) => (
             <li key={amenity.id}>
               <input
