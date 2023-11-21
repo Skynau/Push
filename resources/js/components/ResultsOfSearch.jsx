@@ -1,12 +1,12 @@
 import React, { useEffect, useContext, useState } from "react";
 import ResultMiniView from "./results_components/ResultMiniView";
 import EditSearch from "./results_components/EditSearch";
-import MapContainer from "./results_components/MapContainer";
 import { getProperties } from "../helpers";
 import { buildUrl } from "../helpers";
 import Context from "../Context";
 import "./ResultsOfSearch.scss";
 import Sorting from "./results_components/Sorting";
+import GoogleMapComponent from "./results_components/GoogleMap";
 
 const ResultsOfSearch = () => {
     const { state, dispatch } = useContext(Context);
@@ -55,7 +55,10 @@ const ResultsOfSearch = () => {
 
                 <div className="over-view">
                     <div className="map">
-                        <MapContainer />
+                       
+                              <GoogleMapComponent 
+                               markers={state.markers} 
+                               />
                     </div>
                     <div className="results-list">
                         <div className="results-list_header">

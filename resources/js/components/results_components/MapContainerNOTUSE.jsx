@@ -11,12 +11,12 @@ const MapContainer = () => {
 //     setSelectedLocation(newLocation);
 //   };
 
-  const handleMapClick = (mapEvent) => {
-    console.log('Map clicked!', mapEvent);
-    // Handle map click and add a marker
-    // const newMarker = { position: mapEvent.latLng.toJSON() };
-    // setMarkers([...markers, newMarker]);
-  };
+  // const handleMapClick = (mapEvent) => {
+  //   console.log('Map clicked!', mapEvent);
+  //   // Handle map click and add a marker
+  //   // const newMarker = { position: mapEvent.latLng.toJSON() };
+  //   // setMarkers([...markers, newMarker]);
+  // };
 
 //   const debouncedMapClick = _debounce(handleMapClick, 1000);
 
@@ -26,12 +26,12 @@ const MapContainer = () => {
     <div>
       <GoogleMapComponent 
       markers={state.markers} 
-      onMapClick={handleMapClick} 
-    //   onInput={debouncedMapClick}
-      //   selectedLocation={selectedLocation} 
       />
     </div>
   );
 };
 
 export default MapContainer;
+// onMapClick={handleMapClick} 
+//   onInput={debouncedMapClick}
+//   selectedLocation={selectedLocation} 

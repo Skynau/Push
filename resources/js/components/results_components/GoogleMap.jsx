@@ -17,6 +17,7 @@ const GoogleMapComponent = ({
     onCenterChange,
     onZoomChange,
 }) => {
+
     const [center, setCenter] = useState(
         centerMap ?? { lat: 50.0755, lng: 14.4378 }
     );
@@ -51,7 +52,6 @@ const GoogleMapComponent = ({
             setCenter(state.markers[0]?.position);
         }
         // console.log(center);
-
         return (
             <GoogleMap
             options={{
