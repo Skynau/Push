@@ -11,11 +11,14 @@ import "./OwnerListing.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import DeleteListing from "./DeleteListing";
+import NumberOfLikes from "./NumberOfLikes";
 
 const OwnerListing = () => {
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(null);
     const [approved, setApproved] = useState(false);
     const [listings, setListings] = useState([]);
+   
+
 
   const loadData = async () => {
       try{
@@ -25,6 +28,10 @@ const OwnerListing = () => {
             console.log(error)
         }
     }
+
+
+
+
 
   useEffect(() => {
         loadData()
@@ -86,14 +93,18 @@ const OwnerListing = () => {
                         <img
                             src={deleteIcon}
                             alt="delete"
-                            onClick={toggleModal}
+                            onClick={() => {
+                                  setShowModal(listing.id)
+                              }}
                         />
                     </span>
                     <h3>
-                        Likes <strong className="likes">342</strong>
+                        Likes <strong className="likes">
+                          <NumberOfLikes propertyId = {listing.id} />
+                          </strong>
                     </h3>
                     {/* Confiramtion delete Modal */}
-                    <div className={`modal ${showModal ? " active" : ""}`}>
+                    <div className={`modal ${showModal == listing.id ? " active" : ""}`}>
                         <div className="modal-content">
                             <div className="modal-text">
                                 <h2>Delete Listing</h2>
@@ -104,10 +115,12 @@ const OwnerListing = () => {
                                 <p>This action cannot be undone.</p>
                             </div>
                             <div className="modal-btns">
-                                <button type="button" onClick={toggleModal}>
+                                <button type="button" onClick={() => {
+                                  setShowModal(null)
+                                }}>
                                     Go Back
                                 </button>
-                                <DeleteListing listingId={listing.id}/>
+                                <DeleteListing listingId={listing.id} loadData={loadData}/>
                                 {/* <button type="button">Yes, Delete</button> */}
                             </div>
                         </div>

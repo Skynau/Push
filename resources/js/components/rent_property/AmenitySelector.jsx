@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AmenitySelector.scss';
 
 const AmenitySelector = () => {
   const [formData, setFormData] = useState({
@@ -44,26 +45,9 @@ const AmenitySelector = () => {
   };
 
   return (
-    <div>
-      {/* <label>
-        <br />
-        Amenities:
-        <select
-          multiple
-          name="amenities"
-          value={formData.amenities}
-          onChange={handleAmenitiesChange}
-        >
-          {amenities.map((amenity) => (
-            <option key={amenity.id} value={amenity.id}>
-              {amenity.name}
-            </option>
-          ))}
-        </select>
-      </label> */}
       <div>
         <label>Amenities:</label>
-        <ul>
+        <ul className='new-property-form'>
           {amenities.map((amenity) => (
             <li key={amenity.id}>
               <input
@@ -78,7 +62,6 @@ const AmenitySelector = () => {
           ))}
         </ul>
       </div>
-    </div>
   );
 };
 

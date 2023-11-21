@@ -5,13 +5,54 @@
     flex-direction: column;
     position: relative;
 
-    .results-edit {
+    .results-header {
+        display: flex;
+        flex-direction: row;
         margin: 0 auto;
-        z-index: 3;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        width: 100%;
+
+        .results-edit {
+            margin: 0 auto;
+            z-index: 3;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    
+        .edit-button {
+            width: 25vh;
+            font-size: 3vh;
+            align-self: center;
+            background-color: $bestcolor;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 40%;
+            margin-right: 0.9rem;
+            height: 80%;
+        }
+        
+        .results-list_header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 40%;
+    
+                p {
+                    color: $bestcolor;
+                    margin: 0;
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                }
+    
+                .results-list_sorting {
+                    color: $bestcolor;
+                    position: relative;
+                }
+            }
     }
 
     .over-view {
@@ -19,56 +60,22 @@
         margin-top: 3vh;
 
         .map {
-            width: 65%;
+            width: 47%;
+            padding: 0 20px
         }
 
         .results-list {
             display: flex;
             flex-direction: column;
-            width: 40vw;
+            width: inherit;
 
-            .results-list_header {
-                display: flex;
-                justify-content: space-between;
-                margin: 0 1vh;
-
-                h2 {
-                    color: $bestcolor;
-                    margin: 0;
-                }
-
-                .edit-button {
-                    background-color: #874caf;
-                    color: white;
-                    padding: 8px 16px;
-                    border: none;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    margin-left: 0.9rem;
-                    margin-right: 0.9rem;
-                    height: 80%;
-                }
-
-                .results-list_data-manipulation {
-                    display: flex;
-                    flex-direction: column;
-
-                    span {
-                        color: $bestcolor;
-                    }
-
-                    .results-list_sorting {
-                        color: $bestcolor;
-                        position: relative;
-                    }
-                }
-            }
+            
 
             .results-list_listings {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-around;
-                width: 40vw;
+                width: 800px;
                 height: 90vh;
                 overflow-x: hidden;
                 overflow-y: auto;

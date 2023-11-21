@@ -47,29 +47,6 @@ const NewPropertyForm = () => {
 
         googleAutocomplete.addListener("place_changed", () => {
             const place = googleAutocomplete.getPlace();
-            setFormData({
-                ...formData,
-                address: place.formatted_address,
-                street: place.address_components[2].long_name,
-                streetNumber: place.address_components[0].long_name,
-                district: place.address_components[3].long_name,
-                city: place.address_components[4].long_name,
-                postalCode: place.address_components[7].long_name,
-                country: place.address_components[6].long_name,
-                placeId: place.place_id,
-                latitude: place.geometry.location.lat(),
-                longtitude: place.geometry.location.lng(),
-            });
-        });
-    });
-
-    useEffect(() => {
-        const googleAutocomplete = new window.google.maps.places.Autocomplete(
-            inputRef.current
-        );
-
-        googleAutocomplete.addListener("place_changed", () => {
-            const place = googleAutocomplete.getPlace();
             // console.log(place);
             setFormData({
                 ...formData,
@@ -78,14 +55,16 @@ const NewPropertyForm = () => {
                 streetNumber: place.address_components[0].long_name,
                 district: place.address_components[3].long_name,
                 city: place.address_components[4].long_name,
-                postalCode: place.address_components[7].long_name,
-                country: place.address_components[6].long_name,
+                postalCode: place.address_components[8].long_name,
+                country: place.address_components[7].long_name,
                 placeId: place.place_id,
                 latitude: place.geometry.location.lat(),
                 longtitude: place.geometry.location.lng(),
             });
         });
-    }, []);
+    });
+
+
 
     const handleInputChange = (e) => {
         setFormData({
@@ -115,9 +94,12 @@ const NewPropertyForm = () => {
     // Handle image selection
     const handleImage = (e) => {
         console.log("media", formData.media);
-        const mediaArray = [...formData.media];
+        
         // Add the selected file to the array
-        mediaArray.push(e.target.files[0]);
+        // mediaArray.push(e.target.files);
+        const mediaArray = Array.prototype.slice.call(e.target.files)
+
+        console.log(mediaArray)
 
         setFormData({
             ...formData,
@@ -128,22 +110,23 @@ const NewPropertyForm = () => {
         // send data to server
         e.preventDefault();
 
-        const formDataSend = new FormData();
-        // Append all form data from state
-        for (const key in formData) {
-            if (key === "media") {
-                // Append each image separately
-                formData[key].forEach((image, index) => {
-                    formDataSend.append(`${key}[${index}]`, image);
-                });
-            } else {
-                formDataSend.append(key, formData[key]);
-            }
-        }
+        // const formDataSend = new FormData();
+        // // Append all form data from state
+        // for (const key in formData) {
+        //     if (key === "media") {
+        //         // Append each image separately
+        //         formData[key].forEach((image, index) => {
+        //             formDataSend.append(`${key}[${index}]`, image);
+        //         });
+        //     } else {
+        //         formDataSend.append(key, formData[key]);
+        //     }
+        // }
+        // console.log(formDataSend);
         try {
             const response = await axios.post(
                 "api/property/store",
-                formDataSend,
+                formData,
                 {
                     headers: {
                         "Content-Type": "multipart/form-data",
@@ -179,6 +162,9 @@ const NewPropertyForm = () => {
                     />
                 </label>
 
+                {formData.streetNumber ?
+                (
+                <>
                 <label>
                     <br />
                     Street:
@@ -245,6 +231,9 @@ const NewPropertyForm = () => {
                     />
                 </label>
                 <br />
+                </>
+                ):
+                ""}
 
                 <label>
                     <br />
@@ -263,6 +252,7 @@ const NewPropertyForm = () => {
                     <br />
                     Description:
                     <textarea
+                        style={{resize: "none", height: "200px"}}
                         name="description"
                         value={formData.description}
                         onChange={handleInputChange}
@@ -489,7 +479,7 @@ const NewPropertyForm = () => {
                 <br />
                 {message ? (
                     <>
-                        <h2>{message}</h2>
+                        <h2 className="success-message">{message}</h2>
                         <Link to="/owner-interface">
                             <button>See my listing</button>
                         </Link>

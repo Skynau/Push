@@ -40,6 +40,8 @@ const buildUrl = (filterOptions) => {
             return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`; // key=value biuld here
         })
         .join("&")}`;
+
+        // console.log(url);
     return url;
 };
 

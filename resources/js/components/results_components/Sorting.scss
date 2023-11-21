@@ -6,13 +6,15 @@
   
     .sort-mini-title {
       margin-right: 10px;
-      font-size: 14px;
-      color: #555; 
+      font-size: 1.2rem;
+      color: $bestcolor;
+      font-weight: 700;
     }
   
     .sorting-select {
-      padding: 8px;
+      padding: 2px;
       font-size: 14px;
+      height: 25px;
       border: 1px solid #ccc; 
       border-radius: 4px;
       cursor: pointer;

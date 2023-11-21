@@ -296,7 +296,7 @@ const EditPropertyForm = () => {
                 <br />
 
                 {message ? (
-                    <span>{message}</span>
+                    <span className="success-message">{message}</span>
                 ) : (
                     <button type="submit">Update</button>
                 )}

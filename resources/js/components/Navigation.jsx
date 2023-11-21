@@ -6,7 +6,7 @@ import UserContext from "../UserContext";
 import "./Navigation.scss";
 
 const Navigation = () => {
-    const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
     const history = useNavigate();
 
     const handleLogout = async (ev) => {
@@ -14,10 +14,11 @@ const Navigation = () => {
 
         const response = await axios.post("/logout");
 
+
         setUser(null);
         // Redirect to home page
         history("/");
-        <Redire />;
+        // <Redire />;
     };
 
     return (
@@ -67,7 +68,7 @@ const Navigation = () => {
                     ) : (
 
                     <>
-                        <div className="nav-action__btn">
+                        
                             <li className="navbar__item">
                                 <Link to="/create-property" className="navbar__link">
                                     <span>
@@ -82,15 +83,15 @@ const Navigation = () => {
                                     </span>
                                 </Link>
                             </li>
-                        </div>
+                            <li className="navbar__item">
+                                <button className="navbar__link" onClick={handleLogout}>
+                                    <span>
+                                        Logout
+                                    </span>
+                                </button>
+                            </li>
                         
-                        <li className="navbar__item">
-                            <button className="navbar__link" onClick={handleLogout}>
-                                <span>
-                                    Logout
-                                </span>
-                            </button>
-                        </li>
+                        
 
                         <div className="navbar__item">
                             <h3>Logged in as {user?.first_name}</h3>

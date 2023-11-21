@@ -1,17 +1,19 @@
 import React, { useEffect, useContext, useState } from "react";
 import ResultMiniView from "./results_components/ResultMiniView";
 import EditSearch from "./results_components/EditSearch";
-import MapContainer from "./results_components/MapContainer";
 import { getProperties } from "../helpers";
 import { buildUrl } from "../helpers";
 import Context from "../Context";
 import "./ResultsOfSearch.scss";
 import Sorting from "./results_components/Sorting";
+import GoogleMapComponent from "./results_components/GoogleMap";
 
 const ResultsOfSearch = () => {
     const { state, dispatch } = useContext(Context);
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [sort, setSort] = useState('')
+    const [multipleMarkers, setMultipleMarkers] = useState([]);
 
     // Api call based on user's filtering options
     const fetchData = async (url) => {
@@ -27,8 +29,9 @@ const ResultsOfSearch = () => {
     };
 
     useEffect(() => {
-        fetchData(buildUrl(state.filterOptions));
-    }, [state.fetchOnResultsPage]);
+        fetchData(buildUrl(state.filterOptions) + sort);
+        // console.log(sort);
+    }, [state.fetchOnResultsPage, sort]);
 
     const openEdit = () => {
         dispatch({
@@ -38,7 +41,31 @@ const ResultsOfSearch = () => {
 
     const numberOfResults = properties?.length
 
-    // console.log(properties)
+
+//----------------ADDING multiple markers to the state----------
+    
+useEffect(() => {
+  let array = []
+      properties?.map((property)=>{
+        array.push({
+          position: {
+            lat: Number(property.address.latitude),
+            lng: Number(property.address.longitude)
+          }
+        })
+      })
+      
+      // console.log(array);
+      // setMultipleMarkers(array);
+     dispatch({
+      type: "MAP_MARKER",
+      payload: array
+     })
+      // console.log(multipleMarkers);
+
+}, [properties])
+
+
     return (
         <>
             <div className="results-page">
@@ -46,27 +73,29 @@ const ResultsOfSearch = () => {
              <div className="search-bar">
                 <ResultsSearchBar />
             </div> */}
-                <div className="results-edit">
-                    <EditSearch />
+                <div className="results-header">
+                    <div className="results-edit">
+                        <EditSearch />
+                    </div>
+                    <button className="edit-button" onClick={openEdit}>
+                        Edit the search
+                    </button>
+                    <div className="results-list_header">
+                            <p>Results: {numberOfResults}</p>
+                            <div className="results-list_sorting">
+                                <Sorting setSort={setSort} />
+                            </div>
+                    </div>
                 </div>
 
                 <div className="over-view">
                     <div className="map">
-                        <MapContainer />
+                       
+                              <GoogleMapComponent 
+                              //  markers={state.markers} 
+                               />
                     </div>
                     <div className="results-list">
-                        <div className="results-list_header">
-                            <h2>Rental Listings</h2>
-                            <button className="edit-button" onClick={openEdit}>
-                                Edit the search
-                            </button>
-                            <div className="results-list_data-manipulation">
-                                <span>Results: {numberOfResults}</span>
-                                <div className="results-list_sorting">
-                                    <Sorting />
-                                </div>
-                            </div>
-                        </div>
                         <div className="results-list_listings">
                             {properties.length > 0 ? (
                                 properties?.map((property, i) => (
@@ -75,9 +104,11 @@ const ResultsOfSearch = () => {
                                         square_meters={property.square_meters}
                                         price_rent={property.price_rent}
                                         city={property.address?.city}
+                                        street={property.address?.street}
                                         id={property.id}
                                         disposition={property.disposition_id}
                                         pictures={property.media}
+                                        address={property.address}
                                     />
                                 ))
                             ) : // If there are no properties, check if it's loading

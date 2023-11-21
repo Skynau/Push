@@ -14,7 +14,6 @@ const ImageSlider = ({pictures}) => {
       arrayOfPictureUrls.push(picture.url)
     })
 
-    console.log(arrayOfPictureUrls[0])
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -31,7 +30,7 @@ const ImageSlider = ({pictures}) => {
   const slideStyles = {
       width: "100%",
       height: "100%",
-      borderRadius: "10px",
+      borderRadius: "1vh 1vh 0px 0px",
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundImage: `url(${arrayOfPictureUrls[currentIndex]})`

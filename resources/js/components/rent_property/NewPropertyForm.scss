@@ -6,6 +6,8 @@
     flex-direction: column;
     max-width: 400px;
     margin: 0 auto;
+    margin-top: 7vh;
+    margin-bottom: 20vh;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -48,4 +50,11 @@
             background-color: #6f66a1;
         }
     }
+  .success-message{
+    color: white;
+  }
+
+  .new-property-form{
+    list-style-type: none
+  }
 }

@@ -7,7 +7,7 @@ const DetailInfo = () => {
         <div className="main__container">
           <div className="container">
             <div className="header__container">
-              <h1 className="header">Property Types</h1>
+              <h1 className="header">Latest Properties</h1>
               <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
             </div>
             <div className="row g-4">
