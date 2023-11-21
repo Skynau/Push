@@ -6,7 +6,7 @@ import UserContext from "../UserContext";
 import "./Navigation.scss";
 
 const Navigation = () => {
-    const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
     const history = useNavigate();
 
     const handleLogout = async (ev) => {
@@ -14,10 +14,11 @@ const Navigation = () => {
 
         const response = await axios.post("/logout");
 
+
         setUser(null);
         // Redirect to home page
         history("/");
-        <Redire />;
+        // <Redire />;
     };
 
     return (

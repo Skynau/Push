@@ -18,6 +18,31 @@ const GoogleMapComponent = ({
     onZoomChange,
 }) => {
 
+  // console.log(centerMap)
+
+//   const markersTEST = [
+//   {
+//     id: 1,
+//     name: "Chicago, Illinois",
+//     position: { lat: 41.881832, lng: -87.623177 }
+//   },
+//   {
+//     id: 2,
+//     name: "Denver, Colorado",
+//     position: { lat: 39.739235, lng: -104.99025 }
+//   },
+//   {
+//     id: 3,
+//     name: "Los Angeles, California",
+//     position: { lat: 34.052235, lng: -118.243683 }
+//   },
+//   {
+//     id: 4,
+//     name: "New York, New York",
+//     position: { lat: 40.712776, lng: -74.005974 }
+//   }
+// ];
+
     const [center, setCenter] = useState(
         centerMap ?? { lat: 50.0755, lng: 14.4378 }
     );
@@ -47,11 +72,11 @@ const GoogleMapComponent = ({
 
     const renderMap = () => {
 
-  
+      let setCenter = null;
         if (Array.from(state.markers)?.length > 0) {
-            setCenter(state.markers[0]?.position);
+            setCenter = state.markers[0]?.position;
         }
-        // console.log(center);
+
         return (
             <GoogleMap
             options={{
@@ -142,7 +167,7 @@ const GoogleMapComponent = ({
                 mapContainerStyle={containerStyle}
                 onCenterChanged={handleCenterChange}
                 onZoomChanged={handleZoomChange}
-                center={center}
+                center={setCenter ?? center}
                 zoom={zoom}
             >
                 {markers.map((marker, index) => (

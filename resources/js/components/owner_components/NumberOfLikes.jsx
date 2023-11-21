@@ -23,7 +23,7 @@ const NumberOfLikes = ({propertyId}) => {
   
 
   return (
-    <div>{likes.length}</div>
+    <>{likes.length}</>
   )
 }
 
