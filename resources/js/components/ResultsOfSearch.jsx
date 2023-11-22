@@ -49,13 +49,13 @@ useEffect(() => {
       properties?.map((property)=>{
         array.push({
           position: {
-            lat: Number(property.address.latitude),
-            lng: Number(property.address.longitude)
+            lat: Number(property.address?.latitude),
+            lng: Number(property.address?.longitude)
           }
         })
       })
       
-      // console.log(array);
+      console.log(array);
       // setMultipleMarkers(array);
      dispatch({
       type: "MAP_MARKER",

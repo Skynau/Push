@@ -41,9 +41,11 @@ Route::get('/user-listings', [User::class, 'userListings']);
 
 //----------chat----------
 
-Route::get('/messages', [MessageController::class, 'index']);
+Route::get('/messages/{user_email}', [MessageController::class, 'index']);
 
 Route::post('/messages', [MessageController::class, 'message']);
+
+Route::post('/message-first/{user_id}', [MessageController::class, 'firstMessage']);
 
 //-----------------------
 

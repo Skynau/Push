@@ -26,25 +26,21 @@ const MessageList = () => {
 
     },[]);
     
+    const showMessageSender = async () => {
+        try {
+            const response = await axios.get(`/api/messages/${email}`);
+
+            setMessages(response.data);
+        } catch (error) {
+            console.error('Error fetching messages:', error);
+        }
+    };
+
     useEffect(() => {
-        const showMessage = async () => {
-            try {
-                const response = await axios.get('/api/messages', {
-                    params: {
-                        email: email,
-                        message: message,
-                    },
-                });
-    
-                setMessage(response.data);
-            } catch (error) {
-            
-                console.error('Error fetching messages:', error);
-            }
-        };
-    
-        showMessage();
-    }, [email, message]);
+        showMessageSender();
+    }, []);
+
+    // console.log(messages);
         
     const submit = async (e) => {
         e.preventDefault();
@@ -56,42 +52,97 @@ const MessageList = () => {
             })
 
             setMessage('');
+            showMessageSender();
 
         } catch (error) {
             console.error('Error fetching messages:', error);
         }
     }
-// console.log(messages);
+    console.log(messages);
   return (
+
         <div className='chat-container'>
-            <div className='chat-message'>
-                <div className='user-link'>
-                    <input className='user-input' value={email} onChange={e => setEmail(e.target.value)}/>
-                </div>
-                <div className='message-box'>
-                    
-                    {messages.map((message, index) => (
-
-                        <div className='message-details'>   
-                            <div className='message-header' key={index}>
-                                <strong className='message-sender'>{message.user.name}:</strong>
-                                <small className='message-time'>Created at: {message.created_at}</small>
-                            </div>
-                            <div className='message-content'>{message.message}</div>
-                        </div>
-
-                    ))}
-
-                    
-                </div>
+          <div className='chat-message'>
+            <div className='user-link'>
+              <input
+                className='user-input'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-            <form onSubmit={e => submit(e)}>
-                <input className='form_control' placeholder='Write message...' value={message}
-                    onChange={e => setMessage(e.target.value)}
-                />
-            </form>
+            <div className='message-box' id='message-box'>
+              {messages[0]?.map((item) => (
+                <div className='message-details' key={item.id}>
+                  <div className='message-header'>
+                    <strong className='message-sender'>{item.user_id}:</strong>
+                    <small className='message-time'>Created at: {item.created_at}</small>
+                  </div>
+                  <div className='message-content user-message'>{item.text}</div>
+                </div>
+              ))}
+              {messages[1]?.map((item) => (
+                <div className='message-details_from' key={item.id}>
+                  <div className='message-header'>
+                    {/* <strong className='message-sender'>{item.user_id}:</strong> */}
+                    <small className='message-time'>Created at: {item.created_at}</small>
+                  </div>
+                  <div className='message-content admin-message'>{item.text}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <form onSubmit={(e) => submit(e)}>
+            <input
+              className='form_control'
+              placeholder='Write message...'
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+          </form>
         </div>
-    );
+      );
+
+
+
+        // <div className='chat-container'>
+        //     <div className='chat-message'>
+        //         <div className='user-link'>
+        //             <input
+        //                 className='user-input'
+        //                 value={email}
+        //                 onChange={(e) => setEmail(e.target.value)}
+        //             />
+        //         </div>
+        //         <div className='message-box'>
+        //             {messages[0]?.map((item) => (
+        //                 <div className='message-details' key={item.id}>
+        //                     <div className='message-header'>
+        //                         <strong className='message-sender'>{item.user_id}:</strong>
+        //                         <small className='message-time'>Created at: {item.created_at}</small>
+        //                     </div>
+        //                     <div className='message-content'>{item.text}</div>
+        //                 </div>
+        //             ))}
+        //             {messages[1]?.map((item) => (
+        //                 <div className='message-details_from' key={item.id}>
+        //                     <div className='message-header'>
+        //                         {/* <strong className='message-sender'>{item.user_id}:</strong> */}
+        //                         <small className='message-time'>Created at: {item.created_at}</small>
+        //                     </div>
+        //                     <div className='message-content'>{item.text}</div>
+        //                 </div>
+        //             ))}
+        //         </div>
+        //     </div>
+        //     <form onSubmit={(e) => submit(e)}>
+        //         <input
+        //             className='form_control'
+        //             placeholder='Write message...'
+        //             value={message}
+        //             onChange={(e) => setMessage(e.target.value)}
+        //         />
+        //     </form>
+        // </div>
 };
 
 export default MessageList;
