@@ -28,7 +28,7 @@
     .btn {
         margin: 0.5rem;
         padding: 0.8rem 1.5rem;
-        background-color: #433e72;
+        background-color: $bestcolor;
         color: #ffffff;
         border: none;
         border-radius: 8px;
@@ -38,12 +38,12 @@
 
         &:hover {
             background-color: #54be90;
-            color: #232323;
+            color: $bestcolor;
         }
 
         &.active {
             background-color: #54be90;
-            color: #232323;
+            color: $bestcolor;
         }
     }
 }

@@ -3,6 +3,7 @@ import EmptyHeartIcon from "../../../../public/images/heart-empty.svg";
 import HeartIcon from "../../../../public/images/heart-liked.svg";
 import ShowInterestIcon from "../../../../public/images/show-interest.svg";
 import ExportVariant from "../../../../public/images/export-variant.svg";
+import PhotoToCome from "../../../../public/images/photo-to-come.svg";
 import Context from "../../Context";
 import { formatCurrency, getProperties } from "../../helpers";
 import "./PropertyDetail.scss";
@@ -151,9 +152,10 @@ const PropertyDetail = ({ propertyId }) => {
                     className={`modal  ${shareOpen ? " active" : ""}`}
                     onClick={hideOnBackdropShare}
                 >
-                    <ShareModal 
+                    <ShareModal
                         propertyId={propertyId}
-                        toggleShare={toggleShare} />
+                        toggleShare={toggleShare}
+                    />
                 </div>
 
                 <div
@@ -176,7 +178,11 @@ const PropertyDetail = ({ propertyId }) => {
                             <div className="main-image" onClick={toggleGallery}>
                                 <img
                                     //NEED TO FIX this to the loop
-                                    src={"/" + house?.media[0]?.url}
+                                    src={
+                                        house?.media[0]?.url
+                                            ? "/" + house?.media[0]?.url
+                                            : PhotoToCome
+                                    }
                                     alt="Image"
                                 />
                             </div>
@@ -186,11 +192,20 @@ const PropertyDetail = ({ propertyId }) => {
                                     onClick={toggleGallery}
                                 >
                                     <img
-                                        src={"/" + house?.media[1]?.url}
-                                        alt="Image"
+                                        src={
+                                            house?.media[1]?.url
+                                                ? "/" + house?.media[1]?.url
+                                                : PhotoToCome
+                                        }
+                                        // alt="Image"
                                     />
+
                                     <img
-                                        src={"/" + house?.media[0]?.url}
+                                        src={
+                                            house?.media[2]?.url
+                                                ? "/" + house?.media[2]?.url
+                                                : PhotoToCome
+                                        }
                                         // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                         // alt="Image"
                                     />
@@ -200,12 +215,20 @@ const PropertyDetail = ({ propertyId }) => {
                                     onClick={toggleGallery}
                                 >
                                     <img
-                                        src={"/" + house?.media[2]?.url}
+                                        src={
+                                            house?.media[3]?.url
+                                                ? "/" + house?.media[3]?.url
+                                                : PhotoToCome
+                                        }
                                         // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                         // alt="Image"
                                     />
                                     <img
-                                        src={"/" + house?.media[3]?.url}
+                                        src={
+                                            house?.media[4]?.url
+                                                ? "/" + house?.media[4]?.url
+                                                : PhotoToCome
+                                        }
                                         // src="https://image.cnbcfm.com/api/v1/image/103500764-GettyImages-147205632-2.jpg?v=1691157601"
                                         // alt="Image"
                                     />
@@ -220,15 +243,25 @@ const PropertyDetail = ({ propertyId }) => {
                                         {formatCurrency(house?.price_rent)} CZK
                                     </h2>
                                     <p className="stats-street">
-                                        {house?.address?.city}{", "}
+                                        {house?.address?.city}
+                                        {", "}
                                         {house?.address?.street}{" "}
-                                        {house?.address?.street_number}{", "}
+                                        {house?.address?.street_number}
+                                        {", "}
                                         {house?.address?.postal_code}
                                     </p>
                                 </div>
                                 <div className="beds-baths">
                                     <p>
-                                        <span className="beds">{}</span>
+                                        <span className="type">
+                                            {house?.type?.type}
+                                        </span>
+                                        <span>property type</span>
+                                    </p>
+                                    <p>
+                                        <span className="disposition">
+                                            {house?.disposition?.disposition}
+                                        </span>
                                         <span>disposition</span>
                                     </p>
                                     <p>
@@ -246,51 +279,84 @@ const PropertyDetail = ({ propertyId }) => {
                                 </div>
                             </div>
                             <div className="property-info">
-                                <p>
-                                    Available form{" "}
-                                    <strong>{house?.available_from}</strong>
-                                </p>
-                                {/* created_At is null now */}
-                                <p>Listing Date <strong>{house?.created_at.slice(0,10)}</strong></p>
+                                <div className="property-info_left">
+                                    <p>
+                                        Condition:{" "}
+                                        <strong>
+                                            {house?.condition?.condition}
+                                        </strong>
+                                    </p>
+                                    {/* created_At is null now */}
+                                    <p>
+                                        Furnishing:{" "}
+                                        <strong>
+                                            {house?.furnishing?.furnishing}
+                                        </strong>
+                                    </p>
 
-                                <p>
-                                    Pets Welcome{" "}
-                                    {house?.pets_welcome ? (
-                                        <strong>Yes</strong>
-                                    ) : (
-                                        <strong>No</strong>
-                                    )}
-                                </p>
+                                    <p>
+                                        Heating type:{" "}
+                                        <strong>{house?.heating?.type}</strong>
+                                    </p>
+                                    {/* <p>Amenities: </p> */}
+                                </div>
+                                <div className="property-info_right">
+                                    <p>
+                                        Available form:{" "}
+                                        <strong>{house?.available_from}</strong>
+                                    </p>
+                                    {/* created_At is null now */}
+                                    <p>
+                                        Listing Date:{" "}
+                                        <strong>
+                                            {house?.created_at.slice(0, 10)}
+                                        </strong>
+                                    </p>
+
+                                    <p>
+                                        Pets Welcome:{" "}
+                                        {house?.pets_welcome ? (
+                                            <strong>Yes</strong>
+                                        ) : (
+                                            <strong>No</strong>
+                                        )}
+                                    </p>
+                                </div>
                             </div>
-
-                            <GoogleMapComponent
-                                // center={state.center}
-                                // zoom={state.zoom}
-                                markers={[
-                                    {
-                                        position: {
-                                            lat: Number(
-                                                house?.address?.latitude
-                                            ),
-                                            lng: Number(
-                                                house?.address?.longitude
-                                            ),
-                                        },
-                                    },
-                                ]}
-                                // onMapClick={handleMapClick}
-                                onCenterChange={handleCenterChange}
-                                onZoomChange={handleZoomChange}
-                                centerMap={{
-                                    lat: Number(house?.address?.latitude),
-                                    lng: Number(house?.address?.longitude),
-                                }}
-                            />
+                            {/* <div className="property-info_amenities">
+                                <p>Amenities: </p>
+                            </div> */}
 
                             <div className="property-description">
                                 <h2>Description</h2>
                                 <p>{house?.description}</p>
                             </div>
+                            <div className="property-detail_map">
+                                <GoogleMapComponent
+                                    // center={state.center}
+                                    // zoom={state.zoom}
+                                    markers={[
+                                        {
+                                            position: {
+                                                lat: Number(
+                                                    house?.address?.latitude
+                                                ),
+                                                lng: Number(
+                                                    house?.address?.longitude
+                                                ),
+                                            },
+                                        },
+                                    ]}
+                                    // onMapClick={handleMapClick}
+                                    onCenterChange={handleCenterChange}
+                                    onZoomChange={handleZoomChange}
+                                    centerMap={{
+                                        lat: Number(house?.address?.latitude),
+                                        lng: Number(house?.address?.longitude),
+                                    }}
+                                />
+                            </div>
+
                             {/* <Pano /> */}
                             <img
                                 src={imageFooter}

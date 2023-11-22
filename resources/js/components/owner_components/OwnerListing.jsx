@@ -7,6 +7,7 @@ import sizeIcon from "../../../../public/images/size-icon.svg";
 import toApproveIcon from "../../../../public/images/not-approved-icon.svg";
 import approvedIcon from "../../../../public/images/approved-icon.svg";
 import eyeForView from "../../../../public/images/eye-for-view.svg";
+import PhotoToCome from "../../../../public/images/photo-to-come.svg";
 
 import "./OwnerListing.scss";
 import { Link } from "react-router-dom";
@@ -53,7 +54,14 @@ const OwnerListing = () => {
               <div key={listing.id} className="house-item">
                   <div className="house-box">
                       <div className="house-item-img">
-                          <img src={listing.media[0]?.url} alt="house image" />
+                          <img
+                              src={
+                                  listing.media[0]?.url
+                                      ? listing.media[0]?.url
+                                      : PhotoToCome
+                              }
+                              alt="house image"
+                          />
                       </div>
 
                       <div className="house-item-detail">
@@ -85,9 +93,7 @@ const OwnerListing = () => {
                   </div>
                   <div className="house-item-edit">
                       <span className="item-view">
-                          <Link
-                              to={`/property/${listing.id}`}
-                          >
+                          <Link to={`/property/${listing.id}`}>
                               <img
                                   title="View"
                                   src={eyeForView}

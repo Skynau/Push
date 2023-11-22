@@ -78,8 +78,8 @@ const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pict
                 payload: [
                     {
                         position: {
-                            lat: Number(address.latitude),
-                            lng: Number(address.longitude)
+                            lat: Number(address?.latitude),
+                            lng: Number(address?.longitude)
                         },
                     },
                 ],
