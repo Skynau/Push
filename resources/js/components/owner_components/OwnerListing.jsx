@@ -6,6 +6,7 @@ import bedIcon from "../../../../public/images/bed-icon.svg";
 import sizeIcon from "../../../../public/images/size-icon.svg";
 import toApproveIcon from "../../../../public/images/not-approved-icon.svg";
 import approvedIcon from "../../../../public/images/approved-icon.svg";
+import eyeForView from "../../../../public/images/eye-for-view.svg";
 
 import "./OwnerListing.scss";
 import { Link } from "react-router-dom";
@@ -48,85 +49,111 @@ const OwnerListing = () => {
     return (
         <>
         {listings.map((listing)=>{
-          return <div key={listing.id} className="house-item">
-                <div className="house-box">
-                    <div className="house-item-img">
-                        <img
-                            src={listing.media[0]?.url}
-                            alt="house image"
-                        />
-                    </div>
+          return (
+              <div key={listing.id} className="house-item">
+                  <div className="house-box">
+                      <div className="house-item-img">
+                          <img src={listing.media[0]?.url} alt="house image" />
+                      </div>
 
-                    <div className="house-item-detail">
-                        <p className="house-item-detail-title">{listing.title}</p>
-                        <p className="house-item-detail-price">
-                            {listing.price_rent} CZK
-                        </p>
-                        <p className="house-item-detail-address">
-                            {listing.address?.street},
-                            {listing.address?.city}
-                        </p>
+                      <div className="house-item-detail">
+                          <p className="house-item-detail-title">
+                              {listing.title}
+                          </p>
+                          <p className="house-item-detail-price">
+                              {listing.price_rent} CZK
+                          </p>
+                          <p className="house-item-detail-address">
+                              {listing.address?.street},{listing.address?.city}
+                          </p>
 
-                        <p className="house-item-detail-icons">
-                            <span className="bed">
-                                <img src={bedIcon} alt="bed" />{" "}
-                                <strong>{listing.disposition_id}</strong>
-                            </span>
-                            <span className="bath">
-                                <img src={bathIcon} alt="bath" />{" "}
-                                <strong>{listing.number_of_bathrooms}</strong>
-                            </span>
-                            <span className="size">
-                                <img src={sizeIcon} alt="size" />{" "}
-                                <strong>{listing.square_meters}m2</strong>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div className="house-item-edit">
-                    <span className="item-edit">
-                        <Link to="/edit-property" state={{listingId: listing.id}} >
-                            <img src={editIcon} alt="edit" />
-                        </Link>
-                    </span>
-                    <span className="item-delete">
-                        <img
-                            src={deleteIcon}
-                            alt="delete"
-                            onClick={() => {
-                                  setShowModal(listing.id)
+                          <p className="house-item-detail-icons">
+                              <span className="bed">
+                                  <img src={bedIcon} alt="bed" />{" "}
+                                  <strong>{listing.disposition_id}</strong>
+                              </span>
+                              <span className="bath">
+                                  <img src={bathIcon} alt="bath" />{" "}
+                                  <strong>{listing.number_of_bathrooms}</strong>
+                              </span>
+                              <span className="size">
+                                  <img src={sizeIcon} alt="size" />{" "}
+                                  <strong>{listing.square_meters}m2</strong>
+                              </span>
+                          </p>
+                      </div>
+                  </div>
+                  <div className="house-item-edit">
+                      <span className="item-view">
+                          <Link
+                              to={`/property/${listing.id}`}
+                          >
+                              <img
+                                  title="View"
+                                  src={eyeForView}
+                                  alt="view the property"
+                              />
+                          </Link>
+                      </span>
+                      <span className="item-edit">
+                          <Link
+                              to="/edit-property"
+                              state={{ listingId: listing.id }}
+                          >
+                              <img title="Edit" src={editIcon} alt="edit" />
+                          </Link>
+                      </span>
+                      <span className="item-delete">
+                          <img
+                              title="Delete"
+                              src={deleteIcon}
+                              alt="delete"
+                              onClick={() => {
+                                  setShowModal(listing.id);
                               }}
-                        />
-                    </span>
-                    <h3>
-                        Likes <strong className="likes">
-                          <NumberOfLikes propertyId = {listing.id} />
+                          />
+                      </span>
+                      <h3>
+                          Likes{" "}
+                          <strong className="likes">
+                              <NumberOfLikes propertyId={listing.id} />
                           </strong>
-                    </h3>
-                    {/* Confiramtion delete Modal */}
-                    <div className={`modal ${showModal == listing.id ? " active" : ""}`}>
-                        <div className="modal-content">
-                            <div className="modal-text">
-                                <h2>Delete Listing</h2>
-                                <p>
-                                    Are you sure you want to delete this
-                                    listing?
-                                </p>
-                                <p>This action cannot be undone.</p>
-                            </div>
-                            <div className="modal-btns">
-                                <button type="button" onClick={() => {
-                                  setShowModal(null)
-                                }}>
-                                    Go Back
-                                </button>
-                                <DeleteListing listingId={listing.id} loadData={loadData}/>
-                                {/* <button type="button">Yes, Delete</button> */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                      </h3>
+                      {/* Confiramtion delete Modal */}
+                      <div
+                          className={`modal ${
+                              showModal == listing.id ? " active" : ""
+                          }`}
+                      >
+                          <div className="modal-content">
+                              <div className="modal-text">
+                                  <h2>Delete Listing</h2>
+                                  <p>
+                                      Are you sure you want to delete this
+                                      listing?
+                                  </p>
+                                  <p>This action cannot be undone.</p>
+                              </div>
+                              <div className="modal-btns">
+                                  <button
+                                      type="button"
+                                      onClick={() => {
+                                          setShowModal(null);
+                                      }}
+                                  >
+                                      Go Back
+                                  </button>
+                                  <DeleteListing
+                                      listingId={listing.id}
+                                      loadData={loadData}
+                                  />
+                                  {/* <button type="button">Yes, Delete</button> */}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          );
             })}
 
             <div className="house-item-stats">

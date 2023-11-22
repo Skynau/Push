@@ -35,6 +35,14 @@
                 z-index: 5;
             }
         }
+        .item-view {
+            img {
+                width: 23px;
+                cursor: pointer;
+                z-index: 5;
+                margin-right: 17px;
+            }
+        }
         .likes {
             color: $bestcolor;
             font-style: italic;
@@ -154,7 +162,7 @@
 
         .house-item-img {
             position: relative;
-            width: 190px;
+            width: 270px;
             height: 190px;
             img {
                 position: absolute;
@@ -188,8 +196,8 @@
                 }
             }
             .house-item-detail-address {
-                color: #c3c3c3;
-                font-weight: 100;
+                color: black;
+                font-weight: 300;
             }
             .house-item-detail-icons {
                 display: flex;

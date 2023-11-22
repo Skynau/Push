@@ -79,7 +79,7 @@ const Navigation = () => {
                             <li className="navbar__item">
                                 <Link to="/owner-interface" className="navbar__link">
                                     <span>
-                                        Owner Interface
+                                        Your Account
                                     </span>
                                 </Link>
                             </li>

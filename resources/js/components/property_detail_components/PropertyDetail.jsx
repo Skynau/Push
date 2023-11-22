@@ -219,16 +219,16 @@ const PropertyDetail = ({ propertyId }) => {
                                         {formatCurrency(house?.price_rent)} CZK
                                     </h2>
                                     <p className="stats-street">
-                                        {house?.address?.city}{" "}
+                                        {house?.address?.city}{", "}
                                         {house?.address?.street}{" "}
-                                        {house?.address?.street_number}{" "}
+                                        {house?.address?.street_number}{", "}
                                         {house?.address?.postal_code}
                                     </p>
                                 </div>
                                 <div className="beds-baths">
                                     <p>
-                                        <span className="beds">3</span>
-                                        <span>beds</span>
+                                        <span className="beds">{}</span>
+                                        <span>disposition</span>
                                     </p>
                                     <p>
                                         <span className="baths">
@@ -250,7 +250,7 @@ const PropertyDetail = ({ propertyId }) => {
                                     <strong>{house?.available_from}</strong>
                                 </p>
                                 {/* created_At is null now */}
-                                <p>Listing Date {house?.created_at}</p>
+                                <p>Listing Date <strong>{house?.created_at.slice(0,10)}</strong></p>
 
                                 <p>
                                     Pets Welcome{" "}
