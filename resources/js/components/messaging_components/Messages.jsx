@@ -25,7 +25,27 @@ const MessageList = () => {
         });
 
     },[]);
-
+    
+    useEffect(() => {
+        const showMessage = async () => {
+            try {
+                const response = await axios.get('/api/messages', {
+                    params: {
+                        email: email,
+                        message: message,
+                    },
+                });
+    
+                setMessage(response.data);
+            } catch (error) {
+            
+                console.error('Error fetching messages:', error);
+            }
+        };
+    
+        showMessage();
+    }, [email, message]);
+        
     const submit = async (e) => {
         e.preventDefault();
 
@@ -38,10 +58,10 @@ const MessageList = () => {
             setMessage('');
 
         } catch (error) {
-            
+            console.error('Error fetching messages:', error);
         }
     }
-console.log(messages);
+// console.log(messages);
   return (
         <div className='chat-container'>
             <div className='chat-message'>
@@ -50,19 +70,17 @@ console.log(messages);
                 </div>
                 <div className='message-box'>
                     
-                    {messages.map(message => {
+                    {messages.map((message, index) => (
 
-                        return (
-                            <div className='message-details'>   
-                                <div className='message-header'>
-                                    <strong className='message-sender'>{message.user_id.email}</strong>
-                                    <small className='message-time'>Tues</small>
-                                </div>
-                                <div className='message-content'>{message.message}</div>
+                        <div className='message-details'>   
+                            <div className='message-header' key={index}>
+                                <strong className='message-sender'>{message.user.name}:</strong>
+                                <small className='message-time'>Created at: {message.created_at}</small>
                             </div>
-                        )
+                            <div className='message-content'>{message.message}</div>
+                        </div>
 
-                    })}
+                    ))}
 
                     
                 </div>

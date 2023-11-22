@@ -16,19 +16,9 @@ class MessageController extends Controller
     {
         $user = Auth::user();
 
+        $chats = $user->chats->load('messages, users');
     
-        $messages = Message::whereIn('chat_id', $user->chats->pluck('id'))->get();
-
-    
-        $messageData = $messages->map(function ($message) {
-
-        return [
-            'text' => $message->text,
-            'created_at' => $message->created_at->toDateTimeString(),
-            ];
-        });
-
-        return response()->json(['messages' => $messageData]);
+        return $chats;
     
     }
 
