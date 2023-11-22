@@ -54,7 +54,7 @@ const SearchContainer = () => {
                         </div>
                        
                     {/* Render buttons based on page url */}
-                    {window.location.href === "http://www.push.test/" ? (
+                    {window.location.href === "/" ? (
                         <Link to="/search-results" className="search-form__btn">
                             Search
                         </Link>
