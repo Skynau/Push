@@ -111,6 +111,7 @@ const PropertyDetail = ({ propertyId }) => {
             toggleGallery();
         }
     };
+    // console.log(house)
 
     return (
         <div className="property-container" onClick={hideModal}>
