@@ -16,19 +16,19 @@
 
 
     .slider-container {
-        width: 100%;
-        height: 25vh;
+        width: 47em;
+        // height: 25vh;
         margin: 0 auto;
     }
 
     .mini-view_details {
         width: 17vw;
-        height: 15vh;
+        // height: 15vh;
         padding: 0px 7px 0px 7px;
         cursor: pointer;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        // justify-content: space-between;
 
         .mini-view-details_top {
             h4{
