@@ -14,6 +14,7 @@ import Pano from "./Pano";
 import { useParams } from "react-router-dom";
 import { ShareModal } from "./ShareModal";
 import ImageGallery from "./ImageGallery";
+import SendFirstMessage from "./SendFirstMessage";
 
 const PropertyDetail = ({ propertyId }) => {
     const { user } = useContext(UserContext);
@@ -111,7 +112,7 @@ const PropertyDetail = ({ propertyId }) => {
             toggleGallery();
         }
     };
-    // console.log(house)
+    console.log(house)
 
     return (
         <div className="property-container" onClick={hideModal}>
@@ -142,7 +143,8 @@ const PropertyDetail = ({ propertyId }) => {
                         </div>
                         <div className="interest">
                             <img src={ShowInterestIcon} alt="Interest" />
-                            <p>Inquire Interest</p>
+                            <p>Send a Message</p>
+                            <SendFirstMessage user_id={house?.user_id} />
                         </div>
                     </div>
                 </div>

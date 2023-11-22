@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Chat;
 
 class User extends Authenticatable
 {
@@ -48,5 +49,15 @@ class User extends Authenticatable
   public function favorite()
   {
     return $this->hasMany(Favorite_listing::class);
+  }
+
+  public function chats()
+  {
+    return $this->belongsToMany(Chat::class);
+  }
+
+  public function messages()
+  {
+    return $this->belongsTo(Message::class);
   }
 }
