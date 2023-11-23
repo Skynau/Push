@@ -10,9 +10,7 @@ const OurClientsSay = () => {
                     <div className="testimonial">
                         <div className="testimonial-content">
                             <p>
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Mauris varius, velit vitae pulvinar euismod, urna urna blandit
-                                sem, vel fringilla odio arcu vel orci."
+                                "I've been renting properties for years, but my experience with this rental property website was by far the best. Their website is user-friendly, making it easy to search for available properties based on my specific criteria. The team was prompt in answering my inquiries and arranging viewings. Thanks to them, I found the perfect apartment in no time."
                             </p>
                         </div>
                         <div className="testimonial-author">
@@ -31,9 +29,7 @@ const OurClientsSay = () => {
                     <div className="testimonial">
                     <div className="testimonial-content">
                             <p>
-                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Mauris varius, velit vitae pulvinar euismod, urna urna blandit
-                                sem, vel fringilla odio arcu vel orci."
+                                "We were blown away by the professionalism and dedication of the team at this rental property website. They listened to our needs, understood our preferences, and helped us find the ideal apartment within our budget. The whole process was seamless, and we couldn't be happier with our new home."
                             </p>
                         </div>
                         <div className="testimonial-author">
@@ -43,7 +39,7 @@ const OurClientsSay = () => {
                                 className="author-avatar"
                             />
                             <div className="author-info">
-                                <h4 className="author-name">John Doe</h4>
+                                <h4 className="author-name">Sophie Martin</h4>
                                 <span className="author-position">Student</span>
                             </div>
                         </div>

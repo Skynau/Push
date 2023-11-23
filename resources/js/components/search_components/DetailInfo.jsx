@@ -26,7 +26,7 @@ const DetailInfo = () => {
           <div className="container">
             <div className="header__container">
               <h1 className="header">Latest Properties</h1>
-              <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+              <p>Welcome to our rental property web page, where you can explore our latest and most exciting properties available for rent. We take pride in curating a diverse selection of rental options to cater to different tastes and preferences. Whether you're searching for a cozy apartment, a spacious family home, or a trendy urban loft, we have something for everyone.</p>
             </div>
 
             { latest ?
