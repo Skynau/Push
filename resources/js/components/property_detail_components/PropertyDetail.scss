@@ -62,23 +62,34 @@
             padding: 0 15px;
             position: fixed;
             max-width: 1248px;
-            width: 45em;
+            // width: 45em;
             // height: 4rem;
             background-color: $whitecolor;
             z-index: 2;
+            // @media (max-width: 600px) {
+            //     flex-direction: column;
+            // }
             .back-link {
                 cursor: pointer;
+                margin-right: 2rem;
             }
             .nav-links {
                 display: flex;
                 gap: 2rem;
+                // @media (max-width: 600px) {
+                //         flex-direction: column;
+                //     }
                 .save,
                 .interest {
                     display: flex;
                     align-items: center;
-                    cursor: pointer;
-                    &:hover {
-                        text-decoration: underline;
+                    margin-right: 2rem;
+                    // cursor: pointer;
+                    // &:hover {
+                    //     text-decoration: underline;
+                    // }
+                    p {
+                        margin-right: 0.5rem;
                     }
                     img {
                         height: 30px;
@@ -169,7 +180,7 @@
                     }
                 img {
                     height: auto;
-                    width: 100%;
+                    max-width: 21vw;
                     // height: 100%;
                 }
             }
@@ -181,7 +192,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: baseline;
-                @media (max-width: 600px) {
+                @media (max-width: 900px) {
                         flex-direction: column;
                     }
                 h2 {
@@ -194,12 +205,14 @@
                     color: $darkgraycolor;
                     font-size: 1.2rem;
                     @media (max-width: 600px) {
-                            font-size: 2rem;
+                            font-size: 1.5rem;
                         }
                 }
                 .beds-baths {
                     display: flex;
                     gap: 1rem;
+                    margin-right: 4vw;
+                    margin-top: 1rem;
                     p {
                         display: flex;
                         flex-direction: column;
@@ -211,7 +224,7 @@
                             font-weight: bold;
                             color: #000;
                             @media (max-width: 600px) {
-                                    font-size: 2rem;
+                                    font-size: 1.2rem;
                                 }
                         }
                     }
@@ -226,7 +239,7 @@
                 p {
                     font-size: 1.5rem;
                     @media (max-width: 600px) {
-                            font-size: 2.5rem;
+                            font-size: 1.5rem;
                         }
                 }
 
@@ -241,15 +254,16 @@
 
             .property-description {
                 @media (max-width: 900px) {
-                        font-size: 1.5rem;
+                        font-size: 1.2rem;
                         @media (max-width: 600px) {
-                                font-size: 2rem;
+                                font-size: 1.2rem;
                             }
                     }
             }
 
             .property-detail_map{
                 width: 80%;
+                margin-bottom: 2rem;
                 @media (max-width: 600px) {
                         width: 100%;
                     }

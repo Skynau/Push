@@ -122,7 +122,7 @@ const PropertyDetail = ({ propertyId }) => {
                         {" "}
                         &larr; Back to search
                     </div>
-                    <div className="nav-brand">PUSH!</div>
+                    {/* <div className="nav-brand">PUSH!</div> */}
                     <div className="nav-links">
                         <div className="interest" onClick={toggleShare}>
                             <button className="icon">
@@ -142,8 +142,8 @@ const PropertyDetail = ({ propertyId }) => {
                             <p>Save</p>
                         </div>
                         <div className="interest">
-                            <img src={ShowInterestIcon} alt="Interest" />
-                            <p>Send a Message</p>
+                            {/* <img src={ShowInterestIcon} alt="Interest" /> */}
+                            <p>Send a Message:</p>
                             <SendFirstMessage user_id={house?.user_id} />
                         </div>
                     </div>
@@ -371,10 +371,11 @@ const PropertyDetail = ({ propertyId }) => {
                                     }}
                                 />
                             </div>
-                            { house?.photo_attachment ? 
-                            <Pano pano={house?.photo_attachment}/>
-                            :
-                            ""}
+                            {house?.photo_attachment ? (
+                                <Pano pano={house?.photo_attachment} />
+                            ) : (
+                                ""
+                            )}
                             <img
                                 src={imageFooter}
                                 className="bottom-image"
