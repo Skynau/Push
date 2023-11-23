@@ -21,6 +21,7 @@ import OurClientsSay from "./search_components/OurClientsSay";
 import "./App.scss";
 import PropertyDetail from "./property_detail_components/PropertyDetail";
 import Messages from "./messaging_components/Messages";
+import Chat from "./messaging_components/Chat";
 
 const App = () => {
     const [contextValue, setContextValue] = useReducer(reducer, state);
@@ -90,7 +91,11 @@ const App = () => {
                             element={<PropertyDetail />}
                             />
                             <Route 
-                            path="/messages"
+                            path="/chats"
+                            element={<Chat />}
+                            />
+                            <Route 
+                            path="/chat/:chat_id"
                             element={<Messages />}
                             />
                         </Routes>

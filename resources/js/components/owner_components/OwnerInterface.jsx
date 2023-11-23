@@ -58,7 +58,7 @@ const OwnerInterface = () => {
                         </div>
                         <div className="owner-header_message">
                             {/* <Messages /> */}
-                            <Link to="/messages">
+                            <Link to="/chats">
                                 <button>Messages</button>
                             </Link>
                         </div>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import './Chat.scss';
+import { Link } from 'react-router-dom';
 
 
 export default function Chat () {
@@ -21,6 +22,8 @@ export default function Chat () {
   useEffect(() => {
       fetchChats();
     }, []);
+
+    // console.log(fetchChats);
     
     return (
         <div className="chat-list-container">
@@ -28,9 +31,11 @@ export default function Chat () {
                 {chats &&
                 chats.map((chat, index) => (
                     <div key={index} className="chat-item">
-                    <span className="chat-id">Chat ID: {chat.chat_id}</span>
-                    <p className='participant'>User ID: {chat.user_id}</p>
-                    <p className='participant'>Sender: {chat.sender}</p>
+                        <p className='participant'>From: <strong>{chat.user?.first_name}</strong></p>
+                        <p className='participant'>To: {chat.sender}</p>
+                        <Link to={`/chat/${chat.chat_id}`}>
+                            <button className="reply-button">Reply</button>
+                        </Link>
                     </div>
                 ))}
             </div>
