@@ -120,15 +120,15 @@ const PropertyDetail = ({ propertyId }) => {
                 <div className="property-nav">
                     <div className="back-link" onClick={hideModal}>
                         {" "}
-                        &larr; Back to search
+                        <span className="back-arrow">&#8630;</span> <span className="to-hide">Back</span>
                     </div>
                     {/* <div className="nav-brand">PUSH!</div> */}
                     <div className="nav-links">
-                        <div className="interest" onClick={toggleShare}>
+                        <div className="share" onClick={toggleShare}>
                             <button className="icon">
                                 <img src={ExportVariant} alt="share" />
                             </button>
-                            <p>Share</p>
+                            <p className="to-hide">Share</p>
                         </div>
                         <div className="save" onClick={toggleLiked}>
                             <form action="" onSubmit={sendData}>
@@ -139,9 +139,9 @@ const PropertyDetail = ({ propertyId }) => {
                                     />
                                 </button>
                             </form>
-                            <p>Save</p>
+                            <p className="to-hide">Save</p>
                         </div>
-                        <div className="interest">
+                        <div className="share">
                             {/* <img src={ShowInterestIcon} alt="Interest" /> */}
                             <p>Send a Message:</p>
                             <SendFirstMessage user_id={house?.user_id} />
