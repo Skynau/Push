@@ -8,42 +8,35 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Events\Message as MessageEvent;
+use App\Models\ChatUser;
 
 class MessageController extends Controller
 {
 
-    public function index($user_email)
+    public function index()
     {
         $user = Auth::user();
 
-        // $fromUser = User::where('email', $user_email)->get();
+        // $toUser = User::where('email', $user->email)->get();
 
-        // $fromUserId = $fromUser->id;
+        $chats = ChatUser::where('user_id', $user->id)->with('user')->get();
 
-        // $chats = $user->chats->load('messages, users');
+        return [
+            'chats' => $chats, 
+        ];
+    }
 
+    public function chatMessages()
+    {
+        $user = Auth::user();
+
+        //reciever -> user_id
         $chats = Message::where('user_id', $user->id)->get();
 
         $chatsSend = Message::where('sender',  $user->id)->get();
 
-        // $chats = Message::leftJoin('chat_user', 'user_id', 'users.id')->where('user_id', $user->id)->get();
-
-
-
-        // $chatsFrom = Message::leftJoin('users', 'user_id', 'users.id')->where('users.email', $user_email)->get();
-
-        // SELECT * 
-        // FROM `messages`
-        // LEFT JOIN users ON user_id = users.id
-        // WHERE users.email = 'john@gmail.com'
-
-
-            
-            // dd($chats, $chatsSend);
-
         return [
-            $chats,
-            // $chatsFrom
+            $chats, 
             $chatsSend
         ];
     }
