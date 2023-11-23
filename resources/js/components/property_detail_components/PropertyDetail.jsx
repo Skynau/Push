@@ -347,18 +347,18 @@ const PropertyDetail = ({ propertyId }) => {
                                 <p>{house?.description}</p>
                             </div>
                             <div className="property-detail_map">
-                              {console.log([
-                                        {
-                                            position: {
-                                                lat: Number(
-                                                    house?.address?.latitude
-                                                ),
-                                                lng: Number(
-                                                    house?.address?.longitude
-                                                ),
-                                            },
+                                {console.log([
+                                    {
+                                        position: {
+                                            lat: Number(
+                                                house?.address?.latitude
+                                            ),
+                                            lng: Number(
+                                                house?.address?.longitude
+                                            ),
                                         },
-                                    ])}
+                                    },
+                                ])}
                                 <GoogleMapComponent
                                     // center={state.center}
                                     // zoom={state.zoom}
