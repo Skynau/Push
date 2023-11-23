@@ -160,11 +160,14 @@
                 flex: 1;
                 img {
                     height: auto;
+                    max-height: 30vw;
                     width: 100%;
                     border-top-left-radius: 1rem;
                     border-bottom-left-radius: 1rem;
                     @media (max-width: 900px) {
                             border-radius: 1rem;
+                            max-height: 60vh;
+                            max-width: 80vh;
                         }
                     &:hover {
                         opacity: 0.6;
