@@ -12,7 +12,7 @@ const containerStyle = {
 
 
 const GoogleMapComponent = ({
-    // markers,
+    markers,
     centerMap,
     onCenterChange,
     onZoomChange,
@@ -71,6 +71,18 @@ const GoogleMapComponent = ({
     useEffect(() => {
         handleZoomChange();
     }, [zoom]);
+
+    const chooseMarkerState = () => {
+      let chosenState = [];
+      if(markers){
+        chosenState = markers
+      } else if(state.activePin){
+        chosenState = state.activePin
+      } else {
+        chosenState = state.markers
+      }
+      return chosenState
+    }
     //-----------------------------------------------------------------
 
     const renderMap = () => {
@@ -172,8 +184,8 @@ const GoogleMapComponent = ({
                 onZoomChanged={handleZoomChange}
                 center={setCenter ?? center}
                 zoom={zoom}
-            >
-                {state.markers.map((marker, index) => (
+            > {
+                chooseMarkerState().map((marker, index) => (
                     <Marker key={index} position={marker.position} 
                 // PinView={{  scaledSize: new window.google.maps.Size(18, 42) }}
                     />

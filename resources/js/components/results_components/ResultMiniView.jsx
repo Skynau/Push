@@ -17,7 +17,7 @@ const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pict
         });
     };
 
-  //   const [prePins, setPrePins] = useState(state.markers);
+    const [activePin, setActivePin] = useState(null);
 
   //   const preState = useRef(state.markers);
 
@@ -80,28 +80,35 @@ const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pict
             break;
     }
 
-    // console.log(preState);
+    // console.log(prePins);
     //-------------change pins on map
     function changePin(e) {
     // e.target.style.background = 'red';
-    dispatch({
-                type: "MAP_MARKER",
-                payload: [
+          dispatch({
+                type: "MAP_MARKER_ACTIVE",
+                payload:[
                     {
                         position: {
                             lat: Number(address?.latitude),
                             lng: Number(address?.longitude)
                         },
                     },
-                ],
-            });
+                ]})
+           
   } 
+
+  const resetPins = ()=>{
+     dispatch({
+                type: "MAP_MARKER_ACTIVE",
+                payload: null
+            });
+  }
 
     // console.log(address.longitude);onMouseLeave={}
 
     return (
         <>
-            <div onMouseEnter={changePin}  className="mini-view">
+            <div onMouseEnter={changePin} onMouseLeave={resetPins} className="mini-view">
                 <div className="slider-container">
                     <ImageSlider pictures={pictures} />
                     {/* <img src="/uploads/images/1700404364_flatio8ptefg.avif" alt="" /> */}
