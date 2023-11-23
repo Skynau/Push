@@ -60,14 +60,22 @@ class Listing extends Controller
     $property->paid_status = 0;
 
 
-    // if ($request->hasFile('photoAttachment')) {
+    if ($request->file('photoAttachmentPano')) {
 
-    //   $file = $request->file('photoAttachment');
-    //   $extension = $file->getClientOriginalExtension(); // get extension of image
-    //   $filename = time() . '.' . $extension;
-    //   $file->move('uploads/images/', $filename); // upload locally
-    //   $property->photo_attachment = 'uploads/images/' . $filename; //sed to db
-    // }
+      // $file = $request->file('photoAttachmentPano'){
+      foreach ($request->file('photoAttachmentPano') as $imageFilePano) {
+        $imageName = time() . '_' . $imageFilePano->getClientOriginalName() . '.' . $imageFilePano->extension();
+        $imagePath = '/uploads/pano/' . $imageName;
+
+        // Move the image to the specified path
+        $imageFilePano->move(public_path('/uploads/pano'), $imageName);
+
+        $property->photo_attachment = $imagePath; //sed to db
+      }
+      // $extension = $file->getClientOriginalExtension(); // get extension of image
+      // $filename = time() . '.' . $extension;
+      // $file->move('uploads/pano/', $file); // upload locally
+    }
     // dd($property);
     $property->save();
 

@@ -33,8 +33,8 @@ const SearchContainer = () => {
     const toggleOptions = () => {
         setOpenMore(!openMore);
     };
-    console.log(window.location.href);
-    console.log(import.meta.env.VITE_APP_URL + '/');
+    // console.log(window.location.href);
+    // console.log(import.meta.env.VITE_APP_URL + '/');
     return (
         
         <>
