@@ -175,7 +175,7 @@ const GoogleMapComponent = ({
             >
                 {state.markers.map((marker, index) => (
                     <Marker key={index} position={marker.position} 
-                PinView={{  scaledSize: new window.google.maps.Size(18, 42) }}
+                // PinView={{  scaledSize: new window.google.maps.Size(18, 42) }}
                     />
                 ))}
 

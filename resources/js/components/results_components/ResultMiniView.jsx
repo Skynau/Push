@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Context from "../../Context";
 import PropertyDetail from "../property_detail_components/PropertyDetail";
 import "./ResultMiniView.scss";
@@ -16,6 +16,15 @@ const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pict
             payload: id,
         });
     };
+
+  //   const [prePins, setPrePins] = useState(state.markers);
+
+  //   const preState = useRef(state.markers);
+
+  //   useEffect(() => {
+  //     preState.current = prePins;
+  // }, [prePins]);
+    // setPrePins(state.markers)
 
     let displayDisposition = ''
 
@@ -71,6 +80,8 @@ const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pict
             break;
     }
 
+    // console.log(preState);
+    //-------------change pins on map
     function changePin(e) {
     // e.target.style.background = 'red';
     dispatch({
@@ -86,11 +97,11 @@ const ResultMiniView = ({ square_meters, price_rent, city, id, disposition, pict
             });
   } 
 
-    // console.log(address.longitude);
+    // console.log(address.longitude);onMouseLeave={}
 
     return (
         <>
-            <div onMouseEnter={changePin} className="mini-view">
+            <div onMouseEnter={changePin}  className="mini-view">
                 <div className="slider-container">
                     <ImageSlider pictures={pictures} />
                     {/* <img src="/uploads/images/1700404364_flatio8ptefg.avif" alt="" /> */}
