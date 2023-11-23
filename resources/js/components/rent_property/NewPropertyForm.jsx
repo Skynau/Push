@@ -36,7 +36,7 @@ const NewPropertyForm = () => {
         furnishing: "",
         heating: "",
         numberOfBathroom: "",
-        // photoAttachment: "",
+        photoAttachmentPano: [],
         media: [],
     });
 
@@ -93,19 +93,38 @@ const NewPropertyForm = () => {
 
     // Handle image selection
     const handleImage = (e) => {
-        console.log("media", formData.media);
+        // console.log("media", formData.media);
         
         // Add the selected file to the array
         // mediaArray.push(e.target.files);
         const mediaArray = Array.prototype.slice.call(e.target.files)
 
-        console.log(mediaArray)
+        // console.log(mediaArray)
 
         setFormData({
             ...formData,
             media: mediaArray,
         });
     };
+
+
+
+        const handleImagePano = (e) => {
+        // console.log("media", formData.media);
+        
+        // Add the selected file to the array
+        // mphotoAttachmentPanoArray.push(e.target.files);
+        const photoAttachmentPanoArray = Array.prototype.slice.call(e.target.files)
+
+        // console.log(photoAttachmentPanoArray)
+
+        setFormData({
+            ...formData,
+            photoAttachmentPano: photoAttachmentPanoArray,
+        });
+    };
+
+
     const handleSubmit = async (e) => {
         // send data to server
         e.preventDefault();
@@ -475,6 +494,18 @@ const NewPropertyForm = () => {
                         onChange={handleImage}
                         required
                     />
+                </label>
+                <br />
+                <label>
+                Photosphere:
+                    <input
+                        type="file"
+                        name="photoAttachmentPano"
+                        accept="image/*"
+                        onChange={handleImagePano}
+                        />
+                <br />
+                Please upload photo with XMP metadata.
                 </label>
                 <br />
                 {message ? (

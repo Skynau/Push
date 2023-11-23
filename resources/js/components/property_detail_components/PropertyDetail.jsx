@@ -112,7 +112,6 @@ const PropertyDetail = ({ propertyId }) => {
             toggleGallery();
         }
     };
-
     // console.log(house)
 
     return (
@@ -372,8 +371,10 @@ const PropertyDetail = ({ propertyId }) => {
                                     }}
                                 />
                             </div>
-
-                            {/* <Pano /> */}
+                            { house?.photo_attachment ? 
+                            <Pano pano={house?.photo_attachment}/>
+                            :
+                            ""}
                             <img
                                 src={imageFooter}
                                 className="bottom-image"

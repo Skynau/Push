@@ -4,39 +4,110 @@
     .back-link {
         width: 80%;
         margin: auto;
+
         a {
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: #000;
+            color: #b4aee8;
+
             img {
                 height: 20px;
                 margin-right: 0.5rem;
             }
         }
     }
+
     h2 {
         text-align: center;
+        color: #b4aee8;
+        margin-top: 1vh;
+        margin-bottom: 40px;
     }
 
     .edit-form {
-        max-width: 40%;
-        margin-bottom: 3rem;
+        max-width: 425px;
+        margin: -25 auto;
+        padding: 60px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #1f1d2b;
+
         input,
         textarea {
             border: none;
             outline: none;
-            border-bottom: 2px solid $bestcolor;
+            border-bottom: 2px solid #2a2937;
             background-color: transparent;
             font-size: 1.2rem;
+            color: #b4aee8;
+
+            &:focus {
+                outline: none;
+                border-color: #6f66a1;
+            }
         }
+
         button {
             width: 30%;
             margin: auto;
+            background-color: #8e44ad;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: #6f66a1;
+            }
+        }
+
+        .success-message {
+            color: white;
         }
     }
-    
-    .success-message{
-      color: white;
-    }
 }
+
+// .edit-form_container {
+//     .back-link {
+//         width: 80%;
+//         margin: auto;
+//         a {
+//             display: flex;
+//             align-items: center;
+//             text-decoration: none;
+//             color: #000;
+//             img {
+//                 height: 20px;
+//                 margin-right: 0.5rem;
+//             }
+//         }
+//     }
+//     h2 {
+//         text-align: center;
+//     }
+
+//     .edit-form {
+//         max-width: 40%;
+//         margin-bottom: 3rem;
+//         input,
+//         textarea {
+//             border: none;
+//             outline: none;
+//             border-bottom: 2px solid $bestcolor;
+//             background-color: transparent;
+//             font-size: 1.2rem;
+//         }
+//         button {
+//             width: 30%;
+//             margin: auto;
+//         }
+//     }
+    
+//     .success-message{
+//       color: white;
+//     }
+// }

@@ -28,14 +28,14 @@ const Navigation = () => {
                 <li className="navbar__item">
                     <Link to="/" className="navbar__link">
                         {/* <img src="resources\img\logo 3.jpg" alt="Logo" className="logo" /> */}
-                        <span>
+                        <span className="navbar_buttons">
                             Go Home
                         </span>
                     </Link>
                 </li>
                 <li className="navbar__item">
                     <Link to="/about-us" className="navbar__link">
-                        <span>
+                        <span className="navbar_buttons">
                             About us
                         </span>
                     </Link>
@@ -50,14 +50,14 @@ const Navigation = () => {
                     <>
                         <li className="navbar__item">
                             <Link to="/register" className="navbar__link">
-                                <span>
+                                <span className="navbar_buttons">
                                     Register
                                 </span>
                             </Link>
                         </li>
                         <li className="navbar__item">
                             <Link to="/login" className="navbar__link">
-                                <span>
+                                <span className="navbar_buttons">
                                     Login
                                 </span>
                             </Link>
@@ -71,21 +71,21 @@ const Navigation = () => {
                         
                             <li className="navbar__item">
                                 <Link to="/create-property" className="navbar__link">
-                                    <span>
+                                    <span className="navbar_buttons">
                                         Rent my property
                                     </span>
                                 </Link>
                             </li>
                             <li className="navbar__item">
                                 <Link to="/owner-interface" className="navbar__link">
-                                    <span>
+                                    <span className="navbar_buttons">
                                         Your Account
                                     </span>
                                 </Link>
                             </li>
                             <li className="navbar__item">
                                 <button className="navbar__link" onClick={handleLogout}>
-                                    <span>
+                                    <span className="navbar_buttons">
                                         Logout
                                     </span>
                                 </button>

@@ -41,7 +41,9 @@ Route::get('/user-listings', [User::class, 'userListings']);
 
 //----------chat----------
 
-Route::get('/messages/{user_email}', [MessageController::class, 'index']);
+Route::get('/messages', [MessageController::class, 'chatMessages']);
+
+Route::get('/chats', [MessageController::class, 'index']);
 
 Route::post('/messages', [MessageController::class, 'message']);
 
@@ -56,3 +58,5 @@ Route::post('/property/{property_id}/update', [Listing::class, 'update']);
 Route::get('/property/{property_id}/likes', [User::class, 'showLikes']);
 
 Route::post('/email-to-newsletter', [SendNews::class, 'save']);
+
+Route::get('/latest', [Search::class, 'latest']);

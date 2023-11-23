@@ -53,7 +53,7 @@ export default function Login(props) {
 
     return (
 
-        <form className='form' action="/login" method="post" onSubmit={ handleSubmit }>
+        <form className='form' action="/login" method="post" onSubmit={ handleSubmit } style={{marginBottom: "5 rem"}}>
             <label htmlFor="email">Email:</label>
             <input
                 type="email"

@@ -98,7 +98,7 @@ useEffect(() => {
                     <div className="results-list">
                         <div className="results-list_listings">
                             {properties.length > 0 ? (
-                                properties?.map((property, i) => (
+                                properties?.map((property) => (
                                     <ResultMiniView
                                         key={property.id}
                                         square_meters={property.square_meters}
