@@ -56,3 +56,5 @@ Route::post('/property/{property_id}/update', [Listing::class, 'update']);
 Route::get('/property/{property_id}/likes', [User::class, 'showLikes']);
 
 Route::post('/email-to-newsletter', [SendNews::class, 'save']);
+
+Route::get('/latest', [Search::class, 'latest']);
