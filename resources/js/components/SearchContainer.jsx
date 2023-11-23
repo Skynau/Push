@@ -33,7 +33,8 @@ const SearchContainer = () => {
     const toggleOptions = () => {
         setOpenMore(!openMore);
     };
-
+    console.log(window.location.href);
+    console.log(import.meta.env.VITE_APP_URL + '/');
     return (
         
         <>
@@ -54,7 +55,7 @@ const SearchContainer = () => {
                         </div>
                        
                     {/* Render buttons based on page url */}
-                    {window.location.href === "http://push.codeboot.cz/" ? (
+                    {window.location.href === import.meta.env.VITE_APP_URL + '/' ? (
                         <Link to="/search-results" className="search-form__btn">
                             Search
                         </Link>

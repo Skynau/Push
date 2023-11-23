@@ -99,7 +99,7 @@ const NewPropertyForm = () => {
         // mediaArray.push(e.target.files);
         const mediaArray = Array.prototype.slice.call(e.target.files)
 
-        console.log(mediaArray)
+        // console.log(mediaArray)
 
         setFormData({
             ...formData,
