@@ -3,6 +3,7 @@ import './Messages.scss';
 import Pusher from 'pusher-js';
 import axios from 'axios';
 import Chat from './Chat';
+import { useParams } from 'react-router';
 
 const MessageList = () => {
 
@@ -27,9 +28,13 @@ const MessageList = () => {
 
     },[]);
     
+    const {chat_id} = useParams()
+
+    // console.log(chat_id.chat_id);
+
     const showMessageSender = async () => {
         try {
-            const response = await axios.get('/api/messages');
+            const response = await axios.get(`/api/messages/${chat_id}`);
 
             setMessages(response.data);
         } catch (error) {
@@ -37,6 +42,7 @@ const MessageList = () => {
         }
     };
 
+    // console.log($chat_id);
     useEffect(() => {
         showMessageSender();
     }, []);
@@ -47,7 +53,7 @@ const MessageList = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/api/messages', {
+            const response = await axios.post(`/api/messages/${chat_id}`, {
                 email: email,
                 message: message
             })
@@ -63,15 +69,14 @@ const MessageList = () => {
 
     return (
         <div className='chat-container'>
-            <Chat />
             <div className='chat-message'>
-                <div className='user-link'>
+                {/* <div className='user-link'>
                 <input
                     className='user-input'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
-                </div>
+                </div> */}
                 <div className='message-box' id='message-box'>
                 {messages[0]?.map((item) => (
                     <div className='message-details' key={item.id}>
@@ -85,7 +90,7 @@ const MessageList = () => {
                 {messages[1]?.map((item) => (
                     <div className='message-details_from' key={item.id}>
                     <div className='message-header'>
-                        {/* <strong className='message-sender'>{item.user_id}:</strong> */}
+                        <strong className='message-sender'>{item.sender}:</strong>
                         <small className='message-time'>Created at: {item.created_at}</small>
                     </div>
                     <div className='message-content admin-message'>{item.text}</div>
