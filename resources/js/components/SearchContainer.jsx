@@ -11,7 +11,7 @@ import ListingDate from "./search_components/ListingDate";
 import PetsWelcome from "./search_components/PetsWelcome";
 import { Link } from "react-router-dom";
 import "./SearchContainer.scss";
-import apartmentBlock from "../../../public/images/apartment-block.jpg";
+import apartmentBlock from "/resources/img/Background-image.jpg";
 
 
 const SearchContainer = () => {
@@ -47,10 +47,10 @@ const SearchContainer = () => {
                     <button onClick={toggleOptions} className="more_options_btn">More Options</button>
                         <div className={`more_options ${openMore? ' active': ''}`}>
                             <AreaSize />
-                            <ListingDate />
                             <ConditionsApartment />
                             <Amenities />
                             <PetsWelcome />
+                            <ListingDate />
                         </div>
                        
                     {/* Render buttons based on page url */}

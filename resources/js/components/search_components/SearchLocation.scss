@@ -20,12 +20,13 @@
 }
 
 .search-location {
-    width: 100%;
+    width: 400px;
+    height: 20px;
     padding: 1rem;
-    font-size: 2rem;
+    font-size: 1rem;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 20px;
-    margin-bottom: 1rem;
+    margin: 1rem auto;
     box-sizing: border-box;
 }
 
