@@ -36,7 +36,7 @@ const DetailInfo = () => {
               <div href="#" className="outter_box">
                 <div className="main__box">
                   <div className="icon">
-                    <img className="img-fluid" src={apt?.media[0].url}
+                    <img className="img-fluid" src={apt?.media[0]?.url}
                     alt="Apartment Icon" />
                   </div>
                   <h6>{apt?.disposition.disposition}</h6>

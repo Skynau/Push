@@ -95,19 +95,18 @@ const PropertyDetail = ({ propertyId }) => {
         setGalleryOpen(!galleryOpen);
     };
 
-    
     const hideOnBackdropShare = (e) => {
         const modal = e.target;
-        
+
         if (modal.classList.contains("active")) {
             modal.classList.remove("active");
             toggleShare();
         }
     };
-    
+
     const hideOnBackdropGallery = (e) => {
         const modal = e.target;
-        
+
         if (modal.classList.contains("active")) {
             modal.classList.remove("active");
             toggleGallery();
@@ -178,6 +177,19 @@ const PropertyDetail = ({ propertyId }) => {
                     <>
                         <div className="propery-images">
                             <div className="main-image" onClick={toggleGallery}>
+                                {/* <div
+                                    style={
+                                        house?.media[0]?.url
+                                            ? {
+                                                  backgroundImage:
+                                                      "/" +
+                                                      house?.media[0]?.url,
+                                              }
+                                            : {
+                                                  backgroundImage: PhotoToCome,
+                                              }
+                                    }
+                                > */}
                                 <img
                                     //NEED TO FIX this to the loop
                                     src={
@@ -187,6 +199,7 @@ const PropertyDetail = ({ propertyId }) => {
                                     }
                                     alt="Image"
                                 />
+                                {/* </div> */}
                             </div>
                             <div className="small-images">
                                 <div
