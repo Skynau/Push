@@ -95,25 +95,24 @@ const PropertyDetail = ({ propertyId }) => {
         setGalleryOpen(!galleryOpen);
     };
 
-    
     const hideOnBackdropShare = (e) => {
         const modal = e.target;
-        
+
         if (modal.classList.contains("active")) {
             modal.classList.remove("active");
             toggleShare();
         }
     };
-    
+
     const hideOnBackdropGallery = (e) => {
         const modal = e.target;
-        
+
         if (modal.classList.contains("active")) {
             modal.classList.remove("active");
             toggleGallery();
         }
     };
-    console.log(house)
+    // console.log(house)
 
     return (
         <div className="property-container" onClick={hideModal}>
@@ -123,7 +122,7 @@ const PropertyDetail = ({ propertyId }) => {
                         {" "}
                         &larr; Back to search
                     </div>
-                    <div className="nav-brand">PUSH!</div>
+                    {/* <div className="nav-brand">PUSH!</div> */}
                     <div className="nav-links">
                         <div className="interest" onClick={toggleShare}>
                             <button className="icon">
@@ -143,8 +142,8 @@ const PropertyDetail = ({ propertyId }) => {
                             <p>Save</p>
                         </div>
                         <div className="interest">
-                            <img src={ShowInterestIcon} alt="Interest" />
-                            <p>Send a Message</p>
+                            {/* <img src={ShowInterestIcon} alt="Interest" /> */}
+                            <p>Send a Message:</p>
                             <SendFirstMessage user_id={house?.user_id} />
                         </div>
                     </div>
@@ -178,6 +177,19 @@ const PropertyDetail = ({ propertyId }) => {
                     <>
                         <div className="propery-images">
                             <div className="main-image" onClick={toggleGallery}>
+                                {/* <div
+                                    style={
+                                        house?.media[0]?.url
+                                            ? {
+                                                  backgroundImage:
+                                                      "/" +
+                                                      house?.media[0]?.url,
+                                              }
+                                            : {
+                                                  backgroundImage: PhotoToCome,
+                                              }
+                                    }
+                                > */}
                                 <img
                                     //NEED TO FIX this to the loop
                                     src={
@@ -187,6 +199,7 @@ const PropertyDetail = ({ propertyId }) => {
                                     }
                                     alt="Image"
                                 />
+                                {/* </div> */}
                             </div>
                             <div className="small-images">
                                 <div
@@ -334,6 +347,18 @@ const PropertyDetail = ({ propertyId }) => {
                                 <p>{house?.description}</p>
                             </div>
                             <div className="property-detail_map">
+                              {console.log([
+                                        {
+                                            position: {
+                                                lat: Number(
+                                                    house?.address?.latitude
+                                                ),
+                                                lng: Number(
+                                                    house?.address?.longitude
+                                                ),
+                                            },
+                                        },
+                                    ])}
                                 <GoogleMapComponent
                                     // center={state.center}
                                     // zoom={state.zoom}
@@ -358,8 +383,11 @@ const PropertyDetail = ({ propertyId }) => {
                                     }}
                                 />
                             </div>
-
-                            {/* <Pano /> */}
+                            {house?.photo_attachment ? (
+                                <Pano pano={house?.photo_attachment} />
+                            ) : (
+                                ""
+                            )}
                             <img
                                 src={imageFooter}
                                 className="bottom-image"

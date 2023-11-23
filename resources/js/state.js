@@ -33,6 +33,7 @@ const contextState = {
     markers: [],
     center: null,
     zoom: null,
+    activePin: null
     // markersMultiple: []
 };
 

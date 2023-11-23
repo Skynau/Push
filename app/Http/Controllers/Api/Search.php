@@ -181,4 +181,11 @@ class Search extends Controller
 
     return $property;
   }
+
+  public function latest()
+  {
+    $latest = Property::query()->with('media', 'type', 'disposition')->limit(7)->orderBy('created_at', 'desc')->get();
+
+    return $latest;
+  }
 }

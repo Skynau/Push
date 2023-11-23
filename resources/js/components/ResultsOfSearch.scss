@@ -4,13 +4,16 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    margin-top: 3vh;
+    margin-top: -15px;
 
     .results-header {
         display: flex;
         flex-direction: row;
         margin: 0 auto;
         width: 100%;
+        @media screen and (max-width: 800px) {
+          flex-direction: column;
+        }
 
         .results-edit {
             margin: 0 auto;
@@ -34,6 +37,10 @@
             margin-left: 40%;
             margin-right: 0.9rem;
             height: 80%;
+            @media screen and (max-width: 800px) {
+                width: 10em;
+                margin-left: 1%;
+              }
         }
         
         .results-list_header {
@@ -41,6 +48,9 @@
             justify-content: space-around;
             align-items: center;
             width: 40%;
+            @media screen and (max-width: 800px) {
+                width: 100%;
+              }
     
                 p {
                     color: $bestcolor;
@@ -62,7 +72,11 @@
 
         .map {
             width: 47%;
-            padding: 0 20px
+            padding: 0 20px;
+            @media screen and (max-width: 800px) {
+                display: none;
+              }
+            
         }
 
         .results-list {
@@ -76,10 +90,13 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-around;
-                width: 800px;
+                width: 60em;
                 height: 90vh;
                 overflow-x: hidden;
                 overflow-y: auto;
+                @media screen and (max-width: 800px) {
+                    width: 28em;
+                  }
 
                 .no-results {
                     margin-top: 30%;
@@ -121,13 +138,7 @@
     }
 }
 
-// @media screen and (max-width: 800px) {
-//   .results-list_listings {
-//     display: flex;
-//     flex-direction: row;
-//     flex-wrap: wrap;
-//   }
-// }
+
 
 // .results-page {
 //     display: flex;
