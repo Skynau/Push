@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -21,18 +21,24 @@ const Navigation = () => {
         // <Redire />;
     };
 
+    const [openMenu, setOpenMenu] = useState(false)
+
+    const toggleMenu = () => {
+        setOpenMenu(!openMenu)
+    }
+
     return (
         <div className="navbar">
             <ul className="navbar__menu">
                 <li className="navbar__item">
                     <Link to="/" className="navbar__link">
                         {/* <img src="resources\img\logo 3.jpg" alt="Logo" className="logo" /> */}
-                        <span className="navbar_buttons">Go Home</span>
+                        <span className="navbar_buttons">Home</span>
                     </Link>
                 </li>
                 <li className="navbar__item">
                     <Link to="/about-us" className="navbar__link">
-                        <span className="navbar_buttons">About us</span>
+                        <span className="navbar_buttons">About</span>
                     </Link>
                 </li>
 
@@ -91,13 +97,17 @@ const Navigation = () => {
                             {/* </button> */}
                         </li>
 
-                        <div className="navbar_buttons navbar__link">
-                            <span style={{}}>Logged in as {user?.first_name}</span>
+                        <div className="navbar_buttons navbar__link logged-in-as">
+                            <span style={{}}>
+                                Logged in as {user?.first_name}
+                            </span>
                         </div>
                     </>
                 )}
-                {/* </div> */}
             </ul>
+            <div className="menu-for-mobile" onClick={toggleMenu}>
+                <span>MENU</span>
+            </div>
         </div>
     );
 };
