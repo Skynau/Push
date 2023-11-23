@@ -17,10 +17,10 @@ const AboutUs = () => {
             <section className="team-section">
                 <h2>Our Team</h2>
                 <ul>
-                    <li>Artem Antonenko - co-founder and acting CTO</li>
-                    <li>Marcel Balint - co-founder and acting COO</li>
-                    <li>Ilona Kny - co-founder and acting CTO</li>
-                    <li>Daniel Slezak - co-dounfer and acting CEO</li>
+                    <li>Artem Antonenko - co-founder</li>
+                    <li>Marcel Balint - co-founder</li>
+                    <li>Ilona Kny - co-founder</li>
+                    <li>Daniel Slezak - co-dounfer</li>
                 </ul>
             </section>
 
