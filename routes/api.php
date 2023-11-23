@@ -39,9 +39,15 @@ Route::post('/property/store', [Listing::class, 'store']);
 
 Route::get('/user-listings', [User::class, 'userListings']);
 
-Route::get('/messages', [MessageController::class, 'index']);
+//----------chat----------
 
-Route::post('/messages/store', [MessageController::class, 'store']);
+Route::get('/messages/{user_email}', [MessageController::class, 'index']);
+
+Route::post('/messages', [MessageController::class, 'message']);
+
+Route::post('/message-first/{user_id}', [MessageController::class, 'firstMessage']);
+
+//-----------------------
 
 Route::post('/property/{property_id}/delete', [Listing::class, 'destroy']);
 

@@ -55,7 +55,7 @@ useEffect(() => {
         })
       })
       
-      // console.log(array);
+      console.log(array);
       // setMultipleMarkers(array);
      dispatch({
       type: "MAP_MARKER",

@@ -1,49 +1,93 @@
-$primary-color: #3498db;
-$secondary-color: #2c3e50;
-
-.main_message_container {
-  font-family: Arial, sans-serif;
-  max-width: 400px;
-  margin: 20px auto;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-#message-container {
-  max-height: 300px;
-  overflow-y: scroll;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 10px;
-
-  .message {
-    padding: 8px;
-    margin-bottom: 8px;
-    border: 1px solid #eee;
-    border-radius: 3px;
-    background-color: #f9f9f9;
-  }
-}
-
-#input-container {
+.chat-container {
   display: flex;
+  flex-direction: column;
+  height: 100vh;
 
-  input {
-    flex: 1;
-    padding: 8px;
+  .chat-message {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    .user-link {
+      .user-input {
+        padding: 12px;
+        border: 2px solid #3498db;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        font-size: 16px;
+        color: #3498db;
+        background-color: #f2f2f2;
+
+        &:focus {
+          outline: none;
+          border-color: #2c3e50;
+          box-shadow: 0 0 10px rgba(44, 62, 80, 0.5);
+        }
+      }
+    }
+
+    .message-box {
+      overflow-y: auto;
+      max-height: 70vh; /* Adjust as needed */
+
+      .message-details, .message-details_from {
+        margin: 16px;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        .message-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+
+          .message-sender {
+            font-weight: bold;
+            margin-right: 12px;
+            color: #2ecc71;
+          }
+
+          .message-time {
+            font-size: 14px;
+            color: #888;
+          }
+        }
+
+        .message-content {
+          word-wrap: break-word;
+          max-width: 80%; /* Adjust as needed */
+
+          &.user-message {
+            align-self: flex-start;
+            background-color: #ecf0f1;
+            color: #333;
+          }
+
+          &.admin-message {
+            align-self: flex-end;
+            background-color: #3498db;
+            color: #fff;
+          }
+        }
+      }
+    }
   }
 
-  button {
-    padding: 8px;
-    cursor: pointer;
-    background-color: $primary-color;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    margin-left: 8px;
+  form {
+    .form_control {
+      padding: 12px;
+      border: 2px solid #3498db;
+      border-radius: 8px;
+      font-size: 16px;
+      color: #333;
+      background-color: #f2f2f2;
 
-    &:hover {
-      background-color: darken($primary-color, 10%);
+      &:focus {
+        outline: none;
+        border-color: #2c3e50;
+        box-shadow: 0 0 10px rgba(44, 62, 80, 0.5);
+      }
     }
   }
 }
