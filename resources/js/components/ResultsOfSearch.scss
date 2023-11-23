@@ -76,10 +76,13 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-around;
-                width: 800px;
+                width: 60em;
                 height: 90vh;
                 overflow-x: hidden;
                 overflow-y: auto;
+                @media screen and (max-width: 800px) {
+                    width: 31em;
+                  }
 
                 .no-results {
                     margin-top: 30%;
@@ -121,13 +124,7 @@
     }
 }
 
-// @media screen and (max-width: 800px) {
-//   .results-list_listings {
-//     display: flex;
-//     flex-direction: row;
-//     flex-wrap: wrap;
-//   }
-// }
+
 
 // .results-page {
 //     display: flex;
