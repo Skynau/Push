@@ -48,6 +48,7 @@ useEffect(() => {
   let array = []
       properties?.map((property)=>{
         array.push({
+          id: Number(property.id),
           position: {
             lat: Number(property.address?.latitude),
             lng: Number(property.address?.longitude)
