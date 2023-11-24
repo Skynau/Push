@@ -13,7 +13,7 @@
     padding: 3rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
     background-color: #433e72;
-    overflow: auto;
+    overflow: scroll;
 
     .search-container__title {
         font-size: 250%;
@@ -89,8 +89,10 @@
     }
 
     @media only screen and (min-width: 361px) and (max-width: 768px) {
-        height: auto;
+        height: cover;
         padding: 0.5rem;
+        width: 90%;
+        overflow: scroll;
 
         .search-container__title {
             width: 85%;
