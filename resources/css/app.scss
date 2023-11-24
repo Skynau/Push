@@ -35,7 +35,7 @@ $main-font: "Lato", sans-serif;
 
 body {
     background: linear-gradient(to right, $whitecolor,#e1bf92);
-    // min-height: 100vh;
-    // display: flex;
-    // flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
