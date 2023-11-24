@@ -28,6 +28,12 @@
     border: 1px solid #ccc;
     margin: 1rem auto;
     box-sizing: border-box;
+    @media (max-width: 450px) {
+        flex-direction: column; // Stack buttons vertically
+        align-items: stretch; // Stretch buttons to fill the width
+        width:150%;
+
+    }
 }
 
 #autocomplete-container {

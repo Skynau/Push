@@ -69,9 +69,6 @@ const SearchContainer = () => {
                     )}
                 </div>
             </div>
-            {/* <DetailInfo />
-            <OurClientsSay />
-            <AboutUs /> */}
         </>
     );
 };
