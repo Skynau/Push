@@ -108,6 +108,9 @@ const Navigation = () => {
             <div className="menu-for-mobile" onClick={toggleMenu}>
                 <span>MENU</span>
             </div>
+            <div>
+                
+            </div>
         </div>
     );
 };
