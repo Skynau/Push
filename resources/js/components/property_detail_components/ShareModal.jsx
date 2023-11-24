@@ -9,38 +9,17 @@ export const ShareModal = ({ propertyId, toggleShare }) => {
     const [shareOpen, setShareOpen] = useState(true);
     const [copySuccess, setCopySuccess] = useState(null);
 
-    // const propertyId = {propertyId}
-
     const handleCopy = () => {
         navigator.clipboard?.writeText(copy);
-        // console.log(copy)
     };
-
-    // const copyToClipBoard = async (copyMe) => {
-    //     try {
-    //        await navigator.clipboard.writeText(copyMe);
-    //         setCopySuccess('Copied!');
-    //    }
-    //     catch (err) {
-    //        setCopySuccess('Failed to copy!');
-    //     }
-    // };
 
     const hideOnBackdrop = (e) => {
         const modal = e.target;
         modal.classList.remove("active");
     };
 
-    // const toggleShare = () => {
-    //     setShareOpen((prevValue) => !prevValue);
-    // };
-
-    // console.log(copy)
     return (
         <div className="modal-content">
-            {/* <span className="close" onClick={toggleShare}>
-            &#10005;
-          </span> */}
             <div className="share-quit" onClick={toggleShare}>
                 <p className="share-quit_cross">&#10006;</p>
             </div>

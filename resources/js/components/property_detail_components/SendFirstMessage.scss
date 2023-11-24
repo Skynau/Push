@@ -1,0 +1,83 @@
+$whitecolor: #ffffff; 
+$purpleColor: #8e44ad; 
+$darkPurpleColor: #6f66a1; 
+
+.modal-content {
+  position: relative;
+
+  .message-quit {
+    height: 50px;
+    width: 50px;
+    background-color: $whitecolor;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    .message-quit_cross {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+  }
+
+  .form_message {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+    .input_message {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      height: 170px;
+      width: 320px;
+      resize: both; 
+    }
+
+    .button_message {
+      padding: 10px;
+      background-color: $purpleColor;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $darkPurpleColor;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .message-quit {
+      top: 10px;
+      right: 10px;
+    }
+
+    .form_message {
+      margin-top: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    /* Adjust styles for phones */
+    .message-quit {
+      top: 10px;
+      right: 60px;
+    }
+
+    .form_message {
+      margin-top: 5px;
+    }
+  }
+}

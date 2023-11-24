@@ -25,6 +25,7 @@ const PropertyDetail = ({ propertyId }) => {
     const [loading, setLoadding] = useState(false);
     const [shareOpen, setShareOpen] = useState(false);
     const [galleryOpen, setGalleryOpen] = useState(false);
+    const [messageOpen, setMessageOpen] = useState(false);
 
     if (propertyId === undefined) {
         propertyId = useParams().id;
@@ -47,12 +48,6 @@ const PropertyDetail = ({ propertyId }) => {
     const toggleLiked = () => {
         setLiked((prevValue) => !prevValue);
     };
-
-    //property detail zoom and center
-
-    // const handleMapClick = (e) => {
-    //
-    //   };
 
     const handleCenterChange = (newCenter) => {
         // console.log("New Center:", newCenter);
@@ -95,6 +90,11 @@ const PropertyDetail = ({ propertyId }) => {
         setGalleryOpen(!galleryOpen);
     };
 
+    const toggleMessage = () => {
+        setMessageOpen(!messageOpen);
+    };
+
+
     const hideOnBackdropShare = (e) => {
         const modal = e.target;
 
@@ -105,6 +105,15 @@ const PropertyDetail = ({ propertyId }) => {
     };
 
     const hideOnBackdropGallery = (e) => {
+        const modal = e.target;
+
+        if (modal.classList.contains("active")) {
+            modal.classList.remove("active");
+            toggleGallery();
+        }
+    };
+
+    const hideOnBackdropMessage = (e) => {
         const modal = e.target;
 
         if (modal.classList.contains("active")) {
@@ -141,10 +150,12 @@ const PropertyDetail = ({ propertyId }) => {
                             </form>
                             <p>Save</p>
                         </div>
-                        <div className="interest">
-                            {/* <img src={ShowInterestIcon} alt="Interest" /> */}
+                        <div className="interest" onClick={toggleMessage}>
+                            <button className="icon">
+                                <img src={ShowInterestIcon} alt="Interest" />
+                            </button>
                             <p>Send a Message:</p>
-                            <SendFirstMessage user_id={house?.user_id} />
+                            {/* <SendFirstMessage user_id={house?.user_id} /> */}
                         </div>
                     </div>
                 </div>
@@ -168,6 +179,16 @@ const PropertyDetail = ({ propertyId }) => {
                     <ImageGallery
                         media={house?.media}
                         toggleGallery={toggleGallery}
+                    />
+                </div>
+
+                <div
+                    className={`modal  ${messageOpen ? " active" : ""}`}
+                    onClick={hideOnBackdropMessage}
+                >
+                    <SendFirstMessage
+                        user_id={house?.user_id}
+                        toggleMessage={toggleMessage}
                     />
                 </div>
 
