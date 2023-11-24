@@ -27,9 +27,10 @@
 
     // Media query for smaller screens (e.g., phones with a width of 360px)
     @media (max-width: 450px) {
+        display: flex;
         flex-direction: column; // Stack buttons vertically
-        align-items: stretch; // Stretch buttons to fill the width
-        width:80%;
+        // align-items: stretch; // Stretch buttons to fill the width
+        width:60%;
     }
 }
 
@@ -44,6 +45,7 @@
     outline: none;
     font-size: 1.2rem;
     transition: background-color 0.3s ease, color 0.3s ease;
+    
 
     &:hover {
         background-color: #54be90;
@@ -57,6 +59,6 @@
 
     // Media query for smaller screens (e.g., phones with a width of 360px)
     @media (max-width: 450px) {
-        width: 100%; // Make buttons fill the width
+        width: 95%; // Make buttons fill the width
     }
 }
