@@ -42,21 +42,25 @@ const Navigation = () => {
                             <span className="navbar_buttons">About</span>
                         </Link>
                     </li>
-    
+
                     {/* <div className="profile-image">Image here</div> */}
-    
+
                     {/* <div className="navbar__menu"> */}
-    
+
                     {user === false ? (
                         <>
                             <li className="navbar__item">
                                 <Link to="/register" className="navbar__link">
-                                    <span className="navbar_buttons">Register</span>
+                                    <span className="navbar_buttons">
+                                        Register
+                                    </span>
                                 </Link>
                             </li>
                             <li className="navbar__item">
                                 <Link to="/login" className="navbar__link">
-                                    <span className="navbar_buttons">Login</span>
+                                    <span className="navbar_buttons">
+                                        Login
+                                    </span>
                                 </Link>
                             </li>
                         </>
@@ -97,7 +101,7 @@ const Navigation = () => {
                                 </span>
                                 {/* </button> */}
                             </li>
-    
+
                             <div className="navbar_buttons navbar__link logged-in-as">
                                 <span style={{}}>
                                     Logged in as {user?.first_name}
@@ -108,29 +112,38 @@ const Navigation = () => {
                 </ul>
                 <div className="menu-for-mobile" onClick={toggleMenu}>
                     <span>MENU</span>
-                </div>
-                    <div className="mobile-menu">
+                    <div
+                        className={`mobile-menu  ${openMenu ? " active" : ""}`}
+                    >
                         <div className="mobile-menu_item">
                             <Link to="/" className="mobile_menu-link">
                                 <span className="mobile_menu-button">Home</span>
                             </Link>
                         </div>
                         <div className="mobile-menu_item">
-                            <Link to="/login" className="mobile_menu-link">
-                                <span className="mobile_menu-button">Login</span>
+                            <Link to="/about-us" className="mobile_menu-link">
+                                <span className="mobile_menu-button">
+                                    About
+                                </span>
                             </Link>
                         </div>
                         {user === false ? (
                             <>
                                 <div className="mobile-menu_item">
-                                    <Link to="/register" className="mobile_menu-link">
+                                    <Link
+                                        to="/register"
+                                        className="mobile_menu-link"
+                                    >
                                         <span className="mobile_menu-button">
                                             Register
                                         </span>
                                     </Link>
                                 </div>
                                 <div className="mobile-menu_item">
-                                    <Link to="/login" className="mobile_menu-link">
+                                    <Link
+                                        to="/login"
+                                        className="mobile_menu-link"
+                                    >
                                         <span className="mobile_menu-button">
                                             Login
                                         </span>
@@ -171,7 +184,7 @@ const Navigation = () => {
                                         </span>
                                     </div>
                                 </div>
-    
+
                                 <div className="mobile-menu_item logged-in-as">
                                     <span style={{}}>
                                         Logged in as {user?.first_name}
@@ -180,6 +193,7 @@ const Navigation = () => {
                             </>
                         )}
                     </div>
+                </div>
             </div>
         </>
     );
