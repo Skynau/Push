@@ -31,7 +31,8 @@
     @media (max-width: 450px) {
         flex-direction: column; // Stack buttons vertically
         align-items: stretch; // Stretch buttons to fill the width
-        width:150%;
+        width:100%;
+        font-size: 120%;
 
     }
 }
