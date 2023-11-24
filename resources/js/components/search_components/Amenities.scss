@@ -35,6 +35,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 450px) {
+        .amenities-btns__top,
+        .amenities-btns__bottom {
+            flex-direction: column; // Stack buttons vertically
+            align-items: center; // Center align buttons
+            width:95%;
+        }
+    }
 }
 
 .amenities-btns__top,
