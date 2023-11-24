@@ -3,6 +3,7 @@ import './Messages.scss';
 import Pusher from 'pusher-js';
 import axios from 'axios';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const MessageList = () => {
 
@@ -70,9 +71,12 @@ const MessageList = () => {
 
     return (
         <div className='chat-container'>
+            <Link to="/chats">
+                <button>Back to Chats</button>
+            </Link>
             <div className='chat-message'>
                 <div className='message-box' id='message-box' ref={messageBoxRef}>
-                {messages[0]?.map((item) => (
+                {messages[0]?.reverse().map((item) => (
                     <div className='message-details' key={item.id}>
                         <div className='message-header_sender'>
                             <strong className='message-sender'>{item.user_id}:</strong>
@@ -95,7 +99,7 @@ const MessageList = () => {
                         <div className='message-content sender-message'>{item.text}</div>
                     </div>
                 ))}
-                {messages[1]?.map((item) => (
+                {messages[1]?.reverse().map((item) => (
                     <div className='message-details_from' key={item.id}>
                         <div className='message-header_reciever'>
                             <strong className='message-reciever'>{item.sender}:</strong>

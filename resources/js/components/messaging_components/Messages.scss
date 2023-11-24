@@ -1,80 +1,205 @@
+// .chat-container {
+//   display: flex;
+//   flex-direction: column;
+//   max-width: 800px;
+//   margin: 0 auto;
+//   background-color: #f4f4f4;
+//   border-radius: 8px;
+//   overflow: hidden;
+// }
+
+// // Chat message styles
+// .chat-message {
+//   display: flex;
+//   flex-direction: column;
+//   background-color: #fff;
+//   border-radius: 8px;
+//   overflow: hidden;
+//   margin: 20px;
+//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+// }
+
+// // Message box styles
+// .message-box {
+//   overflow-y: auto;
+//   max-height: 300px;
+//   padding: 15px;
+//   display: flex;
+//   flex-direction: column-reverse;
+// }
+
+// // Message details styles
+// .message-details {
+//   margin-bottom: 15px;
+//   display: flex;
+//   flex-direction: column;
+
+//   // Sender message styles
+//   &.sender-message {
+//     align-self: flex-end;
+//     background-color: red;
+//     color: #fff;
+//     border-radius: 8px;
+//     padding: 10px;
+//     margin-right: 10px;
+//   }
+
+//   // Receiver message styles
+//   &.receiver-message {
+//     align-self: flex-start;
+//     background-color: #ecf0f1;
+//     color: #333;
+//     border-radius: 8px;
+//     padding: 10px;
+//     margin-left: 10px;
+//   }
+
+//   // Message header styles
+//   .message-header {
+//     display: flex;
+//     justify-content: space-between;
+//     font-size: 12px;
+//     color: #777;
+
+//     // Sender and Receiver name styles
+//     .message-sender,
+//     .message-receiver {
+//       font-weight: bold;
+//     }
+//   }
+
+//   // Message content styles
+//   .message-content {
+//     border-radius: 8px;
+//   }
+// }
+
+// // Form styles
+// form {
+//   display: flex;
+//   background-color: #f0f0f0;
+//   padding: 15px;
+//   border-radius: 0 0 8px 8px;
+
+//   // Input styles
+//   .form_control {
+//     flex: 1;
+//     padding: 12px;
+//     border: 1px solid #ccc;
+//     border-radius: 8px;
+//     margin-right: 15px;
+//     box-sizing: border-box;
+//   }
+
+//   // Submit button styles
+//   .submit-button {
+//     background-color: #3498db;
+//     color: #fff;
+//     padding: 12px 20px;
+//     border: none;
+//     border-radius: 8px;
+//     cursor: pointer;
+//     transition: background-color 0.3s;
+
+//     &:hover {
+//       background-color: #2980b9;
+//     }
+//   }
+// }
+
+@mixin buttonStyle {
+  background-color: #ff6b6b;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #ff4d4d;
+  }
+}
+
+// Main chat container styling
 .chat-container {
   display: flex;
   flex-direction: column;
   max-width: 800px;
   margin: 0 auto;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  overflow: hidden;
+  padding: 40px;
+  background-color: #f1f1f1;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
 }
 
-// Chat message styles
+// "Back to Chats" button styling
+button {
+  @include buttonStyle;
+  margin-bottom: 20px;
+}
+
+// Chat message styling
 .chat-message {
-  display: flex;
-  flex-direction: column;
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  margin: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-// Message box styles
-.message-box {
-  overflow-y: auto;
-  max-height: 300px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-// Message details styles
-.message-details {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-
-  // Sender message styles
-  &.sender-message {
-    align-self: flex-end;
-    background-color: red;
-    color: #fff;
+  .message-box {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 20px;
     border-radius: 8px;
-    padding: 10px;
-    margin-right: 10px;
-  }
+    border: 2px solid #ddd;
+    margin-bottom: 20px;
 
-  // Receiver message styles
-  &.receiver-message {
-    align-self: flex-start;
-    background-color: #ecf0f1;
-    color: #333;
-    border-radius: 8px;
-    padding: 10px;
-    margin-left: 10px;
-  }
+    // Sender and receiver message details styling
+    .message-details,
+    .message-details_from {
+      margin-bottom: 20px;
 
-  // Message header styles
-  .message-header {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: #777;
+      .message-header_sender,
+      .message-header_reciever {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
 
-    // Sender and Receiver name styles
-    .message-sender,
-    .message-receiver {
-      font-weight: bold;
+        .message-sender,
+        .message-reciever {
+          font-weight: bold;
+          color: #4e4e4e;
+        }
+
+        .message-time_sender,
+        .message-time_reciever {
+          font-size: 14px;
+          color: #777;
+        }
+      }
+
+      // Message content styling
+      .message-content {
+        padding: 15px;
+        border-radius: 8px;
+
+        // Different background colors for sender and receiver messages
+        .sender-message {
+          background-color: #ff6b6b;
+          color: #fff;
+        }
+
+        .reciever-message {
+          background-color: #78c7ff;
+          color: #fff;
+        }
+      }
     }
   }
-
-  // Message content styles
-  .message-content {
-    border-radius: 8px;
-  }
 }
 
-// Form styles
+// Form styling
 form {
   display: flex;
   background-color: #f0f0f0;
@@ -91,7 +216,6 @@ form {
     box-sizing: border-box;
   }
 
-  // Submit button styles
   .submit-button {
     background-color: #3498db;
     color: #fff;
@@ -104,5 +228,16 @@ form {
     &:hover {
       background-color: #2980b9;
     }
+  }
+}
+
+// Media queries for responsiveness
+@media screen and (max-width: 600px) {
+  .chat-container {
+    padding: 20px;
+  }
+
+  .message-box {
+    max-height: 250px;
   }
 }
