@@ -16,7 +16,6 @@
     & _active {
         display: block;
         position: relative;
-        
         .closing-tab {
             @include button-not-selected;
             margin-left: 0.9rem;
@@ -25,22 +24,30 @@
             top: 50px;
             right: 50px;
         }
+        
     }
 }
 
 .edit_container {
     position: relative;
     
-
+    
     .closing-tab {
-            @include button-not-selected;
-            margin-left: 0.9rem;
-            margin-right: 0.9rem;
-            position: absolute;
-            top: 50px;
-            right: 100px;
+        @include button-not-selected;
+        margin-left: 0.9rem;
+        margin-right: 0.9rem;
+        position: absolute;
+        top: 50px;
+        right: 100px;
+    }
+    @media (max-width: 450px) {
+        .closing-tab {
+            margin-right: -5.1rem;;
+            top: 20px;
         }
+    }
 }
+
 
 // .closing-tab {
 //     @include button-not-selected;
