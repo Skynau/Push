@@ -5,6 +5,7 @@ header {
     margin-bottom: 5em;
 }
 .navbar {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,7 +35,10 @@ header {
             }
           }
       }
-
+    .mobile-menu {
+      display: none;
+      position: absolute;
+    }
   }
   
   .nav__logo {
@@ -125,8 +129,8 @@ header {
       font-size: 1rem;
     }
 
-    .menu-for-mobile {
-      display: block;
-    }
+    // .menu-for-mobile {
+    //   display: block;
+    // }
   }
 

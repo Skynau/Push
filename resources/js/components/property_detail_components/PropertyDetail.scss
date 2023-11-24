@@ -62,6 +62,8 @@
             padding: 0 15px;
             position: fixed;
             max-width: 1248px;
+            width: 80%;
+            // max-height: 60px;
             // width: 45em;
             // height: 4rem;
             background-color: $whitecolor;
@@ -70,18 +72,24 @@
             //     flex-direction: column;
             // }
             @media (max-width: 600px) {
-                flex-direction: column;
-
+                padding: 0;
             }
+
             .back-link {
                 cursor: pointer;
                 margin-right: 4rem;
                 min-width: 100px;
                 font-size: 17px;
                 @media (max-width: 700px) {
-                        min-width: none;
-                        margin-right: 0;
+                        min-width: 10px;
+                        margin-right: 70px;
+
                     }
+                @media (max-width: 400px) {
+                    min-width: 10px;
+                    margin-right: 3vw;
+
+                }
                 .back-arrow {
                     font-weight: 900;
                     font-size: 40px;
@@ -95,16 +103,20 @@
             }
             .nav-links {
                 display: flex;
-                gap: 1rem;
-                // @media (max-width: 600px) {
-                //         flex-direction: column;
-                //     }
+                gap: 2rem;
+
+                
                 .save,
+                .interest,
                 .share {
                     display: flex;
                     align-items: center;
                     margin-right: 2rem;
                     cursor: pointer;
+                    @media (max-width: 400px) {
+                            margin-right: 0;
+                            margin-left: 5vw;
+                        }
                     // &:hover {
                     //     text-decoration: underline;
                     // }
@@ -116,6 +128,7 @@
                         height: 30px;
                         width: 30px;
                         margin-right: 0.5rem;
+                        margin-top: 0.6rem;
                         cursor: pointer;
                     }
                     .to-hide {
@@ -123,7 +136,12 @@
                             display: none;
                         }
                     }
+                    .save-form {
+                        background-color: $whitecolor;
+                        padding: 0;
+                    }
                 }
+
                 // .save img {
                 //     height: 24px;
                 // }

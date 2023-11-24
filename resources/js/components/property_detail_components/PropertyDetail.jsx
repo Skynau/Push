@@ -129,7 +129,8 @@ const PropertyDetail = ({ propertyId }) => {
                 <div className="property-nav">
                     <div className="back-link" onClick={hideModal}>
                         {" "}
-                        <span className="back-arrow">&#8630;</span> <span className="to-hide">Back</span>
+                        <span className="back-arrow">&#8630;</span>{" "}
+                        <span className="to-hide">Back</span>
                     </div>
                     {/* <div className="nav-brand">PUSH!</div> */}
                     <div className="nav-links">
@@ -140,7 +141,7 @@ const PropertyDetail = ({ propertyId }) => {
                             <p className="to-hide">Share</p>
                         </div>
                         <div className="save" onClick={toggleLiked}>
-                            <form action="" onSubmit={sendData}>
+                            <form className="save-form" action="" onSubmit={sendData}>
                                 <button className="icon" type="submit">
                                     <img
                                         src={liked ? HeartIcon : EmptyHeartIcon}
@@ -154,7 +155,7 @@ const PropertyDetail = ({ propertyId }) => {
                             <button className="icon">
                                 <img src={ShowInterestIcon} alt="Interest" />
                             </button>
-                            <p>Send a Message:</p>
+                            <p className="to-hide">Message</p>
                             {/* <SendFirstMessage user_id={house?.user_id} /> */}
                         </div>
                     </div>
