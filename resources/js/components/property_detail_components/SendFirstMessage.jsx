@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
+import './SendFirstMessage.scss';
 
-const SendFirstMessage = ({user_id}) => {
+const SendFirstMessage = ({user_id, toggleMessage}) => {
 
     const [text, setText] = useState('');
 
@@ -22,14 +23,16 @@ const SendFirstMessage = ({user_id}) => {
         
     }
     return (
-        <>
-            <form onSubmit={onSubmit}>
-                <input name="text" onChange={handleInputChange} value={text.text} placeholder="Write your message"></input>
-                <button type="submit">Send</button>
+        <div className="modal-content">
+            <div className="message-quit" onClick={toggleMessage}>
+                <p className="message-quit_cross">&#10006;</p>
+            </div>
+            <form onSubmit={onSubmit} className="form_message">
+                <textarea className="input_message" name="text" onChange={handleInputChange} value={text.text} placeholder="Write your message"></textarea>
+                <button className="button_message" type="submit">Send</button>
             </form>
-        </>
-    )
-
+        </div>
+    );
 }
 
 export default SendFirstMessage;

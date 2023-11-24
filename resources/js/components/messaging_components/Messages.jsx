@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Messages.scss';
 import Pusher from 'pusher-js';
 import axios from 'axios';
-import Chat from './Chat';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const MessageList = () => {
 
     const [email,setEmail] = useState('email');
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
+    const messageBoxRef = useRef(null);
     let allMessages = [];
 
     useEffect(() => {
@@ -65,35 +66,46 @@ const MessageList = () => {
             console.error('Error fetching messages:', error);
         }
     }
-    console.log(messages);
+
+    // console.log(messages);
 
     return (
         <div className='chat-container'>
+            <Link to="/chats">
+                <button>Back to Chats</button>
+            </Link>
             <div className='chat-message'>
-                {/* <div className='user-link'>
-                <input
-                    className='user-input'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                </div> */}
-                <div className='message-box' id='message-box'>
-                {messages[0]?.map((item) => (
+                <div className='message-box' id='message-box' ref={messageBoxRef}>
+                {messages[0]?.reverse().map((item) => (
                     <div className='message-details' key={item.id}>
-                    <div className='message-header'>
-                        <strong className='message-sender'>{item.user_id}:</strong>
-                        <small className='message-time'>Created at: {item.created_at}</small>
-                    </div>
-                    <div className='message-content user-message'>{item.text}</div>
+                        <div className='message-header_sender'>
+                            <strong className='message-sender'>{item.user_id}:</strong>
+                            <small className='message-time_sender'>
+                                Created at: {item.created_at ? (
+                                    new Date(item.created_at).toLocaleString('en-US', {
+                                        year: 'numeric',
+                                        month: 'numeric',
+                                        day: 'numeric',
+                                        hour: 'numeric',
+                                        minute: 'numeric',
+                                        second: 'numeric',
+                                        hour12: true, // Change to false if you want 24-hour format
+                                    })
+                                    ) : (
+                                    'N/A' // Or any other placeholder or message indicating that the timestamp is not available
+                                )}
+                            </small>
+                        </div>
+                        <div className='message-content sender-message'>{item.text}</div>
                     </div>
                 ))}
-                {messages[1]?.map((item) => (
+                {messages[1]?.reverse().map((item) => (
                     <div className='message-details_from' key={item.id}>
-                    <div className='message-header'>
-                        <strong className='message-sender'>{item.sender}:</strong>
-                        <small className='message-time'>Created at: {item.created_at}</small>
-                    </div>
-                    <div className='message-content admin-message'>{item.text}</div>
+                        <div className='message-header_reciever'>
+                            <strong className='message-reciever'>{item.sender}:</strong>
+                            <small className='message-time_reciever'>Created at: {item.created_at}</small>
+                        </div>
+                        <div className='message-content reciever-message'>{item.text}</div>
                     </div>
                 ))}
                 </div>

@@ -14,6 +14,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
     background-color: #433e72;
     overflow: auto;
+
     .search-container__title {
         font-size: 250%;
     }
@@ -63,6 +64,26 @@
         h2 {
             color: $bestcolor;
             font-family: $main-font;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        height: auto;  // Adjust height for smaller screens
+        padding: 1rem;  // Adjust padding for smaller screens
+        .search-container__title {
+            font-size: 200%;  // Adjust title font size for smaller screens
+        }
+        .search-container_filters {
+            flex-direction: column;  // Adjust filter direction for smaller screens
+            .more_options {
+                display: block;  
+            }
+            .more_options_btn {
+                margin: 0;  
+            }
+            .search-form__btn {
+                width: 100%;  
+            }
         }
     }
 }
