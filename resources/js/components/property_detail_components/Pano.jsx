@@ -11,12 +11,12 @@ const Pano = ({pano}) => {
         width="100%"
         height="800px"
         image={pano}//THIS WILL BE DYMANIC path for pano from upload
-        pitch={10}
+        // pitch={10}
         yaw={100}
         hfov={140}
         autoLoad
         // showZoomCtrl={false}
-        // autoRotate={10}
+        // autoRotate={90}
       />
     </div>
   )

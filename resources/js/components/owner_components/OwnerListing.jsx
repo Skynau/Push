@@ -46,7 +46,7 @@ const OwnerListing = () => {
         setApproved((prevValue) => !prevValue);
     };
 
-    // console.log(listings)
+    console.log(listings)
     return (
         <>
         {listings.map((listing)=>{
@@ -78,7 +78,7 @@ const OwnerListing = () => {
                           <p className="house-item-detail-icons">
                               <span className="bed">
                                   <img src={bedIcon} alt="bed" />{" "}
-                                  <strong>{listing.disposition_id}</strong>
+                                  <strong>{listing.disposition.disposition}</strong>
                               </span>
                               <span className="bath">
                                   <img src={bathIcon} alt="bath" />{" "}
